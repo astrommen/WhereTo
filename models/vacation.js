@@ -10,7 +10,7 @@ var vacationSchema = new Schema({
   startDate: Date,
   endDate: Date,
   location: String,
-  activities: Array
+  activities: [String]
 });
 
 // This creates our model from the above schema, using mongoose's model method

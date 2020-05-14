@@ -19,10 +19,9 @@ module.exports = {
     db.Vacation
       .create(req.body)
       .then(dbModel => {
-        db.User.findOneAndUpdate({}, { $push: { vacations: dbModel._id } }, { new: true })
-        res.json(dbModel)
+        return db.User.findOneAndUpdate({ user: req.body.user }, { $push: { vacations: dbModel._id } }, { new: true }).then(dbUser => res.json(dbUser)).catch(err => res.status(422).json(err));
       })
-      .catch(err => res.status(422).json(err));
+
   },
   update: function (req, res) {
     db.Vacation
