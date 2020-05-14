@@ -1,0 +1,15 @@
+button{
+  width:200px;
+  height:50px;
+  margin: 2% 0 0;
+  border-radius: 4px;
+}
+
+.row{
+  justify-content: center;
+}
+
+.btnContainer{
+  padding: 1%;
+}
+
