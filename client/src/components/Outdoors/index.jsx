@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {Col, Row, Container} from "../Grid";
+import OutdoorCard from "../OutdoorCard";
 import "./style.css";
 import API from "../../../utils/API";
 
@@ -41,7 +41,14 @@ class Outdoor extends Component {
     .catch(err => console.log(err));
   };
 
-  //handleInput Change
+  handleInputChange = event => {
+    const value = event.target.value;
+    const name = event.target.name;
+    this.setState({
+      [name]: value
+    });
+  };
+
   //handleForm Submit
 
   saveOutdoorArea = (area) => {
@@ -52,7 +59,28 @@ class Outdoor extends Component {
 
   render() {
     return (
-      <div></div>
+      <div>
+        {this.state.sites.length > 0 ? (
+          this.state.sites.map((site) => 
+          <OutdoorCard 
+          id={site.id}
+          name={site.name}
+          description={site.description}
+          longitude={site.longitude}
+          latitude={site.latitude}
+          street={site.street}
+          city={site.city}
+          postalCode={site.postalCode}
+          state={site.state}
+          link={site.link}
+          images={site.images}
+          activities={site.activities}
+          />
+          )
+        ) : (
+          <h3>No Restuls to Display</h3>
+        )}
+      </div>
     );
   }
 }
