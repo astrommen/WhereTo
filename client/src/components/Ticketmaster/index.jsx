@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import {Col, Row, Container} from "../Grid";
 import API from "../../../utils/API"
 import "./style.css";
 
@@ -62,8 +61,8 @@ class Ticketmaster extends Component {
             image={event.image}
             localDate={event.localdate}
             localStartTime={event.localStartTime}
-            priceRangeMin={event.priceRangeMin}
-            priceRangeMax={event.priceRangeMax}
+            priceMin={event.priceRangeMin}
+            priceMax={event.priceRangeMax}
             seatmapLink={event.seatmapLink}
             venueName={event.venueName}
             venueUrl={event.venueUrl}

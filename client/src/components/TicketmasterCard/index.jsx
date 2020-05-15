@@ -8,9 +8,16 @@ display: block;
 margin-left: auto;
 margin-right: auto;
 `
-const ImgDes = styled.p `
-font-style: italic;
-text-align: center;`
+
+const VenueLink = styled.a `
+text-decoration: none;
+
+&:link, :hover, :active, :visited {
+    text-decoration: none;
+    color: white;
+    text-shadow: 0px 0px 2px black;
+}
+`
 
 function TicketmasterCard(props) {
   return(
@@ -25,9 +32,22 @@ function TicketmasterCard(props) {
         </Col>
       </Row>
       <Row>
-        <Col size="md-5">
+        <Col size="md-6">
           <Image src={props.image} alt={props.name} />
-
+        </Col>
+        <Col size="md-6">
+          <p>Date: {props.localDate} Time: {props.localStartTime}</p>
+          <p>Price: {props.priceMin} - {props.priceMax}</p>
+        <Container>
+          <Row>
+            <Col size="md-8">
+              <p><VenueLink href={props.venueUrl} target="_blank" rel="noopener noreferrer">{props.venueName}</VenueLink></p>
+            </Col>
+            <Col size="md-4">
+              <SeatmapBtn />
+            </Col>
+          </Row>
+        </Container>
         </Col>
       </Row>
     </Container>

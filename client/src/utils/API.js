@@ -20,6 +20,12 @@ export default {
     //Search RIBD for outdoor activities in US
     callRibd: function(state, activities) {
         return axios.get(`https://ridb.recreation.gov/api/v1/recareas?limit=10&offset=0&full=true&state=${state}&activity=${activities}&lastupdated=10-01-2018&sort=Name&apikey=${process.env.REACT_APP_RIBD_APIKEY}`)
+    },
+    saveEvent: function (eventData) {
+        return axios.post("/api/trips", eventData);
+    },
+    saveSite: function(siteData) {
+        return axios.post("/api/trips", siteData)
     }
 }
 

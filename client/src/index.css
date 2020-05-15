@@ -5,9 +5,24 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url("https://pbs.twimg.com/media/DQsBFczUQAANOr7.jpg:large");
+  background-repeat: no-repeat;
+  background: cover;
+  margin: 8% 0;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.logo {
+  width:50%;
+  /* margin: 0 25%; */
+}
+
+.container{
+  width:90%;
+  padding: 1%;
+  background-color: rgb(1,5,6, 0.6);
 }
