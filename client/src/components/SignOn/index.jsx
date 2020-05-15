@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Container, Row, Col } from "../Grid";
+import "./style.css";
 
 const GOOGLE_BUTTON_ID = "google-sign-in-button";
 
@@ -90,11 +92,22 @@ class SignOn extends Component {
 
   render() {
     return (
-      <div >
+      <div className="btnContainer">
 
-        <div id={GOOGLE_BUTTON_ID} />
+        <Row>
+            <div id={GOOGLE_BUTTON_ID} />
 
-        <button onClick={() => this.signOut()}>Sign out</button>
+          {/* <button onClick={() => this.signOut()}>Sign out</button> */}
+        </Row>
+
+        <Row>
+          <button> Login </button>
+        </Row>
+
+        <Row>
+          <button> Sign Up </button>
+        </Row>
+
       </div>
     );
   }
