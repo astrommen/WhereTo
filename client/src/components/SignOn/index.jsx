@@ -1,47 +1,38 @@
 import React, { Component } from "react";
+import { Redirect } from 'react-router-dom'
 import { Container, Row, Col } from "../Grid";
+import Register from "../register";
+import Profile from "../../pages/Profile";
 import "./style.css";
 
 const GOOGLE_BUTTON_ID = "google-sign-in-button";
 
 class SignOn extends Component {
+  state = {
+    redirect: false,
+    whichPage: ""
+  }
+  
+  setRedirect = () => {
+    return(this.setState({
+      redirect: true
+    }));
+  }
 
-  // loadClientWhenGapiReady = (script) => {
-  //   console.log('Trying To Load Client!');
-  //   console.log(script)
-  //   if(script.getAttribute('gapi_processed')){
-  //     console.log('Client is ready! Now you can access gapi. :)');
-  //     if(window.location.hostname==='localhost'){
-  //       window.gapi.client.load("http://localhost:3000/_ah/api/discovery/v1/apis/metafields/v1/rest")
-  //       .then((response) => {
-  //         console.log("Connected to metafields API locally.");
-  //         },
-  //         function (err) {
-  //           console.log("Error connecting to metafields API locally.");
-  //         }
-  //       );
-  //     }
-  //   }
-  //   else{
-  //     console.log('Client wasn\'t ready, trying again in 100ms');
-  //     setTimeout(() => {this.loadClientWhenGapiReady(script)}, 100);
-  //   }
-  // }
+  setWhichPage = () => {
+    this.setState({whichPage: "profile"})
+  }
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      console.log(this.state.whichPage);
+      if(this.state.whichPage==="register"){
+        return <Redirect to="/register" component={Register}/>
+      } else {
+        return <Redirect to="/profile" component={Profile}/>
+      }
+    }
+  }
 
-  // initGapi = () => {
-  //   console.log('Initializing GAPI...');
-  //   console.log('Creating the google script tag...');
-
-  //   const script = document.createElement("script");
-  //   script.onload = () => {
-  //     console.log('Loaded script, now loading our api...')
-  //     // Gapi isn't available immediately so we have to wait until it is to use gapi.
-  //     this.loadClientWhenGapiReady(script);
-  //   };
-  //   script.src = "https://apis.google.com/js/client.js";
-    
-  //   document.body.appendChild(script);
-  // }
   componentDidMount() {
     new Promise((resolve) => {
       const interval = setInterval(() => {
@@ -60,28 +51,25 @@ class SignOn extends Component {
         }
       }, 100);
     });
+    console.log(this.state.redirect);
+    this.renderRedirect();
   }
 
   onSuccess(googleUser) {
     const profile = googleUser.getBasicProfile();
+    if (profile) {
+      // console.log("somtehing");
+      // this.setRedirect();
+      // // renderRedirect();
+      // // this.setState({
+      // //   redirect: true
+      // // })
+
+    }
     console.log("Name: " + profile.getName());
+    
   }
 
-  
-
-  // onSignIn = (googleUser) => {
-  //   console.log("user signed in");
-  //   // Useful data for your client-side scripts:
-  //   var profile = googleUser.getBasicProfile();
-
-  //   console.log(profile);
-  //   // console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-  //   console.log('Full Name: ' + profile.getName());
-  //   console.log('Given Name: ' + profile.getGivenName());
-  //   console.log('Family Name: ' + profile.getFamilyName());
-  //   console.log("Image URL: " + profile.getImageUrl());
-  //   console.log("Email: " + profile.getEmail());
-  // }
 
   signOut = () => {
     const auth2 = window.gapi.auth2.getAuthInstance();
@@ -93,19 +81,30 @@ class SignOn extends Component {
   render() {
     return (
       <div className="btnContainer">
+        {this.renderRedirect()}
 
         <Row>
-            <div id={GOOGLE_BUTTON_ID} />
+            <div id={GOOGLE_BUTTON_ID}/>
 
-          {/* <button onClick={() => this.signOut()}>Sign out</button> */}
+          <button onClick={() => this.signOut()}>Sign out</button>
         </Row>
 
         <Row>
-          <button> Login </button>
+          <button className="Profile" onClick={()=>{
+              this.setRedirect(); 
+              this.setState({whichPage: "profile"});
+            }}> 
+              Login 
+            </button>
         </Row>
 
         <Row>
-          <button> Sign Up </button>
+          <button className="Register" onClick={()=>{
+            this.setRedirect(); 
+            this.setState({whichPage: "register"});
+          }}> 
+            Sign Up 
+          </button>
         </Row>
 
       </div>
