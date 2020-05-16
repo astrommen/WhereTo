@@ -18,7 +18,6 @@ class Outdoor extends Component {
     API.callRibd(state, activities)
     .then(res => {
       console.log(res);
-      const sitesArray = []
       this.setState({ sites: res.data})
       console.log(this.state.sites)
     })
