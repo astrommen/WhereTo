@@ -7,11 +7,11 @@ class Ticketmaster extends Component {
 
   state = {
     events: [],
-    activity: "concert",
-    distance: "10",
-    dateStart: "2019-06-03",
-    dateEnd: "2019-06-06",
-    city: "Baltimore"
+    activity: "sports",
+    distance: "50",
+    dateStart: "2020-05-01",
+    dateEnd: "2020-08-30",
+    city: "Philadelphia"
   }
 
   componentDidMount() {
