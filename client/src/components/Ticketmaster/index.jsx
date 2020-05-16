@@ -15,34 +15,15 @@ class Ticketmaster extends Component {
   }
 
   componentDidMount() {
-    this.searchTickets(this.state.activity, this.state.distance, this.state.dateStart, this.state.city);
+    this.searchTickets(this.state.activity, this.state.distance, this.state.dateStart, this.state.dateEnd, this.state.city);
   };
 
-  searchTickets = (activity, distance, state, dateStart) => {
-    API.callTicketmaster(activity, distance, state, dateStart)
+  searchTickets = (activity, distance, state, dateStart, dateEnd, city) => {
+    API.callTicketmaster(activity, distance, state, dateStart, dateEnd, city)
     .then(res => {
-      const ticketsArray = []
-      for (var i=0; i < res.data._embedded.events.length; i++) {
-        ticketsArray.push (
-          { id: res.data._embedded.events[i].id,
-            name: res.data._embedded.events[i].name,
-            url: res.data._embedded.events[i].url,
-            image: res.data._embedded.events[i].images[0].url,
-            localDate: res.data._embedded.events[i].dates.start.localdate,
-            localStartTime: res.data._embedded.events[i].dates.start.localTime,
-            priceRangeMin: res.data._embedded.events[i].priceRanges[0].min,
-            priceRangeMax: res.data._embedded.events[i].priceRanges[0].max,
-            currency: res.data._embedded.events[i].priceRanges[0].currency,
-            seatmapLink: res.data._embedded.events[i].seatmap.staticUrl,
-            venueName: res.data._embedded.events[i]._embedded.venues[0].name,
-            venueUrl: res.data._embedded.events[i]._embedded.venues[0].url,
-            venueCity: res.data._embedded.events[i]._embedded.venues[0].city.name,
-            venueState: res.data._embedded.events[i]._embedded.venues[0].state.name,
-            venueStreet: res.data._embedded.events[i]._embedded.venues[0].address.line1,
-            venuePostal: res.data._embedded.events[i]._embedded.venues[0].postalCode
-        })
-      }
-      this.setState({ events: ticketsArray })
+      console.log(res);
+      this.setState({ events : res.data})
+      console.log(this.state.events)
     })
     .catch(err => console.log(err))
   }
@@ -73,7 +54,8 @@ class Ticketmaster extends Component {
       <div>
         {this.state.events.length > 0 ? (
           this.state.events.map((activity) => 
-          <TicketmasterCard 
+          <TicketmasterCard
+          key={activity.id} 
           id={activity.id}
             name={activity.name}
             url={activity.url}

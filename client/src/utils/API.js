@@ -2,12 +2,13 @@ import axios from "axios"
 
 export default{
     //Ticketmaster
-    callTicketmaster: function(activity, distance, dateStart, city) {
+    callTicketmaster: function(activity, distance, dateStart, dateEnd, city) {
         return axios.get("/api/ticketmaster", { params: 
         {
             activity: activity,
             distance: distance,
             dateStart: dateStart,
+            dateEnd: dateEnd,
             city: city
         }})
     },
