@@ -26,8 +26,11 @@ export default {
     },
     saveSite: function(siteData) {
         return axios.post("/api/trips", siteData)
-    }
-}
+    },
+    // createUser: function(formData) {
+    //     return axios.post("/api/users", formData);
+    // },
+};
 
 
   //EXAMPLES
