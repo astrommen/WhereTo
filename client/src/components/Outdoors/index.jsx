@@ -1,41 +1,25 @@
-import React, { Component } from "react";
+import React, { Component }  from 'react';
 import OutdoorCard from "../OutdoorCard";
 import "./style.css";
-import API from "../../../utils/API";
+import API from "../../utils/API";
 
 class Outdoor extends Component {
   state={
     sites: [],
-    state: "",
-    activities: []
+    state: "PA",
+    activities: "hiking"
   }
 
   componentDidMount() {
-    this.searchOutdoors();
+    this.searchOutdoors(this.state.state, this.state.activities);
   };
     
-  searchOutdoors = query => {
-    API.callRibd(query)
+  searchOutdoors = (state, activities) => {
+    API.callRibd(state, activities)
     .then(res => {
+      console.log(res);
       const sitesArray = []
-      for (var i=0; i < res.data.RECDATA.length; i++) {
-        sitesArray.push (
-          {
-            id: res.data.RECDATA[i].RecAreaID,
-            name: res.data.RECDATA[i].RecAreaName,
-            description: res.data.RECDATA[i].RecAreaDescription,
-            longitude: res.data.RECDATA[i].RecAreaLongitude,
-            latitude: res.data.RECDATA[i].RecAreaLatitude,
-            street: res.data.RECDATA[i].RECAREAADDRESS[0].RecAreaStreetAddress1,
-            city: res.data.RECDATA[i].RECAREAADDRESS[0].RecArea.City,
-            postalCode: res.data.RECDATA[i].RECAREAADDRESS[0].RecArea.PostalCode,
-            state: res.data.RECDATA[i].RECAREAADDRESS[0].RecArea.AddressStateCode,
-            link: res.data.RECDATA[i].LINK[0].URL,
-            images: res.data.RECDATA[i].MEDIA,
-            activities: res.data.RECDATA[i].ACTIVITY
-        })
-      }
-      this.setState({ sites: sitesArray})
+      this.setState({ sites: res.data})
       console.log(this.state.sites)
     })
     .catch(err => console.log(err));
@@ -63,6 +47,7 @@ class Outdoor extends Component {
         {this.state.sites.length > 0 ? (
           this.state.sites.map((site) => 
           <OutdoorCard 
+          key={site.id}
           id={site.id}
           name={site.name}
           description={site.description}
