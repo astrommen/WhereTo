@@ -39,7 +39,15 @@ export function DeleteBtn(props) {
 export function SiteBtn(props) {
     return(
         <Site>
-            <Link href={props.href} target="_blank" rel="noopener noreferrer"> Office Site </Link>
+            <Link href={props.href} target="_blank" rel="noopener noreferrer"> {children} </Link>
+        </Site>
+    )
+}
+
+export function SeatmapBtn(props) {
+    return(
+        <Site>
+            <Link href={props.href} target="_blank" rel="noopener noreferrer"> Seat Map </Link>
         </Site>
     )
 }
