@@ -4,9 +4,10 @@ module.exports = {
     findAll: function(req, res) {
         const {query: params} = req;
         let url =`https://app.ticketmaster.com/discovery/v2/events?classificationName=${params.activity}&radius=${params.distance}&unit=miles&startDateTime=${params.dateStart}T00:00:00Z&endDateTime=${params.dateEnd}T00:00:00Z&city=${params.city}&apikey=${process.env.REACT_APP_TM_APIKEY}`
+        console.log(url)
         axios
         .get(url)
-        .then(results =>
+        .then(results => 
             results.data._embedded.events.map(
                 result =>
                 ({ 
@@ -16,10 +17,10 @@ module.exports = {
                     image: result.images[0].url,
                     localDate: result.dates.start.localdate,
                     localStartTime: result.dates.start.localTime,
-                    priceRangeMin: result.priceRanges[0].min,
-                    priceRangeMax: result.priceRanges[0].max,
-                    currency: result.priceRanges[0].currency,
-                    seatmapLink: result.seatmap.staticUrl,
+                    // priceRangeMin: result.priceRanges[0].min,
+                    // priceRangeMax: result.priceRanges[0].max,
+                    // currency: result.priceRanges[0].currency,
+                    // seatmapLink: result.seatmap.staticUrl,
                     venueName: result._embedded.venues[0].name,
                     venueUrl: result._embedded.venues[0].url,
                     venueCity: result._embedded.venues[0].city.name,
