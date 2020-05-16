@@ -21,14 +21,14 @@ function OutdoorCard(props) {
           <h3>{props.name}</h3>
         </Col>
         <Col size="md-6">
-          <SiteBtn href={props.URL}> Park Site </SiteBtn>
+          <SiteBtn href={props.link}> Park Site </SiteBtn>
           <SaveBtn onClick={() => this.saveSite(props.site)} />
         </Col>
       </Row>
 
       <Row>
         <Col size="md-3">
-          <Image src={props.images[0].URL} alt={props.images[0].Description} />
+          <Image className="img-fluid" src={props.images[0].URL} alt={props.images[0].Description} />
           <ImgDes>{props.images[0].Description}</ImgDes>
         </Col>
         <Col size="md-9">

@@ -54,7 +54,7 @@ export function SeatmapBtn(props) {
 export function SaveBtn(props) {
     return(
         <button className="save-btn" {...props} tabIndex="0">
-        Save Book 
+        Save 
         </button>
     )
 }
