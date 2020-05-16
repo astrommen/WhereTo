@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from "./pages/Login"
+import FormLocal from "./components/FormLocal/FormLocal"
+import FormVacation from "./pages/FormVacation"
 import NoMatch from "./pages/NoMatch"
 import Wrapper from "./components/Wrapper"
 import './App.css';
@@ -13,6 +15,8 @@ class App extends Component {
           <Wrapper>
             <Switch>
               <Route exact path="/" component={Login} />
+              <Route exact path="/local" component={FormLocal} />
+              <Route exact path="/vacation" component={FormVacation} />
               <Route component={NoMatch} />
             </Switch>
           </Wrapper>
