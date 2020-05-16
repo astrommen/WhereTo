@@ -10,10 +10,11 @@ import store from "./store";
 
 import Login from "./pages/Login"
 import NoMatch from "./pages/NoMatch"
+import Testing from "./pages/Testing"
 import Profile from "./pages/Profile"
+import PrivateRoute from "./components/private-route/PrivateRoute";
 import Register from "./components/auth/Register"
 import LogIn from "./components/auth/LogIn";
-import PrivateRoute from "./components/private-route/PrivateRoute";
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -44,6 +45,7 @@ class App extends Component {
               <Switch>
                 <Route exact path="/" component={Login} />
                 <Route exact path="/register" component={Register} />
+                <Route path="/testing" component={Testing} />
                 {/* <Route exact path="/profile" component={Profile} /> */}
                 <Route exact path="/login" component={LogIn} />
                 <Route component={NoMatch} />

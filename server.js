@@ -1,4 +1,5 @@
 const express = require("express");
+require("dotenv").config();
 const path = require("path");
 // const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
@@ -83,7 +84,7 @@ const PORT = process.env.PORT || 3001;
 
 // Connect to the Mongo DB
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/whereto";
-mongoose.connect(MONGODB_URI, { useNewURLParser: true });
+mongoose.connect(MONGODB_URI, { useUnifiedTopology: true, useNewURLParser: true });
 
 // Start the API server
 app.listen(PORT, function () {

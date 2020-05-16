@@ -1,5 +1,4 @@
 import React from "react";
-import "./styles.css"
 import styled from "styled-components";
 
 const Site = styled.button `
@@ -39,7 +38,7 @@ export function DeleteBtn(props) {
 export function SiteBtn(props) {
     return(
         <Site>
-            <Link href={props.href} target="_blank" rel="noopener noreferrer"> {children} </Link>
+            <Link href={props.href} target="_blank" rel="noopener noreferrer"> {props.children} </Link>
         </Site>
     )
 }

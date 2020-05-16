@@ -1,3 +1,4 @@
+import React, { Component }  from 'react';
 import { Container, Row, Col } from "../Grid";
 import { SiteBtn, SeatmapBtn, SaveBtn} from "../Buttons"
 import "./style.css";
@@ -28,7 +29,7 @@ function TicketmasterCard(props) {
         </Col>
         <Col size="md-6">
           <SiteBtn href={props.url}> Event Site </SiteBtn>
-          <SaveBtn onClick={() => this.saveEvent(activity)} />
+          <SaveBtn onClick={() => this.saveEvent(props.activity)} />
         </Col>
       </Row>
       <Row>
@@ -37,7 +38,7 @@ function TicketmasterCard(props) {
         </Col>
         <Col size="md-6">
           <p>Date: {props.localDate} Time: {props.localStartTime}</p>
-          <p>Price: {props.priceMin} - {props.priceMax}</p>
+          <p>Price: {props.priceMin} - {props.priceMax} {props.currency}</p>
         <Container>
           <Row>
             <Col size="md-8">
