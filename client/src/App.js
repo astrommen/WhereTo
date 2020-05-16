@@ -9,6 +9,8 @@ import { Provider } from "react-redux";
 import store from "./store";
 
 import Login from "./pages/Login"
+import FormLocal from "./components/FormLocal/FormLocal"
+import FormVacation from "./pages/FormVacation"
 import NoMatch from "./pages/NoMatch"
 import Testing from "./pages/Testing"
 import Profile from "./pages/Profile"
@@ -44,6 +46,8 @@ class App extends Component {
             <Wrapper>
               <Switch>
                 <Route exact path="/" component={Login} />
+                <Route exact path="/local" component={FormLocal} />
+              <Route exact path="/vacation" component={FormVacation} />
                 <Route exact path="/register" component={Register} />
                 <Route path="/testing" component={Testing} />
                 {/* <Route exact path="/profile" component={Profile} /> */}
