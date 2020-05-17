@@ -1,5 +1,6 @@
 import React, { Component }  from 'react';
 import API from "../../utils/API";
+import Nav from "../Nav";
 import TicketmasterCard from "../TicketmasterCard"
 import "./style.css";
 
@@ -52,6 +53,7 @@ class Ticketmaster extends Component {
   render() {
     return (
       <div>
+        <Nav />
         {this.state.events.length > 0 ? (
           this.state.events.map((activity) => 
           <TicketmasterCard

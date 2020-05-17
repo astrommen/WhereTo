@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import YelpCard from "../YelpCard";
 import API from "../../utils/API";
 import "./style.css";
+import Nav from "../Nav";
 import { SiteBtn } from "../Buttons";
 
 class Yelp extends Component {
@@ -44,6 +45,7 @@ class Yelp extends Component {
   render() {
     return (
       <div>
+        <Nav />
         {this.state.eateries.length > 0 ? (
           this.state.eateries.map((eatery) => 
           <YelpCard 

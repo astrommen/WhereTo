@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
+import Nav from "../Nav";
 import DayPlannerCard from "../DayPlannerCard";
 import "./style.css";
 
@@ -46,8 +47,11 @@ class DayPlanner extends Component {
   }
 
   render() {
+    let daysArray = this.state.dayplans.days;
+    console.log(daysArray)
     return (
       <div>
+        <Nav />
         {this.state.dayplans ? (
           <DayPlannerCard
           key={this.state.dayplans.id} 
@@ -56,7 +60,7 @@ class DayPlanner extends Component {
           latitude={this.state.dayplans.latitude}
           longitude={this.state.dayplans.longitude}
           locDescription={this.state.dayplans.snippet}
-          days={this.state.dayplans.days}
+          days={daysArray}
           />)
          : <h3>No Results to Display</h3>}
       </div>
