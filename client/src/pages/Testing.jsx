@@ -1,6 +1,6 @@
 import React, { Component }  from 'react';
 import Wrapper from "../components/Wrapper";
-import Ticketmaster from "../components/Ticketmaster"
+import DayPlanner from "../components/DayPlanner"
 import { Container, Row, Col } from "../components/Grid";
 
 class Testing extends Component {
@@ -9,7 +9,7 @@ class Testing extends Component {
   render() {
     return (
       <Wrapper>
-          <Ticketmaster />
+          <DayPlanner />
 
       </Wrapper>
     );

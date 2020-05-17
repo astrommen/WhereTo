@@ -1,30 +1,26 @@
 import React, { Component } from "react";
-import API from "../../../utils/API"
+import API from "../../utils/API";
+import DayPlannerCard from "../DayPlannerCard";
 import "./style.css";
 
 class DayPlanner extends Component {
   state = {
-    itineray_items =[],
-    city = "",
-    startDate = "",
-    endDate = ""
+    dayplans: [],
+    city: "Paris",
+    startDate: "2020-06-03",
+    endDate: "2020-06-06"
   }
 
   componentDidMount() {
-    this.searchDayPlanner();
+    this.searchDayPlanner(this.state.city, this.state.startDate, this.state.endDate);
   };
 
-  searchDayPlanner = (city) => {
+  searchDayPlanner = (city, startDate, endDate) => {
     API.callDayPlanner(city, startDate, endDate)
     .then(res => {
-      const plannerArray = []
-      for (var i=0; i < results[0].days[0].length; i++) {
-        plannerArray.push(
-          {date: results[0].days[0][i].date,
-            itinerary_items: results[0].days[0][i].itinerary_items
-        })
-      }
-      this.setState({ itineray_items: plannerArray })
+      console.log(res);
+      this.setState({ dayplans : res.data })
+      console.log(this.state.dayplans)
     })
     .catch(err => console.log(err))
   }
@@ -52,13 +48,17 @@ class DayPlanner extends Component {
   render() {
     return (
       <div>
-        {this.state.itineray_items.length > 0 ? (
-          this.state.itineray_items.map((itinerary) =>
-          <DayPlannerCard 
-          date={itinerary.date}
-          itinerary_items={itinerary.items}
+        {this.state.dayplans ? (
+          <DayPlannerCard
+          key={this.state.dayplans.id} 
+          id={this.state.dayplans.id}
+          name={this.state.dayplans.name}
+          latitude={this.state.dayplans.latitude}
+          longitude={this.state.dayplans.longitude}
+          locDescription={this.state.dayplans.snippet}
+          days={this.state.dayplans.days}
           />)
-        ) : <h3>No Results to Display</h3>}
+         : <h3>No Results to Display</h3>}
       </div>
     );
   }
