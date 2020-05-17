@@ -34,6 +34,10 @@ export default{
             location: location,
             meal: meal
         }})
+    },
+    //Search RestCountries for basic country information
+    callCountries: function(country) {
+        return axios.get("/api/country", {params: {country: country}})
     }
 }
 
