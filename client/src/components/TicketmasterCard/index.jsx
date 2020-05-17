@@ -34,7 +34,7 @@ function TicketmasterCard(props) {
       </Row>
       <Row>
         <Col size="md-6">
-          <Image src={props.image} alt={props.name} />
+          <Image className="img-fluid" src={props.image} alt={props.name} />
         </Col>
         <Col size="md-6">
           <p>Date: {props.localDate} Time: {props.localStartTime}</p>
@@ -45,7 +45,7 @@ function TicketmasterCard(props) {
               <p><VenueLink href={props.venueUrl} target="_blank" rel="noopener noreferrer">{props.venueName}</VenueLink></p>
             </Col>
             <Col size="md-4">
-              <SeatmapBtn />
+              {/* <SeatmapBtn /> */}
             </Col>
           </Row>
         </Container>

@@ -18,7 +18,17 @@ export default{
             state: state,
             activities: activities 
         }})
-    }
+    },
+    //We can add arrival and depature times
+    // https://www.triposo.com/api/20200405/day_planner.json?location_id=Paris&start_date=2019-06-03&arrival_time=14:33&end_date=2019-06-06&departure_time=16:55
+    //Search TRIPOSO API Day Planner
+    callDayPlanner: function(city, startDate, endDate) {
+        return axios.get("/api/triposo", {params: {
+            city: city, 
+            startDate: startDate, 
+            endDate: endDate
+        }})
+    }, 
 }
 
 // export default {
