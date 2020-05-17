@@ -40,6 +40,9 @@ class CountryInfo extends Component {
     }
 
   render() {
+    let langArray = this.state.info.languages;
+    let currArray = this.state.info.currencies;
+    console.log(langArray)
     return (
       <div>
         {this.state.info ? (
@@ -48,8 +51,10 @@ class CountryInfo extends Component {
           id={this.state.info.name}
           latitude={this.state.info.latitude}
           longitude={this.state.info.longitude}
-          currency={this.state.info.currency}
-          language={this.state.info.language}
+          currencies={currArray}
+          languages={langArray}
+          flag={this.state.info.flag}
+          info={this.state.info}
           />
         ) : (<h3>No Information Available</h3>)}
 

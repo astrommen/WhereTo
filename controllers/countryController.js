@@ -8,14 +8,15 @@ module.exports = {
         .get(url)
         .then(results => 
             ({
-                name: results.data.name,
-                latitude: results.data.latlng[0],
-                longitude: results.data.latlng[1],
-                currency: results.data.currencies,
-                language: results.data.languages
+                name: results.data[0].name,
+                latitude: results.data[0].latlng[0],
+                longitude: results.data[0].latlng[1],
+                currencies: results.data[0].currencies,
+                languages: results.data[0].languages,
+                flag: results.data[0].flag 
             })
         )
-        .then(countryInfo => console.log(countryInfo))
+        .then(countryInfo => res.json(countryInfo))
         .catch(err => res.status(422).json(err))
 
     }
