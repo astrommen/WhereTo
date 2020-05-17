@@ -1,7 +1,6 @@
 import React, { Component }  from 'react';
 import { Container, Row, Col } from "../Grid"
 import { SiteBtn, SaveBtn} from "../Buttons"
-import Nav from "../Nav";
 import styled from "styled-components";
 
 const Image = styled.img `
@@ -16,7 +15,6 @@ text-align: center;`
 function OutdoorCard(props) {
   return(
     <div>
-      <Nav />
     <Container>
       <Row>
         <Col size="md-6">

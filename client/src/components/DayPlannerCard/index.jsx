@@ -22,31 +22,34 @@ color: white;
 font-weight: bold;`
 
 const White = styled.p `
-color: whilte;
+color: white;
 `
 
 function DayPlannerCard(props) {
+  // console.log("testing: " + JSON.stringify(props.days))
   return(
 <Container>
       <Row>
-        <Col size="md-4"><Title>{props.name}</Title></Col>
-        <Col size="md-8"><SaveBtn onClick={() => this.savePlan(props.dayplan)}/></Col>
-      </Row>
-      <Row>
-        <Col size="md-12"><LocDes>{props.locDescription}</LocDes></Col>
+        <Col size="md-4"><Image  className="img-fluid" src={props.image} alt={props.location}/></Col>
+        <Col size="md-4">
+          <Title>{props.name}</Title>
+          <LocDes>{props.locDescription}</LocDes>
+          </Col>
+        <Col size="md-4"><SaveBtn onClick={() => this.savePlan(props.dayplan)}/></Col>
       </Row>
       <Row>
         <Col size="md-12"></Col>
       </Row>
-      {/* <Row>
-        <Col size="md-6"><White>First Day: {props.days[0].date} - Last Day: {props.days[props.days.length-1].date}</White>
-        </Col>
-        <Col size="md-6"><White>
-          props</White></Col>
-      </Row> */}
-      {/* {props.dayplans.map(day => {
+      <Row>
+        <Col size="md-6"><White>Day 1: {props.date1}</White></Col>
+        <Col size="md-6"><White>Day 2: {props.date2}</White></Col>
+      </Row>
+      <Row>
+        {/* <Col size="md-6"><White>{props.item1[0].title}</White></Col>
+        <Col size="md-6"><White>{props.item2[0].title}</White></Col> */}
 
-      })} */}
+      </Row>
+
     </Container>
   )
 
