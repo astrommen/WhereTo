@@ -11,8 +11,8 @@ module.exports = {
                 name: results.data[0].name,
                 latitude: results.data[0].latlng[0],
                 longitude: results.data[0].latlng[1],
-                currencies: results.data[0].currencies,
-                languages: results.data[0].languages,
+                currencies: results.data[0].currencies[0].name,
+                languages: results.data[0].languages[0].name,
                 flag: results.data[0].flag 
             })
         )

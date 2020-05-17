@@ -1,5 +1,6 @@
 import React, { Component }  from 'react';
 import OutdoorCard from "../OutdoorCard";
+import Nav from "../Nav";
 import "./style.css";
 import API from "../../utils/API";
 
@@ -43,6 +44,7 @@ class Outdoor extends Component {
   render() {
     return (
       <div>
+        <Nav />
         {this.state.sites.length > 0 ? (
           this.state.sites.map((site) => 
           <OutdoorCard 

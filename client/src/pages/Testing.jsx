@@ -14,8 +14,8 @@ class Testing extends Component {
     return (
       <div>
         <Nav />
-          {/* <CountryInfo />
-          <DayPlanner />
+          <CountryInfo />
+          {/* <DayPlanner />
           <Outdoors />
           <Ticketmaster />
           <Yelp /> */}

@@ -21,15 +21,12 @@ function CountryCard(props) {
     <Container>
       <Row>
         <Col size="md-3"><Image src={props.flag} className="img-fluid" alt="flag" /></Col>
-        <Col size="md-9"><Title>{props.id}</Title></Col>
+        <Col size="md-9">
+          <Title>{props.id}</Title>
+          <White>Language: {props.languages}</White>
+          <White>Currency: {props.currencies}</White>
+          </Col>
       </Row>
-      {/* <Row>
-        <Col size="md-2"></Col>
-        <Col size="md-5"><White>{props.languages.map(language =>
-        language[0].name).join(", ")}</White></Col>
-        <Col size="md-5"><White>{props.currencies.map(currency =>
-        currency[0].name).join(", ")}</White></Col>
-      </Row> */}
     </Container>
   )
 }

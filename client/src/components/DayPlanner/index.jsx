@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import API from "../../utils/API";
 import Nav from "../Nav";
 import DayPlannerCard from "../DayPlannerCard";
+import {Container, Row, Col} from "../Grid";
+import {List, ListItem} from "../List";
 import "./style.css";
 
 class DayPlanner extends Component {
@@ -9,7 +11,8 @@ class DayPlanner extends Component {
     dayplans: [],
     city: "Paris",
     startDate: "2020-06-03",
-    endDate: "2020-06-06"
+    endDate: "2020-06-04",
+    daysArray: []
   }
 
   componentDidMount() {
@@ -19,9 +22,9 @@ class DayPlanner extends Component {
   searchDayPlanner = (city, startDate, endDate) => {
     API.callDayPlanner(city, startDate, endDate)
     .then(res => {
-      console.log(res);
       this.setState({ dayplans : res.data })
-      console.log(this.state.dayplans)
+      // console.log("information: " + JSON.stringify(this.state.dayplans))
+      console.log(this.state.dayplans.items1.length)
     })
     .catch(err => console.log(err))
   }
@@ -47,8 +50,19 @@ class DayPlanner extends Component {
   }
 
   render() {
-    let daysArray = this.state.dayplans.days;
-    console.log(daysArray)
+    // let daysArray = this.state.dayplans.items1;
+    // for (var i=0 ; i<this.state.days.items1; i++) {
+    //   daysArray.push({
+    //     id: poi.id,
+    //     description: description,
+    //     latitude: poi.coordinates[0],
+    //     longitude: poi.coordinates[1],
+    //     name: poi.name
+    //   })
+    // }
+    // console.log(daysArray);
+    console.log("here" + this.state.dayplans.length)
+
     return (
       <div>
         <Nav />
@@ -59,10 +73,37 @@ class DayPlanner extends Component {
           name={this.state.dayplans.name}
           latitude={this.state.dayplans.latitude}
           longitude={this.state.dayplans.longitude}
+          image={this.state.dayplans.image}
           locDescription={this.state.dayplans.snippet}
-          days={daysArray}
-          />)
+          days={this.state.dayplans.days}
+          date1={this.state.dayplans.date1}
+          items1={this.state.dayplans.items1}
+          date2={this.state.dayplans.date2}
+          items2={this.state.dayplans.items2}
+          />
+          )
          : <h3>No Results to Display</h3>}
+      {/* <Container>
+        <Row>
+          <Col size="md-12">
+        {this.state.dayplans.items1.length > 0 ? 
+        <div>
+          <List>
+            {this.state.dayplans.items1.map(item =>
+              <ListItem key={item.poi.id}>
+                <Row>
+                  <Col size="md-12">
+                    {item.description}
+                  </Col>
+                </Row>
+              </ListItem>
+              )}
+          </List>
+        </div>
+        : <h3>Check to be sure you have only put two days into your day planner.</h3>}
+          </Col>
+        </Row>
+      </Container> */}
       </div>
     );
   }
