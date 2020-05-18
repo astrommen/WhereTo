@@ -1,75 +1,79 @@
-import React, { Component } from "react";
-import API from "../../../utils/API"
+import React, { Component }  from 'react';
+import API from "../../utils/API";
+import Nav from "../Nav";
+import TicketmasterCard from "../TicketmasterCard"
 import "./style.css";
 
 class Ticketmaster extends Component {
 
   state = {
     events: [],
-    activity: "",
-    distance: "",
-    dateStart: "",
-    dateEnd: "",
-    city: ""
+    activity: "sports",
+    distance: "50",
+    dateStart: "2020-05-01",
+    dateEnd: "2020-08-30",
+    city: "Philadelphia"
   }
 
   componentDidMount() {
-    this.searchTickets();
+    this.searchTickets(this.state.activity, this.state.distance, this.state.dateStart, this.state.dateEnd, this.state.city);
   };
 
-  searchTickets = activity => {
-    API.callTicketmaster(activity)
+  searchTickets = (activity, distance, state, dateStart, dateEnd, city) => {
+    API.callTicketmaster(activity, distance, state, dateStart, dateEnd, city)
     .then(res => {
-      const ticketsArray = []
-      for (var i=0; i < res.data._embedded.events.length; i++) {
-        ticketsArray.push (
-          { id: res.data._embedded.events[i].id,
-            name: res.data._embedded.events[i].name,
-            url: res.data._embedded.events[i].url,
-            image: res.data._embedded.events[i].images[0].url,
-            localDate: res.data._embedded.events[i].dates.start.localdate,
-            localStartTime: res.data._embedded.events[i].dates.start.localTime,
-            priceRangeMin: res.data._embedded.events[i].priceRanges[0].min,
-            priceRangeMax: res.data._embedded.events[i].priceRanges[0].max,
-            seatmapLink: res.data._embedded.events[i].seatmap.staticUrl,
-            venueName: res.data._embedded.events[i]._embedded.venues[0].name,
-            venueUrl: res.data._embedded.events[i]._embedded.venues[0].url,
-            venueCity: res.data._embedded.events[i]._embedded.venues[0].city.name,
-            venueState: res.data._embedded.events[i]._embedded.venues[0].state.name,
-            venueStreet: res.data._embedded.events[i]._embedded.venues[0].address.line1,
-            venuePostal: res.data._embedded.events[i]._embedded.venues[0].postalCode
-        })
-      }
-      this.setState({ events: ticketsArray })
+      console.log(res);
+      this.setState({ events : res.data})
+      console.log(this.state.events)
     })
+    .catch(err => console.log(err))
   }
 
+  handleInputChange = event => {
+    const value = event.target.value;
+    const name = event.target.name;
+    this.setState({
+        [name]: value
+    });
+  };
 
+  handleFormSubmit = event => {
+      event.preventDefault();
+      this.searchEvents(this.state.search);
+  };
 
+  saveEvent = (activity) => {
+    console.log(activity)
+    API.saveEvent(activity)
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
 
-
+  }
 
   render() {
     return (
       <div>
+        <Nav />
         {this.state.events.length > 0 ? (
-          this.state.events.map((event) => 
-          <EventsCard 
-          id={event.id}
-            name={event.name}
-            url={event.url}
-            image={event.image}
-            localDate={event.localdate}
-            localStartTime={event.localStartTime}
-            priceMin={event.priceRangeMin}
-            priceMax={event.priceRangeMax}
-            seatmapLink={event.seatmapLink}
-            venueName={event.venueName}
-            venueUrl={event.venueUrl}
-            venueCity={event.venueCity}
-            venueState={event.venueState}
-            venueStreet={event.venueStreet}
-            venuePostal={event.venuePostal} 
+          this.state.events.map((activity) => 
+          <TicketmasterCard
+          key={activity.id} 
+          id={activity.id}
+            name={activity.name}
+            url={activity.url}
+            image={activity.image}
+            localDate={activity.localdate}
+            localStartTime={activity.localStartTime}
+            priceMin={activity.priceRangeMin}
+            priceMax={activity.priceRangeMax}
+            currency={activity.currency}
+            seatmapLink={activity.seatmapLink}
+            venueName={activity.venueName}
+            venueUrl={activity.venueUrl}
+            venueCity={activity.venueCity}
+            venueState={activity.venueState}
+            venueStreet={activity.venueStreet}
+            venuePostal={activity.venuePostal} 
               />)
         ) : (
           <h3>No Results to Display</h3>
