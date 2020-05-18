@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { Redirect } from 'react-router-dom'
 import { Container, Row, Col } from "../Grid";
-import Register from "../register";
+import { Link } from "react-router-dom";
+import Register from "../auth/Register";
+import LogIn from "../auth/LogIn";
 import Profile from "../../pages/Profile";
 import "./style.css";
 
@@ -86,25 +88,55 @@ class SignOn extends Component {
         <Row>
             <div id={GOOGLE_BUTTON_ID}/>
 
-          <button onClick={() => this.signOut()}>Sign out</button>
+          {/* <button onClick={() => this.signOut()}>Sign out</button> */}
         </Row>
 
         <Row>
-          <button className="Profile" onClick={()=>{
+          <Link
+            to="/login"
+            style={{
+              width: "200px",
+              height: "50px",
+              margin: "2% 0 0 0",
+              borderRadius: "3px",
+              letterSpacing: "1.5px",
+              padding: "1%",
+              background: "white"
+            }}
+              className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+            >
+              Login
+            </Link>
+          {/* <button className="Profile" onClick={()=>{
               this.setRedirect(); 
               this.setState({whichPage: "profile"});
             }}> 
               Login 
-            </button>
+            </button> */}
         </Row>
 
         <Row>
-          <button className="Register" onClick={()=>{
+            <Link
+              to="/register"
+              style={{
+                width: "200px",
+                height: "50px",
+                margin: "2% 0 0 0",
+                borderRadius: "3px",
+                letterSpacing: "1.5px",
+                padding: "1%",
+                background: "white"
+              }}
+              className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+            >
+              Register
+            </Link>
+          {/* <button className="Register" onClick={()=>{
             this.setRedirect(); 
             this.setState({whichPage: "register"});
-          }}> 
-            Sign Up 
-          </button>
+          }}>  */}
+            {/* Sign Up 
+          </button> */}
         </Row>
 
       </div>

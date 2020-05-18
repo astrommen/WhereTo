@@ -10,7 +10,7 @@ const LocalStrategy = require("passport-local").Strategy;
 const mongo = require("mongodb");
 const mongoose = require("mongoose");
 
-// const routes = require("./routes/index");
+const routes = require("./routes");
 const users = require("./routes/api/users");
 
 // Initialize the app
@@ -36,7 +36,7 @@ require("./config/passport")(passport);
 // Routes
 app.use("/api/users", users);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 // Express session
 // app.use(session({
 //   secret: "secret",
