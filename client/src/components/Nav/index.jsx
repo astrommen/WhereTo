@@ -26,11 +26,11 @@ function Nav() {
             }>Profile</Link>
         </Col>
         <Col size="md-2">
-        <Link to="/dayplanner"
+        <Link to="/poi"
             className={
-              window.location.pathname === "/dayplanner" ? "active" :
+              window.location.pathname === "/poi" ? "active" :
               "nave-link"
-            }>Day Planner</Link>
+            }>POI</Link>
         </Col>
         <Col size="md-2">
         <Link to="/food"
@@ -39,12 +39,19 @@ function Nav() {
               ""
             }>Eat/Drink</Link>
         </Col>
-        <Col size="md-2">
+        <Col size="md-1">
         <Link to="/events"
             className={
               window.location.pathname === "/events" ? "active " :
               ""
             }>Events</Link>
+        </Col>
+        <Col size="md-1">
+        <Link to="/walk"
+            className={
+              window.location.pathname === "/walk" ? "active " :
+              ""
+            }>Walk</Link>
         </Col>
         <Col size="md-2">
         <Link to="/outdoors"

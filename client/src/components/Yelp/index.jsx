@@ -4,27 +4,49 @@ import API from "../../utils/API";
 import "./style.css";
 import Nav from "../Nav";
 import { SiteBtn } from "../Buttons";
+const axios = require("axios");
 
 class Yelp extends Component {
   state={
     eateries: [],
-    location: "NYC",
-    meal: "food"
+    location: "Philadelphia",
+    meal: "beer_and_wine"
   }
 
   componentDidMount(){
     this.searchFood(this.state.location, this.state.meal)
   }
 
+  // searchFood = (location, meal) => {
+  //   API.callYelp(location, meal)
+  //   .then(res => {
+  //     console.log(res);
+  //     this.setState({ eateries : res.data})
+  //     console.log(this.state.eateris)
+  //   })
+  //   .catch(err => console.log(err));
+  // }
+
   searchFood = (location, meal) => {
-    API.callYelp(location, meal)
-    .then(res => {
-      console.log(res);
-      this.setState({ eateries : res.data})
-      console.log(this.state.eateris)
-    })
-    .catch(err => console.log(err));
-  }
+  const config = {
+    headers: {
+      'Authorization': `Bearer wOVQkre9W01lZIZy7IrkwUqyLlBieuCZ623n9TLVFb3m6_DLo4zuOP0rkvFyyZGOjymiYtqqO4F-ej7lTmasoSvP5FrEYKDsun9zhiiLwxqDqtBqFhNWH1pAGfE-XnYx`,
+      "dataType": 'jsonp',
+      "Access-Control-Allow-Origin": "*",
+    }
+    ,
+    params: {
+      term: meal,
+      location: location
+    }
+  };
+      axios.get('https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search', config)
+        .then(results => console.log(results.data.businesses))
+        .catch((error) => console.log(error.response));;
+    }
+
+
+
 
   handleInputChange = event => {
     const value = event.target.value;

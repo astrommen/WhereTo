@@ -38,6 +38,10 @@ export default{
     //Search RestCountries for basic country information
     callCountries: function(country) {
         return axios.get("/api/country", {params: {country: country}})
+    },
+    //Search Triposo for city walk information
+    callTour: function(city) {
+        return axios.get("/api/walk", {params: {city: city}})
     }
 }
 

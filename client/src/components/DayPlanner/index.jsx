@@ -12,7 +12,7 @@ class DayPlanner extends Component {
     city: "Paris",
     startDate: "2020-06-03",
     endDate: "2020-06-04",
-    daysArray: []
+    // daysArray: []
   }
 
   componentDidMount() {
@@ -24,7 +24,7 @@ class DayPlanner extends Component {
     .then(res => {
       this.setState({ dayplans : res.data })
       // console.log("information: " + JSON.stringify(this.state.dayplans))
-      console.log(this.state.dayplans.items1.length)
+      // console.log(this.state.dayplans.items1.length)
     })
     .catch(err => console.log(err))
   }
@@ -43,7 +43,7 @@ class DayPlanner extends Component {
   };
 
   savePlan = (plan) => {
-    console.log(plan)
+    // console.log(plan)
     API.savePlan(plan)
     .then(res => console.log(res))
     .catch(err => console.log(err))
@@ -61,7 +61,7 @@ class DayPlanner extends Component {
     //   })
     // }
     // console.log(daysArray);
-    console.log("here" + this.state.dayplans.length)
+    // console.log("here" + this.state.dayplans.length)
 
     return (
       <div>
@@ -75,12 +75,12 @@ class DayPlanner extends Component {
           longitude={this.state.dayplans.longitude}
           image={this.state.dayplans.image}
           locDescription={this.state.dayplans.snippet}
-          days={this.state.dayplans.days}
           date1={this.state.dayplans.date1}
           items1={this.state.dayplans.items1}
           date2={this.state.dayplans.date2}
           items2={this.state.dayplans.items2}
           />
+
           )
          : <h3>No Results to Display</h3>}
       {/* <Container>

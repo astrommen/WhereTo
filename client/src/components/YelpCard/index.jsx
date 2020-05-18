@@ -12,12 +12,12 @@ font-style: italic;
 text-align: center;`
 
 
-function YelpCard() {
+function YelpCard(props) {
   return(
     <Container>
       <Row>
         <Col size="md-12">
-          <p>Working on Yelp</p>
+          <p>{props.id}</p>
         </Col>
       </Row>
     </Container>
