@@ -41,7 +41,27 @@ class Yelp extends Component {
     }
   };
       axios.get('https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search', config)
-        .then(results => console.log(results.data.businesses))
+        .then(results => {
+          const busArray = []
+          for (var i=0; i <results.data.businesses.length; i++) {
+            busArray.push(
+              {
+                id: results.data.businesses[i].id,
+                name: results.data.businesses[i].name,
+                image: results.data.businesses[i].image_url,
+                phone: results.data.businesses[i].display_phone,
+                street: results.data.businesses[i].location.address1,
+                city: results.data.businesses[i].location.city,
+                state: results.data.businesses[i].location.state,
+                zip: results.data.businesses[i].location.zip_code,
+                rating: results.data.businesses[i].rating,
+                reviews: results.data.businesses[i].review_count,
+                link: results.data.businesses[i].url
+              })
+          }
+          this.setState({ eateries: busArray});
+          console.log(this.state.eateries)
+        })
         .catch((error) => console.log(error.response));;
     }
 
@@ -71,7 +91,17 @@ class Yelp extends Component {
         {this.state.eateries.length > 0 ? (
           this.state.eateries.map((eatery) => 
           <YelpCard 
-          // key={eatery.id}
+          key={eatery.id}
+          name={eatery.name}
+          image={eatery.image}
+          phone={eatery.phone}
+          street={eatery.street}
+          city={eatery.city}
+          state={eatery.state}
+          zip={eatery.zip}
+          link={eatery.link}
+          rating={eatery.rating}
+          reviews={eatery.reviews}
             /> ) 
         ): (
         <h3>No Results to Display</h3>
