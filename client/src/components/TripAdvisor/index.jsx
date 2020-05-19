@@ -10,14 +10,16 @@ class TripAdvisor extends Component {
   state={
     trips: [],
     locationInfo: [],
-    location: "NYC"
+    location: "Philadelphia",
+    activity: "museum"
   }
 
   componentDidMount(){
-    this.searchTrips(this.state.location)
+    this.searchTripId(this.state.location, this.state.activity)
+    // this.searchTrip(this.state.activity, this.state.locationInfo[0].location_id)
   }
 
-  searchTrips = location => {
+  searchTripId = (location, activity) => {
     axios({
       "method": "GET",
       "url": "https://tripadvisor1.p.rapidapi.com/locations/search",
@@ -46,12 +48,39 @@ class TripAdvisor extends Component {
           longitude: results.data.data[0].result_object.longitude
         })
         this.setState({ locationInfo : infoArray})
-        console.log(this.state.locationInfo)
+        axios({
+            "method":"GET",
+            "url":"https://tripadvisor1.p.rapidapi.com/attractions/list",
+            "headers":{
+            "content-type":"application/octet-stream",
+            "x-rapidapi-host":"tripadvisor1.p.rapidapi.com",
+            "x-rapidapi-key":"f0f3546714msh866e3df1e2e1ce6p1f73f0jsnec17c00739e3",
+            "useQueryString":true
+            },"params":{
+            "lang":"en_US",
+            "currency":"USD",
+            "sort":"recommended",
+            "lunit":"mi",
+            "min_rating":"4",
+            "bookable_first":"false",
+            "subcategory": activity,
+            "location_id": results.data.data[0].result_object.location_id
+            }
+            })
+            .then((response)=>{
+              console.log(response)
+            })
+            .catch((error)=>{
+              console.log(error)
+            })
       })
       .catch((error) => {
         console.log(error)
       })
   }
+
+  // searchTrip = (activity, location_id) => {
+  // }
 
   handleInputChange = event => {
     const value = event.target.value;
