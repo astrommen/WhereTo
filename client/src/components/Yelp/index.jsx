@@ -41,7 +41,6 @@ class Yelp extends Component {
   };
       axios.get('https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search', config)
         .then(results => {
-          console.log(results);
           const busArray = []
           for (var i=0; i <results.data.businesses.length; i++) {
             busArray.push(

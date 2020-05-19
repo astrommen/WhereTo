@@ -16,7 +16,6 @@ class TripAdvisor extends Component {
 
   componentDidMount(){
     this.searchTripId(this.state.location, this.state.activity)
-    // this.searchTrip(this.state.activity, this.state.locationInfo[0].location_id)
   }
 
   searchTripId = (location, activity) => {
@@ -30,7 +29,7 @@ class TripAdvisor extends Component {
         "useQueryString": true
       }, "params": {
         "location_id": "1",
-        "limit": "30",
+        "limit": "10",
         "sort": "relevance",
         "offset": "0",
         "lang": "en_US",
@@ -60,6 +59,7 @@ class TripAdvisor extends Component {
             "lang":"en_US",
             "currency":"USD",
             "sort":"recommended",
+            "limit": "10",
             "lunit":"mi",
             "min_rating":"4",
             "bookable_first":"false",
@@ -67,8 +67,26 @@ class TripAdvisor extends Component {
             "location_id": results.data.data[0].result_object.location_id
             }
             })
-            .then((response)=>{
-              console.log(response)
+            .then((results)=> {
+              const tripsArray = []
+              console.log(results.data.data[0].photo.images.medium.url)
+              for (var i=0; i<results.data.data.length; i++) {
+                tripsArray.push({
+                  id: results.data.data[i].location_id,
+                  address: results.data.data[i].address,
+                  description: results.data.data[i].description,
+                  latitude: results.data.data[i].latitude,
+                  longitude: results.data.data[i].longitude,
+                  name: results.data.data[i].name,
+                  phone: results.data.data[i].phone,
+                  openNow: results.data.data[i].open_now_text,
+                  images: results.data.data[i].photo,
+                  rank: results.data.data[i].ranking,
+                  website: results.data.data[i].website
+                })
+              }
+              this.setState({ trips : tripsArray});
+              console.log(this.state.trips)
             })
             .catch((error)=>{
               console.log(error)
@@ -78,9 +96,6 @@ class TripAdvisor extends Component {
         console.log(error)
       })
   }
-
-  // searchTrip = (activity, location_id) => {
-  // }
 
   handleInputChange = event => {
     const value = event.target.value;
@@ -109,7 +124,17 @@ class TripAdvisor extends Component {
       {this.state.trips.length > 0 ? (
         this.state.trips.map((trip) =>
         <TripCard 
-        // key={trip.id}
+        key={trip.id}
+        address={trip.address}
+        description={trip.description}
+        latitude={trip.latitude}
+        longitude={trip.longitude}
+        name={trip.name}
+        phone={trip.phone}
+        openNow={trip.openNow}
+        rank={trip.rank}
+        website={trip.website}
+        // image={trip.photo.images.medium.url}
         />
         ) 
       ) : (
