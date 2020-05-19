@@ -60,10 +60,10 @@ class App extends Component {
                 <Route path="/outdoors" component={Outdoors} />
                 <Route path="/events" component={Ticketmaster} />
                 <Route path="/food" component={Yelp} />
-                {/* <Route exact path="/profile" component={Profile} /> */}
+                <Route exact path="/profile" component={Profile} />
                 <Route exact path="/login" component={LogIn} />
                 <Route component={NoMatch} />
-                <PrivateRoute exact path="/Profile" component={Profile} />
+                {/* <PrivateRoute exact path="/Profile" component={Profile} /> */}
               </Switch>
             </Wrapper>
           </div>

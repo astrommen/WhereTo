@@ -14,23 +14,23 @@ class SignOn extends Component {
     redirect: false,
     whichPage: ""
   }
-  
+
   setRedirect = () => {
-    return(this.setState({
+    return (this.setState({
       redirect: true
     }));
   }
 
   setWhichPage = () => {
-    this.setState({whichPage: "profile"})
+    this.setState({ whichPage: "profile" })
   }
   renderRedirect = () => {
     if (this.state.redirect) {
       console.log(this.state.whichPage);
-      if(this.state.whichPage==="register"){
-        return <Redirect to="/register" component={Register}/>
+      if (this.state.whichPage === "register") {
+        return <Redirect to="/register" component={Register} />
       } else {
-        return <Redirect to="/profile" component={Profile}/>
+        return <Redirect to="/profile" component={Profile} />
       }
     }
   }
@@ -40,9 +40,9 @@ class SignOn extends Component {
       const interval = setInterval(() => {
         if (window.gapi != null) {
           console.log(window.gapi);
-          
+
           window.gapi.signin2.render(GOOGLE_BUTTON_ID, {
-      
+
             width: 200,
             height: 50,
             onsuccess: this.onSuccess
@@ -69,7 +69,7 @@ class SignOn extends Component {
 
     }
     console.log("Name: " + profile.getName());
-    
+
   }
 
 
@@ -86,7 +86,7 @@ class SignOn extends Component {
         {this.renderRedirect()}
 
         <Row>
-            <div id={GOOGLE_BUTTON_ID}/>
+          <div id={GOOGLE_BUTTON_ID} />
 
           {/* <button onClick={() => this.signOut()}>Sign out</button> */}
         </Row>
@@ -103,9 +103,9 @@ class SignOn extends Component {
               padding: "1%",
               background: "white"
             }}
-              className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-            >
-              Login
+            className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+          >
+            Login
             </Link>
           {/* <button className="Profile" onClick={()=>{
               this.setRedirect(); 
@@ -116,26 +116,26 @@ class SignOn extends Component {
         </Row>
 
         <Row>
-            <Link
-              to="/register"
-              style={{
-                width: "200px",
-                height: "50px",
-                margin: "2% 0 0 0",
-                borderRadius: "3px",
-                letterSpacing: "1.5px",
-                padding: "1%",
-                background: "white"
-              }}
-              className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-            >
-              Register
+          <Link
+            to="/register"
+            style={{
+              width: "200px",
+              height: "50px",
+              margin: "2% 0 0 0",
+              borderRadius: "3px",
+              letterSpacing: "1.5px",
+              padding: "1%",
+              background: "white"
+            }}
+            className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+          >
+            Register
             </Link>
           {/* <button className="Register" onClick={()=>{
             this.setRedirect(); 
             this.setState({whichPage: "register"});
           }}>  */}
-            {/* Sign Up 
+          {/* Sign Up 
           </button> */}
         </Row>
 

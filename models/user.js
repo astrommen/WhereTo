@@ -4,29 +4,31 @@ var bcrypt = require("bcryptjs");
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
-  name: { 
-    type: String, 
-    required: true 
+  name: {
+    type: String,
+    required: true
   },
-  email: { 
-    type: String, 
-    required: true 
+  email: {
+    type: String,
+    required: true
   },
-  password: { 
-    type: String, 
-    required: true 
+  password: {
+    type: String,
+    required: true
   },
-  date: { 
-    type: Date, 
-    default: Date.now 
+  date: {
+    type: Date,
+    default: Date.now
   },
-  // vacations: [{
-  //   type: Schema.Types.ObjectId,
-  //   ref: "Vacation"
-  // }]
+  vacations: [{
+    type: Schema.Types.ObjectId,
+    ref: "Vacation"
+  }]
 });
 
-module.exports = User = mongoose.model("users", UserSchema);
+var User = mongoose.model("users", UserSchema)
+
+module.exports = User;
 
 // module.exports.createUser = function(newUser, callBack){
 //   bcrypt.genSalt(10, function(err, salt){
