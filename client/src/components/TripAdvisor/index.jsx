@@ -80,7 +80,7 @@ class TripAdvisor extends Component {
                   name: results.data.data[i].name,
                   phone: results.data.data[i].phone,
                   openNow: results.data.data[i].open_now_text,
-                  images: results.data.data[i].photo,
+                  image: results.data.data[i].photo ? results.data.data[i].photo.images.medium.url : "https://media-cdn.tripadvisor.com/media/photo-f/08/9e/c1/8b/great-experience.jpg",
                   rank: results.data.data[i].ranking,
                   website: results.data.data[i].website
                 })
@@ -134,7 +134,7 @@ class TripAdvisor extends Component {
         openNow={trip.openNow}
         rank={trip.rank}
         website={trip.website}
-        // image={trip.photo.images.medium.url}
+        image={trip.image}
         />
         ) 
       ) : (
