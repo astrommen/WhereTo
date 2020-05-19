@@ -10,11 +10,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const mongo = require("mongodb");
 const mongoose = require("mongoose");
-
-const routes = require("./routes");
 const users = require("./routes/api/users");
-
-const mongoose = require("mongoose");
 const routes = require("./routes");
 const app = express();
 // const PORT = process.env.PORT || 3001;
