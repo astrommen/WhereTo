@@ -26,11 +26,11 @@ function Nav() {
             }>Profile</Link>
         </Col>
         <Col size="md-2">
-        <Link to="/poi"
+        <Link to="/trip"
             className={
-              window.location.pathname === "/poi" ? "active" :
+              window.location.pathname === "/trip" ? "active" :
               "nave-link"
-            }>POI</Link>
+            }>Trip</Link>
         </Col>
         <Col size="md-2">
         <Link to="/food"

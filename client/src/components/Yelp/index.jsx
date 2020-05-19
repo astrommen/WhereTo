@@ -3,14 +3,13 @@ import YelpCard from "../YelpCard";
 import API from "../../utils/API";
 import "./style.css";
 import Nav from "../Nav";
-import { SiteBtn } from "../Buttons";
 const axios = require("axios");
 
 class Yelp extends Component {
   state={
     eateries: [],
-    location: "Philadelphia",
-    meal: "beer_and_wine"
+    location: "NYC",
+    meal: "breakfast_brunch"
   }
 
   componentDidMount(){
@@ -42,6 +41,7 @@ class Yelp extends Component {
   };
       axios.get('https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search', config)
         .then(results => {
+          console.log(results);
           const busArray = []
           for (var i=0; i <results.data.businesses.length; i++) {
             busArray.push(
@@ -56,11 +56,13 @@ class Yelp extends Component {
                 zip: results.data.businesses[i].location.zip_code,
                 rating: results.data.businesses[i].rating,
                 reviews: results.data.businesses[i].review_count,
-                link: results.data.businesses[i].url
+                link: results.data.businesses[i].url,
+                latitude: results.data.businesses[i].coordinates.latitude,
+                longitude: results.data.businesses[i].coordinates.longitude
               })
           }
           this.setState({ eateries: busArray});
-          console.log(this.state.eateries)
+          // console.log(this.state.eateries)
         })
         .catch((error) => console.log(error.response));;
     }
@@ -102,6 +104,8 @@ class Yelp extends Component {
           link={eatery.link}
           rating={eatery.rating}
           reviews={eatery.reviews}
+          latitude = {eatery.latitude}
+          longitude = {eatery.longitude}
             /> ) 
         ): (
         <h3>No Results to Display</h3>

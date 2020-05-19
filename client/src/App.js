@@ -9,7 +9,7 @@ import Outdoors from "./components/Outdoors";
 import Ticketmaster from "./components/Ticketmaster";
 import Walk from "./components/Walk";
 import Yelp from "./components/Yelp";
-import Poi from "./components/Poi";
+import TripAdvisor from "./components/TripAdvisor";
 import Wrapper from "./components/Wrapper"
 import './App.css';
 
@@ -23,8 +23,8 @@ class App extends Component {
               <Route path="/testing" component={Testing} />
               <Route path="/dayplanner" component={DayPlanner} />
               <Route path="/outdoors" component={Outdoors} />
-              <Route path="/poi" component={Poi} />
               <Route path="/events" component={Ticketmaster} />
+              <Route path="/trip" component={TripAdvisor} />
               <Route path="/food" component={Yelp} />
               <Route path="/walk" component={Walk} />
               <Route component={NoMatch} />
