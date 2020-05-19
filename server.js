@@ -14,7 +14,8 @@ const mongoose = require("mongoose");
 const routes = require("./routes");
 const users = require("./routes/api/users");
 
-// Initialize the app
+const mongoose = require("mongoose");
+const routes = require("./routes");
 const app = express();
 // const PORT = process.env.PORT || 3001;
 
@@ -23,6 +24,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 // app.use(cookieParser);
 
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
