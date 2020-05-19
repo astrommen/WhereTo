@@ -4,6 +4,11 @@ import { Container, Row, Col } from "../components/Grid";
 import VacationBtn from "../components/VacationBtn"
 import API from "../utils/API";
 
+// Aja Log Out Btn
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { logoutUser } from "../actions/authActions";
+
 class Profile extends Component {
   constructor() {
     super();
@@ -45,10 +50,10 @@ class Profile extends Component {
     // this.getUser()
   }
 
-
   getUser = () => {
     let IDsArr = []
     API.getUser("Bill")
+    // User.findOne({ email })
       .then((res) => {
         // console.log(res.data) Logs user found
         res.data.vacations.forEach((VacaIDs) => {
@@ -102,8 +107,18 @@ class Profile extends Component {
     })
   }
 
+  // LogOut Code
+  onLogoutClick = e => {
+    e.preventDefault();
+    this.props.logoutUser();
+    this.props.history.push("/");
+  };
+
 
   render() {
+    // LogOut code
+    const { user } = this.props.auth;
+
     return (
       <div className="">
         <div className="row justify-content-around">
@@ -164,9 +179,38 @@ class Profile extends Component {
             </div>
           </div>
         </div>
+        {/* { LogOut Code } */}
+        <button
+          style={{
+            width: "150px",
+            borderRadius: "3px",
+            letterSpacing: "1.5px",
+            marginTop: "1rem",
+            backgroundColor: "white"
+          }}
+          onClick={this.onLogoutClick}
+          className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+          >
+          Logout
+        </button>
       </div>
     );
   }
 }
 
-export default Profile;
+// LogOut code
+Profile.propTypes = {
+  logoutUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(
+  mapStateToProps,
+  { logoutUser }
+)(Profile);
+
+// export default Profile;
