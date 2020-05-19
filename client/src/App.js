@@ -14,7 +14,7 @@ import NoMatch from "./pages/NoMatch"
 import Testing from "./pages/Testing"
 import Profile from "./pages/Profile"
 
-import PrivateRoute from "./components/private-route/PrivateRoute";
+// import PrivateRoute from "./components/private-route/PrivateRoute";
 import FormLocal from "./components/FormLocal/FormLocal"
 import Register from "./components/auth/Register"
 import LogIn from "./components/auth/LogIn";
@@ -55,7 +55,6 @@ class App extends Component {
           <div>
             <Wrapper>
               <Switch>
-              <Route component={NoMatch} />
               <Route exact path="/" component={Login} />
               <Route exact path="/local" component={FormLocal} />
               <Route exact path="/vacation" component={FormVacation} />
@@ -69,7 +68,8 @@ class App extends Component {
               <Route path="/food" component={Yelp} />
               <Route exact path="/profile" component={Profile} />
               <Route exact path="/login" component={LogIn} />
-                {/* <PrivateRoute exact path="/Profile" component={Profile} /> */}
+                {/* <PrivateRoute exact path="/profile" component={Profile} /> */}
+              <Route component={NoMatch} path="*" />
               </Switch>
             </Wrapper>
           </div>

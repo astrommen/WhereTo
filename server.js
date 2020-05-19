@@ -13,7 +13,6 @@ const mongoose = require("mongoose");
 const users = require("./routes/api/users");
 const routes = require("./routes");
 const app = express();
-// const PORT = process.env.PORT || 3001;
 
 // Define middleware here
 app.use(bodyParser.urlencoded({ extended: false }));
