@@ -8,17 +8,18 @@ mongoose.connect(
   "mongodb://localhost/whereto"
 );
 
-const bookSeed = [
+const userSeed = [
   {
-    user: "Bill",
-    password: "waewfeawf"
-
+    name: "Bill",
+    email: "bill@bill.com",
+    password: "waewfeawf",
+    password2: "waewfeawf",
   }
 ];
 
 db.User
   .remove({})
-  .then(() => db.User.collection.insertMany(bookSeed))
+  .then(() => db.User.collection.insertMany(userSeed))
   .then(data => {
     console.log(data.result.n + " records inserted!");
     process.exit(0);
