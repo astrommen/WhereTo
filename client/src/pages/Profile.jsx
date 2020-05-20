@@ -1,13 +1,21 @@
 import React, { Component } from "react";
 import Wrapper from "../components/Wrapper";
 import { Container, Row, Col } from "../components/Grid";
-import VacationBtn from "../components/VacationBtn"
+import VacationBtn from "../components/VacationBtn";
 import API from "../utils/API";
+
+import jwt_decode from "jwt-decode";
 
 // Aja Log Out Btn
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../actions/authActions";
+
+const token = (window.localStorage.getItem("jwtToken"));
+
+const decoded = jwt_decode(token);
+
+const user = decoded.id;
 
 class Profile extends Component {
   constructor() {
@@ -47,12 +55,14 @@ class Profile extends Component {
   }
 
   componentDidMount() {
-    // this.getUser()
+    this.getUser();
+    
+    // console.log(decoded.id);
   }
 
   getUser = () => {
     let IDsArr = []
-    API.getUser("Bill")
+    API.getUser(user)
     // User.findOne({ email })
       .then((res) => {
         // console.log(res.data) Logs user found
@@ -60,7 +70,8 @@ class Profile extends Component {
           let obj = {}
           obj.id = VacaIDs;
           IDsArr.push(obj)
-          // console.log(items) Logs Vacation IDs          
+          // Logs Vacation IDs          
+          console.log(obj) 
         })
         // console.log(IDsArr)
         this.setState({
