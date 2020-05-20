@@ -1,29 +1,7 @@
 import React, { Component }  from 'react';
-import { Container, Row, Col } from "../Grid"
-import { SaveBtn} from "../Buttons"
-import "./style.css";
-import styled from "styled-components";
-
-const Image = styled.img `
-display: block;
-margin-left: auto;
-margin-right: auto;
-`
-const ImgDes = styled.p `
-font-style: italic;
-text-align: center;`
-
-const Title = styled.h3 `
-color: white;
-`
-
-const LocDes = styled.p `
-color: white;
-font-weight: bold;`
-
-const White = styled.p `
-color: white;
-`
+import { Container, Row, Col } from "../Grid";
+import { SaveBtn} from "../Buttons";
+import {Image, ImgDes, Title, LocDes, White} from "../Styled";
 
 function DayPlannerCard(props) {
   // console.log("testing: " + JSON.stringify(props.days))

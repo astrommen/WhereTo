@@ -1,19 +1,7 @@
 import React, { Component } from "react";
 import {Container, Row, Col} from "../Grid";
-import styled from "styled-components";
+import {White} from "../Styled";
 
-const Title = styled.h3 `
-color: white;
-`
-
-const Image = styled.img `
-display: block;
-margin-left: auto;
-margin-right: auto;
-`
-const White = styled.p `
-color: white;
-`
 
 function WalkCard(props) {
   console.log(props.stops[0])

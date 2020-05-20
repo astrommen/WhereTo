@@ -1,39 +1,7 @@
 import React from "react";
 import {Container, Row, Col} from "../Grid";
 import {SiteBtn, SaveBtn} from "../Buttons";
-import styled from "styled-components";
-
-const Icon = styled.img `
-display: block;
-margin-left: auto;
-margin-right: auto;
-heigth: 15%;
-width: 15%;
-`
-const Image = styled.img `
-display: block;
-margin-left: auto;
-margin-right: auto;
-`
-
-const Title = styled.h3 `
-color: white;
-`
-
-const Website = styled.a `
-text-decoration: none;
-text-align: center;
-color: white;
-
-& :link, :hover, :active, :visited {
-    text-decoration: none;
-    color: white;
-    text-shadow: 0px 0px 2px #60144C;
-}
-`
-const White = styled.p `
-color: white;
-`
+import {Image, Title, White } from "../Styled";
 
 function TripCard(props) {
   return(

@@ -1,19 +1,6 @@
 import React, { Component } from "react";
 import {Container, Row, Col} from "../Grid";
-import styled from "styled-components";
-
-const Title = styled.h3 `
-color: white;
-`
-
-const Image = styled.img `
-display: block;
-margin-left: auto;
-margin-right: auto;
-`
-const White = styled.p `
-color: white;
-`
+import {Image, Title, White} from "../Styled";
 
 function CountryCard(props) {
   console.log("prop info: " + JSON.stringify(props.info.languages))

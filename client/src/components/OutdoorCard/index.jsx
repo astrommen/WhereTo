@@ -1,25 +1,7 @@
 import React, { Component }  from 'react';
-import { Container, Row, Col } from "../Grid"
-import { SiteBtn, SaveBtn} from "../Buttons"
-import styled from "styled-components";
-
-const Image = styled.img `
-display: block;
-margin-left: auto;
-margin-right: auto;
-`
-const ImgDes = styled.p `
-font-style: italic;
-text-align: center;
-color: white;`
-
-const Title = styled.h3 `
-color: white;
-`
-
-const White = styled.p `
-color: white;
-`
+import { Container, Row, Col } from "../Grid";
+import { SiteBtn, SaveBtn} from "../Buttons";
+import {Image, ImgDes, Title, White} from "../Styled";
 
 function OutdoorCard(props) {
   return(
