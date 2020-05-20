@@ -4,31 +4,48 @@ import { SiteBtn, SeatmapBtn, SaveBtn} from "../Buttons"
 import "./style.css";
 import styled from "styled-components";
 
+const Icon = styled.img `
+display: block;
+margin-left: auto;
+margin-right: auto;
+heigth: 15%;
+width: 15%;
+`
 const Image = styled.img `
 display: block;
 margin-left: auto;
 margin-right: auto;
 `
 
-const VenueLink = styled.a `
-text-decoration: none;
+const Title = styled.h3 `
+color: white;
+`
+const White = styled.p `
+color: white;
+`
 
-&:link, :hover, :active, :visited {
+const Website = styled.a `
+text-decoration: none;
+text-align: center;
+color: white;
+
+& :link, :hover, :active, :visited {
     text-decoration: none;
     color: white;
-    text-shadow: 0px 0px 2px black;
+    text-shadow: 0px 0px 2px #60144C;
 }
 `
 
 function TicketmasterCard(props) {
+  console.log(props)
   return(
     <Container>
       <Row>
-        <Col size="md-6">
-          <h3>{props.name}</h3>
+        <Col size="md-8">
+          <Title>{props.name}</Title>
         </Col>
-        <Col size="md-6">
-          <SiteBtn href={props.url}> Event Site </SiteBtn>
+        <Col size="md-4">
+          <SiteBtn href={props.url}> Offical Site </SiteBtn>
           <SaveBtn onClick={() => this.saveEvent(props.activity)} />
         </Col>
       </Row>
@@ -37,15 +54,24 @@ function TicketmasterCard(props) {
           <Image className="img-fluid" src={props.image} alt={props.name} />
         </Col>
         <Col size="md-6">
-          <p>Date: {props.localDate} Time: {props.localStartTime}</p>
-          <p>Price: {props.priceMin} - {props.priceMax} {props.currency}</p>
         <Container>
           <Row>
-            <Col size="md-8">
-              <p><VenueLink href={props.venueUrl} target="_blank" rel="noopener noreferrer">{props.venueName}</VenueLink></p>
-            </Col>
-            <Col size="md-4">
-              {/* <SeatmapBtn /> */}
+          <Col size="md-6"><White>Date: {props.localDate} </White></Col>
+          <Col size="md-6"><White>Time: {props.localStartTime}</White></Col>
+          {/* <p>Price: {props.priceMin} - {props.priceMax} {props.currency}</p> */}
+          </Row>
+          <Row>
+            <Col size="md-6">
+              <White>
+                <Website href={props.venueUrl} target="_blank" rel="noopener noreferrer"><Icon src="./img/location/stadium.png" alt="seatMap" />
+                {props.venueName}
+                </Website>
+              </White>
+              </Col>
+              <Col size="md-6">
+              {props ? <Website href={props.seatmapLink} target="_blank" rel="noopener noreferrer">
+              <Icon src="./img/location/seat.png" alt="seatMap" /> SeatMap
+              </Website> : <p>"Seat Map Not Available"</p>}
             </Col>
           </Row>
         </Container>

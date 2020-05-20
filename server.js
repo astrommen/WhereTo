@@ -13,6 +13,8 @@ const mongoose = require("mongoose");
 const users = require("./routes/api/users");
 const routes = require("./routes");
 const app = express();
+const PORT = process.env.PORT || 3001;
+
 
 // Define middleware here
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -35,7 +37,6 @@ require("./config/passport")(passport);
 // Routes
 app.use("/api/users", users);
 
-const PORT = process.env.PORT || 3001;
 // Express session
 // app.use(session({
 //   secret: "secret",
@@ -78,11 +79,11 @@ const PORT = process.env.PORT || 3001;
 
 
 // Add routes, both API and view
-// app.use(routes);
+app.use(routes);
 
 // Connect to the Mongo DB
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/whereto";
-mongoose.connect(MONGODB_URI, { useUnifiedTopology: true, useNewURLParser: true });
+mongoose.connect(MONGODB_URI, { useUnifiedTopology: true, useNewUrlParser: true });
 
 // Start the API server
 app.listen(PORT, function () {

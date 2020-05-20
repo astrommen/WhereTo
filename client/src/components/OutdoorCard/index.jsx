@@ -10,7 +10,16 @@ margin-right: auto;
 `
 const ImgDes = styled.p `
 font-style: italic;
-text-align: center;`
+text-align: center;
+color: white;`
+
+const Title = styled.h3 `
+color: white;
+`
+
+const White = styled.p `
+color: white;
+`
 
 function OutdoorCard(props) {
   return(
@@ -18,7 +27,7 @@ function OutdoorCard(props) {
     <Container>
       <Row>
         <Col size="md-6">
-          <h3>{props.name}</h3>
+          <Title>{props.name}</Title>
         </Col>
         <Col size="md-6">
           <SiteBtn href={props.link}> Park Site </SiteBtn>
@@ -35,20 +44,20 @@ function OutdoorCard(props) {
           <Container>
             <Row>
               <Col size="md-7">
-                <p>{props.activities.map(activity => 
-                  activity.ActivityName ).join(", ")}</p>
+                <White>{props.activities.map(activity => 
+                  activity.ActivityName ).join(", ")}</White>
               </Col>
 
-              <Col size="md-1"><h5>Address:</h5> </Col>
+              <Col size="md-1"><White>Address:</White> </Col>
               <Col size="md-4">
-                <p>{props.street}</p>
-                <p>{props.city} , {props.state} {props.postalCode}</p>
+                <White>{props.street}</White>
+                <White>{props.city} , {props.state} {props.postalCode}</White>
               </Col>
             </Row>
 
             <Row>
               <Col size="md-12">
-                <p>Description: {props.description}</p>
+                <White>Description: {props.description}</White>
               </Col>     
             </Row>
           </Container>
