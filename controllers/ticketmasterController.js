@@ -4,6 +4,7 @@ module.exports = {
     findAll: function(req, res) {
         const {query: params} = req;
         let url =`https://app.ticketmaster.com/discovery/v2/events?classificationName=${params.activity}&radius=${params.distance}&unit=miles&startDateTime=${params.dateStart}T00:00:00Z&endDateTime=${params.dateEnd}T00:00:00Z&city=${params.city}&apikey=${process.env.REACT_APP_TM_APIKEY}`
+        console.log(url)
         axios
         .get(url)
         .then(results => 

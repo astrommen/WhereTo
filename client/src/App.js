@@ -14,7 +14,7 @@ import NoMatch from "./pages/NoMatch"
 import Testing from "./pages/Testing"
 import Profile from "./pages/Profile"
 
-import PrivateRoute from "./components/private-route/PrivateRoute";
+// import PrivateRoute from "./components/private-route/PrivateRoute";
 import FormLocal from "./components/FormLocal/FormLocal"
 import Register from "./components/auth/Register"
 import LogIn from "./components/auth/LogIn";
@@ -22,7 +22,10 @@ import CountryInfo from "./components/CountryInfo";
 import DayPlanner from "./components/DayPlanner";
 import Outdoors from "./components/Outdoors";
 import Ticketmaster from "./components/Ticketmaster";
+import Walk from "./components/Walk";
 import Yelp from "./components/Yelp";
+import TripAdvisor from "./components/TripAdvisor";
+import './App.css';
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -46,24 +49,27 @@ if (localStorage.jwtToken) {
 class App extends Component {
   render() {
     return (
+
       <Provider store={store}>
         <Router>
           <div>
             <Wrapper>
               <Switch>
-                <Route exact path="/" component={Login} />
-                <Route exact path="/local" component={FormLocal} />
-                <Route exact path="/vacation" component={FormVacation} />
-                <Route exact path="/register" component={Register} />
-                <Route path="/testing" component={Testing} />
-                <Route path="/dayplanner" component={DayPlanner} />
-                <Route path="/outdoors" component={Outdoors} />
-                <Route path="/events" component={Ticketmaster} />
-                <Route path="/food" component={Yelp} />
-                <Route exact path="/profile" component={Profile} />
-                <Route exact path="/login" component={LogIn} />
-                <Route component={NoMatch} />
-                {/* <PrivateRoute exact path="/Profile" component={Profile} /> */}
+              <Route exact path="/" component={Login} />
+              <Route exact path="/local" component={FormLocal} />
+              <Route exact path="/vacation" component={FormVacation} />
+              <Route exact path="/register" component={Register} />
+              <Route path="/testing" component={Testing} />
+              <Route path="/dayplanner" component={DayPlanner} />
+              <Route path="/outdoors" component={Outdoors} />
+              <Route path="/events" component={Ticketmaster} />
+              <Route path="/trip" component={TripAdvisor} />
+              <Route path="/walk" component={Walk} />
+              <Route path="/food" component={Yelp} />
+              <Route exact path="/profile" component={Profile} />
+              <Route exact path="/login" component={LogIn} />
+                {/* <PrivateRoute exact path="/profile" component={Profile} /> */}
+              <Route component={NoMatch} path="*" />
               </Switch>
             </Wrapper>
           </div>

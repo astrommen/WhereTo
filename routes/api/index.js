@@ -5,7 +5,8 @@ const ribdRoutes = require("./ribd");
 const ticketmasterRoutes = require("./ticketmaster");
 const triposoRoutes = require("./triposo");
 const yelpRoutes = require("./yelp");
-const countryRoutes = require("./country")
+const countryRoutes = require("./country");
+const walkRoutes = require("./walk");
 
 // User routes
 router.use("/users", userRoutes);
@@ -27,5 +28,8 @@ router.use("/yelp", yelpRoutes)
 
 //Country routes
 router.use("/country", countryRoutes)
+
+//Walk routes
+router.use("/walk", walkRoutes)
 
 module.exports = router;
