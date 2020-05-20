@@ -42,6 +42,12 @@ export default{
     //Search Triposo for city walk information
     callTour: function(city) {
         return axios.get("/api/walk", {params: {city: city}})
+    },
+    callTrip: function(location, activity) {
+        return axios.get("/api/trip", {params: {
+            location: location,
+            activity: activity
+        }})
     }
 }
 

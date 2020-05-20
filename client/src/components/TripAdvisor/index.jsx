@@ -18,6 +18,15 @@ class TripAdvisor extends Component {
     this.searchTripId(this.state.location, this.state.activity)
   }
 
+  // searchTripId = (location, activity) => {
+  //   API.callTrip(location, activity)
+  //   .then(res => {
+  //     console.log(res);
+  //     this.setState({trips: res.data})
+  //     console.log(this.state.trips)
+  //   })
+  // }
+
   searchTripId = (location, activity) => {
     axios({
       "method": "GET",

@@ -4,8 +4,6 @@ import API from "../../utils/API";
 import "./style.css";
 import Nav from "../Nav";
 
-const axios = require("axios");
-
 class Yelp extends Component {
   state={
     eateries: [],
@@ -20,9 +18,9 @@ class Yelp extends Component {
   searchFood = (location, meal) => {
     API.callYelp(location, meal)
     .then(res => {
-      console.log(res);
+      // console.log(res);
       this.setState({ eateries : res.data})
-      console.log(this.state.eateris)
+      // console.log(this.state.eateris)
     })
     .catch(err => console.log(err));
   }
