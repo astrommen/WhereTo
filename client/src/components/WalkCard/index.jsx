@@ -16,10 +16,10 @@ color: white;
 `
 
 function WalkCard(props) {
-  console.log(props)
+  console.log(props.stops[0])
   return(
     <Container>
-      {/* <Row><Title>{props.stops[0].poi.name}</Title></Row> */}
+      {/* <Row><Title>{props.stops[0].coordinates.latitude}</Title></Row> */}
       <Row>
         <Col size="md-6"><White>Time: {props.walkTime}</White></Col>
         <Col size="md-6"><White>Distance: {props.distance}</White></Col>

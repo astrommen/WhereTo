@@ -4,6 +4,7 @@ import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
 import Wrapper from "./components/Wrapper"
+import TripMap from "./components/TripMap";
 
 import { Provider } from "react-redux";
 import store from "./store";
@@ -61,6 +62,7 @@ class App extends Component {
               <Route exact path="/register" component={Register} />
               <Route path="/testing" component={Testing} />
               <Route path="/dayplanner" component={DayPlanner} />
+              <Route path="/map" component={TripMap} />
               <Route path="/outdoors" component={Outdoors} />
               <Route path="/events" component={Ticketmaster} />
               <Route path="/trip" component={TripAdvisor} />

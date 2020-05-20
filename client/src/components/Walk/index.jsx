@@ -18,9 +18,9 @@ class Walk extends Component {
     console.log("here")
     API.callTour(city)
     .then(res => {
-      console.log(res);
+      // console.log(res);
       this.setState({ walk : res.data})
-      console.log(this.state.walk)
+      // console.log(this.state.walk)
     })
     .catch(err => console.log(err))
   }
