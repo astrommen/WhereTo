@@ -10,8 +10,8 @@ class TripAdvisor extends Component {
   state={
     trips: [],
     locationInfo: [],
-    location: "Philadelphia",
-    activity: "museum"
+    location: "Baltimore",
+    activity: "park"
   }
 
   componentDidMount(){
@@ -38,13 +38,13 @@ class TripAdvisor extends Component {
         "query": location
       }
     })
-      .then((results) => {
+      .then((res) => {
         const infoArray =[]
         infoArray.push({
-          location_id: results.data.data[0].result_object.location_id,
-          name: results.data.data[0].result_object.location_string,
-          latitude: results.data.data[0].result_object.latitude,
-          longitude: results.data.data[0].result_object.longitude
+          location_id: res.data.data[0].result_object.location_id,
+          name: res.data.data[0].result_object.location_string,
+          latitude: res.data.data[0].result_object.latitude,
+          longitude: res.data.data[0].result_object.longitude
         })
         this.setState({ locationInfo : infoArray})
         axios({
@@ -64,12 +64,11 @@ class TripAdvisor extends Component {
             "min_rating":"4",
             "bookable_first":"false",
             "subcategory": activity,
-            "location_id": results.data.data[0].result_object.location_id
+            "location_id": res.data.data[0].result_object.location_id
             }
             })
             .then((results)=> {
               const tripsArray = []
-              console.log(results.data.data[0].photo.images.medium.url)
               for (var i=0; i<results.data.data.length; i++) {
                 tripsArray.push({
                   id: results.data.data[i].location_id,
@@ -80,7 +79,7 @@ class TripAdvisor extends Component {
                   name: results.data.data[i].name,
                   phone: results.data.data[i].phone,
                   openNow: results.data.data[i].open_now_text,
-                  image: results.data.data[i].photo ? results.data.data[i].photo.images.medium.url : "https://media-cdn.tripadvisor.com/media/photo-f/08/9e/c1/8b/great-experience.jpg",
+                  image: results.data.data[i].photo ? results.data.data[i].photo.images.medium.url : "./img/location/noImage.png",
                   rank: results.data.data[i].ranking,
                   website: results.data.data[i].website
                 })
