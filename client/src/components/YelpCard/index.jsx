@@ -1,37 +1,7 @@
 import React from "react";
 import { Container, Row, Col } from "../Grid"
 import {SaveBtn, SiteBtn} from "../Buttons"
-import styled from "styled-components";
-
-const Image = styled.img `
-display: block;
-margin-left: auto;
-margin-right: auto;
-`
-const ImgDes = styled.p `
-font-style: italic;
-text-align: center;`
-
-const White = styled.p `
-color: white;
-`
-const ALink = styled.a `
-text-decoration: none;
-
-&:hover {
-    text-decoration: none;
-    color: yellow;
-    text-shadow: 0px 0px 2px purple;
-}
-
-// &:active, :visited {
-//   text-decoration: none;
-//   text-shadow: 0px 0px 2px yellow;
-// }
-`
-const Title = styled.h3 `
-color: white;
-`
+import {Image, White, Title} from "../Styled";
 
 
 function YelpCard(props) {

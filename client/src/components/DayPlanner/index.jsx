@@ -2,9 +2,7 @@ import React, { Component } from "react";
 import API from "../../utils/API";
 import Nav from "../Nav";
 import DayPlannerCard from "../DayPlannerCard";
-import {Container, Row, Col} from "../Grid";
-import {List, ListItem} from "../List";
-import "./style.css";
+// import {List, ListItem} from "../List";
 
 class DayPlanner extends Component {
   state = {
@@ -24,7 +22,7 @@ class DayPlanner extends Component {
     .then(res => {
       this.setState({ dayplans : res.data })
       // console.log("information: " + JSON.stringify(this.state.dayplans))
-      // console.log(this.state.dayplans.items1.length)
+      console.log(this.state.dayplans)
     })
     .catch(err => console.log(err))
   }
@@ -76,9 +74,9 @@ class DayPlanner extends Component {
           image={this.state.dayplans.image}
           locDescription={this.state.dayplans.snippet}
           date1={this.state.dayplans.date1}
-          items1={this.state.dayplans.items1}
-          date2={this.state.dayplans.date2}
-          items2={this.state.dayplans.items2}
+          itinerary={this.state.dayplans.itinerary}
+          // date2={this.state.dayplans.date2}
+          // items2={this.state.dayplans.items2}
           />
 
           )

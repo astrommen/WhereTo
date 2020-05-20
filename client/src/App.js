@@ -14,6 +14,7 @@ import FormVacation from "./pages/FormVacation"
 import NoMatch from "./pages/NoMatch"
 import Testing from "./pages/Testing"
 import Profile from "./pages/Profile"
+import FormDay from "./components/FormDay";
 
 // import PrivateRoute from "./components/private-route/PrivateRoute";
 import FormLocal from "./components/FormLocal/FormLocal"
@@ -57,6 +58,7 @@ class App extends Component {
             <Wrapper>
               <Switch>
               <Route exact path="/" component={Login} />
+              <Route path="/daytrip" component={FormDay} />
               <Route exact path="/local" component={FormLocal} />
               <Route exact path="/vacation" component={FormVacation} />
               <Route exact path="/register" component={Register} />

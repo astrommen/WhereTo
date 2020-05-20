@@ -1,4 +1,4 @@
-import React, { Component }  from 'react';
+import React from 'react';
 import { Container, Row, Col } from "../Grid";
 import { SaveBtn} from "../Buttons";
 import {Image, ImgDes, Title, LocDes, White} from "../Styled";

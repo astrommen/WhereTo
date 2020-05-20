@@ -44,3 +44,7 @@ color: white;
 export const White = styled.p `
 color: white;
 `
+
+export const Label = styled.label `
+color: white;
+`
