@@ -26,42 +26,46 @@ function OutdoorCard(props) {
     <div>
     <Container>
       <Row>
-        <Col size="md-6">
+        <Col size="md-8">
           <Title>{props.name}</Title>
         </Col>
-        <Col size="md-6">
+        <Col size="md-4">
           <SiteBtn href={props.link}> Park Site </SiteBtn>
           <SaveBtn onClick={() => this.saveSite(props.site)} />
         </Col>
       </Row>
 
       <Row>
-        <Col size="md-3">
+        <Col size="md-5">
           <Image className="img-fluid" src={props.images[0].URL} alt={props.images[0].Description} />
           <ImgDes>{props.images[0].Description}</ImgDes>
         </Col>
-        <Col size="md-9">
+        <Col size="md-7">
           <Container>
             <Row>
-              <Col size="md-7">
-                <White>{props.activities.map(activity => 
-                  activity.ActivityName ).join(", ")}</White>
-              </Col>
-
-              <Col size="md-1"><White>Address:</White> </Col>
-              <Col size="md-4">
-                <White>{props.street}</White>
+              <Col size="md-6">
+                <White>Address: {props.street}</White>
                 <White>{props.city} , {props.state} {props.postalCode}</White>
+              </Col>
+              <Col size="md-6">
+                <White>Directions: {props.directions}</White>
               </Col>
             </Row>
 
             <Row>
               <Col size="md-12">
-                <White>Description: {props.description}</White>
-              </Col>     
+                <White>{props.activities.map(activity => 
+                  activity.ActivityName ).join(", ")}</White>
+              </Col>
             </Row>
+
           </Container>
         </Col>
+      </Row>
+      <Row>
+        <Col size="md-12">
+          <White>Description: {props.description}</White>
+        </Col>     
       </Row>
 
     </Container>

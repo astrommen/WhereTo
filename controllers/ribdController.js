@@ -19,6 +19,7 @@ module.exports = {
                     city: result.RECAREAADDRESS[0].City,
                     postalCode: result.RECAREAADDRESS[0].PostalCode,
                     state: result.RECAREAADDRESS[0].AddressStateCode,
+                    directions: result.RecAreaDirections,
                     link: result.LINK[0].URL,
                     images: result.MEDIA,
                     activities: result.ACTIVITY

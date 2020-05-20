@@ -50,10 +50,10 @@ function TicketmasterCard(props) {
         </Col>
       </Row>
       <Row>
-        <Col size="md-6">
+        <Col size="md-4">
           <Image className="img-fluid" src={props.image} alt={props.name} />
         </Col>
-        <Col size="md-6">
+        <Col size="md-8">
         <Container>
           <Row>
           <Col size="md-6"><White>Date: {props.localDate} </White></Col>

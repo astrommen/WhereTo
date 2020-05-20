@@ -52,6 +52,7 @@ class Outdoor extends Component {
           id={site.id}
           name={site.name}
           description={site.description}
+          directions={site.directions}
           longitude={site.longitude}
           latitude={site.latitude}
           street={site.street}
