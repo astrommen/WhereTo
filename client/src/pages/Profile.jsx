@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from 'react-router-dom'
 import Wrapper from "../components/Wrapper";
 import { Container, Row, Col } from "../components/Grid";
 import VacationBtn from "../components/VacationBtn";
@@ -11,11 +12,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../actions/authActions";
 
-const token = (window.localStorage.getItem("jwtToken"));
 
-const decoded = jwt_decode(token);
-
-const user = decoded.id;
 
 class Profile extends Component {
   constructor() {
@@ -43,6 +40,12 @@ class Profile extends Component {
       dateFill = today.getFullYear() + '-' + (month()) + '-' + day();
 
 
+    const token = (window.localStorage.getItem("jwtToken"));
+
+    const decoded = jwt_decode(token);
+
+    const user = decoded.id;
+
 
     this.state = {
       today: today,
@@ -50,28 +53,29 @@ class Profile extends Component {
       vacaIDs: [],
       vacaNames: [],
       pastVaca: [],
-      upcomingVaca: []
+      upcomingVaca: [],
+      userID: user,
     };
+
   }
 
   componentDidMount() {
     this.getUser();
-    
-    // console.log(decoded.id);
   }
+
+
 
   getUser = () => {
     let IDsArr = []
-    API.getUser(user)
-    // User.findOne({ email })
+    API.getUser(this.state.userID)
       .then((res) => {
-        // console.log(res.data) Logs user found
+        console.log(res.data) //Logs user found
         res.data.vacations.forEach((VacaIDs) => {
           let obj = {}
           obj.id = VacaIDs;
           IDsArr.push(obj)
           // Logs Vacation IDs          
-          console.log(obj) 
+          // console.log(obj)
         })
         // console.log(IDsArr)
         this.setState({
@@ -92,16 +96,16 @@ class Profile extends Component {
       API.getVacations(data.id).then((res) => {
         // console.log(res)
         // console.log(res.data.name)// Logs Vacation names
-        console.log(res.data.startDate.slice(0, 10))
-        console.log(this.state.date)
-        console.log(this.state.date < res.data.startDate.slice(0, 10))
+        // console.log(res.data.startDate.slice(0, 10))
+        // console.log(this.state.date)
+        // console.log(this.state.date < res.data.startDate.slice(0, 10))
         // console.log("End:", res.data.endDate)
         obj.name = res.data.name;
         obj.key = res.data._id;
         obj.startDate = res.data.startDate;
         obj.endDate = res.data.endDate;
         obj.activities = res.data.activities;
-        if (this.state.date > res.data.startDate.slice(0, 10)) {
+        if (this.state.date < res.data.startDate.slice(0, 10)) {
           upcomingArr.push(obj)
           this.setState({
             upcomingVaca: upcomingArr
@@ -201,7 +205,7 @@ class Profile extends Component {
           }}
           onClick={this.onLogoutClick}
           className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-          >
+        >
           Logout
         </button>
       </div>

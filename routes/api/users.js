@@ -1,22 +1,3 @@
-// const router = require("express").Router();
-// const userController = require("../../controllers/userController");
-
-// Matches with "/api/users"
-// router.route("/")
-//   .get(userController.findAll)
-//   .post(userController.create){
-//     console.log(req.body);
-//   };
-
-// // Matches with "/api/users/:id"
-// router
-//   .route("/:id")
-//   .get(userController.findById)
-//   .put(userController.update)
-//   .delete(userController.remove);
-
-// module.exports = router;
-
 //from blog.bitsrc.io
 const express = require("express");
 const router = express.Router();
@@ -30,6 +11,25 @@ const validateLoginInput = require("../../validation/login");
 
 // Load User model
 const User = require("../../models/user");
+
+//Load controller
+const userController = require("../../controllers/userController");
+
+// Matches with "/api/users"
+router.route("/")
+  .get(userController.findAll)
+  .post(userController.create);
+
+// // Matches with "/api/users/:id"
+router
+  .route("/:id")
+  .get(userController.findById)
+  .put(userController.update)
+  .delete(userController.remove);
+
+// Matches with "/api/users/user"
+router.route("/user")
+  .get(userController.findOne);
 
 
 // @route POST api/users/register

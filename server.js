@@ -34,6 +34,7 @@ require("./config/passport")(passport);
 
 // Routes
 app.use("/api/users", users);
+app.use(routes);
 
 const PORT = process.env.PORT || 3001;
 // Express session
