@@ -4,7 +4,6 @@ import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
 import Wrapper from "./components/Wrapper"
-import TripMap from "./components/TripMap";
 
 import { Provider } from "react-redux";
 import store from "./store";
@@ -20,11 +19,8 @@ import Daytrip from "./pages/Daytrip";
 import FormLocal from "./components/FormLocal/FormLocal"
 import Register from "./components/auth/Register"
 import LogIn from "./components/auth/LogIn";
-import CountryInfo from "./components/CountryInfo";
-import DayPlanner from "./components/DayPlanner";
 import Outdoors from "./components/Outdoors";
 import Ticketmaster from "./components/Ticketmaster";
-import Walk from "./components/Walk";
 import Yelp from "./components/Yelp";
 import TripAdvisor from "./components/TripAdvisor";
 import './App.css';
@@ -63,12 +59,9 @@ class App extends Component {
               <Route exact path="/vacation" component={FormVacation} />
               <Route exact path="/register" component={Register} />
               <Route path="/testing" component={Testing} />
-              <Route path="/dayplanner" component={DayPlanner} />
-              <Route path="/map" component={TripMap} />
               <Route path="/outdoors" component={Outdoors} />
               <Route path="/events" component={Ticketmaster} />
               <Route path="/trip" component={TripAdvisor} />
-              <Route path="/walk" component={Walk} />
               <Route path="/food" component={Yelp} />
               <Route exact path="/profile" component={Profile} />
               <Route exact path="/login" component={LogIn} />

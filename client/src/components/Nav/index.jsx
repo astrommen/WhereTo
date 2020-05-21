@@ -14,7 +14,7 @@ function Nav() {
           </Link>
         </Col>
         <Col size="md-2">
-        <Link to="/"
+        <Link to="/profile"
             className={
               window.location.pathname === "/" ? "tab-active" : "tab"
             }>Profile</Link>
@@ -23,7 +23,7 @@ function Nav() {
         <Link to="/trip"
             className={
               window.location.pathname === "/trip" ? "tab-active" : "tab"
-            }>Trip</Link>
+            }>Sightseeing</Link>
         </Col>
         <Col size="md-2">
         <Link to="/food"
@@ -31,18 +31,18 @@ function Nav() {
               window.location.pathname === "/food" ? "tab-active" : "tab"
             }>Eat/Drink</Link>
         </Col>
-        <Col size="md-1">
+        <Col size="md-2">
         <Link to="/events"
             className={
               window.location.pathname === "/events" ? "tab-active" : "tab"
             }>Events</Link>
         </Col>
-        <Col size="md-1">
+        {/* <Col size="md-1">
         <Link to="/walk"
             className={
               window.location.pathname === "/walk" ? "tab-active" : "tab"
             }>Walk</Link>
-        </Col>
+        </Col> */}
         <Col size="md-2">
         <Link to="/outdoors"
             className={

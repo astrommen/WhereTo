@@ -2,7 +2,7 @@ const axios = require("axios");
 
 module.exports = {
     findAll: function(req,res) {
-        const {query:params} = req;
+        const { params } = req.query;        
         const config = {
             "headers": {
                 "content-type": "application/octet-stream",

@@ -78,34 +78,44 @@ class FormDay extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
+    // let actArray=[]
+    // let obj = {}
+    // obj.location = this.state.city + "," + this.state.state;
+    // obj.activities = this.state.sports + this.state.theatre + this.state.concert;
+    // obj.outdoors = this.state.boating + this.state.fishing + this.state.hiking;
+    // actArray.push(obj)
+    // this.setState({ activities: actArray })
+    // console.log(this.state.activities)
+
+
     const actArray=[]
     actArray.push({
-      // location: this.state.city + "," + this.state.state,
-      activities: this.state.sports + this.state.theatre + this.state.concert,
-      outdoors: this.state.boating + this.state.fishing + this.state.hiking,
-      meal: this.state.breakfast + this.state.dinner + this.state.dessert + this.state.drinks
+      location: this.state.city + "," + this.state.state
+      // activities: this.state.sports + this.state.theatre + this.state.concert,
+      // outdoors: this.state.boating + this.state.fishing + this.state.hiking,
+      // meal: this.state.breakfast + this.state.dinner + this.state.dessert + this.state.drinks
     });
     this.setState({ activities: actArray })
-    console.log(this.state.location)
-    console.log(
-      "tripName " + this.state.tripName,
-      "\n date " + this.state.date,
-      "\n city " + this.state.city,
-      "\n state " + this.state.state,
-      this.state.breakfast,
-      this.state.dinner,
-      this.state.dessert,
-      this.state.drinks,
-      this.state.foodType,
-      this.state.boating,
-      this.state.fishing,
-      this.state.hiking,
-      this.state.beach,
-      this.state.concert,
-      this.state.sightseeing,
-      this.state.sports,
-      this.state.theatre
-    )
+    console.log(this.state.activities)
+    // console.log(
+    //   "tripName " + this.state.tripName,
+    //   "\n date " + this.state.date,
+    //   "\n city " + this.state.city,
+    //   "\n state " + this.state.state,
+    //   this.state.breakfast,
+    //   this.state.dinner,
+    //   this.state.dessert,
+    //   this.state.drinks,
+    //   this.state.foodType,
+    //   this.state.boating,
+    //   this.state.fishing,
+    //   this.state.hiking,
+    //   this.state.beach,
+    //   this.state.concert,
+    //   this.state.sightseeing,
+    //   this.state.sports,
+    //   this.state.theatre
+    // )
   }
 
   render() {
