@@ -2,18 +2,27 @@ import React, { Component } from "react";
 import "./style.css";
 
 class VacationBtn extends Component {
+
+
+
+
   render() {
     return (
-      <button type="button" className="btn btn-primary btn-block">{this.props.name}</button>
+      this.props.local ? (
+        <div>
+          <button type="button" className="btn btn-primary btn-block">{this.props.name}</button>
+        </div>
+      ) : (
+          <div>
+            <button type="button" className="btn btn-success btn-block">{this.props.name}</button>
+          </div>
+        )
+
     );
   }
 }
 
-// function VacationBtn({ name }) {
-//   return (
-//     <button type="button" className="btn btn-primary">{name}</button>
-//   )
-// }
+
 
 
 export default VacationBtn;

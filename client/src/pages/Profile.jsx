@@ -3,14 +3,12 @@ import { Redirect } from 'react-router-dom'
 import Wrapper from "../components/Wrapper";
 import { Container, Row, Col } from "../components/Grid";
 import VacationBtn from "../components/VacationBtn";
+import ProfileBox from "../components/profileBox"
+import ProfileFormBox from "../components/ProfileFormBox";
 import API from "../utils/API";
-
 import jwt_decode from "jwt-decode";
 
-// Aja Log Out Btn
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { logoutUser } from "../actions/authActions";
+
 
 
 
@@ -55,6 +53,7 @@ class Profile extends Component {
       pastVaca: [],
       upcomingVaca: [],
       userID: user,
+      name: ''
     };
 
   }
@@ -79,7 +78,8 @@ class Profile extends Component {
         })
         // console.log(IDsArr)
         this.setState({
-          vacaIDs: IDsArr
+          vacaIDs: IDsArr,
+          name: res.data.name
         })
         this.getNames()
       }).catch((err) => {
@@ -94,17 +94,13 @@ class Profile extends Component {
       // console.log(data.id)// Logs vacation IDs      
       let obj = {}
       API.getVacations(data.id).then((res) => {
-        // console.log(res)
-        // console.log(res.data.name)// Logs Vacation names
-        // console.log(res.data.startDate.slice(0, 10))
-        // console.log(this.state.date)
-        // console.log(this.state.date < res.data.startDate.slice(0, 10))
-        // console.log("End:", res.data.endDate)
+        console.log(res.data)
         obj.name = res.data.name;
         obj.key = res.data._id;
         obj.startDate = res.data.startDate;
         obj.endDate = res.data.endDate;
         obj.activities = res.data.activities;
+        obj.local = res.data.local;
         if (this.state.date < res.data.startDate.slice(0, 10)) {
           upcomingArr.push(obj)
           this.setState({
@@ -116,54 +112,41 @@ class Profile extends Component {
             pastVaca: pastArr
           })
         }
+
       }).catch((err) => {
         console.log(err.response)
       })
     })
+    console.log(upcomingArr)
+    console.log(pastArr)
   }
 
-  // LogOut Code
-  onLogoutClick = e => {
-    e.preventDefault();
-    this.props.logoutUser();
-    this.props.history.push("/");
-  };
+
 
 
   render() {
-    // LogOut code
-    const { user } = this.props.auth;
-
     return (
       <div className="">
         <div className="row justify-content-around">
           <div className="col-md-6">
-            <h4>Profile</h4>
-
+            <ProfileBox
+              name={this.state.name}
+              history={this.props.history}
+              logoutUser={this.props.logoutUser}
+            />
           </div>
           <div className="col-md-6">
-            <div className="card">
-              <h5 className="card-header">
-                Card title
-				</h5>
-              <div className="card-body">
-                <p className="card-text">
-                  Card content
-					</p>
-              </div>
-              <div className="card-footer">
-                Card footer
-				</div>
-            </div>
+            <ProfileFormBox />
           </div>
         </div>
         <div className="row mt-5  justisfy-content-around">
           <div className="col-md-6">
             <h4>Past Vacations</h4>
             {this.state.pastVaca.map(items => (
-              <VacationBtn
+              < VacationBtn
                 key={items.key}
                 name={items.name}
+                local={items.local}
               />
             ))}
           </div>
@@ -173,6 +156,7 @@ class Profile extends Component {
               <VacationBtn
                 key={items.key}
                 name={items.name}
+                local={items.local}
               />
             ))}
           </div>
@@ -194,38 +178,10 @@ class Profile extends Component {
             </div>
           </div>
         </div>
-        {/* { LogOut Code } */}
-        <button
-          style={{
-            width: "150px",
-            borderRadius: "3px",
-            letterSpacing: "1.5px",
-            marginTop: "1rem",
-            backgroundColor: "white"
-          }}
-          onClick={this.onLogoutClick}
-          className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-        >
-          Logout
-        </button>
       </div>
     );
   }
 }
 
-// LogOut code
-Profile.propTypes = {
-  logoutUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
-};
 
-const mapStateToProps = state => ({
-  auth: state.auth
-});
-
-export default connect(
-  mapStateToProps,
-  { logoutUser }
-)(Profile);
-
-// export default Profile;
+export default Profile;
