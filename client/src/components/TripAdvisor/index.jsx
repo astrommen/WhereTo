@@ -9,7 +9,7 @@ class TripAdvisor extends Component {
   state={
     trips: [],
     locationInfo: [],
-    location: "Baltimore",
+    location: "Philadelphia,PA",
     activity: "park,museum"
   }
 
