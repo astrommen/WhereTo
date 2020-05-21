@@ -1,4 +1,6 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
+import Select from 'react-select';
+import makeAnimated from 'react-select/animated'
 import {Label} from "../Styled";
 
 
@@ -53,7 +55,7 @@ class FormDay extends Component {
       dinner: null,
       dessert: null,
       drinks: null,
-      foodType: null,
+      foodType: [],
       boating: null,
       fishing: null,
       hiking: null,
@@ -66,28 +68,6 @@ class FormDay extends Component {
     };
   }
 
-  // state= {
-  //   tripName: "",
-  //   location: "",
-  //   date: "",
-  //   city: "",
-  //   state: "",
-  //   breakfast: "",
-  //   dinner: "",
-  //   dessert: "",
-  //   drinks: "",
-  //   foodType: "",
-  //   boating: "",
-  //   fishing: "",
-  //   hiking: "",
-  //   beach: "",
-  //   concert: "",
-  //   sightseeing: "",
-  //   sports: "",
-  //   theatre: "",
-  //   activities: []
-  // };
-
   handleInputChange = event => {
     event.preventDefault()
     const value = event.target.value;
@@ -95,6 +75,15 @@ class FormDay extends Component {
     this.setState({
       [name]: value
     });
+  };
+
+  handleChange = selectedOption => {
+    this.setState(
+      {selectedOption},
+      () => console.log(`Option selected:`, this.state.selectedOption)
+    );
+    console.log(this.state.state)
+    console.log(this.state.foodType)
   };
 
   handleFormSubmit = event => {
@@ -108,7 +97,6 @@ class FormDay extends Component {
     // actArray.push(obj)
     // this.setState({ activities: actArray })
     // console.log(this.state.activities)
-
 
     const actArray=[]
     actArray.push({
@@ -140,10 +128,140 @@ class FormDay extends Component {
       this.state.sports,
       this.state.theatre
     )
-  }
 
+
+    const foodCheckboxes = [
+      {
+        name: "breakfast",
+        value: "breakfast_brunch",
+        key: "cb1",
+        label: "cb1",
+        src: "./img/activities/breakfast.png",
+        checked: `{this.state.breakfast || ''}`
+      },
+      {
+        name: "dinner",
+        value: "restaurants",
+        key: "cb2",
+        label: "cb2",
+        src: "./img/activities/dinner.png",
+        checked: `{this.state.dinner || ''}`
+      },
+      {
+        name: "dessert",
+        value: "dessert",
+        key: "cb3",
+        label: "cb3",
+        src: "./img/activities/dessert.png",
+        checked: `{this.state.dessert || ''}`
+      },
+      {
+        name: "drinks",
+        value: "breweries",
+        key: "cb4",
+        label: "cb4",
+        src: "./img/activities/drinks.png",
+        checked: `{this.state.drinks || ''}`
+      }
+    ]
+
+    
+    
+  }
+  
   render() {
     const {tripName} = this.state.tripName
+    const foodOptions = [
+        {value: "tradamerican",label: "American"},
+        {value: "asianfusion", label: "Asian Fusion"},
+        {value: "bbq", label: "Barbeque"},
+        {value: "buffets", label: "Buffets"},
+        {value: "cajun", label: "Cajun/Creole"},
+        {value: "chinese", label: "Chinese"},
+        {value: "comfortfood", label: "Comfort Food"},
+        {value: "delis", label: "Delis"},
+        {value: "diners", label: "Diners"},
+        {value: "Greek", label: "Greek"},
+        {value: "indpak", label: "Indian"},
+        {value: "italian", label: "Italian"},
+        {value: "japanese", label: "Japanese"},
+        {value: "jewish", label: "Jewish"},
+        {value: "mediterranean", label: "Mediterranean"},
+        {value: "mexican", label: "Mexican"},
+        {value: "pizza", label: "Pizza"},
+        {value: "sandwiches", label: "Sandwiches"},
+        {value: "sushi", label: "Sushi"},
+        {value: "thai", label: "Thai"},
+        {value: "vegan", label: "Vegan"},
+        {value: "vegetarian", label: "Vegetarian"}
+    ]
+
+    const stateOptions=[
+      {value: "AK", label: "Alaska"},
+      {value: "AL", label: "Alabama"},
+      {value: "AR", label: "Arkansas"},
+      {value: "AZ", label: "Arizona"},
+      {value: "CA", label: "California"},
+      {value: "CO", label: "Colorado"},
+      {value: "CT", label: "Connecticut"},
+      {value: "DC", label: "District of Columbia"},
+      {value: "DE", label: "Delaware"},
+      {value: "FL", label: "Florida"},
+      {value: "GA", label: "Georgia"},
+      {value: "HI", label: "Hawaii"},
+      {value: "IA", label: "Iowa"},
+      {value: "ID", label: "Idaho"},
+      {value: "IL", label: "Illinois"},
+      {value: "IN", label: "Indiana"},
+      {value: "KS", label: "Kansas"},
+      {value: "KY", label: "Kentucky"},
+      {value: "LA", label: "Louisiana"},
+      {value: "MA", label: "Massachusetts"},
+      {value: "MD", label: "Maryland"},
+      {value: "ME", label: "Maine"},
+      {value: "MI", label: "Michigan"},
+      {value: "MN", label: "Minnesota"},
+      {value: "MO", label: "Missouri"},
+      {value: "MS", label: "Mississippi"},
+      {value: "MT", label: "Montana"},
+      {value: "NC", label: "North Carolina"},
+      {value: "ND", label: "North Dakota"},
+      {value: "NE", label: "Nebraska"},
+      {value: "NH", label: "New Hampshire"},
+      {value: "NJ", label: "New Jersey"},
+      {value: "NM", label: "New Mexico"},
+      {value: "NV", label: "Nevada"},
+      {value: "NY", label: "New York"},
+      {value: "OH", label: "Ohio"},
+      {value: "OK", label: "Oklahoma"},
+      {value: "OR", label: "Oregon"},
+      {value: "PA", label: "Pennsylvania"},
+      {value: "PR", label: "Puerto Rico"},
+      {value: "RI", label: "Rhode Island"},
+      {value: "SC", label: "South Carolina"},
+      {value: "SD", label: "South Dakota"},
+      {value: "TN", label: "Tennessee"},
+      {value: "TX", label: "Texas"},
+      {value: "UT", label: "Utah"},
+      {value: "VA", label: "Virginia"},
+      {value: "VT", label: "Vermont"},
+      {value: "WA", label: "Washington"},
+      {value: "WI", label: "Wisconsin"},
+      {value: "WV", label: "West Virginia"},
+      {value: "WY", label: "Wyoming"},
+
+    ]
+
+    function customTheme(theme) {
+      return {
+        ...theme,
+        colors: {
+          ...theme.colors,
+          primary25: 'lightyellow',
+          primary: 'black'
+        }
+      }
+    }
     return (
       <div>
         <form className="mt-4" onSubmit={this.handleFormSubmit}>
@@ -185,7 +303,17 @@ class FormDay extends Component {
 
             <div className="form-group col">
               <Label htmlFor="inputState">State</Label>
-              <select 
+              <Select
+              name="state"
+              theme={customTheme}
+              value={this.state.value}
+              options={stateOptions}
+              components={makeAnimated()}
+              placeholder="select state"
+              isMulti
+              autoFocus
+              onChange={this.handleChange} />
+              {/* <select 
               name="state"
               value={this.state.value || ''}
               onChange={this.handleInputChange}
@@ -243,7 +371,7 @@ class FormDay extends Component {
                 <option value="WI">Wisconsin</option>
                 <option value="WV">West Virginia</option>
                 <option value="WY">Wyoming</option>
-              </select>
+              </select> */}
             </div>
           </div>
 
@@ -278,35 +406,45 @@ class FormDay extends Component {
               <Label htmlFor="cb4"><img alt="" src="./img/activities/bar.png" /><p>Drinks</p></Label></div>
 
             <div className="form-group col">
-              <Label htmlFor="inputState">Type of Food:</Label>
-              <select id="inputState" 
+              <Select
               name="foodType"
-              value={this.state.value || ''} 
-              onChange={this.handleInputChange} className="form-control">
-                <option defaultValue value="">Choose...</option>
-                <option value="tradamerican">American</option>
-                <option value="asianfusion">Asian Fusion</option>
-                <option value="bbq">Barbeque</option>
-                <option value="buffets">Buffets</option>
-                <option value="cajun">Cajun/Creole</option>
-                <option value="chinese">Chinese</option>
-                <option value="comfortfood">Comfort Food</option>
-                <option value="delis">Delis</option>
-                <option value="diners">Diners</option>
-                <option value="Greek">Greek</option>
-                <option value="indpak">Indian</option>
-                <option value="Italitalianian">Italian</option>
-                <option value="japanese">Japanese</option>
-                <option value="jewish">Jewish</option>
-                <option value="">Mediterranean</option>
-                <option value="mediterranean">Mexican</option>
-                <option value="pizza">Pizza</option>
-                <option value="sandwiches">Sandwiches</option>
-                <option value="sushi">Sushi</option>
-                <option value="thai">Thai</option>
-                <option value="vegan">Vegan</option>
-                <option value="vegetarian">Vegetarian</option>
-              </select>
+              theme={customTheme}
+              value={this.state.value}
+              options={foodOptions}
+              components={makeAnimated()}
+              placeholder="select food type"
+              isMulti
+              autoFocus
+              onChange={this.handleChange} />
+              // {/* <Label htmlFor="inputState">Type of Food:</Label>
+              // <select id="inputState" 
+              // name="foodType"
+              // value={this.state.value || ''} 
+              // onChange={this.handleInputChange} className="form-control">
+              //   <option defaultValue value="">Choose...</option>
+              //   <option value="tradamerican">American</option>
+              //   <option value="asianfusion">Asian Fusion</option>
+              //   <option value="bbq">Barbeque</option>
+              //   <option value="buffets">Buffets</option>
+              //   <option value="cajun">Cajun/Creole</option>
+              //   <option value="chinese">Chinese</option>
+              //   <option value="comfortfood">Comfort Food</option>
+              //   <option value="delis">Delis</option>
+              //   <option value="diners">Diners</option>
+              //   <option value="Greek">Greek</option>
+              //   <option value="indpak">Indian</option>
+              //   <option value="Italitalianian">Italian</option>
+              //   <option value="japanese">Japanese</option>
+              //   <option value="jewish">Jewish</option>
+              //   <option value="mediterranean">Mediterranean</option>
+              //   <option value="mexican">Mexican</option>
+              //   <option value="pizza">Pizza</option>
+              //   <option value="sandwiches">Sandwiches</option>
+              //   <option value="sushi">Sushi</option>
+              //   <option value="thai">Thai</option>
+              //   <option value="vegan">Vegan</option>
+              //   <option value="vegetarian">Vegetarian</option>
+              // </select> */}
             </div>
           </div>
 

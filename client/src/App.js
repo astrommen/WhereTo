@@ -9,7 +9,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 
 import Login from "./pages/Login"
-import FormVacation from "./pages/FormVacation"
+import FormVacation from "./components/FormVacation"
 import NoMatch from "./pages/NoMatch"
 import Testing from "./pages/Testing"
 import Profile from "./pages/Profile"

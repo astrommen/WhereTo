@@ -140,14 +140,3 @@ export default {
     },
 }
 
-// export default {
-//     saveEvent: function (eventData) {
-//         return axios.post("/api/trips", eventData);
-//     },
-//     saveSite: function(siteData) {
-//         return axios.post("/api/trips", siteData)
-//     },
-//     savePlan: function(planData) {
-//         return axios.post("/api/trips", planData)
-//     }
-// }
