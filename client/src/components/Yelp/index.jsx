@@ -20,7 +20,7 @@ class Yelp extends Component {
     .then(res => {
       // console.log(res);
       this.setState({ eateries : res.data})
-      // console.log(this.state.eateris)
+      // console.log(this.state.eateries)
     })
     .catch(err => console.log(err));
   }
