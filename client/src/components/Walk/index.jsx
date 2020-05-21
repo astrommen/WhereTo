@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import API from "../../utils/API";
 import Nav from "../Nav";
 import WalkCard from "../WalkCard"
-import "./style.css";
 
 class Walk extends Component {
   state = {
@@ -18,9 +17,9 @@ class Walk extends Component {
     console.log("here")
     API.callTour(city)
     .then(res => {
-      console.log(res);
+      // console.log(res);
       this.setState({ walk : res.data})
-      console.log(this.state.walk)
+      // console.log(this.state.walk)
     })
     .catch(err => console.log(err))
   }

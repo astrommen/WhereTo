@@ -1,13 +1,7 @@
 import React, { Component }  from 'react';
 import {Link} from "react-router-dom";
 import {Container, Row, Col} from "../Grid";
-import styled from "styled-components";
-
-// const Item = styled.li `
-// background-color: #60144c;
-// color: white;
-// width: 125px;
-// padding: 0.5rem 1rem`
+import "./style.css";
 
 
 function Nav() {
@@ -20,44 +14,39 @@ function Nav() {
           </Link>
         </Col>
         <Col size="md-2">
-        <Link to="/"
+        <Link to="/profile"
             className={
-              window.location.pathname === "/" ? "active" : ""
+              window.location.pathname === "/" ? "tab-active" : "tab"
             }>Profile</Link>
         </Col>
         <Col size="md-2">
         <Link to="/trip"
             className={
-              window.location.pathname === "/trip" ? "active" :
-              "nave-link"
-            }>Trip</Link>
+              window.location.pathname === "/trip" ? "tab-active" : "tab"
+            }>Sightseeing</Link>
         </Col>
         <Col size="md-2">
         <Link to="/food"
             className={
-              window.location.pathname === "/food" ? "active" :
-              ""
+              window.location.pathname === "/food" ? "tab-active" : "tab"
             }>Eat/Drink</Link>
         </Col>
-        <Col size="md-1">
+        <Col size="md-2">
         <Link to="/events"
             className={
-              window.location.pathname === "/events" ? "active " :
-              ""
+              window.location.pathname === "/events" ? "tab-active" : "tab"
             }>Events</Link>
         </Col>
-        <Col size="md-1">
+        {/* <Col size="md-1">
         <Link to="/walk"
             className={
-              window.location.pathname === "/walk" ? "active " :
-              ""
+              window.location.pathname === "/walk" ? "tab-active" : "tab"
             }>Walk</Link>
-        </Col>
+        </Col> */}
         <Col size="md-2">
         <Link to="/outdoors"
             className={
-              window.location.pathname === "/outdoors" ? "active " :
-              ""
+              window.location.pathname === "/outdoors" ? "tab-active" : "tab"
             }>Outdoors</Link>
         </Col>
       </Row>
@@ -66,53 +55,3 @@ function Nav() {
 }
 
 export default Nav;
-
-// function Navbar() {
-//   return(
-//     <NavBar className="navbar navbar-expand-lg navbar-light">
-//       <Link className="navbar-brand" to="/">
-//       <Logo className="logo" src={process.env.PUBLIC_URL + '/WhereToLogo.png'} alt="logo" />
-//       </Link>
-//       <div>
-//         <ul className="navbar-nav">
-//           <Item className="nav-item">
-//             <Link to="/"
-//             className={
-//               window.location.pathname === "/" ? "active" : ""
-//             }>Profile</Link>
-//           </Item>
-//           <Item className="nav-item">
-//             <Link to="/dayplanner"
-//             className={
-//               window.location.pathname === "/dayplanner" ? "active" :
-//               "nave-link"
-//             }>Day Planner</Link>
-//           </Item>
-//           <Item className="nav-item">
-//             <Link to="/food"
-//             className={
-//               window.location.pathname === "/food" ? "active" :
-//               ""
-//             }>Eat/Drink</Link>
-//           </Item>
-//           <Item className="nav-item">
-//             <Link to="/events"
-//             className={
-//               window.location.pathname === "/events" ? "active " :
-//               ""
-//             }>Events</Link>
-//           </Item>
-
-//           <Item className="nav-item">
-//             <Link to="/outdoors"
-//             className={
-//               window.location.pathname === "/outdoors" ? "active " :
-//               ""
-//             }>Outdoors</Link>
-//           </Item>
-//         </ul>
-//       </div>
-//     </NavBar>
-//   )
-// }
-

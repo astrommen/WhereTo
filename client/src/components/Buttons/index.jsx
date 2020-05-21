@@ -1,20 +1,38 @@
 import React from "react";
 import styled from "styled-components";
 
-const Site = styled.button `
+const Save = styled.button `
 float: right;
-background-color: blue;
+background-color: #146028;
 padding: 5px;
 margin: 2px;
 border-radius: 8px;
 color: white;
 text-decoration: none;
+width: 75px;
 
 &:hover {
     opacity: 0.8;
     box-shadow: 0px 0px 3px 3px gray;
 }
 `
+
+const Site = styled.button `
+float: right;
+background-color: #142660;
+padding: 5px;
+margin: 2px;
+border-radius: 8px;
+color: white;
+text-decoration: none;
+width: 125px;
+
+&:hover {
+    opacity: 0.8;
+    box-shadow: 0px 0px 3px 3px gray;
+}
+`
+
 const Link = styled.a `
 text-decoration: none;
 
@@ -53,9 +71,9 @@ export function SeatmapBtn(props) {
 
 export function SaveBtn(props) {
     return(
-        <button className="save-btn" {...props} tabIndex="0">
+        <Save className="save-btn" {...props} tabIndex="0">
         Save 
-        </button>
+        </Save>
     )
 }
 

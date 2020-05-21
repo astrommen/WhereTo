@@ -3,7 +3,7 @@ const axios = require("axios");
 module.exports = {
     findAll: function(req,res) {
         const { query:params } = req;
-        let url = `https://ridb.recreation.gov/api/v1/recareas?limit=2&offset=0&full=true&state=${params.state}&activity=${params.activities}&lastupdated=10-01-2018&sort=Name&apikey=${process.env.REACT_APP_RIBD_APIKEY}`
+        let url = `https://ridb.recreation.gov/api/v1/recareas?limit=8&offset=0&full=true&state=${params.state}&activity=${params.activities}&lastupdated=10-01-2018&sort=Name&apikey=${process.env.REACT_APP_RIBD_APIKEY}`
         axios
         .get(url)
         .then(results => 
@@ -19,6 +19,7 @@ module.exports = {
                     city: result.RECAREAADDRESS[0].City,
                     postalCode: result.RECAREAADDRESS[0].PostalCode,
                     state: result.RECAREAADDRESS[0].AddressStateCode,
+                    directions: result.RecAreaDirections,
                     link: result.LINK[0].URL,
                     images: result.MEDIA,
                     activities: result.ACTIVITY

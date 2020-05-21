@@ -13,16 +13,14 @@ import FormVacation from "./pages/FormVacation"
 import NoMatch from "./pages/NoMatch"
 import Testing from "./pages/Testing"
 import Profile from "./pages/Profile"
+import Daytrip from "./pages/Daytrip";
 
 import PrivateRoute from "./components/private-route/PrivateRoute";
 import FormLocal from "./components/FormLocal/FormLocal"
 import Register from "./components/auth/Register"
 import LogIn from "./components/auth/LogIn";
-import CountryInfo from "./components/CountryInfo";
-import DayPlanner from "./components/DayPlanner";
 import Outdoors from "./components/Outdoors";
 import Ticketmaster from "./components/Ticketmaster";
-import Walk from "./components/Walk";
 import Yelp from "./components/Yelp";
 import TripAdvisor from "./components/TripAdvisor";
 import './App.css';
@@ -56,15 +54,14 @@ class App extends Component {
             <Wrapper>
               <Switch>
               <Route exact path="/" component={Login} />
+              <Route path="/daytrip" component={Daytrip} />
               <Route exact path="/local" component={FormLocal} />
               <Route exact path="/vacation" component={FormVacation} />
               <Route exact path="/register" component={Register} />
               <Route path="/testing" component={Testing} />
-              <Route path="/dayplanner" component={DayPlanner} />
               <Route path="/outdoors" component={Outdoors} />
               <Route path="/events" component={Ticketmaster} />
               <Route path="/trip" component={TripAdvisor} />
-              <Route path="/walk" component={Walk} />
               <Route path="/food" component={Yelp} />
               {/* <Route exact path="/profile" component={Profile} /> */}
               <Route exact path="/login" component={LogIn} />

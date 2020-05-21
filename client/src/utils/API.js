@@ -48,20 +48,24 @@ export default {
         return axios.get("/api/country", { params: { country: country } })
     },
     //Search Triposo for city walk information
-    callTour: function (city) {
-        return axios.get("/api/walk", { params: { city: city } })
+    callTour: function(city) {
+        return axios.get("/api/walk", {
+            params: {
+                city: city
+            }
+        })
+    },
+    callTrip: function(location, activity) {
+        return axios.get("/api/trip", {
+            params: {
+                location: location,
+                activity: activity
+            }
+        })
     },
     callCountries: function (country) {
         return axios.get("/api/country", { params: { country: country } })
     },
-    // getUser: function (nameparam) {
-    //     return axios.get("/api/users/user", {
-    //         params: {
-    //             name: nameparam
-    //         }
-    //     })
-    // },
-    // Gets the book with the given id
     getUser: function (id) {
         return axios.get("/api/users/" + id);
     },
@@ -75,14 +79,6 @@ export default {
 }
 
 // export default {
-//     //Search TRIPOSO API for sightseeing information of a specific location
-//     callSightseeing: function(city) {
-//         return axios.get(`https://www.triposo.com/api/20200405/poi.json?location_id=${city}&tag_labels=sightseeing&bookable=1&fields=id,name,score,intro,booking_info&order_by=-score&account=${process.env.REACT_APP_TP_ID}&token=${process.env.REACT_APP_TP_TOKEN}`)
-//     }, 
-//     //Search TRIPOSO locate cities in a country of interest -- list attractions/known for
-//     callTriposoCities: function(country) {
-//         return axios.get(`https://www.triposo.com/api/20200405/location.json?part_of=${country}&tag_labels=city&count=10&fields=id,name,score,snippet&order_by=-score&account=${process.env.REACT_APP_TP_ID}&token=${process.env.REACT_APP_TP_TOKEN}`)
-//     },
 //     saveEvent: function (eventData) {
 //         return axios.post("/api/trips", eventData);
 //     },
@@ -93,28 +89,3 @@ export default {
 //         return axios.post("/api/trips", planData)
 //     }
 // }
-
-
-  //EXAMPLES
-  // Gets all books
-  // getBooks: function () {
-  //   return axios.get("/api/books");
-  // },
-  // // Gets the book with the given id
-  // getBook: function (id) {
-  //   return axios.get("/api/books/" + id);
-  // },
-  // // Deletes the book with the given id
-  // deleteBook: function (id) {
-  //   return axios.delete("/api/books/" + id);
-  // },
-  // // Saves a book to the database
-  // saveBook: function (bookData) {
-  //   return axios.post("/api/books", bookData);
-  // },
-  // //Searches for a book via Google Books API
-  // searchBook: function (bookdata) {
-  //   return axios.get(`https://www.googleapis.com/books/v1/volumes?q=${bookdata}&key=${process.env.REACT_APP_API_KEY}`)
-  // }
-
-

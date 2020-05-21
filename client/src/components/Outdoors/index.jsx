@@ -1,7 +1,6 @@
 import React, { Component }  from 'react';
 import OutdoorCard from "../OutdoorCard";
 import Nav from "../Nav";
-import "./style.css";
 import API from "../../utils/API";
 
 class Outdoor extends Component {
@@ -52,6 +51,7 @@ class Outdoor extends Component {
           id={site.id}
           name={site.name}
           description={site.description}
+          directions={site.directions}
           longitude={site.longitude}
           latitude={site.latitude}
           street={site.street}

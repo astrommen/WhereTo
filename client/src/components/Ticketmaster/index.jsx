@@ -2,7 +2,6 @@ import React, { Component }  from 'react';
 import API from "../../utils/API";
 import Nav from "../Nav";
 import TicketmasterCard from "../TicketmasterCard"
-import "./style.css";
 
 class Ticketmaster extends Component {
 
@@ -62,12 +61,12 @@ class Ticketmaster extends Component {
             name={activity.name}
             url={activity.url}
             image={activity.image}
-            localDate={activity.localdate}
+            localDate={activity.localDate}
             localStartTime={activity.localStartTime}
-            priceMin={activity.priceRangeMin}
-            priceMax={activity.priceRangeMax}
-            currency={activity.currency}
-            seatmapLink={activity.seatmapLink}
+            priceMin={activity.price}
+            // priceMax={activity.priceRangeMax}
+            // currency={activity.currency}
+            seatmapLink={activity.seatmapLink ? activity.seatmapLink.staticUrl : "none"}
             venueName={activity.venueName}
             venueUrl={activity.venueUrl}
             venueCity={activity.venueCity}

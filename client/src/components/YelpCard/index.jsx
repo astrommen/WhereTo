@@ -1,36 +1,19 @@
 import React from "react";
 import { Container, Row, Col } from "../Grid"
-import styled from "styled-components";
-
-const Image = styled.img `
-display: block;
-margin-left: auto;
-margin-right: auto;
-`
-const ImgDes = styled.p `
-font-style: italic;
-text-align: center;`
-
-const White = styled.p `
-color: white;
-`
-const ALink = styled.a `
-text-decoration: none;
-
-&:link, :hover, :active, :visited {
-    text-decoration: none;
-    color: white;
-    text-shadow: 0px 0px 2px black;
-}
-`
+import {SaveBtn, SiteBtn} from "../Buttons"
+import {Image, White, Title} from "../Styled";
 
 
 function YelpCard(props) {
   return(
     <Container>
       <Row>
-        <Col size="md-12">
-          <White><ALink href={props.link} target="_blank" rel="noopener noreferrer">{props.name}</ALink></White>
+        <Col size="md-8">
+          <Title>{props.name}</Title>
+        </Col>
+        <Col size="md-4">
+          <SiteBtn href={props.link}> Official Site </SiteBtn>
+          <SaveBtn onClick={() => this.saveSite(props.restaurant)} />
         </Col>
       </Row>
       <Row>

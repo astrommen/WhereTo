@@ -7,13 +7,13 @@ module.exports = {
         console.log(url)
         axios
         .get(url)
-        .then(results => results.data.results[0].way_points.map(result => 
+        .then(results =>
             ({
                 walkTime: results.data.results[0].walk_duration,
                 distance: results.data.results[0].walk_distance,
-                stops: results.data.results[0].way_points[0]
+                stops: results.data.results[0].way_points
             })
-        )
+
         )
         .then(walks => res.json(walks))
         .catch(err => res.status(422).json(err))

@@ -43,6 +43,7 @@
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
     "react-bootstrap": "^1.0.1",
+    "react-google-maps": "^9.4.5",
     "validator": "^13.0.0"
   }
 }
