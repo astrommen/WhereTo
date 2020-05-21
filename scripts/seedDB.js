@@ -1,9 +1,8 @@
 const mongoose = require("mongoose");
 const db = require("../models");
-var async = require('async');
 
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/wheretoTEST", { useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/whereto", { useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false });
 
 
 
@@ -18,12 +17,12 @@ const userSeed = [
 
 const vacaSeed = [
   {
-    "email": "bill@bill.com",
-    "name": "Vaawdawddver!",
-    "startDate": "2019-12-2",
-    "endDate": "2019-12-6",
-    "location": "Alaska",
-    "activities": ["camping", "biking", "hiking", "fishing"]
+    email: "bill@bill.com",
+    name: "Vaawdawddver!",
+    startDate: "2019-12-2",
+    endDate: "2019-12-6",
+    location: "Alaska",
+    activities: ["camping", "biking", "hiking", "fishing"]
   },
   {
     "email": "bill@bill.com",
@@ -51,72 +50,34 @@ const vacaSeed = [
   },
 ]
 
+
 db.User
   .deleteMany({})
   .then(() => db.User.collection.insertMany(userSeed))
   .then(data => {
-    console.log(data);
-    process.exit(0);
   })
   .catch(err => {
     console.error(err);
-    process.exit(1);
   });
+
 
 
 db.Vacation
   .deleteMany({})
   .then(data => {
-    // console.log(data)
-    process.exit(0);
-  })
-  .catch(err => {
-    console.error(err);
-    process.exit(1);
+    vacaSeed.forEach((item, idx, vacaSeed) => {
+      db.Vacation
+        .create(item)
+        .then(dbModel => {
+          db.User.findOneAndUpdate({ email: item.email }, { $push: { vacations: dbModel._id } }, { new: true }).then(data => {
+            if (idx + 1 === vacaSeed.length) {
+              mongoose.connection.close()
+            }
+          })
+        })
+    })
+  }).catch(err => {
+    console.log(err)
+    process.exit(1)
   });
 
-db.Vacation
-  .create(vacaSeed)
-  .then(dbModel => {
-    console.log("ESfsef")
-  })
-  .catch(err => console.log(err));
-
-
-
-
-
-// async.each(vacaSeed, function (data, callback) {
-//   db.Vacation
-//     .create(data)
-//     .then(dbModel => {
-//       console.log(data)
-//       db.User.findOneAndUpdate({ email: data.email }, { $push: { vacations: dbModel._id } }, { new: true })
-//     })
-//     .catch(err => console.log(err));
-// })
-
-
-
-// vacaSeed.forEach(data => {
-
-//   var promise = db.Vacation.create(data);
-//   promise.then(function (jawbreaker) {
-//     if (jawbreaker) {
-
-//       console.log(jawbreaker)
-//     }
-//     // ...
-//   })
-
-  // console.log(data)
-  // db.Vacation
-  //   .create(data)
-  //   .then(dbModel => {
-  //     console.log(dbModel)
-  //     console.log(data)
-  //     db.User.findOneAndUpdate({ email: data.email }, { $push: { vacations: dbModel._id } }, { new: true })
-  //   })
-  //   .catch(err => console.log(err));
-
-// })
