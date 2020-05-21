@@ -15,7 +15,7 @@ import Testing from "./pages/Testing"
 import Profile from "./pages/Profile"
 import Daytrip from "./pages/Daytrip";
 
-// import PrivateRoute from "./components/private-route/PrivateRoute";
+import PrivateRoute from "./components/private-route/PrivateRoute";
 import FormLocal from "./components/FormLocal/FormLocal"
 import Register from "./components/auth/Register"
 import LogIn from "./components/auth/LogIn";
@@ -63,9 +63,9 @@ class App extends Component {
               <Route path="/events" component={Ticketmaster} />
               <Route path="/trip" component={TripAdvisor} />
               <Route path="/food" component={Yelp} />
-              <Route exact path="/profile" component={Profile} />
+              {/* <Route exact path="/profile" component={Profile} /> */}
               <Route exact path="/login" component={LogIn} />
-                {/* <PrivateRoute exact path="/profile" component={Profile} /> */}
+              <PrivateRoute exact path="/profile" component={Profile} />
               <Route component={NoMatch} path="*" />
               </Switch>
             </Wrapper>

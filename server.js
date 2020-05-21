@@ -36,6 +36,7 @@ require("./config/passport")(passport);
 
 // Routes
 app.use("/api/users", users);
+app.use(routes);
 
 // Express session
 // app.use(session({
