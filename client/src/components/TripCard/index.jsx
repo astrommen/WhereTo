@@ -7,8 +7,8 @@ function TripCard(props) {
   return(
     <Container>
       <Row>
-        <Col size="md-8"><Title>{props.name}</Title></Col>
-        <Col size="md-4">
+        <Col size="md-7"><Title>{props.name}</Title></Col>
+        <Col size="md-5">
           <SiteBtn href={props.website}> Offical Site </SiteBtn>
           <SaveBtn onClick={() => this.saveSite(props.poi)} />
         </Col>

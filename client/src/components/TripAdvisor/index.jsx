@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import TripCard from "../TripCard";
 import API from "../../utils/API";
 import Nav from "../Nav";
-import "./style.css";
 const axios = require("axios");
 
 class TripAdvisor extends Component {
@@ -11,7 +10,7 @@ class TripAdvisor extends Component {
     trips: [],
     locationInfo: [],
     location: "Baltimore",
-    activity: "park"
+    activity: "park,museum"
   }
 
   componentDidMount(){

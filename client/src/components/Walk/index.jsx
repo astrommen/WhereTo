@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import API from "../../utils/API";
 import Nav from "../Nav";
 import WalkCard from "../WalkCard"
-import "./style.css";
 
 class Walk extends Component {
   state = {

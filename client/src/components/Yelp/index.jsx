@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import YelpCard from "../YelpCard";
 import API from "../../utils/API";
-import "./style.css";
 import Nav from "../Nav";
 
 class Yelp extends Component {
