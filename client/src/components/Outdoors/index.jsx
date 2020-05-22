@@ -4,14 +4,19 @@ import Nav from "../Nav";
 import API from "../../utils/API";
 
 class Outdoor extends Component {
-  state={
-    sites: [],
-    state: "Philadelphia,PA",
-    activities: "hiking"
+  constructor(props) {
+    super(props)
+
+    this.state={
+      sites: [],
+      state: "Philadelphia,PA",
+      activities: "hiking"
+    }
   }
 
   componentDidMount() {
     this.searchOutdoors(this.state.state, this.state.activities);
+    console.log("outdoors", this.props.state)
   };
     
   searchOutdoors = (state, activities) => {

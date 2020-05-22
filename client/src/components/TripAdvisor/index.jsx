@@ -5,16 +5,21 @@ import Nav from "../Nav";
 const axios = require("axios");
 
 class TripAdvisor extends Component {
+  constructor(props) {
+    super(props)
+    this.state={
+      trips: [],
+      locationInfo: [],
+      location: "Philadelphia,PA",
+      activity: "park,museum"
+    }
 
-  state={
-    trips: [],
-    locationInfo: [],
-    location: "Philadelphia,PA",
-    activity: "park,museum"
   }
+
 
   componentDidMount(){
     this.searchTripId(this.state.location, this.state.activity)
+    console.log('tripAdvisor', this.props.state)
   }
 
   // searchTripId = (location, activity) => {

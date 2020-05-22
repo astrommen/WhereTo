@@ -4,18 +4,22 @@ import Nav from "../Nav";
 import TicketmasterCard from "../TicketmasterCard"
 
 class Ticketmaster extends Component {
-
-  state = {
-    events: [],
-    activity: "sports",
-    distance: "50",
-    dateStart: "2020-05-01",
-    dateEnd: "2020-08-30",
-    city: "Philadelphia"
+  constructor(props) {
+    super(props)
+    this.state = {
+      events: [],
+      activity: "sports",
+      distance: "50",
+      dateStart: "2020-05-01",
+      dateEnd: "2020-08-30",
+      city: "Philadelphia"
+    }
   }
+
 
   componentDidMount() {
     this.searchTickets(this.state.activity, this.state.distance, this.state.dateStart, this.state.dateEnd, this.state.city);
+    console.log("ticketmaster", this.props.state)
   };
 
   searchTickets = (activity, distance, state, dateStart, dateEnd, city) => {

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from 'react-router-dom'
 import {Label} from "../Styled";
+import Nav from "../Nav";
 
 
 class FormVacation extends Component {
@@ -142,6 +143,7 @@ class FormVacation extends Component {
   render() {
     return (
       <div>
+        <Nav />
         <form className="mt-4">
           <div className="form-row">
             <div className="form-group col">
@@ -263,8 +265,9 @@ class FormVacation extends Component {
               onChange={this.handleInputChange} />
               <Label for="cb3"><img alt="" src="./img/activities/dessert.png" /><p>Dessert</p></Label></div>
 
-            <div className="col-sm-6 col-lg-2"><input type="checkbox" id="cb4" 
-              name="breweries,beer_and_wine,wineries"
+            <div className="col-sm-6 col-lg-2"><input type="checkbox" id="cb4"
+              name="drinks"
+              value="beer_and_wine"
               checked={this.state.drinks}
               onChange={this.handleInputChange} />
               <Label for="cb4"><img alt="" src="./img/activities/bar.png" /><p>Drinks</p></Label></div>

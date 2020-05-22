@@ -6,6 +6,7 @@ import Nav from "../Nav";
 class Yelp extends Component {
   constructor(props) {
     super(props)
+    
     this.state={
       eateries: [],
       location: "NYC",

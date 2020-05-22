@@ -106,9 +106,12 @@ class App extends PureComponent {
               updateAppState={this.updateAppState} />} />
               <Route exact path="/register" component={Register} />
               <Route path="/testing" component={Testing} />
-              <Route path="/outdoors" component={Outdoors} />
-              <Route path="/events" component={Ticketmaster} />
-              <Route path="/trip" component={TripAdvisor} />
+              <Route path="/outdoors" component={() =>
+                <Outdoors state={this.state} /> }/>
+              <Route path="/events" component={() =>
+                <Ticketmaster state={this.state} />} />
+              <Route path="/trip" component={() => 
+                <TripAdvisor state={this.state}/>} />
               <Route path="/food" component={ () => 
                 <Yelp state={this.state}/>} />
               <Route exact path="/login" component={LogIn} />
