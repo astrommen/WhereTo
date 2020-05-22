@@ -6,7 +6,7 @@ import API from "../../utils/API";
 class Outdoor extends Component {
   state={
     sites: [],
-    state: "PA",
+    state: "Philadelphia,PA",
     activities: "hiking"
   }
 
@@ -51,7 +51,7 @@ class Outdoor extends Component {
           id={site.id}
           name={site.name}
           description={site.description}
-          directions={site.directions}
+          directions={site.directions || "Directions not available"}
           longitude={site.longitude}
           latitude={site.latitude}
           street={site.street}

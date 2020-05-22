@@ -36,9 +36,9 @@ function TicketmasterCard(props) {
               </White>
               </Col>
               <Col size="md-6">
-              {props ? <Website href={props.seatmapLink} target="_blank" rel="noopener noreferrer">
+              {props.seatmapLink === ""  ? <White>Seat Map Not Available</White> : <Website href={props.seatmapLink} target="_blank" rel="noopener noreferrer">
               <Icon src="./img/location/seat.png" alt="seatMap" /> SeatMap
-              </Website> : <p>"Seat Map Not Available"</p>}
+              </Website> }
             </Col>
           </Row>
         </Container>

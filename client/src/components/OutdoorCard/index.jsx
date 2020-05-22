@@ -25,11 +25,12 @@ function OutdoorCard(props) {
         <Col size="md-7">
           <Container>
             <Row>
-              <Col size="md-6">
-                <White>Address: {props.street}</White>
-                <White>{props.city} , {props.state} {props.postalCode}</White>
+              <Col size="md-12">
+                <White>Address: {props.street}, {props.city}, {props.state} {props.postalCode}</White>
               </Col>
-              <Col size="md-6">
+            </Row>
+            <Row>
+              <Col size="md-12">
                 <White>Directions: {props.directions}</White>
               </Col>
             </Row>
