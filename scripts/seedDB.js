@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const db = require("../models");
 
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/whereto", { useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://user:whereto2020$$@ds237196.mlab.com:37196/heroku_4dg9rzs9", { useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false });
 
 
 
