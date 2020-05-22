@@ -53,29 +53,29 @@ class App extends PureComponent {
     whichPage: "",    
     tripName: "",
     dateStart: "",
-    location: {
+    // location: {
       city: "",
-      state: ""
-    },
-    outdoors: {
+      state: "",
+    // },
+    // outdoors: {
       boating: "",
       fishing: "",
       hiking: "",
-      beach: ""
-    },
-    events: {
+      beach: "",
+    // },
+    // events: {
       concert: "",
       sports: "",
       theatre: "",
-    },
+    // },
     sightseeing: "",
-    foods: {
+    // foods: {
       breakfast: "",
       dinner: "",
       dessert: "",
       drinks: "",
       foodType: ""
-    } 
+    // } 
   };
     this.updateAppState=this.updateAppState.bind(this)
   }
