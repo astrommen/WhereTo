@@ -74,18 +74,69 @@ export default {
     },
     getVacations: function (id) {
         return axios.get("/api/vacations/" + id)
-    }
-
+    },
+    saveOutdoorArea: function(outdoorData) {
+        return axios.post("/api/ribd", outdoorData)
+    },
+    returnOutdoorAreas: function() {
+        return axios.get("/api/ribd")
+    },
+    deleteOutdoorArea: function(id) {
+        return axios.delete("/api/ribd" + id);
+    },
+    saveCountry: function(countryData) {
+        return axios.post("/api/country", countryData)
+    },
+    returnCountry: function() {
+        return axios.get("/api/country")
+    },
+    deleteCountry: function(id) {
+        return axios.delete("/api/country" + id);
+    },
+    saveFood: function(foodData) {
+        return axios.post("/api/yelp", foodData)
+    },
+    returnFood: function() {
+        return axios.get("/api/yelp")
+    },
+    deleteFood: function(id) {
+        return axios.delete("/api/yelp" + id);
+    },
+    saveEvent: function(eventData) {
+        return axios.post("/api/ticketmaster", eventData)
+    },
+    returnEvent: function() {
+        return axios.get("/api/ticketmaster")
+    },
+    deleteEvent: function(id) {
+        return axios.delete("/api/ticketmaster" + id);
+    },
+    saveSightseeing: function(sightseeingData) {
+        return axios.post("/api/trip", sightseeingData)
+    },
+    returnSightseeing: function() {
+        return axios.get("/api/trip")
+    },
+    deleteSightseeing: function(id) {
+        return axios.delete("/api/trip" + id);
+    },
+    saveWalk: function(sightseeingData) {
+        return axios.post("/api/walk", sightseeingData)
+    },
+    returnWalk: function() {
+        return axios.get("/api/walk")
+    },
+    deleteWalk: function(id) {
+        return axios.delete("/api/walk" + id);
+    },
+    saveDayplan: function(dayplanData) {
+        return axios.post("/api/triposo", dayplanData)
+    },
+    returnDayplan: function() {
+        return axios.get("/api/triposo")
+    },
+    deleteDayplan: function(id) {
+        return axios.delete("/api/triposo" + id);
+    },
 }
 
-// export default {
-//     saveEvent: function (eventData) {
-//         return axios.post("/api/trips", eventData);
-//     },
-//     saveSite: function(siteData) {
-//         return axios.post("/api/trips", siteData)
-//     },
-//     savePlan: function(planData) {
-//         return axios.post("/api/trips", planData)
-//     }
-// }

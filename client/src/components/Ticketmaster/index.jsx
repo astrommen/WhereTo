@@ -66,7 +66,7 @@ class Ticketmaster extends Component {
             priceMin={activity.price}
             // priceMax={activity.priceRangeMax}
             // currency={activity.currency}
-            seatmapLink={activity.seatmapLink ? activity.seatmapLink.staticUrl : "none"}
+            seatmapLink={activity.seatmapLink ? activity.seatmapLink.staticUrl : ""}
             venueName={activity.venueName}
             venueUrl={activity.venueUrl}
             venueCity={activity.venueCity}
