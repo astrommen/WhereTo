@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from 'react-router-dom'
 import {Testing} from '../../pages/Testing'
 import {Label} from "../Styled";
-
+import "./style.css";
 
 class FormVacation extends Component {
   constructor() {

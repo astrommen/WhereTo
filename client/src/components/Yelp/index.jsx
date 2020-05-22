@@ -9,18 +9,22 @@ class Yelp extends Component {
     
     this.state={
       eateries: [],
-      location: "NYC",
-      meal: "breakfast_brunch"
+      breakfast: "",
+      city: "",
+      state: "",
+      // location: "NYC",
+      // meal: "breakfast_brunch"
     }
   }
 
   componentDidMount(){
-    this.searchFood(this.state.location, this.state.meal)
-    console.log("yelp date " , this.props.state)
+    console.log("yelp date " , this.props.state.breakfast)
+    this.searchFood(this.props.state.state, this.props.state.city, this.props.state.breakfast)
   }
 
-  searchFood = (location, meal) => {
-    API.callYelp(location, meal)
+  searchFood = (state, city, breakfast) => {
+    console.log("state", state)
+    API.callYelp(state, city, breakfast)
     .then(res => {
       // console.log(res);
       this.setState({ eateries : res.data})

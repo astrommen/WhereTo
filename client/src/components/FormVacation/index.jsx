@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from 'react-router-dom'
 import {Label} from "../Styled";
 import Nav from "../Nav";
-
+import "./style.css";
 
 class FormVacation extends Component {
   constructor(props) {
@@ -43,7 +43,7 @@ class FormVacation extends Component {
 
     this.state = {
       date: dateFill,
-      tomorrow: tomorrowFill,
+      dateEnd: tomorrowFill,
       redirect: false,
       whichPage: "",
       tripName: "",
