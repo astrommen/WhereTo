@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import React, { PureComponent } from "react";
+import { BrowserRouter as Router, Route, Switch, withRouter} from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
@@ -44,7 +44,52 @@ if (localStorage.jwtToken) {
   }
 }
 
-class App extends Component {
+class App extends PureComponent {
+  constructor() {
+    super();
+
+  this.state= {
+    redirect: false,
+    whichPage: "",    
+    tripName: "",
+    dateStart: "",
+    location: {
+      city: "",
+      state: ""
+    },
+    outdoors: {
+      boating: "",
+      fishing: "",
+      hiking: "",
+      beach: ""
+    },
+    events: {
+      concert: "",
+      sports: "",
+      theatre: "",
+    },
+    sightseeing: "",
+    foods: {
+      breakfast: "",
+      dinner: "",
+      dessert: "",
+      drinks: "",
+      foodType: ""
+    } 
+  };
+    this.updateAppState=this.updateAppState.bind(this)
+  }
+
+  updateAppState (state) {
+    console.log("from the APP " , state)
+
+    this.setState(state)
+
+    // this.setState(state, () => {
+    //   this.props.history.push({pathname: "/testing"})
+    // }) 
+  }
+  
   render() {
     return (
 
@@ -56,14 +101,16 @@ class App extends Component {
               <Route exact path="/" component={Login} />
               <Route path="/daytrip" component={Daytrip} />
               <Route exact path="/local" component={FormLocal} />
-              <Route exact path="/vacation" component={FormVacation} />
+              <Route exact path="/vacation" component={() => 
+              <FormVacation 
+              updateAppState={this.updateAppState} />} />
               <Route exact path="/register" component={Register} />
               <Route path="/testing" component={Testing} />
               <Route path="/outdoors" component={Outdoors} />
               <Route path="/events" component={Ticketmaster} />
               <Route path="/trip" component={TripAdvisor} />
-              <Route path="/food" component={Yelp} />
-              {/* <Route exact path="/profile" component={Profile} /> */}
+              <Route path="/food" component={ () => 
+                <Yelp state={this.state}/>} />
               <Route exact path="/login" component={LogIn} />
               <PrivateRoute exact path="/profile" component={Profile} />
               <Route component={NoMatch} path="*" />

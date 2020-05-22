@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import { Redirect } from 'react-router-dom'
-import {Testing} from '../../pages/Testing'
 import {Label} from "../Styled";
 
 
 class FormVacation extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     let month = () => {
       let m = today.getMonth() + 1
@@ -43,40 +42,36 @@ class FormVacation extends Component {
 
     this.state = {
       date: dateFill,
-      tomorrow: tomorrowFill
+      tomorrow: tomorrowFill,
+      redirect: false,
+      whichPage: "",
+      tripName: "",
+      dateStart: "",
+      location: {
+        city: "",
+        state: ""
+      },
+      outdoors: {
+        boating: "",
+        fishing: "",
+        hiking: "",
+        beach: ""
+      },
+      events: {
+        concert: "",
+        sports: "",
+        theatre: "",
+      },
+      sightseeing: "",
+      foods: {
+        breakfast: "",
+        dinner: "",
+        dessert: "",
+        drinks: "",
+        foodType: ""
+      } 
     };
   }
-
-  state= {
-    redirect: false,
-    whichPage: "",
-    tripName: "",
-    date: "",
-    location: {
-      city: "",
-      state: ""
-    },
-    outdoors: {
-      boating: "",
-      fishing: "",
-      hiking: "",
-      beach: ""
-    },
-    events: {
-      concert: "",
-      sports: "",
-      theatre: "",
-    },
-    sightseeing: "",
-    foods: {
-      breakfast: "",
-      dinner: "",
-      dessert: "",
-      drinks: "",
-      foodType: ""
-    } 
-  };
-
 
   setWhichPage = () => {
     this.setState({ whichPage: "profile" })
@@ -128,39 +123,25 @@ class FormVacation extends Component {
   
   handleFormSubmit = event => {
     event.preventDefault();
-    console.log(`${this.state.tripName} on ${this.state.date} to ${this.state.location.city} ${this.state.events}`)
-    this.setRedirect();
+    this.props.updateAppState(this.state);
   }
 
   setRedirect = () => {
-    return (this.setState({
+    this.setState({
       redirect: true
-    }));
+    });
   }
 
   renderRedirect = () => {
-    if (this.state.redirect) {
-      return <Redirect 
-      to={{ pathname: "/testing",
-      state: {
-        tripName: this.state.tripName,
-        date: this.state.date,
-        location: this.state.location,
-        outdoors: this.state.outdoors,
-        events: this.state.events,
-        sightseeing: this.state.sightseeing,
-        foods: this.state.foods
-        }
-      }}
-        />
-    }
+    console.log('redirecting here', this.state.redirect)
+      // return <Redirect to={{pathname: "/testing"}} />
+      window.location.href = '/testing'  
+  
   }
 
   render() {
     return (
       <div>
-        {this.renderRedirect()}
-
         <form className="mt-4">
           <div className="form-row">
             <div className="form-group col">
@@ -178,10 +159,10 @@ class FormVacation extends Component {
                 className="form-control"
                 type="date"
                 id="start"
-                name="tripStart"
+                name="dateStart"
                 defaultValue={this.state.date}
                 min={this.state.date}
-                value={this.state.tripStart}
+                value={this.state.dateStart}
                 onChange={this.handleInputChange}
               />
             </div>

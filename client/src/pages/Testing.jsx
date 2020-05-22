@@ -4,11 +4,10 @@ import Nav from "../components/Nav"
 
 class Testing extends Component {
 
-
   render() {
     return (
       <div>
-        <Nav />
+        <Nav/>
           <CountryInfo />
       </div>
     );

@@ -11,6 +11,7 @@ class CountryInfo extends Component {
   
   componentDidMount() {
     this.searchCountry(this.state.country)
+
   };
 
   searchCountry = country => {

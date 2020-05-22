@@ -4,14 +4,18 @@ import API from "../../utils/API";
 import Nav from "../Nav";
 
 class Yelp extends Component {
-  state={
-    eateries: [],
-    location: "NYC",
-    meal: "breakfast_brunch"
+  constructor(props) {
+    super(props)
+    this.state={
+      eateries: [],
+      location: "NYC",
+      meal: "breakfast_brunch"
+    }
   }
 
   componentDidMount(){
     this.searchFood(this.state.location, this.state.meal)
+    console.log("yelp date " , this.props.state)
   }
 
   searchFood = (location, meal) => {
@@ -58,8 +62,8 @@ class Yelp extends Component {
           link={eatery.link}
           rating={eatery.rating}
           reviews={eatery.reviews}
-          latitude = {eatery.latitude}
-          longitude = {eatery.longitude}
+          latitude={eatery.latitude}
+          longitude={eatery.longitude}
             /> ) 
         ): (
         <h3>No Results to Display</h3>
