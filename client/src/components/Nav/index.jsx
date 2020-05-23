@@ -14,10 +14,9 @@ function Nav() {
           </Link>
         </Col>
         <Col size="md-2">
-        <Link to="/profile"
-            className={
-              window.location.pathname === "/profile" ? "tab-active" : "tab"
-            }>Profile</Link>
+          <Link className="navbar-brand" to="/vacation">
+          <img className="logo" src='./img/location/form.png' alt="form" />
+          </Link>
         </Col>
         <Col size="md-2">
         <Link to="/trip"

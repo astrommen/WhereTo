@@ -20,17 +20,14 @@ function YelpCard(props) {
         <Col size="md-3">
           <Image src={props.image} alt="eatery image" className="img-fluid" />
         </Col>
-        <Col size="md-1">
-          <White>Address:</White>
-        </Col>
-        <Col size="md-4">
-          <White>{props.street}</White>
+        <Col size="md-6">
+          <White>Address: {props.street}</White>
           <White>{props.city}, {props.state} {props.zip}</White>
-          <White>Phone: {props.phone}</White>
         </Col>
-        <Col size="md-4">
-          <White>Rating: {props.rating}/5</White>
-          <White>Reviews: {props.reviews}</White>
+        <Col size="md-3">
+          <White>{props.rating}/5 out of {props.reviews} reviews</White>
+          <White>Phone: {props.phone}</White>
+          {/* <White>{props.transactions[0]} </White> */}
         </Col>
       </Row>
     </Container>

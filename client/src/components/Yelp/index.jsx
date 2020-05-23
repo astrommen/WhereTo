@@ -19,12 +19,12 @@ class Yelp extends Component {
 
   componentDidMount(){
     console.log("yelp date " , this.props.state.breakfast)
-    this.searchFood(this.props.state.state, this.props.state.city, this.props.state.breakfast)
+    this.searchFood(this.props.state.state, this.props.state.city, this.props.state.breakfast, this.props.state.foodType, this.props.state.dinner, this.props.state.drinks, this.props.state.dessert)
   }
 
-  searchFood = (state, city, breakfast) => {
+  searchFood = (state, city, breakfast, dinner, drinks, dessert, foodType) => {
     console.log("state", state)
-    API.callYelp(state, city, breakfast)
+    API.callYelp(state, city, breakfast, dinner, drinks, dessert, foodType)
     .then(res => {
       // console.log(res);
       this.setState({ eateries : res.data})
@@ -69,6 +69,7 @@ class Yelp extends Component {
           reviews={eatery.reviews}
           latitude={eatery.latitude}
           longitude={eatery.longitude}
+          transactions={eatery.transactions}
             /> ) 
         ): (
         <h3>No Results to Display</h3>

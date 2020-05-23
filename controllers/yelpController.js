@@ -15,10 +15,10 @@ module.exports = {
           ,
           params: {
             term: params.breakfast,
-            location: params.location
+            location: params.location,
+            categories: params.foodType
           }
         };
-        console.log(params)
         axios
         .get(url, config)
         .then(results => results.data.businesses.map(
@@ -32,12 +32,13 @@ module.exports = {
             street: result.location.address1,
             city: result.location.city,
             state: result.location.state,
-            zip: result.location.state,
+            zip: result.location.zip_code,
             rating: result.rating,
             reviews: result.review_count,
             link: result.url,
             latitude: result.coordinates.latitude,
-            longitude: result.coordinates.longitude
+            longitude: result.coordinates.longitude, 
+            transactions: results.transactions
           })
         ))
         .then(eateries => res.json(eateries))
