@@ -83,8 +83,9 @@ app.use(routes);
 app.use(routes);
 
 // Connect to the Mongo DB
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://user:dbpass@ds237196.mlab.com:37196/heroku_4dg9rzs9";
-mongoose.connect(MONGODB_URI, { useUnifiedTopology: true, useNewUrlParser: true });
+// var MONGODB_URI = process.env.MONGODB_URI || "mongodb://user:dbpass@ds237196.mlab.com:37196/heroku_4dg9rzs9";
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/whereto";
+mongoose.connect(MONGODB_URI, { useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false });
 
 // Start the API server
 app.listen(PORT, function () {

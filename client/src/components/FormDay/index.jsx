@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { withRouter } from 'react-router-dom'
 import {Label} from "../Styled";
+import jwt_decode from "jwt-decode";
 import "./style.css";
+import API from "../../utils/API";
 
 class FormDay extends Component {
   constructor(props) {
@@ -31,9 +33,12 @@ class FormDay extends Component {
         return "0" + m;
       } else {
         return m;
-      }
+      } 
     }
-
+    const token = (window.localStorage.getItem("jwtToken"));
+    const decoded = jwt_decode(token);
+    const user = decoded.id;
+    
     var today = new Date(),
       dateFill = today.getFullYear() + '-' + (month()) + '-' + day();
 
@@ -41,12 +46,14 @@ class FormDay extends Component {
       tomorrowFill = tomorrow.getFullYear() + '-' + (month()) + '-' + dayPlusOne();
 
     this.state = {
+      userId: user,
       date: dateFill,
       tomorrow: tomorrowFill,
-    redirect: false,
-    whichPage: "",
-    tripName: "",
-    dateStart: dateFill,
+      redirect: false,
+      local: true,
+      whichPage: "",
+      tripName: "",
+      dateStart: dateFill,
       city: "",
       state: "",
       boating: "",
@@ -56,14 +63,20 @@ class FormDay extends Component {
       concert: "",
       sports: "",
       theatre: "",
-    sightseeing: "",
+      sightseeing: "",
       breakfast: "",
       dinner: "",
       dessert: "",
       drinks: "",
       foodType: ""
-  };
+    };
+  }
 
+  saveTrip = (vacation) => {
+    console.log("FormDay")
+    API.saveTrip(vacation)
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
   }
 
   handleInputChange = event => {
@@ -77,6 +90,14 @@ class FormDay extends Component {
     event.preventDefault();
     this.props.updateAppState(this.state);
     this.props.history.push("/daytrip")
+    this.saveTrip({
+      userId: this.state.userId,
+      tripName: this.state.tripName,
+      dateStart: this.state.dateStart,
+      city: this.state.city,
+      state: this.state.state,
+      local: this.state.local
+    });
   }
 
   render() {

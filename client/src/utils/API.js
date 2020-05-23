@@ -90,6 +90,9 @@ export default {
     getVacations: function (id) {
         return axios.get("/api/vacations/" + id)
     },
+    saveTrip: function(tripData) {
+        return axios.post("/api/vacations", tripData)
+    },
     saveOutdoorArea: function(outdoorData) {
         return axios.post("/api/ribd", outdoorData)
     },
