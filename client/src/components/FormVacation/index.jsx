@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { withRouter } from 'react-router-dom'
 import {Label} from "../Styled";
 import Nav from "../Nav";
-import Testing from "../../pages/Testing"
 import "./style.css";
 
 class FormVacation extends Component {
@@ -48,29 +47,21 @@ class FormVacation extends Component {
       whichPage: "",
       tripName: "",
       dateStart: tomorrowFill,
-      // location: {
         city: "",
         state: "",
-      // },
-      // outdoors: {
         boating: "",
         fishing: "",
         hiking: "",
         beach: "",
-      // },
-      // events: {
         concert: "",
         sports: "",
         theatre: "",
-      // },
       sightseeing: "",
-      // foods: {
         breakfast: "",
         dinner: "",
         dessert: "",
         drinks: "",
         foodType: ""
-      // } 
     };
     
   }
@@ -82,70 +73,13 @@ class FormVacation extends Component {
     });
   };
 
-  // handleLocationChange = event => {
-  //   const { name, value } = event.target;
-  //   this.setState({
-  //     location: {
-  //       [name]:value
-  //     }
-  //   });
-  // };
-
-  // handleOutdoorChange = event => {
-  //   const { name, value } = event.target;
-  //   this.setState({
-  //     outdoors: {
-  //       [name]:value
-  //     }
-  //   });
-  // };
-
-  // handleEventChange = event => {
-  //   const { name, value } = event.target;
-  //   this.setState({
-  //     events: {
-  //       [name]:value
-  //     }
-  //   });
-  // };
-
-
-  // handleFoodChange = event => {
-  //   const { name, value } = event.target;
-  //   this.setState({
-  //     foods: {
-  //       [name]:value
-  //     }
-  //   });
-  // }; 
-  
   handleFormSubmit = event => {
     event.preventDefault();
     this.props.updateAppState(this.state);
-    // this.setRedirect();
-    this.props.history.push("/testing")
+    this.props.history.push("/vacation")
   }
 
-  // setRedirect = () => {
-  //   console.log("in setRedirect")
-  //   return (this.setState({
-  //     redirect: true
-  //   }));
-  // }
-
-  // setWhichPage = () => {
-  //   this.setState({ whichPage: "testing" })
-  // }
-
-  // renderRedirect = () => {
-  //   console.log('redirecting here', this.state.redirect)
-  //     return <Redirect to="/testing" component={
-  //       Testing
-  //     } />  
-  // }
-
   render() {
-    // {this.renderRedirect()}
     return (
       <div>
         <Nav />

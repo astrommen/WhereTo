@@ -1,6 +1,6 @@
 import React, { Component }  from 'react';
-import FormDay from "../components/FormDay";
 import Nav from "../components/Nav"
+import {White} from "../components/Styled";
 
 class DayTrip extends Component {
 
@@ -9,7 +9,7 @@ class DayTrip extends Component {
     return (
       <div>
         <Nav />
-        <FormDay />
+        <White>Start Compiling your Day Trip</White>
       </div>
     );
   }

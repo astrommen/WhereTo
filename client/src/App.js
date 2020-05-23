@@ -9,14 +9,14 @@ import { Provider } from "react-redux";
 import store from "./store";
 
 import Login from "./pages/Login"
-import FormVacation from "./components/FormVacation"
 import NoMatch from "./pages/NoMatch"
-import Testing from "./pages/Testing"
+import FormVacation from "./components/FormVacation"
+import Vacation from "./pages/Vacation"
 import Profile from "./pages/Profile"
+import FormDay from "./components/FormDay"
 import Daytrip from "./pages/Daytrip";
 
 import PrivateRoute from "./components/private-route/PrivateRoute";
-import FormLocal from "./components/FormLocal/FormLocal"
 import Register from "./components/auth/Register"
 import LogIn from "./components/auth/LogIn";
 import Outdoors from "./components/Outdoors";
@@ -53,41 +53,28 @@ class App extends PureComponent {
     whichPage: "",    
     tripName: "",
     dateStart: "",
-    // location: {
       city: "",
       state: "",
-    // },
-    // outdoors: {
       boating: "",
       fishing: "",
       hiking: "",
       beach: "",
-    // },
-    // events: {
       concert: "",
       sports: "",
       theatre: "",
-    // },
     sightseeing: "",
-    // foods: {
       breakfast: "",
       dinner: "",
       dessert: "",
       drinks: "",
       foodType: ""
-    // } 
   };
     this.updateAppState=this.updateAppState.bind(this)
   }
 
   updateAppState (state) {
     console.log("from the APP " , state)
-
     this.setState(state)
-
-    // this.setState(state, () => {
-    //   this.props.history.push({pathname: "/testing"})
-    // }) 
   }
   
   render() {
@@ -100,12 +87,12 @@ class App extends PureComponent {
               <Switch>
               <Route exact path="/" component={Login} />
               <Route path="/daytrip" component={Daytrip} />
-              <Route exact path="/local" component={FormLocal} />
-              <Route exact path="/vacation" component={() => 
-              <FormVacation 
-              updateAppState={this.updateAppState} />} />
+              <Route exact path="/dayform" component={() =>
+                <FormDay updateAppState={this.updateAppState} />} />
+              <Route exact path="/vacationform" component={() => 
+              <FormVacation updateAppState={this.updateAppState} />} />
+              <Route path="/vacation" component={Vacation} />
               <Route exact path="/register" component={Register} />
-              <Route path="/testing" component={Testing} />
               <Route path="/outdoors" component={() =>
                 <Outdoors state={this.state} /> }/>
               <Route path="/events" component={() =>
@@ -129,4 +116,3 @@ class App extends PureComponent {
 
 export default App;
 
-//use a state to control the profile:id

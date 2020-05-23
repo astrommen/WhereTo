@@ -1,17 +1,17 @@
 import React, { Component }  from 'react';
-import CountryInfo from '../components/CountryInfo';
 import Nav from "../components/Nav"
+import {White} from "../components/Styled";
 
-class Testing extends Component {
+class Vacation extends Component {
 
   render() {
     return (
       <div>
         <Nav/>
-          <CountryInfo />
+        <White>Start Compiling your Vaction</White>
       </div>
     );
   }
 }
 
-export default Testing;
+export default Vacation;

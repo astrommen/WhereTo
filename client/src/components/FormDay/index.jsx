@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import { Redirect } from 'react-router-dom'
-import {Testing} from '../../pages/Testing'
+import { withRouter } from 'react-router-dom'
 import {Label} from "../Styled";
+import Nav from "../Nav"
 import "./style.css";
 
 class FormDay extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     let month = () => {
       let m = today.getMonth() + 1
@@ -43,43 +43,28 @@ class FormDay extends Component {
 
     this.state = {
       date: dateFill,
-      tomorrow: tomorrowFill
-    };
-  }
-
-  state= {
+      tomorrow: tomorrowFill,
     redirect: false,
     whichPage: "",
     tripName: "",
-    date: "",
-    // location: {
+    dateStart: tomorrowFill,
       city: "",
       state: "",
-    // },
-    // outdoors: {
       boating: "",
       fishing: "",
       hiking: "",
       beach: "",
-    // },
-    // events: {
       concert: "",
       sports: "",
       theatre: "",
-    // },
     sightseeing: "",
-    // foods: {
       breakfast: "",
       dinner: "",
       dessert: "",
       drinks: "",
-      foodType: "",
-    // } 
+      foodType: ""
   };
 
-
-  setWhichPage = () => {
-    this.setState({ whichPage: "profile" })
   }
 
   handleInputChange = event => {
@@ -88,79 +73,17 @@ class FormDay extends Component {
         [name]:value
     });
   };
-
-  // handleLocationChange = event => {
-  //   const { name, value } = event.target;
-  //   this.setState({
-  //     location: {
-  //       [name]:value
-  //     }
-  //   });
-  // };
-
-  // handleOutdoorChange = event => {
-  //   const { name, value } = event.target;
-  //   this.setState({
-  //     outdoors: {
-  //       [name]:value
-  //     }
-  //   });
-  // };
-
-  // handleEventChange = event => {
-  //   const { name, value } = event.target;
-  //   this.setState({
-  //     events: {
-  //       [name]:value
-  //     }
-  //   });
-  // };
-
-
-  // handleFoodChange = event => {
-  //   const { name, value } = event.target;
-  //   this.setState({
-  //     foods: {
-  //       [name]:value
-  //     }
-  //   });
-  // }; 
   
   handleFormSubmit = event => {
     event.preventDefault();
-    // console.log(`${this.state.tripName} on ${this.state.date} to ${this.state.location.city} ${this.state.events}`)
-    this.setRedirect();
-  }
-
-  setRedirect = () => {
-    return (this.setState({
-      redirect: true
-    }));
-  }
-
-  renderRedirect = () => {
-    if (this.state.redirect) {
-      return <Redirect 
-      to={{ pathname: "/testing",
-      state: {
-        tripName: this.state.tripName,
-        date: this.state.date,
-        location: this.state.location,
-        outdoors: this.state.outdoors,
-        events: this.state.events,
-        sightseeing: this.state.sightseeing,
-        foods: this.state.foods
-        }
-      }}
-        />
-    }
+    this.props.updateAppState(this.state);
+    this.props.history.push("/daytrip")
   }
 
   render() {
     return (
       <div>
-        {this.renderRedirect()}
-
+        <Nav />
         <form className="mt-4">
           <div className="form-row">
             <div className="form-group col">
@@ -178,10 +101,10 @@ class FormDay extends Component {
                 className="form-control"
                 type="date"
                 id="start"
-                name="tripStart"
+                name="dateStart"
                 defaultValue={this.state.date}
                 min={this.state.date}
-                value={this.state.tripStart}
+                value={this.state.dateStart}
                 onChange={this.handleInputChange}
               />
             </div>
@@ -192,7 +115,7 @@ class FormDay extends Component {
               <input id="city" type="text" 
               name="city"
               value={this.state.city}
-              onChange={this.handleLocationChange}
+              onChange={this.handleInputChange}
               className="form-control" placeholder="City" />
             </div>
             <div className="form-group col">
@@ -200,7 +123,7 @@ class FormDay extends Component {
               <select 
               name="state"
               value={this.state.value}
-              onChange={this.handleLocationChange}
+              onChange={this.handleInputChange}
               id="inputState" className="form-control">
                 <option selected>Choose...</option>
                 <option value="AK">Alaska</option>
@@ -283,7 +206,8 @@ class FormDay extends Component {
               <Label for="cb3"><img alt="" src="./img/activities/dessert.png" /><p>Dessert</p></Label></div>
 
             <div className="col-sm-6 col-lg-2"><input type="checkbox" id="cb4" 
-              name="breweries,beer_and_wine,wineries"
+              name="drinks"
+              value="beer_and_wine"
               checked={this.state.drinks}
               onChange={this.handleInputChange} />
               <Label for="cb4"><img alt="" src="./img/activities/bar.png" /><p>Drinks</p></Label></div>
@@ -359,7 +283,7 @@ class FormDay extends Component {
             <Label for="cb9"><img alt="" src="./img/activities/concert.png" /><p>Concert</p></Label></div>
             <div className="col-sm-6 col-lg-2"><input type="checkbox" id="cb10"
             name="sightseeing"
-            value="sightseeing,"
+            value="park,museum"
             checked={this.state.sightseeing}
             onChange={this.handleInputChange}/>
               <Label for="cb10"><img alt="" src="./img/activities/sightseeing.png" /><p>Sightseeing</p></Label></div>
@@ -371,7 +295,7 @@ class FormDay extends Component {
               <Label for="cb11"><img alt="" src="./img/activities/sports.png" /><p>Sports</p></Label></div>
             <div className="col-sm-6 col-lg-2"><input type="checkbox" id="cb12"
             name="theatre"
-            value="theatre,"
+            value="theatre"
             checked={this.state.theatre}
             onChange={this.handleInputChange}/>
               <Label for="cb12"><img alt="" src="./img/activities/theatre.png" /><p>Theatre</p></Label></div>
@@ -379,8 +303,9 @@ class FormDay extends Component {
           <div className="form-row">
           <div className="col-lg-9"></div>
           <div className="col-lg-3">
+
             <button type="submit"
-            disabled={!(this.state.tripName && this.state.date)}
+            disabled={!(this.state.tripName && this.state.date && this.state.state || this.state.city)}
             onClick={this.handleFormSubmit}>Submit</button></div>
           </div>
 
@@ -391,5 +316,5 @@ class FormDay extends Component {
   }
 }
 
-export default FormDay;
+export default withRouter(FormDay);
 
