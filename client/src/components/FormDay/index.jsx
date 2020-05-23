@@ -73,7 +73,8 @@ class FormDay extends Component {
   }
 
   saveTrip = (vacation) => {
-    API.savetrip(vacation)
+    console.log("FormDay")
+    API.saveTrip(vacation)
     .then(res => console.log(res))
     .catch(err => console.log(err))
   }
