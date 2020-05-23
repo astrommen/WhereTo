@@ -4,7 +4,7 @@ import {Testing} from '../../pages/Testing'
 import {Label} from "../Styled";
 import "./style.css";
 
-class FormVacation extends Component {
+class FormDay extends Component {
   constructor() {
     super();
 
@@ -391,5 +391,5 @@ class FormVacation extends Component {
   }
 }
 
-export default FormVacation;
+export default FormDay;
 

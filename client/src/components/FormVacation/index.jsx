@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { Redirect } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import {Label} from "../Styled";
 import Nav from "../Nav";
+import Testing from "../../pages/Testing"
 import "./style.css";
 
 class FormVacation extends Component {
@@ -74,10 +75,6 @@ class FormVacation extends Component {
     
   }
 
-  setWhichPage = () => {
-    this.setState({ whichPage: "profile" })
-  }
-
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
@@ -125,22 +122,30 @@ class FormVacation extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     this.props.updateAppState(this.state);
+    // this.setRedirect();
+    this.props.history.push("/testing")
   }
 
-  setRedirect = () => {
-    this.setState({
-      redirect: true
-    });
-  }
+  // setRedirect = () => {
+  //   console.log("in setRedirect")
+  //   return (this.setState({
+  //     redirect: true
+  //   }));
+  // }
 
-  renderRedirect = () => {
-    console.log('redirecting here', this.state.redirect)
-      // return <Redirect to={{pathname: "/testing"}} />
-      window.location.href = '/testing'  
-  
-  }
+  // setWhichPage = () => {
+  //   this.setState({ whichPage: "testing" })
+  // }
+
+  // renderRedirect = () => {
+  //   console.log('redirecting here', this.state.redirect)
+  //     return <Redirect to="/testing" component={
+  //       Testing
+  //     } />  
+  // }
 
   render() {
+    // {this.renderRedirect()}
     return (
       <div>
         <Nav />
@@ -343,7 +348,7 @@ class FormVacation extends Component {
             <Label for="cb9"><img alt="" src="./img/activities/concert.png" /><p>Concert</p></Label></div>
             <div className="col-sm-6 col-lg-2"><input type="checkbox" id="cb10"
             name="sightseeing"
-            value="sightseeing,"
+            value="park,museum"
             checked={this.state.sightseeing}
             onChange={this.handleInputChange}/>
               <Label for="cb10"><img alt="" src="./img/activities/sightseeing.png" /><p>Sightseeing</p></Label></div>
@@ -363,6 +368,7 @@ class FormVacation extends Component {
           <div className="form-row">
           <div className="col-lg-9"></div>
           <div className="col-lg-3">
+
             <button type="submit"
             disabled={!(this.state.tripName && this.state.date && this.state.state || this.state.city)}
             onClick={this.handleFormSubmit}>Submit</button></div>
@@ -375,5 +381,5 @@ class FormVacation extends Component {
   }
 }
 
-export default FormVacation;
+export default withRouter(FormVacation);
 

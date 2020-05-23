@@ -48,6 +48,7 @@ export default {
     },
     //Search Yelp for food and drink
     callYelp: function (city, state, breakfast, dinner, dessert, drinks, foodType) {
+        console.log("fetching yelp")
         return axios.get("/api/yelp", {
             params: {
                 location: city+","+state,
@@ -62,6 +63,7 @@ export default {
     },
     //Search Triposo for city walk information
     callTour: function(city) {
+        console.log("fetching tour")
         return axios.get("/api/walk", {
             params: {
                 city: city

@@ -10,7 +10,6 @@ class TripAdvisor extends Component {
     this.state={
       trips: [],
       locationInfo: [],
-      location: "Philadelphia,PA",
       activity: "park,museum"
     }
 
@@ -18,7 +17,7 @@ class TripAdvisor extends Component {
 
 
   componentDidMount(){
-    this.searchTripId(this.state.location, this.state.activity)
+    this.searchTripId(this.props.state.state, this.props.state.city, this.props.state.sightseeing)
     console.log('tripAdvisor', this.props.state)
   }
 
@@ -31,7 +30,7 @@ class TripAdvisor extends Component {
   //   })
   // }
 
-  searchTripId = (location, activity) => {
+  searchTripId = (state, city, sightseeing) => {
     axios({
       "method": "GET",
       "url": "https://tripadvisor1.p.rapidapi.com/locations/search",
@@ -48,7 +47,7 @@ class TripAdvisor extends Component {
         "lang": "en_US",
         "currency": "USD",
         "units": "mi",
-        "query": location
+        "query": city+","+state
       }
     })
       .then((res) => {
@@ -76,7 +75,7 @@ class TripAdvisor extends Component {
             "lunit":"mi",
             "min_rating":"4",
             "bookable_first":"false",
-            "subcategory": activity,
+            "subcategory": sightseeing,
             "location_id": res.data.data[0].result_object.location_id
             }
             })
