@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from 'react-router-dom'
 import {Label} from "../Styled";
-import Nav from "../Nav";
 import "./style.css";
 
 class FormVacation extends Component {
@@ -43,10 +42,12 @@ class FormVacation extends Component {
 
     this.state = {
       date: dateFill,
+      tomorrow: tomorrowFill,
       redirect: false,
       whichPage: "",
       tripName: "",
-      dateStart: tomorrowFill,
+      dateStart: dateFill,
+      dateEnd: tomorrowFill,
         city: "",
         state: "",
         boating: "",
@@ -82,20 +83,21 @@ class FormVacation extends Component {
   render() {
     return (
       <div>
-        <Nav />
         <form className="mt-4">
           <div className="form-row">
             <div className="form-group col">
-              <Label for="name">Trip Name</Label>
+              <Label for="name">Vacation Name</Label>
               <input 
               name="tripName" 
               type="text" 
               value={this.state.tripName}
               onChange={this.handleInputChange}
-              id="name" className="form-control" placeholder="Trip Name" />
+              id="name" className="form-control" placeholder="Vacation Name" />
             </div>
+          </div>
+          <div className="form-row">
             <div className="form-group col">
-              <Label for="start">Date:</Label>
+              <Label for="start">Start Date:</Label>
               <input
                 className="form-control"
                 type="date"
@@ -106,6 +108,20 @@ class FormVacation extends Component {
                 value={this.state.dateStart}
                 onChange={this.handleInputChange}
               />
+              </div>
+            <div className="form-group col">
+              <Label for="end">End Date:</Label>
+              <input
+                className="form-control"
+                type="date"
+                id="end"
+                name="dateEnd"
+                defaultValue={this.state.tomorrow}
+                min={this.state.date}
+                value={this.state.dateEnd}
+                onChange={this.handleInputChange}
+              />
+
             </div>
           </div>
           <div className="form-row">
