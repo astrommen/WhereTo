@@ -83,7 +83,7 @@ app.use(routes);
 app.use(routes);
 
 // Connect to the Mongo DB
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/whereto";
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://user:dbpass@ds237196.mlab.com:37196/heroku_4dg9rzs9";
 mongoose.connect(MONGODB_URI, { useUnifiedTopology: true, useNewUrlParser: true });
 
 // Start the API server
