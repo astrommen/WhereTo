@@ -6,10 +6,11 @@ var Schema = mongoose.Schema;
 // Using the Schema constructor, create a new NoteSchema object
 // This is similar to a Sequelize model
 var vacationSchema = new Schema({
-  name: String,
-  startDate: Date,
+  tripName: String,
+  dateStart: Date,
   endDate: Date,
-  location: String,
+  city: String,
+  state: String,
   activities: [String],
   local: Boolean
 });

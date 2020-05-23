@@ -40,17 +40,11 @@ class Login extends Component {
     var tomorrow = new Date(),
       tomorrowFill = tomorrow.getFullYear() + '-' + (month()) + '-' + dayPlusOne();
 
-
-
     this.state = {
       date: dateFill,
       tomorrow: tomorrowFill
     };
   }
-
-
-
-
 
   render() {
     return (
