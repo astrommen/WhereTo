@@ -38,8 +38,8 @@ class Outdoor extends Component {
   }
 
   render() {
-    <div>
     return (
+      <div>
         <Nav />
         {this.state.loading && <Image className="loading" src={process.env.PUBLIC_URL + './img/loading.gif'} alt="loading" />}
         {this.state.hasError && <Title>There was an error searching for your Request. Please try again later.</Title>}
