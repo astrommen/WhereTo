@@ -8,22 +8,18 @@ class Ticketmaster extends Component {
     super(props)
     this.state = {
       events: [],
-      activity: "sports",
       distance: "50",
-      dateStart: "2020-05-01",
-      dateEnd: "2020-08-30",
-      city: "Philadelphia"
     }
   }
 
 
   componentDidMount() {
-    this.searchTickets(this.state.activity, this.state.distance, this.state.dateStart, this.state.dateEnd, this.state.city);
     console.log("ticketmaster", this.props.state)
+    this.searchTickets(this.props.state.sports, this.props.state.concert, this.props.state.theatre, this.state.distance, this.props.state.dateStart, this.props.state.city);
   };
 
-  searchTickets = (activity, distance, state, dateStart, dateEnd, city) => {
-    API.callTicketmaster(activity, distance, state, dateStart, dateEnd, city)
+  searchTickets = (sports, concert, theatre, distance, state, dateStart, city) => {
+    API.callTicketmasterD(sports, concert, theatre, distance, state, dateStart, city)
     .then(res => {
       this.setState({ events : res.data})
     })

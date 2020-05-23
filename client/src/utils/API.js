@@ -2,7 +2,19 @@ import axios from "axios"
 
 export default {
     //Ticketmaster
-    callTicketmaster: function (activity, distance, dateStart, dateEnd, city) {
+    callTicketmasterD: function (sports, concert, theatre, distance, dateStart, city) {
+        return axios.get("/api/ticketmaster", {
+            params:
+            {
+                activity: sports+concert+theatre,
+                distance: distance,
+                dateStart: dateStart,
+                city: city
+            }
+        })
+    },
+    //Ticketmaster
+    callTicketmasterV: function (activity, distance, dateStart, dateEnd, city) {
         return axios.get("/api/ticketmaster", {
             params:
             {

@@ -43,11 +43,10 @@ class FormVacation extends Component {
 
     this.state = {
       date: dateFill,
-      dateEnd: tomorrowFill,
       redirect: false,
       whichPage: "",
       tripName: "",
-      dateStart: "",
+      dateStart: tomorrowFill,
       // location: {
         city: "",
         state: "",
@@ -72,6 +71,7 @@ class FormVacation extends Component {
         foodType: ""
       // } 
     };
+    
   }
 
   setWhichPage = () => {
@@ -353,9 +353,9 @@ class FormVacation extends Component {
             checked={this.state.sports}
             onChange={this.handleInputChange}/>
               <Label for="cb11"><img alt="" src="./img/activities/sports.png" /><p>Sports</p></Label></div>
-            <div className="col-sm-6 col-lg-2"><input type="checkbox" id="cb12"
+              <div className="col-sm-6 col-lg-2"><input type="checkbox" id="cb12"
             name="theatre"
-            value="theatre,"
+            value="theatre"
             checked={this.state.theatre}
             onChange={this.handleInputChange}/>
               <Label for="cb12"><img alt="" src="./img/activities/theatre.png" /><p>Theatre</p></Label></div>
