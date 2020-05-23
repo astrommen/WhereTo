@@ -9,6 +9,8 @@ class Outdoor extends Component {
 
     this.state={
       sites: [],
+      loading: false,
+      hasError: false
     }
   }
 
@@ -18,13 +20,14 @@ class Outdoor extends Component {
   };
     
   searchOutdoors = (state, city, boating, fishing, hiking, beach) => {
+    this.setState({loading: true})
     API.callRibd(state, city, boating, fishing, hiking, beach)
     .then(res => {
       console.log(res);
-      this.setState({ sites: res.data})
+      this.setState({ sites: res.data, loading: false})
       console.log(this.state.sites)
     })
-    .catch(err => console.log(err));
+    .catch(err => this.setState({hasError: true, loading: false}));
   };
 
   handleInputChange = event => {
@@ -47,6 +50,8 @@ class Outdoor extends Component {
     return (
       <div>
         <Nav />
+        {this.state.loading && <img className="loading" src={process.env.PUBLIC_URL + './img/loading.gif'} alt="loading" />}
+        {this.state.hasError && <h1>There was an error searching for your Request. Please try again later.</h1>}
         {this.state.sites.length > 0 ? (
           this.state.sites.map((site) => 
           <OutdoorCard 
