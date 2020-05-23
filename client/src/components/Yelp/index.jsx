@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import YelpCard from "../YelpCard";
 import API from "../../utils/API";
 import Nav from "../Nav";
+import YelpCard from "../YelpCard";
+import {Image, Title} from "../Styled";
 
 class Yelp extends Component {
   constructor(props) {
@@ -9,11 +10,8 @@ class Yelp extends Component {
     
     this.state={
       eateries: [],
-      breakfast: "",
-      city: "",
-      state: "",
-      // location: "NYC",
-      // meal: "breakfast_brunch"
+      loading: false,
+      hasError: false
     }
   }
 
@@ -23,25 +21,13 @@ class Yelp extends Component {
   }
 
   searchFood = (state, city, breakfast, dinner, drinks, dessert, foodType) => {
-    console.log("state", state)
+    this.setState({loading: true})
     API.callYelp(state, city, breakfast, dinner, drinks, dessert, foodType)
     .then(res => {
-      // console.log(res);
-      this.setState({ eateries : res.data})
-      // console.log(this.state.eateries)
+      this.setState({ eateries : res.data, loading: false})
     })
     .catch(err => console.log(err));
   }
-
-  handleInputChange = event => {
-    const value = event.target.value;
-    const name = event.target.name;
-    this.setState({
-      [name]: value
-    });
-  };
-
-  //handleFormSubmit
 
   saveEatery = (eatery) => {
     API.saveEatery(eatery)
@@ -53,6 +39,8 @@ class Yelp extends Component {
     return (
       <div>
         <Nav />
+        {this.state.loading && <Image className="loading" src={process.env.PUBLIC_URL + './img/loading.gif'} alt="loading" />}
+        {this.state.hasError && <Title>There was an error searching for your Request. Please try again later.</Title>}
         {this.state.eateries.length > 0 ? (
           this.state.eateries.map((eatery) => 
           <YelpCard 

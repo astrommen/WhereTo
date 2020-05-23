@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import TripCard from "../TripCard";
 import API from "../../utils/API";
 import Nav from "../Nav";
+import TripCard from "../TripCard";
+import {Image, Title} from "../Styled";
 const axios = require("axios");
 
 class TripAdvisor extends Component {
@@ -10,7 +11,8 @@ class TripAdvisor extends Component {
     this.state={
       trips: [],
       locationInfo: [],
-      activity: "park,museum"
+      loading: false,
+      hasError: false
     }
 
   }
@@ -31,6 +33,7 @@ class TripAdvisor extends Component {
   // }
 
   searchTripId = (state, city, sightseeing) => {
+    this.setState({loading: true})
     axios({
       "method": "GET",
       "url": "https://tripadvisor1.p.rapidapi.com/locations/search",
@@ -96,7 +99,7 @@ class TripAdvisor extends Component {
                   website: results.data.data[i].website
                 })
               }
-              this.setState({ trips : tripsArray});
+              this.setState({ trips : tripsArray, loading: false});
               console.log(this.state.trips)
             })
             .catch((error)=>{
@@ -107,19 +110,6 @@ class TripAdvisor extends Component {
         console.log(error)
       })
   }
-
-  handleInputChange = event => {
-    const value = event.target.value;
-    const name = event.target.name;
-    this.setState({
-        [name]: value
-    });
-  };
-
-  handleFormSubmit = event => {
-      event.preventDefault();
-      this.searchEvents(this.state.search);
-  };
 
   saveTrip = (trip) => {
     console.log(trip)
@@ -132,6 +122,8 @@ class TripAdvisor extends Component {
     return (
       <div>
       <Nav />
+      {this.state.loading && <Image className="loading" src={process.env.PUBLIC_URL + './img/loading.gif'} alt="loading" />}
+        {this.state.hasError && <Title>There was an error searching for your Request. Please try again later.</Title>}
       {this.state.trips.length > 0 ? (
         this.state.trips.map((trip) =>
         <TripCard 

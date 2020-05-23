@@ -3,7 +3,6 @@ const axios = require("axios");
 module.exports = {
     findAll: function(req, res) {
         const {query:params} = req;
-        console.log(params)
         let url = (`${'https://cors-anywhere.herokuapp.com/'}https://api.yelp.com/v3/businesses/search`)
         const config = {
           headers: {

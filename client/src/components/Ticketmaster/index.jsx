@@ -2,6 +2,7 @@ import React, { Component }  from 'react';
 import API from "../../utils/API";
 import Nav from "../Nav";
 import TicketmasterCard from "../TicketmasterCard"
+import {Image} from "../Styled";
 
 class Ticketmaster extends Component {
   constructor(props) {
@@ -9,6 +10,8 @@ class Ticketmaster extends Component {
     this.state = {
       events: [],
       distance: "50",
+      loading: false,
+      hasError: false
     }
   }
 
@@ -19,9 +22,10 @@ class Ticketmaster extends Component {
   };
 
   searchTickets = (sports, concert, theatre, distance, state, dateStart, city) => {
+    this.setState({loading: true})
     API.callTicketmasterD(sports, concert, theatre, distance, state, dateStart, city)
     .then(res => {
-      this.setState({ events : res.data})
+      this.setState({ events : res.data, loading: false})
     })
     .catch(err => console.log(err))
   }
@@ -51,6 +55,8 @@ class Ticketmaster extends Component {
     return (
       <div>
         <Nav />
+        {this.state.loading && <Image className="loading" src={process.env.PUBLIC_URL + './img/loading.gif'} alt="loading" />}
+        {this.state.hasError && <h1>There was an error searching for your Request. Please try again later.</h1>}
         {this.state.events.length > 0 ? (
           this.state.events.map((activity) => 
           <TicketmasterCard

@@ -1,7 +1,8 @@
 import React, { Component }  from 'react';
-import OutdoorCard from "../OutdoorCard";
-import Nav from "../Nav";
 import API from "../../utils/API";
+import Nav from "../Nav";
+import OutdoorCard from "../OutdoorCard";
+import {Image, Title} from "../Styled";
 
 class Outdoor extends Component {
   constructor(props) {
@@ -30,16 +31,6 @@ class Outdoor extends Component {
     .catch(err => this.setState({hasError: true, loading: false}));
   };
 
-  handleInputChange = event => {
-    const value = event.target.value;
-    const name = event.target.name;
-    this.setState({
-      [name]: value
-    });
-  };
-
-  //handleForm Submit
-
   saveOutdoorArea = (area) => {
     API.saveOutdoorArea(area)
     .then(res => console.log(res))
@@ -47,11 +38,11 @@ class Outdoor extends Component {
   }
 
   render() {
+    <div>
     return (
-      <div>
         <Nav />
-        {this.state.loading && <img className="loading" src={process.env.PUBLIC_URL + './img/loading.gif'} alt="loading" />}
-        {this.state.hasError && <h1>There was an error searching for your Request. Please try again later.</h1>}
+        {this.state.loading && <Image className="loading" src={process.env.PUBLIC_URL + './img/loading.gif'} alt="loading" />}
+        {this.state.hasError && <Title>There was an error searching for your Request. Please try again later.</Title>}
         {this.state.sites.length > 0 ? (
           this.state.sites.map((site) => 
           <OutdoorCard 
