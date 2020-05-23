@@ -3,7 +3,8 @@ const axios = require("axios");
 module.exports = {
     findAll: function(req,res) {
         const { query:params } = req;
-        let url = `https://ridb.recreation.gov/api/v1/recareas?limit=8&offset=0&full=true&state=${params.state}&activity=${params.activities}&lastupdated=10-01-2018&sort=Name&apikey=${process.env.REACT_APP_RIBD_APIKEY}`
+        let url = `https://ridb.recreation.gov/api/v1/recareas?limit=8&offset=0&full=true&state=${params.location}&activity=${params.activities}&lastupdated=10-01-2018&sort=Name&apikey=${process.env.REACT_APP_RIBD_APIKEY}`
+        console.log("outdoors url from controller: ", url)
         axios
         .get(url)
         .then(results => 
@@ -27,7 +28,7 @@ module.exports = {
                 )
             )
             .then(activities => res.json(activities))
-            .catch(err => res.status(422).json(err))
+            .catch(err => console.error(err))
     },
     findById: function(req,res) {
         db.Outdoor

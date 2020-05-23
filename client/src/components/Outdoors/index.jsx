@@ -9,18 +9,16 @@ class Outdoor extends Component {
 
     this.state={
       sites: [],
-      state: "Philadelphia,PA",
-      activities: "hiking"
     }
   }
 
   componentDidMount() {
-    this.searchOutdoors(this.state.state, this.state.activities);
+    this.searchOutdoors(this.props.state.state, this.props.state.city, this.props.state.boating, this.props.state.fishing, this.props.state.hiking, this.props.state.beach);
     console.log("outdoors", this.props.state)
   };
     
-  searchOutdoors = (state, activities) => {
-    API.callRibd(state, activities)
+  searchOutdoors = (state, city, boating, fishing, hiking, beach) => {
+    API.callRibd(state, city, boating, fishing, hiking, beach)
     .then(res => {
       console.log(res);
       this.setState({ sites: res.data})

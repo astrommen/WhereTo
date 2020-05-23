@@ -27,11 +27,11 @@ export default {
         })
     },
     //RIBD
-    callRibd: function (state, activities) {
+    callRibd: function (state, city, boating, fishing, hiking, beach) {
         return axios.get("/api/ribd", {
             params: {
-                state: state,
-                activities: activities
+                location: city+","+state,
+                activities: boating+fishing+hiking+beach
             }
         })
     },
