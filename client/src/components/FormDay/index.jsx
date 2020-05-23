@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from 'react-router-dom'
 import {Label} from "../Styled";
-import Nav from "../Nav"
 import "./style.css";
 
 class FormDay extends Component {
@@ -47,7 +46,7 @@ class FormDay extends Component {
     redirect: false,
     whichPage: "",
     tripName: "",
-    dateStart: tomorrowFill,
+    dateStart: dateFill,
       city: "",
       state: "",
       boating: "",
@@ -83,7 +82,6 @@ class FormDay extends Component {
   render() {
     return (
       <div>
-        <Nav />
         <form className="mt-4">
           <div className="form-row">
             <div className="form-group col">
@@ -95,6 +93,7 @@ class FormDay extends Component {
               onChange={this.handleInputChange}
               id="name" className="form-control" placeholder="Trip Name" />
             </div>
+
             <div className="form-group col">
               <Label for="start">Date:</Label>
               <input
