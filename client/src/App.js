@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import React, { PureComponent } from "react";
+import { BrowserRouter as Router, Route, Switch, withRouter} from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
@@ -9,14 +9,14 @@ import { Provider } from "react-redux";
 import store from "./store";
 
 import Login from "./pages/Login"
-import FormVacation from "./components/FormVacation"
 import NoMatch from "./pages/NoMatch"
-import Testing from "./pages/Testing"
+import FormVacation from "./components/FormVacation"
+import Vacation from "./pages/Vacation"
 import Profile from "./pages/Profile"
+import FormDay from "./components/FormDay"
 import Daytrip from "./pages/Daytrip";
 
 import PrivateRoute from "./components/private-route/PrivateRoute";
-import FormLocal from "./components/FormLocal/FormLocal"
 import Register from "./components/auth/Register"
 import LogIn from "./components/auth/LogIn";
 import Outdoors from "./components/Outdoors";
@@ -44,7 +44,39 @@ if (localStorage.jwtToken) {
   }
 }
 
-class App extends Component {
+class App extends PureComponent {
+  constructor() {
+    super();
+
+  this.state= {
+    redirect: false,
+    whichPage: "",    
+    tripName: "",
+    dateStart: "",
+      city: "",
+      state: "",
+      boating: "",
+      fishing: "",
+      hiking: "",
+      beach: "",
+      concert: "",
+      sports: "",
+      theatre: "",
+    sightseeing: "",
+      breakfast: "",
+      dinner: "",
+      dessert: "",
+      drinks: "",
+      foodType: ""
+  };
+    this.updateAppState=this.updateAppState.bind(this)
+  }
+
+  updateAppState (state) {
+    console.log("from the APP " , state)
+    this.setState(state)
+  }
+  
   render() {
     return (
 
@@ -55,15 +87,20 @@ class App extends Component {
               <Switch>
               <Route exact path="/" component={Login} />
               <Route path="/daytrip" component={Daytrip} />
-              <Route exact path="/local" component={FormLocal} />
-              <Route exact path="/vacation" component={FormVacation} />
+              <Route exact path="/dayform" component={() =>
+                <FormDay updateAppState={this.updateAppState} />} />
+              <Route exact path="/vacationform" component={() => 
+              <FormVacation updateAppState={this.updateAppState} />} />
+              <Route path="/vacation" component={Vacation} />
               <Route exact path="/register" component={Register} />
-              <Route path="/testing" component={Testing} />
-              <Route path="/outdoors" component={Outdoors} />
-              <Route path="/events" component={Ticketmaster} />
-              <Route path="/trip" component={TripAdvisor} />
-              <Route path="/food" component={Yelp} />
-              {/* <Route exact path="/profile" component={Profile} /> */}
+              <Route path="/outdoors" component={() =>
+                <Outdoors state={this.state} /> }/>
+              <Route path="/events" component={() =>
+                <Ticketmaster state={this.state} />} />
+              <Route path="/trip" component={() => 
+                <TripAdvisor state={this.state}/>} />
+              <Route path="/food" component={ () => 
+                <Yelp state={this.state}/>} />
               <Route exact path="/login" component={LogIn} />
               <PrivateRoute exact path="/profile" component={Profile} />
               <Route component={NoMatch} path="*" />
@@ -79,4 +116,3 @@ class App extends Component {
 
 export default App;
 
-//use a state to control the profile:id

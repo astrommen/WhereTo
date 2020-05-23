@@ -2,7 +2,19 @@ import axios from "axios"
 
 export default {
     //Ticketmaster
-    callTicketmaster: function (activity, distance, dateStart, dateEnd, city) {
+    callTicketmasterD: function (sports, concert, theatre, distance, dateStart, city) {
+        return axios.get("/api/ticketmaster", {
+            params:
+            {
+                activity: sports+concert+theatre,
+                distance: distance,
+                dateStart: dateStart,
+                city: city
+            }
+        })
+    },
+    //Ticketmaster
+    callTicketmasterV: function (activity, distance, dateStart, dateEnd, city) {
         return axios.get("/api/ticketmaster", {
             params:
             {
@@ -15,11 +27,11 @@ export default {
         })
     },
     //RIBD
-    callRibd: function (state, activities) {
+    callRibd: function (state, city, boating, fishing, hiking, beach) {
         return axios.get("/api/ribd", {
             params: {
-                state: state,
-                activities: activities
+                location: city+","+state,
+                activities: boating+fishing+hiking+beach
             }
         })
     },
@@ -35,11 +47,13 @@ export default {
         })
     },
     //Search Yelp for food and drink
-    callYelp: function (location, meal) {
+    callYelp: function (city, state, breakfast, dinner, dessert, drinks, foodType) {
+        console.log("fetching yelp")
         return axios.get("/api/yelp", {
             params: {
-                location: location,
-                meal: meal
+                location: city+","+state,
+                term: breakfast+","+dinner+","+dessert+","+drinks,
+                categories: foodType
             }
         })
     },
@@ -49,6 +63,7 @@ export default {
     },
     //Search Triposo for city walk information
     callTour: function(city) {
+        console.log("fetching tour")
         return axios.get("/api/walk", {
             params: {
                 city: city

@@ -1,38 +1,35 @@
 import React, { Component }  from 'react';
-import OutdoorCard from "../OutdoorCard";
-import Nav from "../Nav";
 import API from "../../utils/API";
+import Nav from "../Nav";
+import OutdoorCard from "../OutdoorCard";
+import {Image, Title} from "../Styled";
 
 class Outdoor extends Component {
-  state={
-    sites: [],
-    state: "Philadelphia,PA",
-    activities: "hiking"
+  constructor(props) {
+    super(props)
+
+    this.state={
+      sites: [],
+      loading: false,
+      hasError: false
+    }
   }
 
   componentDidMount() {
-    this.searchOutdoors(this.state.state, this.state.activities);
+    this.searchOutdoors(this.props.state.state, this.props.state.city, this.props.state.boating, this.props.state.fishing, this.props.state.hiking, this.props.state.beach);
+    console.log("outdoors", this.props.state)
   };
     
-  searchOutdoors = (state, activities) => {
-    API.callRibd(state, activities)
+  searchOutdoors = (state, city, boating, fishing, hiking, beach) => {
+    this.setState({loading: true})
+    API.callRibd(state, city, boating, fishing, hiking, beach)
     .then(res => {
       console.log(res);
-      this.setState({ sites: res.data})
+      this.setState({ sites: res.data, loading: false})
       console.log(this.state.sites)
     })
-    .catch(err => console.log(err));
+    .catch(err => this.setState({hasError: true, loading: false}));
   };
-
-  handleInputChange = event => {
-    const value = event.target.value;
-    const name = event.target.name;
-    this.setState({
-      [name]: value
-    });
-  };
-
-  //handleForm Submit
 
   saveOutdoorArea = (area) => {
     API.saveOutdoorArea(area)
@@ -44,6 +41,8 @@ class Outdoor extends Component {
     return (
       <div>
         <Nav />
+        {this.state.loading && <Image className="loading" src={process.env.PUBLIC_URL + './img/loading.gif'} alt="loading" />}
+        {this.state.hasError && <Title>There was an error searching for your Request. Please try again later.</Title>}
         {this.state.sites.length > 0 ? (
           this.state.sites.map((site) => 
           <OutdoorCard 

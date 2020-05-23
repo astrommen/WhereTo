@@ -1,20 +1,26 @@
 import React, { Component } from "react";
-import TripCard from "../TripCard";
 import API from "../../utils/API";
 import Nav from "../Nav";
+import TripCard from "../TripCard";
+import {Image, Title} from "../Styled";
 const axios = require("axios");
 
 class TripAdvisor extends Component {
+  constructor(props) {
+    super(props)
+    this.state={
+      trips: [],
+      locationInfo: [],
+      loading: false,
+      hasError: false
+    }
 
-  state={
-    trips: [],
-    locationInfo: [],
-    location: "Philadelphia,PA",
-    activity: "park,museum"
   }
 
+
   componentDidMount(){
-    this.searchTripId(this.state.location, this.state.activity)
+    this.searchTripId(this.props.state.state, this.props.state.city, this.props.state.sightseeing)
+    console.log('tripAdvisor', this.props.state)
   }
 
   // searchTripId = (location, activity) => {
@@ -26,7 +32,8 @@ class TripAdvisor extends Component {
   //   })
   // }
 
-  searchTripId = (location, activity) => {
+  searchTripId = (state, city, sightseeing) => {
+    this.setState({loading: true})
     axios({
       "method": "GET",
       "url": "https://tripadvisor1.p.rapidapi.com/locations/search",
@@ -43,7 +50,7 @@ class TripAdvisor extends Component {
         "lang": "en_US",
         "currency": "USD",
         "units": "mi",
-        "query": location
+        "query": city+","+state
       }
     })
       .then((res) => {
@@ -71,7 +78,7 @@ class TripAdvisor extends Component {
             "lunit":"mi",
             "min_rating":"4",
             "bookable_first":"false",
-            "subcategory": activity,
+            "subcategory": sightseeing,
             "location_id": res.data.data[0].result_object.location_id
             }
             })
@@ -92,7 +99,7 @@ class TripAdvisor extends Component {
                   website: results.data.data[i].website
                 })
               }
-              this.setState({ trips : tripsArray});
+              this.setState({ trips : tripsArray, loading: false});
               console.log(this.state.trips)
             })
             .catch((error)=>{
@@ -103,19 +110,6 @@ class TripAdvisor extends Component {
         console.log(error)
       })
   }
-
-  handleInputChange = event => {
-    const value = event.target.value;
-    const name = event.target.name;
-    this.setState({
-        [name]: value
-    });
-  };
-
-  handleFormSubmit = event => {
-      event.preventDefault();
-      this.searchEvents(this.state.search);
-  };
 
   saveTrip = (trip) => {
     console.log(trip)
@@ -128,6 +122,8 @@ class TripAdvisor extends Component {
     return (
       <div>
       <Nav />
+      {this.state.loading && <Image className="loading" src={process.env.PUBLIC_URL + './img/loading.gif'} alt="loading" />}
+        {this.state.hasError && <Title>There was an error searching for your Request. Please try again later.</Title>}
       {this.state.trips.length > 0 ? (
         this.state.trips.map((trip) =>
         <TripCard 

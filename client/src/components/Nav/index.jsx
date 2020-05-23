@@ -9,15 +9,14 @@ function Nav() {
     <Container>
       <Row>
         <Col size="md-2">
-          <Link className="navbar-brand" to="/">
+          <Link className="navbar-brand" to="/profile">
           <img className="logo" src={process.env.PUBLIC_URL + '/WhereToLogo.png'} alt="logo" />
           </Link>
         </Col>
         <Col size="md-2">
-        <Link to="/profile"
-            className={
-              window.location.pathname === "/" ? "tab-active" : "tab"
-            }>Profile</Link>
+          <Link className="navbar-brand" to="/vacationform">
+          <img className="logo" src='./img/location/form.png' alt="form" />
+          </Link>
         </Col>
         <Col size="md-2">
         <Link to="/trip"

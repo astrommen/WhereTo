@@ -19,8 +19,8 @@ function OutdoorCard(props) {
 
       <Row>
         <Col size="md-5">
-          <Image className="img-fluid" src={props.images[0].URL} alt={props.images[0].Description} />
-          <ImgDes>{props.images[0].Description}</ImgDes>
+          <Image className="img-fluid" src={props.images[0] ? props.images[0].URL : "./img/location/noImage.png"} alt={props.site} />
+          <ImgDes>{props.images[0] ? props.images[0].Description : ""}</ImgDes>
         </Col>
         <Col size="md-7">
           <Container>

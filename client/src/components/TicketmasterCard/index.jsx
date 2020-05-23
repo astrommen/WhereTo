@@ -4,7 +4,6 @@ import { SiteBtn, SaveBtn} from "../Buttons";
 import {Icon, Image, Title, Website, White} from "../Styled";
 
 function TicketmasterCard(props) {
-  console.log(props)
   return(
     <Container>
       <Row>

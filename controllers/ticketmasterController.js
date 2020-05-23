@@ -3,7 +3,7 @@ const axios = require("axios");
 module.exports = {
     findAll: function(req, res) {
         const {query: params} = req;
-        let url =`https://app.ticketmaster.com/discovery/v2/events?classificationName=${params.activity}&radius=${params.distance}&unit=miles&startDateTime=${params.dateStart}T00:00:00Z&endDateTime=${params.dateEnd}T00:00:00Z&city=${params.city}&apikey=${process.env.REACT_APP_TM_APIKEY}`
+        let url =`https://app.ticketmaster.com/discovery/v2/events?classificationName=${params.activity}&radius=${params.distance}&unit=miles&startDateTime=${params.dateStart}T00:00:00Z&city=${params.city}&apikey=${process.env.REACT_APP_TM_APIKEY}`
         axios
         .get(url)
         .then(results => 
@@ -30,7 +30,7 @@ module.exports = {
             )
         )
         .then(events => res.json(events))
-        .catch(err => res.status(422).json(err))
+        .catch(err => console.error(err))
     },
     findById: function(req,res) {
         db.Vacation

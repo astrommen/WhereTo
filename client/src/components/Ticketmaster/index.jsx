@@ -2,28 +2,30 @@ import React, { Component }  from 'react';
 import API from "../../utils/API";
 import Nav from "../Nav";
 import TicketmasterCard from "../TicketmasterCard"
+import {Image} from "../Styled";
 
 class Ticketmaster extends Component {
-
-  state = {
-    events: [],
-    activity: "sports",
-    distance: "50",
-    dateStart: "2020-05-01",
-    dateEnd: "2020-08-30",
-    city: "Philadelphia"
+  constructor(props) {
+    super(props)
+    this.state = {
+      events: [],
+      distance: "50",
+      loading: false,
+      hasError: false
+    }
   }
 
+
   componentDidMount() {
-    this.searchTickets(this.state.activity, this.state.distance, this.state.dateStart, this.state.dateEnd, this.state.city);
+    console.log("ticketmaster", this.props.state)
+    this.searchTickets(this.props.state.sports, this.props.state.concert, this.props.state.theatre, this.state.distance, this.props.state.dateStart, this.props.state.city);
   };
 
-  searchTickets = (activity, distance, state, dateStart, dateEnd, city) => {
-    API.callTicketmaster(activity, distance, state, dateStart, dateEnd, city)
+  searchTickets = (sports, concert, theatre, distance, state, dateStart, city) => {
+    this.setState({loading: true})
+    API.callTicketmasterD(sports, concert, theatre, distance, state, dateStart, city)
     .then(res => {
-      console.log(res);
-      this.setState({ events : res.data})
-      console.log(this.state.events)
+      this.setState({ events : res.data, loading: false})
     })
     .catch(err => console.log(err))
   }
@@ -53,6 +55,8 @@ class Ticketmaster extends Component {
     return (
       <div>
         <Nav />
+        {this.state.loading && <Image className="loading" src={process.env.PUBLIC_URL + './img/loading.gif'} alt="loading" />}
+        {this.state.hasError && <h1>There was an error searching for your Request. Please try again later.</h1>}
         {this.state.events.length > 0 ? (
           this.state.events.map((activity) => 
           <TicketmasterCard
