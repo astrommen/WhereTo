@@ -1,4 +1,5 @@
 const axios = require("axios");
+const db = require("../models");
 
 module.exports = {
     findAll: function(req, res) {
@@ -38,12 +39,18 @@ module.exports = {
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
     },
-    create: function(req,res) {
+    create: function (req, res) {
+        console.log(req.body)
         db.Vacation
-        .create(req.body)
-        .then(dbModel => res.json(dbModel))
-        .catch(err => res.status(422).json(err));
-    },
+          .create(req.body)
+          .then(dbModel => {
+            return db.Vacation.findOneAndUpdate({ _id: req.body.userId }, 
+              { $push: { events: dbModel._id } }, 
+              { new: true })
+            .then(dbUser => res.json(dbUser))
+            .catch(err => res.status(422).json(err));
+          })
+      },
     update: function(req,res) {
         db.Vacation
         .findByID({_id: req.params.id})

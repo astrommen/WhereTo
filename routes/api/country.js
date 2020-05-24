@@ -3,9 +3,11 @@ const countryController = require("../../controllers/countryController");
 
 router.route("/")
 .get(countryController.findAll)
-.post(countryController.create)
+.post(countryController.create);
 
 router.route("/:id")
+.delete(countryController.remove)
+.put(countryController.update)
 .delete(countryController.remove);
 
 module.exports = router;

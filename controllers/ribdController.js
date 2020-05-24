@@ -1,4 +1,5 @@
 const axios = require("axios");
+const db = require("../models");
 
 module.exports = {
     findAll: function(req,res) {
@@ -31,24 +32,30 @@ module.exports = {
             .catch(err => console.error(err))
     },
     findById: function(req,res) {
-        db.Outdoor
+        db.Vacation
         .find(req.params.id)
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
     },
-    create: function(req,res) {
-        db.Outdoor
-        .create(req.body)
-        .then(dbModel => res.json(dbModel))
-        .catch(err => res.status(422).json(err));
-    },
-    update: function(req,res) {
-        db.Outdoor
-        .findByID({_id: req.params.id})
-        .then(dbModel => dbModel.remove())
-        .then(dbModel => res.json(dbModel))
-        .catch(err => res.status(422).json(err));
-    },
+    create: function (req, res) {
+        console.log(req.body)
+        db.Vacation
+          .create(req.body)
+          .then(dbModel => {
+            return db.Vacation.findOneAndUpdate({ _id: req.body.userId }, 
+              { $push: { outdoors: dbModel._id } }, 
+              { new: true })
+            .then(dbUser => res.json(dbUser))
+            .catch(err => res.status(422).json(err));
+          })
+      },
+    update: function (req, res) {
+        db.Vacation
+          .findOneAndUpdate({ _id: req.params.id }, 
+            req.body)
+          .then(dbModel => res.json(dbModel))
+          .catch(err => res.status(422).json(err));
+      },
     remove: function(req, res) {
         db.Vacation
           .findById({ _id: req.params.id })

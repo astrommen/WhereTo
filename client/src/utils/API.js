@@ -94,13 +94,13 @@ export default {
         return axios.post("/api/vacations", tripData)
     },
     saveOutdoorArea: function(outdoorData) {
-        return axios.post("/api/ribd", outdoorData)
+        return axios.post("/api/outdoor", outdoorData)
     },
     returnOutdoorAreas: function() {
-        return axios.get("/api/ribd")
+        return axios.get("/api/outdoor")
     },
     deleteOutdoorArea: function(id) {
-        return axios.delete("/api/ribd" + id);
+        return axios.delete("/api/outdoor" + id);
     },
     saveCountry: function(countryData) {
         return axios.post("/api/country", countryData)
@@ -112,31 +112,31 @@ export default {
         return axios.delete("/api/country" + id);
     },
     saveFood: function(foodData) {
-        return axios.post("/api/yelp", foodData)
+        return axios.post("/api/food", foodData)
     },
     returnFood: function() {
-        return axios.get("/api/yelp")
+        return axios.get("/api/food")
     },
     deleteFood: function(id) {
-        return axios.delete("/api/yelp" + id);
+        return axios.delete("/api/food" + id);
     },
     saveEvent: function(eventData) {
-        return axios.post("/api/ticketmaster", eventData)
+        return axios.post("/api/event", eventData)
     },
     returnEvent: function() {
-        return axios.get("/api/ticketmaster")
+        return axios.get("/api/event")
     },
     deleteEvent: function(id) {
-        return axios.delete("/api/ticketmaster" + id);
+        return axios.delete("/api/event" + id);
     },
     saveSightseeing: function(sightseeingData) {
-        return axios.post("/api/trip", sightseeingData)
+        return axios.post("/api/sightseeing", sightseeingData)
     },
     returnSightseeing: function() {
-        return axios.get("/api/trip")
+        return axios.get("/api/sightseeing")
     },
     deleteSightseeing: function(id) {
-        return axios.delete("/api/trip" + id);
+        return axios.delete("/api/sightseeing" + id);
     },
     saveWalk: function(sightseeingData) {
         return axios.post("/api/walk", sightseeingData)

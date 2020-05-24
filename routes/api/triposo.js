@@ -3,9 +3,11 @@ const triposoController = require("../../controllers/triposoController");
 
 router.route("/")
 .get(triposoController.findAll)
-.post(triposoController.create)
+.post(triposoController.create);
 
 router.route("/:id")
+.create(triposoController.findById)
+.put(triposoController.update)
 .delete(triposoController.remove);
 
 module.exports = router;
