@@ -6,8 +6,8 @@ router.route("/")
   .post(triposoController.create);
 
 router.route("/:id")
-  .get(triposoController.findById)
-  .put(triposoController.update)
-  .delete(triposoController.remove);
+.get(triposoController.findById)
+.put(triposoController.update)
+.delete(triposoController.remove);
 
 module.exports = router;

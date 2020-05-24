@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
 import classnames from "classnames";
-import { Wrapper, Title, White, Label, Button } from "../Styled";
-import { Container, Row, Col } from "../Grid";
+import {Wrapper, Title, White, Label, Button} from "../Styled";
+import {Container, Row, Col} from "../Grid";
 
 class LogIn extends Component {
   constructor() {
@@ -54,15 +54,37 @@ class LogIn extends Component {
             <div className="col s8 offset-s2">
               <Link to="/" className="btn-flat waves-effect">
                 <i class="fas fa-arrow-left"></i>  Back to home
-            </Link>
+              </Link>
               <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                 <Title>
                   <b>Login</b> below
               </Title>
-                <White className="grey-text text-darken-1">
-                  Don't have an account?  <Link to="/register"><b><i class="fas fa-user-plus"></i> Register</b></Link>
-                </White>
+              <White className="grey-text text-darken-1">
+                Don't have an account?  <Link to="/register"><b><i class="fas fa-user-plus"></i> Register</b></Link>
+              </White>
+            </div>
+            
+            <form noValidate onSubmit={this.onSubmit}>
+
+              <div className="input-field col s12">
+                <input
+                  onChange={this.onChange}
+                  value={this.state.email}
+                  error={errors.email}
+                  id="email"
+                  type="email"
+                  placeholder="@gmail.com"
+                  className={classnames("", {
+                    invalid: errors.email || errors.emailnotfound,
+                  })}
+                />
+                <Label style={{marginLeft: 5}} htmlFor="email">  Email</Label>
+                <span className="red-text">
+                  {errors.email}
+                  {errors.emailnotfound}
+                </span>
               </div>
+            </form>
 
               <form noValidate onSubmit={this.onSubmit}>
 
@@ -115,7 +137,8 @@ class LogIn extends Component {
                 </div>
 
               </form>
-            </div>
+              </div>
+              
           </Row>
         </Container>
       </Wrapper>

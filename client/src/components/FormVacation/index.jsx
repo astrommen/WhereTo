@@ -98,6 +98,19 @@ class FormVacation extends Component {
       city: this.state.city,
       state: this.state.state,
       local: this.state.local,
+      boating: this.state.boating,
+      fishing: this.state.fishing,
+      hiking: this.state.hiking,
+      beach: this.state.beach,
+      concert: this.state.concert,
+      sports: this.state.sports,
+      theatre: this.state.theatre,
+      sightseeing: this.state.sightseeing,
+      breakfast: this.state.breakfast,
+      dinner: this.state.dinner,
+      dessert: this.state.dessert,
+      drinks: this.state.drinks,
+      foodType: this.state.foodType,
     });
     this.props.updateAppState(this.state);
     this.props.history.push("/vacation")
