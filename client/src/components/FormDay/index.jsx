@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from 'react-router-dom'
-import {Label} from "../Styled";
+import { Label } from "../Styled";
 import jwt_decode from "jwt-decode";
 import "./style.css";
 import API from "../../utils/API";
@@ -33,12 +33,12 @@ class FormDay extends Component {
         return "0" + m;
       } else {
         return m;
-      } 
+      }
     }
     const token = (window.localStorage.getItem("jwtToken"));
     const decoded = jwt_decode(token);
     const user = decoded.id;
-    
+
     var today = new Date(),
       dateFill = today.getFullYear() + '-' + (month()) + '-' + day();
 
@@ -75,17 +75,17 @@ class FormDay extends Component {
   saveTrip = (vacation) => {
     console.log("FormDay")
     API.saveTrip(vacation)
-    .then(res => console.log(res))
-    .catch(err => console.log(err))
+      .then(res => console.log(res))
+      .catch(err => console.log(err))
   }
 
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
-        [name]:value
+      [name]: value
     });
   };
-  
+
   handleFormSubmit = event => {
     event.preventDefault();
     this.props.updateAppState(this.state);
@@ -103,20 +103,22 @@ class FormDay extends Component {
   render() {
     return (
       <div>
-        <form className="mt-4">
+        <form className="mt-4" onSubmit={this.handleFormSubmit}>
           <div className="form-row">
             <div className="form-group col">
-              <Label for="name">Trip Name</Label>
-              <input 
-              name="tripName" 
-              type="text" 
-              value={this.state.tripName}
-              onChange={this.handleInputChange}
-              id="name" className="form-control" placeholder="Trip Name" />
+              <Label htmlFor="name">Trip Name</Label>
+              <input
+                name="tripName"
+                type="text"
+                value={this.state.tripName}
+                onChange={this.handleInputChange}
+                id="name" className="form-control" placeholder="Trip Name"
+                required
+              />
             </div>
 
             <div className="form-group col">
-              <Label for="start">Date:</Label>
+              <Label htmlFor="start">Date:</Label>
               <input
                 className="form-control"
                 type="date"
@@ -124,28 +126,31 @@ class FormDay extends Component {
                 name="dateStart"
                 defaultValue={this.state.date}
                 min={this.state.date}
-                value={this.state.dateStart}
+                // value={this.state.dateStart}
                 onChange={this.handleInputChange}
+                required
               />
             </div>
           </div>
           <div className="form-row">
             <div className="form-group col">
-              <Label for="city">City</Label>
-              <input id="city" type="text" 
-              name="city"
-              value={this.state.city}
-              onChange={this.handleInputChange}
-              className="form-control" placeholder="City" />
+              <Label htmlFor="city">City</Label>
+              <input id="city" type="text"
+                name="city"
+                value={this.state.city}
+                onChange={this.handleInputChange}
+                className="form-control" placeholder="City"
+                required
+              />
             </div>
             <div className="form-group col">
-              <Label for="inputState">State</Label>
-              <select 
-              name="state"
-              value={this.state.value}
-              onChange={this.handleInputChange}
-              id="inputState" className="form-control">
-                <option selected>Choose...</option>
+              <Label htmlFor="inputState">State</Label>
+              <select
+                name="state"
+                value={this.state.value}
+                onChange={this.handleInputChange}
+                id="inputState" className="form-control">
+                <option defaultValue>Choose...</option>
                 <option value="AK">Alaska</option>
                 <option value="AL">Alabama</option>
                 <option value="AR">Arkansas</option>
@@ -205,40 +210,40 @@ class FormDay extends Component {
           <div className="form-row text-center">
             <div className="col-sm-6 col-lg-2">
               <input type="checkbox" id="cb1"
-              name="breakfast"
-              value="breakfast_brunch"
-              checked={this.state.breakfast}
-              onChange={this.handleInputChange} />
-              <Label for="cb1"><img alt="" src="./img/activities/breakfast.png" /><p>Breakfast</p></Label></div>
+                name="breakfast"
+                value="breakfast_brunch"
+                checked={this.state.breakfast}
+                onChange={this.handleInputChange} />
+              <Label htmlFor="cb1"><img alt="" src="./img/activities/breakfast.png" /><p>Breakfast</p></Label></div>
 
             <div className="col-sm-6 col-lg-2"><input type="checkbox" id="cb2"
               name="dinner"
               value="restaurants"
               checked={this.state.dinner}
               onChange={this.handleInputChange} />
-              <Label for="cb2"><img alt="" src="./img/activities/dinner.png" /><p>Dinner</p></Label></div>
+              <Label htmlFor="cb2"><img alt="" src="./img/activities/dinner.png" /><p>Dinner</p></Label></div>
 
             <div className="col-sm-6 col-lg-2"><input type="checkbox" id="cb3"
               name="dessert"
               value="dessert"
               checked={this.state.dessert}
               onChange={this.handleInputChange} />
-              <Label for="cb3"><img alt="" src="./img/activities/dessert.png" /><p>Dessert</p></Label></div>
+              <Label htmlFor="cb3"><img alt="" src="./img/activities/dessert.png" /><p>Dessert</p></Label></div>
 
-            <div className="col-sm-6 col-lg-2"><input type="checkbox" id="cb4" 
+            <div className="col-sm-6 col-lg-2"><input type="checkbox" id="cb4"
               name="drinks"
               value="beer_and_wine"
               checked={this.state.drinks}
               onChange={this.handleInputChange} />
-              <Label for="cb4"><img alt="" src="./img/activities/bar.png" /><p>Drinks</p></Label></div>
+              <Label htmlFor="cb4"><img alt="" src="./img/activities/bar.png" /><p>Drinks</p></Label></div>
 
             <div className="form-group col">
-              <Label for="inputState">Type of Food:</Label>
-              <select id="inputState" 
-              name="foodType"
-              value={this.state.value} 
-              onChange={this.handleInputChange} className="form-control">
-                <option selected>Choose...</option>
+              <Label htmlFor="inputState">Type of Food:</Label>
+              <select id="inputState"
+                name="foodType"
+                value={this.state.value}
+                onChange={this.handleInputChange} className="form-control">
+                <option defaultValue>Choose...</option>
                 <option value="tradamerican">American</option>
                 <option value="asianfusion">Asian Fusion</option>
                 <option value="bbq">Barbeque</option>
@@ -267,69 +272,70 @@ class FormDay extends Component {
 
 
           <div className="form-row text-center">
-            <div className="col-sm-6 col-lg-2"><input type="checkbox" 
-            name="boating"
-            value="boating,"
-            checked={this.state.boating}
-            onChange={this.handleInputChange}
-            id="cb5" />
-              <Label for="cb5"><img alt="" src="./img/activities/boating.png" /><p>Boating</p></Label></div>
+            <div className="col-sm-6 col-lg-2"><input type="checkbox"
+              name="boating"
+              value="boating,"
+              checked={this.state.boating}
+              onChange={this.handleInputChange}
+              id="cb5" />
+              <Label htmlFor="cb5"><img alt="" src="./img/activities/boating.png" /><p>Boating</p></Label></div>
             <div className="col-sm-6 col-lg-2"><input type="checkbox" id="cb6"
-            name="fishing"
-            value="fishing,"
-            checked={this.state.fishing}
-            onChange={this.handleInputChange}/>
-              <Label for="cb6"><img alt="" src="./img/activities/fishing.png" /><p>Fishing</p></Label></div>
+              name="fishing"
+              value="fishing,"
+              checked={this.state.fishing}
+              onChange={this.handleInputChange} />
+              <Label htmlFor="cb6"><img alt="" src="./img/activities/fishing.png" /><p>Fishing</p></Label></div>
             <div className="col-sm-6 col-lg-2"><input type="checkbox" id="cb7"
-            name="hiking"
-            value="hiking,"
-            checked={this.state.hiking}
-            onChange={this.handleInputChange}/>
-              <Label for="cb7"><img alt="" src="./img/activities/hiking.png" /><p>Hiking</p></Label></div>
+              name="hiking"
+              value="hiking,"
+              checked={this.state.hiking}
+              onChange={this.handleInputChange} />
+              <Label htmlFor="cb7"><img alt="" src="./img/activities/hiking.png" /><p>Hiking</p></Label></div>
             <div className="col-sm-6 col-lg-2"><input type="checkbox" id="cb8"
-            name="beach"
-            value="beach,"
-            checked={this.state.beach}
-            onChange={this.handleInputChange}/>
-              <Label for="cb8"><img alt="" src="./img/activities/beach.png" /><p>Beach</p></Label></div>
+              name="beach"
+              value="beach,"
+              checked={this.state.beach}
+              onChange={this.handleInputChange} />
+              <Label htmlFor="cb8"><img alt="" src="./img/activities/beach.png" /><p>Beach</p></Label></div>
           </div>
 
           <div className="form-row text-center">
-            <div className="col-sm-6 col-lg-2"><input type="checkbox" id="cb9" 
-            name="concert"
-            value="concert,"
-            checked={this.state.concert}
-            onChange={this.handleInputChange}/>
-            <Label for="cb9"><img alt="" src="./img/activities/concert.png" /><p>Concert</p></Label></div>
+            <div className="col-sm-6 col-lg-2"><input type="checkbox" id="cb9"
+              name="concert"
+              value="concert,"
+              checked={this.state.concert}
+              onChange={this.handleInputChange} />
+              <Label htmlFor="cb9"><img alt="" src="./img/activities/concert.png" /><p>Concert</p></Label></div>
             <div className="col-sm-6 col-lg-2"><input type="checkbox" id="cb10"
-            name="sightseeing"
-            value="park,museum"
-            checked={this.state.sightseeing}
-            onChange={this.handleInputChange}/>
-              <Label for="cb10"><img alt="" src="./img/activities/sightseeing.png" /><p>Sightseeing</p></Label></div>
+              name="sightseeing"
+              value="park,museum"
+              checked={this.state.sightseeing}
+              onChange={this.handleInputChange} />
+              <Label htmlFor="cb10"><img alt="" src="./img/activities/sightseeing.png" /><p>Sightseeing</p></Label></div>
             <div className="col-sm-6 col-lg-2"><input type="checkbox" id="cb11"
-            name="sports"
-            value="sports,"
-            checked={this.state.sports}
-            onChange={this.handleInputChange}/>
-              <Label for="cb11"><img alt="" src="./img/activities/sports.png" /><p>Sports</p></Label></div>
+              name="sports"
+              value="sports,"
+              checked={this.state.sports}
+              onChange={this.handleInputChange} />
+              <Label htmlFor="cb11"><img alt="" src="./img/activities/sports.png" /><p>Sports</p></Label></div>
             <div className="col-sm-6 col-lg-2"><input type="checkbox" id="cb12"
-            name="theatre"
-            value="theatre"
-            checked={this.state.theatre}
-            onChange={this.handleInputChange}/>
-              <Label for="cb12"><img alt="" src="./img/activities/theatre.png" /><p>Theatre</p></Label></div>
+              name="theatre"
+              value="theatre"
+              checked={this.state.theatre}
+              onChange={this.handleInputChange} />
+              <Label htmlFor="cb12"><img alt="" src="./img/activities/theatre.png" /><p>Theatre</p></Label></div>
           </div>
           <div className="form-row">
-          <div className="col-lg-9"></div>
-          <div className="col-lg-3">
+            <div className="col-lg-9"></div>
+            <div className="col-lg-3">
 
-            <button type="submit"
-            disabled={!(this.state.tripName && this.state.date && this.state.state || this.state.city)}
-            onClick={this.handleFormSubmit}>Submit</button></div>
+              <button type="submit"
+              // disabled={!(this.state.tripName && this.state.date && this.state.state || this.state.city)}
+              // onClick={this.handleFormSubmit}
+              >Submit</button></div>
           </div>
 
-          
+
         </form>
       </div>
     );

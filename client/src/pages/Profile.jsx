@@ -68,7 +68,7 @@ class Profile extends Component {
     let IDsArr = []
     API.getUser(this.state.userID)
       .then((res) => {
-        console.log(res.data) //Logs user found
+        // console.log(res.data) //Logs user found
         res.data.vacations.forEach((VacaIDs) => {
           let obj = {}
           obj.id = VacaIDs;
@@ -94,7 +94,7 @@ class Profile extends Component {
       // console.log(data.id)// Logs vacation IDs      
       let obj = {}
       API.getVacations(data.id).then((res) => {
-        console.log(res.data)
+        // console.log(res.data)
         obj.name = res.data.name;
         obj.key = res.data._id;
         obj.startDate = res.data.startDate;
@@ -114,11 +114,11 @@ class Profile extends Component {
         }
 
       }).catch((err) => {
-        console.log(err.response)
+        console.log(err)
       })
     })
-    console.log(upcomingArr)
-    console.log(pastArr)
+    // console.log(upcomingArr)
+    // console.log(pastArr)
   }
 
 
