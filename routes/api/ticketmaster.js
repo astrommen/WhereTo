@@ -3,9 +3,11 @@ const ticketmasterController = require("../../controllers/ticketmasterController
 
 router.route("/")
 .get(ticketmasterController.findAll)
-.post(ticketmasterController.create)
+.post(ticketmasterController.create);
 
 router.route("/:id")
+.get(ticketmasterController.findById)
+.put(ticketmasterController.update)
 .delete(ticketmasterController.remove);
 
 module.exports = router;

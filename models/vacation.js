@@ -24,10 +24,22 @@ var vacationSchema = new Schema({
   dessert: String,
   drinks: String,
   foodType: String,
-  sightseeing: [String],
-  food: [String],
-  events: [String],
-  outdoors: [String],
+  sightseeing: [{
+    type: Schema.Types.ObjectId,
+    ref: "Sightseeing"
+  }],
+  food: [{
+    type: Schema.Types.ObjectId,
+    ref: "Food"
+  }],
+  events: [{
+    type: Schema.Types.ObjectId,
+    ref: "Event"
+  }],
+  outdoors: [{
+    type: Schema.Types.ObjectId,
+    ref: "Outdoor"
+  }],
   local: Boolean
 });
 
