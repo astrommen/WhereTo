@@ -91,7 +91,6 @@ font-weight: bold;
 
 export const Title = styled.h3 `
 color: white;
-text-align: left;
 font-family: 'Cabin Condensed', sans-serif;
 `
 
@@ -116,15 +115,15 @@ color: white;
 font-family: 'Lato', sans-serif;
 font-size: 20px;
 `
-
-export const Center = styled.p `
+export const ActivitiesT = styled.p `
 color: white;
-text-align: center;
-font-size: 20px;`
+font-family: 'Lato', sans-serif;
+font-size: 40px;
+`
 
 export const White = styled.p `
 color: white;
-text-align: ${props => props.inputAlign || "center"}
+// font-family: 'Roboto Condensed', sans-serif;
 `
 
 export const Label = styled.label `
