@@ -1,6 +1,16 @@
 import React from 'react';
 import styled from "styled-components";
 
+export const Button = styled.button `
+width: 200px;
+height: 50px;
+margin: 2% 0 0 0;
+border-radius: 3px;
+letter-spacing: 1.5px;
+padding: 1%;
+background-color: white;
+color: black;`
+
 export const Icon = styled.img `
 display: block;
 margin-left: auto;
@@ -47,4 +57,11 @@ color: white;
 
 export const Label = styled.label `
 color: white;
+`
+export const Wrapper = styled.section `
+width:100%;
+padding: 1%;
+background-color: black;
+opacity: 0.9;
+border-radius: 5px;
 `

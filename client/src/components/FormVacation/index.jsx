@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from 'react-router-dom'
-import {Label} from "../Styled";
+import {Label, Wrapper} from "../Styled";
 import "./style.css";
 
 class FormVacation extends Component {
@@ -82,7 +82,7 @@ class FormVacation extends Component {
 
   render() {
     return (
-      <div>
+      <Wrapper>
         <form className="mt-4">
           <div className="form-row">
             <div className="form-group col">
@@ -326,7 +326,7 @@ class FormVacation extends Component {
 
           
         </form>
-      </div>
+      </Wrapper>
     );
   }
 }

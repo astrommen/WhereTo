@@ -21,7 +21,7 @@ module.exports = {
                     postalCode: result.RECAREAADDRESS[0].PostalCode,
                     state: result.RECAREAADDRESS[0].AddressStateCode,
                     directions: result.RecAreaDirections,
-                    link: result.LINK[0].URL,
+                    link: result.LINK[0] ? result.LINK[0].URL : "missing",
                     images: result.MEDIA,
                     activities: result.ACTIVITY
                 })

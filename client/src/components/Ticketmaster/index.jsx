@@ -2,7 +2,7 @@ import React, { Component }  from 'react';
 import API from "../../utils/API";
 import Nav from "../Nav";
 import TicketmasterCard from "../TicketmasterCard"
-import {Image} from "../Styled";
+import {Image, Wrapper} from "../Styled";
 
 class Ticketmaster extends Component {
   constructor(props) {
@@ -15,7 +15,6 @@ class Ticketmaster extends Component {
     }
   }
 
-
   componentDidMount() {
     console.log("ticketmaster", this.props.state)
     this.searchTickets(this.props.state.sports, this.props.state.concert, this.props.state.theatre, this.state.distance, this.props.state.dateStart, this.props.state.city);
@@ -27,33 +26,19 @@ class Ticketmaster extends Component {
     .then(res => {
       this.setState({ events : res.data, loading: false})
     })
-    .catch(err => console.log(err))
+    .catch(err => this.setState({hasError: true, loading: false}));
   }
-
-  handleInputChange = event => {
-    const value = event.target.value;
-    const name = event.target.name;
-    this.setState({
-        [name]: value
-    });
-  };
-
-  handleFormSubmit = event => {
-      event.preventDefault();
-      this.searchEvents(this.state.search);
-  };
 
   saveEvent = (activity) => {
     console.log(activity)
     API.saveEvent(activity)
     .then(res => console.log(res))
     .catch(err => console.log(err))
-
   }
 
   render() {
     return (
-      <div>
+      <Wrapper>
         <Nav />
         {this.state.loading && <Image className="loading" src={process.env.PUBLIC_URL + './img/loading.gif'} alt="loading" />}
         {this.state.hasError && <h1>There was an error searching for your Request. Please try again later.</h1>}
@@ -81,7 +66,7 @@ class Ticketmaster extends Component {
         ) : (
           <h3>No Results to Display</h3>
         )}
-      </div>
+      </Wrapper>
     );
   }
 }

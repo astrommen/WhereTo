@@ -69,9 +69,7 @@ class SignOn extends Component {
 
     }
     console.log("Name: " + profile.getName());
-
   }
-
 
   signOut = () => {
     const auth2 = window.gapi.auth2.getAuthInstance();
@@ -82,12 +80,11 @@ class SignOn extends Component {
 
   render() {
     return (
-      <div className="btnContainer">
+      <Container className="btnContainer">
         {this.renderRedirect()}
 
         <Row>
           <div id={GOOGLE_BUTTON_ID} />
-
           {/* <button onClick={() => this.signOut()}>Sign out</button> */}
         </Row>
 
@@ -101,7 +98,8 @@ class SignOn extends Component {
               borderRadius: "3px",
               letterSpacing: "1.5px",
               padding: "1%",
-              background: "white"
+              background: "white",
+              color: "black"
             }}
             className="btn btn-large waves-effect waves-light hoverable blue accent-3"
           >
@@ -125,7 +123,8 @@ class SignOn extends Component {
               borderRadius: "3px",
               letterSpacing: "1.5px",
               padding: "1%",
-              background: "white"
+              background: "white",
+              color: "black"
             }}
             className="btn btn-large waves-effect waves-light hoverable blue accent-3"
           >
@@ -139,7 +138,7 @@ class SignOn extends Component {
           </button> */}
         </Row>
 
-      </div>
+      </Container>
     );
   }
 }

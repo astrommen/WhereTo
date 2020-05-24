@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from 'react-router-dom'
-import {Label} from "../Styled";
+import {Label, Wrapper} from "../Styled";
 import jwt_decode from "jwt-decode";
 import "./style.css";
 import API from "../../utils/API";
@@ -96,13 +96,30 @@ class FormDay extends Component {
       dateStart: this.state.dateStart,
       city: this.state.city,
       state: this.state.state,
-      local: this.state.local
+      local: this.state.local,
+      boating: this.state.boating,
+      fishing: this.state.fishing,
+      hiking: this.state.hiking,
+      beach: this.state.beach,
+      concert: this.state.concert,
+      sports: this.state.sports,
+      theatre: this.state.theatre,
+      sightseeing: this.state.sightseeing,
+      breakfast: this.state.breakfast,
+      dinner: this.state.dinner,
+      dessert: this.state.dessert,
+      drinks: this.state.drinks,
+      foodType: this.state.foodType,
+      sightseeing: [String],
+      food: [String],
+      events: [String],
+      outdoors: [String],
     });
   }
 
   render() {
     return (
-      <div>
+      <Wrapper>
         <form className="mt-4">
           <div className="form-row">
             <div className="form-group col">
@@ -331,7 +348,7 @@ class FormDay extends Component {
 
           
         </form>
-      </div>
+      </Wrapper>
     );
   }
 }
