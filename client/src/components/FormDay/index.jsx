@@ -81,17 +81,14 @@ class FormDay extends Component {
 
   handleInputChange = event => {
     const { name, value } = event.target;
-    // console.log(event.target)
-    // console.log(this.state[name])
-    // console.log(name)
-    if (event.target.attributes.type.nodeValue === "checkbox") {
+
+    if (event.target.type === "checkbox") {
       if (!this.state[name]) {
-        // console.log("value")
+
         this.setState({
           [name]: value
         });
       } else {
-        // console.log("no value")
         this.setState({
           [name]: ''
         });
