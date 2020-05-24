@@ -37,6 +37,7 @@ font-weight: bold;
 
 export const Title = styled.h3 `
 color: white;
+font-family: 'Cabin Condensed', sans-serif;
 `
 
 export const Website = styled.a `
@@ -51,8 +52,20 @@ color: white;
 }
 `
 
+export const ActivitiesN = styled.p `
+color: white;
+font-family: 'Lato', sans-serif;
+font-size: 20px;
+`
+export const ActivitiesT = styled.p `
+color: white;
+font-family: 'Lato', sans-serif;
+font-size: 40px;
+`
+
 export const White = styled.p `
 color: white;
+// font-family: 'Roboto Condensed', sans-serif;
 `
 
 export const Label = styled.label `
