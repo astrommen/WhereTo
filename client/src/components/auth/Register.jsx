@@ -85,6 +85,8 @@ import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
+import {Wrapper, Title, White, Label, Button} from "../Styled";
+import {Container, Row, Col} from "../Grid";
 import classnames from "classnames";
 
 class Register extends Component {
@@ -129,20 +131,21 @@ class Register extends Component {
   render() {
     const { errors } = this.state;
     return (
-      <div className="container">
-        <div className="row">
+      <Wrapper>
+      <Container>
+        <Row>
           <div className="col s8 offset-s2">
             <Link to="/" className="btn-flat waves-effect">
-              <i className="material-icons left">keyboard_backspace</i> Back to
+            <i class="fas fa-arrow-left"></i>  Back to
               home
             </Link>
             <div className="col s12" style={{ paddingLeft: "11.250px" }}>
-              <h4>
+              <Title>
                 <b>Register</b> below
-              </h4>
-              <p className="grey-text text-darken-1">
-                Already have an account? <Link to="/login">Log in</Link>
-              </p>
+              </Title>
+              <White className="grey-text text-darken-1">
+                Already have an account?  <Link to="/login"><i class="fas fa-sign-in-alt"></i> Log in</Link>
+              </White>
             </div>
             <form noValidate onSubmit={this.onSubmit}>
               <div className="input-field col s12">
@@ -156,7 +159,7 @@ class Register extends Component {
                     invalid: errors.name,
                   })}
                 />
-                <label htmlFor="name">Name</label>
+                <Label style={{marginLeft: 5}} htmlFor="name">Name</Label>
                 <span className="red-text">{errors.name}</span>
               </div>
               <div className="input-field col s12">
@@ -170,7 +173,7 @@ class Register extends Component {
                     invalid: errors.email,
                   })}
                 />
-                <label htmlFor="email">Email</label>
+                <Label style={{marginLeft: 5}}  htmlFor="email">Email</Label>
                 <span className="red-text">{errors.email}</span>
               </div>
               <div className="input-field col s12">
@@ -184,7 +187,7 @@ class Register extends Component {
                     invalid: errors.password,
                   })}
                 />
-                <label htmlFor="password">Password</label>
+                <Label style={{marginLeft: 5}} htmlFor="password">Password</Label>
                 <span className="red-text">{errors.password}</span>
               </div>
               <div className="input-field col s12">
@@ -198,11 +201,11 @@ class Register extends Component {
                     invalid: errors.password2,
                   })}
                 />
-                <label htmlFor="password2">Confirm Password</label>
+                <Label style={{marginLeft: 5}}  htmlFor="password2" >Confirm Password</Label>
                 <span className="red-text">{errors.password2}</span>
               </div>
               <div className="col s12" style={{ paddingLeft: "11.250px" }}>
-                <button
+                <Button
                   style={{
                     width: "150px",
                     borderRadius: "3px",
@@ -213,12 +216,13 @@ class Register extends Component {
                   className="btn btn-large waves-effect waves-light hoverable blue accent-3"
                 >
                   Sign up
-                </button>
+                </Button>
               </div>
             </form>
           </div>
-        </div>
-      </div>
+        </Row>
+      </Container>
+      </Wrapper>
     );
   }
 }
