@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import API from "../../utils/API";
 import Nav from "../Nav";
 import TripCard from "../TripCard";
-import {Image, Title} from "../Styled";
+import {Image, Title, Wrapper} from "../Styled";
 const axios = require("axios");
 
 class TripAdvisor extends Component {
@@ -14,9 +14,7 @@ class TripAdvisor extends Component {
       loading: false,
       hasError: false
     }
-
   }
-
 
   componentDidMount(){
     this.searchTripId(this.props.state.state, this.props.state.city, this.props.state.sightseeing)
@@ -102,14 +100,10 @@ class TripAdvisor extends Component {
               this.setState({ trips : tripsArray, loading: false});
               console.log(this.state.trips)
             })
-            .catch((error)=>{
-              console.log(error)
-            })
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  }
+            .catch(err => this.setState({hasError: true, loading: false}));
+          })
+      .catch(err => this.setState({hasError: true, loading: false}));
+    }
 
   saveTrip = (trip) => {
     console.log(trip)
@@ -120,7 +114,7 @@ class TripAdvisor extends Component {
 
   render() {
     return (
-      <div>
+      <Wrapper>
       <Nav />
       {this.state.loading && <Image className="loading" src={process.env.PUBLIC_URL + './img/loading.gif'} alt="loading" />}
         {this.state.hasError && <Title>There was an error searching for your Request. Please try again later.</Title>}
@@ -143,7 +137,7 @@ class TripAdvisor extends Component {
       ) : (
       <h3>No Results to Display</h3>
       )}  
-    </div>
+    </Wrapper>
         );
       }
     }

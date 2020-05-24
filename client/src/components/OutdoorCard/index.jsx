@@ -12,8 +12,8 @@ function OutdoorCard(props) {
           <Title>{props.name}</Title>
         </Col>
         <Col size="md-4">
-          <SiteBtn href={props.link}> Park Site </SiteBtn>
-          <SaveBtn onClick={() => this.saveSite(props.site)} />
+          {props.link === "missing" ? <White>Missing</White> : <SiteBtn href={props.link}> Park Site </SiteBtn> }
+          <SaveBtn onClick={() => this.saveSite(props.site)} />        
         </Col>
       </Row>
 

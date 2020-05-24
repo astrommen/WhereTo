@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
 import Nav from "../Nav";
+import {Wrapper, Title, Image} from "../Styled";
 import WalkCard from "../WalkCard"
 
 class Walk extends Component {
   state = {
     walk: [],
-    city: "Paris"
+    city: "Paris",
+    loading: false,
+    hasError: false
   }
 
   componentDidMount() {
@@ -21,7 +24,7 @@ class Walk extends Component {
       this.setState({ walk : res.data})
       // console.log(this.state.walk)
     })
-    .catch(err => console.log(err))
+    .catch(err => this.setState({hasError: true, loading: false}));
   }
 
   handleInputChange = event => {
@@ -46,8 +49,10 @@ class Walk extends Component {
 
   render() {
     return (
-      <div>
+      <Wrapper>
         <Nav />
+        {this.state.loading && <Image className="loading" src={process.env.PUBLIC_URL + './img/loading.gif'} alt="loading" />}
+        {this.state.hasError && <Title>There was an error searching for your Request. Please try again later.</Title>}
         {this.state.walk ? (
           <WalkCard
           walkTime={this.state.walk.walkTime}
@@ -55,7 +60,7 @@ class Walk extends Component {
           stops={this.state.walk.stops}
           />
         ) : <h3>No Results to Display</h3>}
-      </div>
+      </Wrapper>
     );
   }
 }

@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { Redirect } from 'react-router-dom'
-import Wrapper from "../components/Wrapper";
+// import Wrapper from "../components/Wrapper";
 import { Container, Row, Col } from "../components/Grid";
 import VacationBtn from "../components/VacationBtn";
 import ProfileBox from "../components/profileBox"
 import ProfileFormBox from "../components/ProfileFormBox";
+import {White, Title, Wrapper} from "../components/Styled";
 import API from "../utils/API";
 import jwt_decode from "jwt-decode";
 
@@ -126,22 +127,23 @@ class Profile extends Component {
 
   render() {
     return (
-      <div className="">
-        <div className="row justify-content-around">
-          <div className="col-md-6">
+    <Wrapper>
+      <Container>
+        <Row className="justify-content-around">
+          <Col size="md-6">
             <ProfileBox
               name={this.state.name}
               history={this.props.history}
               logoutUser={this.props.logoutUser}
             />
-          </div>
-          <div className="col-md-6">
+          </Col>
+          <Col size="md-6">
             <ProfileFormBox />
-          </div>
-        </div>
-        <div className="row mt-5  justisfy-content-around">
-          <div className="col-md-6">
-            <h4>Past Vacations</h4>
+          </Col>
+        </Row>
+        <Row className="mt-5  justisfy-content-around">
+          <Col size="md-6">
+            <Title>Past Vacations</Title>
             {this.state.pastVaca.map(items => (
               < VacationBtn
                 key={items.key}
@@ -149,9 +151,9 @@ class Profile extends Component {
                 local={items.local}
               />
             ))}
-          </div>
-          <div className="col-md-6">
-            <h4>Upcoming Vacations</h4>
+          </Col>
+          <Col size="md-6">
+            <Title>Upcoming Vacations</Title>
             {this.state.upcomingVaca.map(items => (
               <VacationBtn
                 key={items.key}
@@ -159,26 +161,27 @@ class Profile extends Component {
                 local={items.local}
               />
             ))}
-          </div>
-        </div>
-        <div className="row justify-content-around mt-5">
-          <div className="col-md-10">
+          </Col>
+        </Row>
+        <Row className="justify-content-around mt-5">
+          <Col size="md-10">
             <div className="card">
               <h5 className="card-header">
                 Card title
 				</h5>
               <div className="card-body">
-                <p className="card-text">
+                <White className="card-text">
                   Card content
-					</p>
+					</White>
               </div>
               <div className="card-footer">
                 Card footer
 				</div>
             </div>
-          </div>
-        </div>
-      </div>
+          </Col>
+        </Row>
+      </Container>
+    </Wrapper>
     );
   }
 }

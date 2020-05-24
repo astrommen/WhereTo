@@ -1,6 +1,6 @@
 import React, { Component }  from 'react';
 import Nav from "../components/Nav"
-import {White} from "../components/Styled";
+import {Title} from "../components/Styled";
 
 class Vacation extends Component {
 
@@ -8,7 +8,7 @@ class Vacation extends Component {
     return (
       <div>
         <Nav/>
-        <White>Start Compiling your Vaction</White>
+        <Title>Start Compiling your Vaction</Title>
       </div>
     );
   }
