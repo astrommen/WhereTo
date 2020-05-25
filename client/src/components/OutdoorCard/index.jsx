@@ -1,7 +1,7 @@
 import React  from 'react';
 import { Container, Row, Col } from "../Grid";
 import { SiteBtn, SaveBtn, DisabledBtn} from "../Buttons";
-import {Image, ImgDes, Title, White} from "../Styled";
+import {Image, ImgDes, Title, White, Event} from "../Styled";
 
 function OutdoorCard(props) {
   return(

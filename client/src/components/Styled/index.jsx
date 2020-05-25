@@ -26,6 +26,13 @@ heigth: 15%;
 width: 15%;
 `
 
+export const Event = styled.img `
+display: block;
+margin-left: auto;
+margin-right: auto;
+box-shadow: 0 0 2 2 white;
+`
+
 export const Identify = styled.span `
 font-weight: bold;`
 
@@ -97,7 +104,7 @@ font-family: 'Cabin Condensed', sans-serif;
 export const Website = styled.a `
 text-decoration: none;
 text-align: center;
-font-size: 17px;
+font-size: 20px;
 color: white;
 display: block;
 margin-left: auto;
@@ -115,11 +122,11 @@ color: white;
 font-family: 'Lato', sans-serif;
 font-size: 20px;
 `
-export const ActivitiesT = styled.p `
+
+export const Center = styled.p `
 color: white;
-font-family: 'Lato', sans-serif;
-font-size: 40px;
-`
+text-align: center;
+font-size: 20px;`
 
 export const White = styled.p `
 color: white;
