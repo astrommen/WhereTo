@@ -63,7 +63,8 @@ class Yelp extends Component {
   handleFormSubmit = event => {
     event.preventDefault(); 
     console.log("breakfast: ", this.state.breakfast + "\n dinner: ", this.state.dinner, "\n dessert: " , this.state.dessert, "\n foodType: ", this.state.foodType,  "\n drinks: ", this.state.drinks);
-    this.searchFood(this.props.state.state, this.props.state.city, this.state.breakfast, this.state.dessert, this.state.dinner, this.state.foodType, this.state.drinks)
+    this.searchFood(this.props.state.state, this.props.state.city, this.state.breakfast, this.state.dessert, this.state.dinner, this.state.foodType, this.state.drinks);
+    this.setState({foodType: '', drinks: '' })
   }
 
   saveEatery = (eatery) => {
