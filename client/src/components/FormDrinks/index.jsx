@@ -1,5 +1,5 @@
 import React from "react";
-import {Label, Wrapper, Image, Submit} from "../Styled";
+import {Label, Wrapper, Image} from "../Styled";
 import {Container, Row, Col} from "../Grid";
 import "./style.css";
 
@@ -9,10 +9,12 @@ function FormDrinks(props) {
     <Wrapper>
       <Container>
       <form className="mt-4" >
+      
         <Row className="text-center">
-          <Col size="md-2">
-            <Image className="img-fluid" alt="drinks" src={process.env.PUBLIC_URL + "./img/activities/bar.png"} />
+          <Col size="md-1">
+            <Image className="img-fluid" alt="drinks" src="./img/activities/bar.png" />
           </Col>
+
           <Col size="md-5" className="form-group">
             <Label htmlFor="inputDrinks">Type of Drinks:</Label>
             <select id="inputDrinks"
@@ -30,8 +32,8 @@ function FormDrinks(props) {
               <option value="winetours">Wine Tours</option>
             </select>
           </Col>
-          <Col size="md-2">
-            <Submit type="Submit" onClick={props.handleFormSubmit}><i class="fas fa-glass-whiskey"></i> Submit</Submit>
+          <Col size="md-3">
+            <button type="Submit" onClick={props.handleFormSubmit}>Submit</button>
           </Col>
           </Row>
 
