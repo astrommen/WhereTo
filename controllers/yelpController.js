@@ -2,26 +2,26 @@ const axios = require("axios");
 const db = require("../models");
 
 module.exports = {
-  findAll: function (req, res) {
-    const { query: params } = req;
-    let url = (`${'https://cors-anywhere.herokuapp.com/'}https://api.yelp.com/v3/businesses/search`)
-    const config = {
-      headers: {
-        'Authorization': `Bearer ${process.env.REACT_APP_YELP_APIKEY}`,
-        "X-Requested-With": "XMLHttpRequest",
-        "dataType": 'jsonp',
-        "Access-Control-Allow-Origin": "*",
-      }
-      ,
-      params: {
-        term: params.term,
-        location: params.location,
-      }
-    };
-    axios
-      .get(url, config)
-      .then(results => results.data.businesses.map(
-        result =>
+    findAll: function(req, res) {
+        const {query:params} = req;
+        let url = (`${'https://cors-anywhere.herokuapp.com/'}https://api.yelp.com/v3/businesses/search`)
+        const config = {
+          headers: {
+            'Authorization': `Bearer ${process.env.REACT_APP_YELP_APIKEY}`,
+            "X-Requested-With": "XMLHttpRequest",
+            "dataType": 'jsonp',
+            "Access-Control-Allow-Origin": "*",
+          }
+          ,
+          params: {
+            term: params.term,
+            location: params.location,
+          }
+        };
+        axios
+        .get(url, config)
+        .then(results => results.data.businesses.map(
+          result =>
           ({
             id: result.id,
             name: result.name,
