@@ -27,7 +27,6 @@ export default {
                 distance: distance,
                 dateStart: dateStart,
                 city: city,
-                state: state
             }
         })
     },
@@ -49,7 +48,7 @@ export default {
         return axios.get("/api/ribd", {
             params: {
                 location: city + "," + state,
-                activities: boating + fishing + hiking + beach
+                activities: boating + fishing + hiking + beach + camping + swimming,
             }
         })
     },

@@ -3,7 +3,7 @@ import API from "../../utils/API";
 import Nav from "../Nav";
 import OutdoorCard from "../OutdoorCard";
 import FormOutdoors from "../FormOutdoors";
-import { Image, Title, Wrapper, Jumbo, White } from "../Styled";
+import {Image, Title, Wrapper} from "../Styled";
 
 class Outdoor extends Component {
   constructor(props) {
@@ -38,7 +38,6 @@ class Outdoor extends Component {
     .catch(err => this.setState({hasError: true, loading: false}));
   };
 
-
   handleInputChange = event => {
     const { name, value } = event.target;
     
@@ -66,7 +65,7 @@ class Outdoor extends Component {
     event.preventDefault(); 
 
     this.searchOutdoors(this.props.state.state, this.props.state.city, this.state.boating, this.state.fishing, this.state.hiking, this.state.beach, this.state.camping, this.state.swimming);
-    // console.log("results: " , this.state.boating, this.state.fishing, this.state.hiking, this.state.beach, this.state.camping, this.state.swimming)
+    console.log("results: " , this.state.boating, this.state.fishing, this.state.hiking, this.state.beach, this.state.camping, this.state.swimming)
   }
 
 
@@ -80,13 +79,10 @@ class Outdoor extends Component {
     return (
       <Wrapper>
         <Nav />
-        <Jumbo>
         <FormOutdoors 
         value={this.state.value}
         handleInputChange={this.handleInputChange}
         handleFormSubmit={this.handleFormSubmit}/>
-        </Jumbo>
-      
         {this.state.loading && <Image className="loading" src={process.env.PUBLIC_URL + './img/loading.gif'} alt="loading" />}
         {this.state.hasError &&             
             <Jumbo>
