@@ -1,7 +1,7 @@
 import React  from 'react';
 import { Container, Row, Col } from "../Grid";
 import { SiteBtn, SaveBtn, DisabledBtn} from "../Buttons";
-import {Image, ImgDes, Title, White, Event} from "../Styled";
+import {Image, ImgDes, Title, White, Event, Identify} from "../Styled";
 
 function OutdoorCard(props) {
   return(
@@ -13,7 +13,7 @@ function OutdoorCard(props) {
           <Title>{props.name}</Title>
         </Col>
         <Col size="md-4">
-          {props.link === "missing" ? <DisabledBtn>Missing</DisabledBtn> : <SiteBtn href={props.link}> Park Site </SiteBtn> }
+          {props.link === "missing" ? <DisabledBtn>No Park Website</DisabledBtn> : <SiteBtn href={props.link}> Park Website </SiteBtn> }
           <SaveBtn onClick={() => this.saveSite(props.site)} />        
         </Col>
       </Row>
