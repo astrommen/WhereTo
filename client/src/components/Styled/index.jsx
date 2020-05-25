@@ -53,13 +53,16 @@ font-family: 'Cabin Condensed', sans-serif;
 export const Website = styled.a `
 text-decoration: none;
 text-align: center;
-font-size: 20px;
+font-size: 17px;
 color: white;
+display: block;
+margin-left: auto;
+margin-right: auto;
 
-& :link, :hover, :active, :visited {
+&:link, :hover, :active, :visited {
     text-decoration: none;
-    color: white;
-    text-shadow: 0px 0px 2px #60144C;
+    font-weight: bold;
+    text-shadow: 0px 0px 2px #FFC300;
 }
 `
 

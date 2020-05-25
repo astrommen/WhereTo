@@ -1,7 +1,7 @@
 import React  from 'react';
 import { Container, Row, Col } from "../Grid";
 import { SiteBtn, SaveBtn, DisabledBtn} from "../Buttons";
-import {Image, ImgDes, Title, White, Event} from "../Styled";
+import {Image, ImgDes, Title, White, Event, Identify} from "../Styled";
 
 function OutdoorCard(props) {
   return(
@@ -13,7 +13,7 @@ function OutdoorCard(props) {
           <Title>{props.name}</Title>
         </Col>
         <Col size="md-4">
-          {props.link === "missing" ? <DisabledBtn>Missing</DisabledBtn> : <SiteBtn href={props.link}> Park Site </SiteBtn> }
+          {props.link === "missing" ? <DisabledBtn>No Park Website</DisabledBtn> : <SiteBtn href={props.link}> Park Website </SiteBtn> }
           <SaveBtn onClick={() => this.saveSite(props.site)} />        
         </Col>
       </Row>
@@ -27,18 +27,18 @@ function OutdoorCard(props) {
           <Container>
             <Row>
               <Col size="md-12">
-                <White>Address: {props.street}, {props.city}, {props.state} {props.postalCode}</White>
+                <White><Identify>Address: </Identify>{props.street}, {props.city}, {props.state} {props.postalCode}</White>
               </Col>
             </Row>
             <Row>
               <Col size="md-12">
-                <White>Directions: {props.directions}</White>
+                <White><Identify>Directions: </Identify>{props.directions}</White>
               </Col>
             </Row>
 
             <Row>
               <Col size="md-12">
-                <White>{props.activities.map(activity => 
+                <White><Identify>Activities Available at Park: </Identify>{props.activities.map(activity => 
                   activity.ActivityName ).join(", ")}</White>
               </Col>
             </Row>
@@ -48,7 +48,7 @@ function OutdoorCard(props) {
       </Row>
       <Row>
         <Col size="md-12">
-          <White>Description: {props.description}</White>
+          <White><Identify>Description: </Identify>{props.description}</White>
         </Col>     
       </Row>
 

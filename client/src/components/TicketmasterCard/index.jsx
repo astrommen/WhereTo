@@ -29,12 +29,13 @@ function TicketmasterCard(props) {
           </Row>
           <Row>
             <Col size="md-6">
-                <Website href={props.venueUrl} target="_blank" rel="noopener noreferrer"><Icon src="./img/location/stadium.png" alt="seatMap" />
-                {props.venueName}
+                <Website href={props.venueUrl} target="_blank" rel="noopener noreferrer">
+                  <Icon src="./img/location/stadium.png" alt="stadium icon" />
+                  {props.venueName}
                 </Website>
-              </Col>
-              <Col size="md-6">
-              {props.seatmapLink === ""  ? <Center>Seat Map Not Available</Center> : <Website href={props.seatmapLink} target="_blank" rel="noopener noreferrer">
+            </Col>
+            <Col size="md-6">
+              {props.seatmapLink === ""  ? <Center>Seatmap not Available or Required</Center> : <Website href={props.seatmapLink} target="_blank" rel="noopener noreferrer">
               <Icon src="./img/location/seat.png" alt="seatMap" /> SeatMap
               </Website> }
             </Col>
