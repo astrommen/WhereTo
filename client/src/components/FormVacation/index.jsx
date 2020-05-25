@@ -50,7 +50,7 @@ class FormVacation extends Component {
       date: dateFill,
       tomorrow: tomorrowFill,
       redirect: false,
-      local: true,
+      local: false,
       whichPage: "",
       tripName: "",
       dateStart: dateFill,
@@ -125,10 +125,6 @@ class FormVacation extends Component {
       dessert: this.state.dessert,
       drinks: this.state.drinks,
       foodType: this.state.foodType,
-      sightseeing: [String],
-      food: [String],
-      events: [String],
-      outdoors: [String],
     });
   }
 

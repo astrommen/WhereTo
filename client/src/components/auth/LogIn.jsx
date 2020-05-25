@@ -6,6 +6,7 @@ import { loginUser } from "../../actions/authActions";
 import classnames from "classnames";
 import {Wrapper, Title, White, Label, Button} from "../Styled";
 import {Container, Row, Col} from "../Grid";
+
 class LogIn extends Component {
   constructor() {
     super();
@@ -59,7 +60,7 @@ class LogIn extends Component {
                 <b>Login</b> below
               </Title>
               <White className="grey-text text-darken-1">
-                Don't have an account?  <Link to="/register"><b><i class="fas fa-sign-in-alt"></i> Register</b></Link>
+                Don't have an account?  <Link to="/register"><b><i class="fas fa-user-plus"></i> Register</b></Link>
               </White>
             </div>
             

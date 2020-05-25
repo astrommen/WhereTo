@@ -6,7 +6,7 @@ router.route("/")
 .post(triposoController.create);
 
 router.route("/:id")
-.create(triposoController.findById)
+.get(triposoController.findById)
 .put(triposoController.update)
 .delete(triposoController.remove);
 

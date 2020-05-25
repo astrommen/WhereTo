@@ -1,18 +1,19 @@
 import React  from 'react';
 import { Container, Row, Col } from "../Grid";
-import { SiteBtn, SaveBtn} from "../Buttons";
-import {Image, ImgDes, Title, White} from "../Styled";
+import { SiteBtn, SaveBtn, DisabledBtn} from "../Buttons";
+import {Image, ImgDes, Title, White, Event} from "../Styled";
 
 function OutdoorCard(props) {
   return(
     <div>
     <Container>
       <Row>
-        <Col size="md-8">
+      <Col size="md-1"><Event src={process.env.PUBLIC_URL + './img/activities/hiking.png'} className="img-fluid" alt="sightseeing icon" /></Col>
+        <Col size="md-7">
           <Title>{props.name}</Title>
         </Col>
         <Col size="md-4">
-          {props.link === "missing" ? <White>Missing</White> : <SiteBtn href={props.link}> Park Site </SiteBtn> }
+          {props.link === "missing" ? <DisabledBtn>Missing</DisabledBtn> : <SiteBtn href={props.link}> Park Site </SiteBtn> }
           <SaveBtn onClick={() => this.saveSite(props.site)} />        
         </Col>
       </Row>
