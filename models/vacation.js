@@ -18,16 +18,13 @@ var vacationSchema = new Schema({
   concert: String,
   sports: String,
   theatre: String,
-  sightseeing: String,
+  // sightseeing: String,
   breakfast: String,
   dinner: String,
   dessert: String,
   drinks: String,
   foodType: String,
-  sightseeing: [{
-    type: Schema.Types.ObjectId,
-    ref: "Sightseeing"
-  }],
+  sightseeing: [Object],
   food: [{
     type: Schema.Types.ObjectId,
     ref: "Food"

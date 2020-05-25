@@ -5,7 +5,7 @@ import { Container, Row, Col } from "../components/Grid";
 import VacationBtn from "../components/VacationBtn";
 import ProfileBox from "../components/profileBox"
 import ProfileFormBox from "../components/ProfileFormBox";
-import {White, Title, Wrapper} from "../components/Styled";
+import { White, Title, Wrapper } from "../components/Styled";
 import API from "../utils/API";
 import jwt_decode from "jwt-decode";
 
@@ -96,13 +96,12 @@ class Profile extends Component {
       let obj = {}
       API.getVacations(data.id).then((res) => {
         // console.log(res.data)
-        obj.name = res.data.name;
+        obj.name = res.data.tripName;
         obj.key = res.data._id;
         obj.startDate = res.data.startDate;
         obj.endDate = res.data.endDate;
-        obj.activities = res.data.activities;
         obj.local = res.data.local;
-        if (this.state.date < res.data.startDate.slice(0, 10)) {
+        if (this.state.date < res.data.dateStart.slice(0, 10)) {
           upcomingArr.push(obj)
           this.setState({
             upcomingVaca: upcomingArr
@@ -127,61 +126,61 @@ class Profile extends Component {
 
   render() {
     return (
-    <Wrapper>
-      <Container>
-        <Row className="justify-content-around">
-          <Col size="md-6">
-            <ProfileBox
-              name={this.state.name}
-              history={this.props.history}
-              logoutUser={this.props.logoutUser}
-            />
-          </Col>
-          <Col size="md-6">
-            <ProfileFormBox />
-          </Col>
-        </Row>
-        <Row className="mt-5  justisfy-content-around">
-          <Col size="md-6">
-            <Title>Past Vacations</Title>
-            {this.state.pastVaca.map(items => (
-              < VacationBtn
-                key={items.key}
-                name={items.name}
-                local={items.local}
+      <Wrapper>
+        <Container>
+          <Row className="justify-content-around">
+            <Col size="md-6">
+              <ProfileBox
+                name={this.state.name}
+                history={this.props.history}
+                logoutUser={this.props.logoutUser}
               />
-            ))}
-          </Col>
-          <Col size="md-6">
-            <Title>Upcoming Vacations</Title>
-            {this.state.upcomingVaca.map(items => (
-              <VacationBtn
-                key={items.key}
-                name={items.name}
-                local={items.local}
-              />
-            ))}
-          </Col>
-        </Row>
-        <Row className="justify-content-around mt-5">
-          <Col size="md-10">
-            <div className="card">
-              <h5 className="card-header">
-                Card title
+            </Col>
+            <Col size="md-6">
+              <ProfileFormBox />
+            </Col>
+          </Row>
+          <Row className="mt-5  justisfy-content-around">
+            <Col size="md-6">
+              <Title>Past Vacations</Title>
+              {this.state.pastVaca.map(items => (
+                < VacationBtn
+                  key={items.key}
+                  name={items.name}
+                  local={items.local}
+                />
+              ))}
+            </Col>
+            <Col size="md-6">
+              <Title>Upcoming Vacations</Title>
+              {this.state.upcomingVaca.map(items => (
+                <VacationBtn
+                  key={items.key}
+                  name={items.name}
+                  local={items.local}
+                />
+              ))}
+            </Col>
+          </Row>
+          <Row className="justify-content-around mt-5">
+            <Col size="md-10">
+              <div className="card">
+                <h5 className="card-header">
+                  Card title
 				</h5>
-              <div className="card-body">
-                <White className="card-text">
-                  Card content
+                <div className="card-body">
+                  <White className="card-text">
+                    Card content
 					</White>
-              </div>
-              <div className="card-footer">
-                Card footer
+                </div>
+                <div className="card-footer">
+                  Card footer
 				</div>
-            </div>
-          </Col>
-        </Row>
-      </Container>
-    </Wrapper>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </Wrapper>
     );
   }
 }
