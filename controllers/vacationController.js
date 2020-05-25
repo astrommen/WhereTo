@@ -20,13 +20,22 @@ module.exports = {
     db.Vacation
       .create(req.body)
       .then(dbModel => {
-        return db.User.findOneAndUpdate({ _id: req.body.userId }, { $push: { vacations: dbModel._id } }, { new: true }).then(dbUser => res.json(dbUser)).catch(err => res.status(422).json(err));
+        return db.User.findOneAndUpdate({ _id: req.body.userId }, { $push: { vacations: dbModel._id } }, { new: true }).then(dbUser => res.json(dbModel)).catch(err => res.status(422).json(err));
       })
   },
   update: function (req, res) {
     db.Vacation
       .findOneAndUpdate({ _id: req.params.id }, req.body)
       .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  updateSightseeing: function (req, res) {
+    db.Vacation
+      .findOneAndUpdate({ _id: req.params.id }, { $push: { sightseeing: req.body } }, { new: true })
+      .then(dbUser => {
+        console.log("AWDAWD")
+        res.json(dbUser)
+      })
       .catch(err => res.status(422).json(err));
   },
   remove: function (req, res) {

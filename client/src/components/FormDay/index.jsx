@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from 'react-router-dom'
-import {Label, Wrapper} from "../Styled";
+import { Label, Wrapper } from "../Styled";
 import jwt_decode from "jwt-decode";
 import "./style.css";
 import API from "../../utils/API";
@@ -47,6 +47,7 @@ class FormDay extends Component {
 
     this.state = {
       userId: user,
+      vacaId: '',
       date: dateFill,
       tomorrow: tomorrowFill,
       redirect: false,
@@ -72,16 +73,24 @@ class FormDay extends Component {
     };
   }
 
+
+
   saveTrip = (vacation) => {
     console.log("FormDay")
     API.saveTrip(vacation)
-      .then(res => console.log(res))
-      .catch(err => console.log(err))
+      .then(res => {
+        localStorage.setItem('vacaId', res.data._id);
+        console.log(res.data._id)
+        this.setState({
+          vacaId: res.data._id
+        })
+        this.props.updateAppState(this.state);
+        this.props.history.push("/daytrip")
+      }).catch(err => console.log(err))
   }
 
   handleInputChange = event => {
     const { name, value } = event.target;
-
     if (event.target.type === "checkbox") {
       if (!this.state[name]) {
 
@@ -102,8 +111,6 @@ class FormDay extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    this.props.updateAppState(this.state);
-    this.props.history.push("/daytrip")
     this.saveTrip({
       userId: this.state.userId,
       tripName: this.state.tripName,
@@ -180,8 +187,10 @@ class FormDay extends Component {
                 name="state"
                 value={this.state.value}
                 onChange={this.handleInputChange}
-                id="inputState" className="form-control">
-                <option defaultValue>Choose...</option>
+                id="inputState" className="form-control"
+                required
+              >
+                <option value=''>Choose...</option>
                 <option value="AK">Alaska</option>
                 <option value="AL">Alabama</option>
                 <option value="AR">Arkansas</option>
@@ -244,7 +253,8 @@ class FormDay extends Component {
                 name="breakfast"
                 value="breakfast_brunch"
                 defaultChecked={this.state.breakfast}
-                onClick={this.handleInputChange} />
+                onClick={this.handleInputChange}
+              />
               <Label htmlFor="cb1"><img alt="" src="./img/activities/breakfast.png" /><p>Breakfast</p></Label></div>
 
             <div className="col-sm-6 col-lg-2"><input type="checkbox" id="cb2"
