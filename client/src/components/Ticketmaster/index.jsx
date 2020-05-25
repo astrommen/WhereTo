@@ -2,6 +2,7 @@ import React, { Component }  from 'react';
 import API from "../../utils/API";
 import Nav from "../Nav";
 import TicketmasterCard from "../TicketmasterCard"
+import FormEvents from "../FormEvents"
 import {Image, Wrapper} from "../Styled";
 
 class Ticketmaster extends Component {
@@ -11,18 +12,50 @@ class Ticketmaster extends Component {
       events: [],
       distance: "50",
       loading: false,
-      hasError: false
+      hasError: false,
+      concert: "",
+      sports: "",
+      theatre: "",
+      film: "",
+      family: ""
     }
   }
 
   componentDidMount() {
     console.log("ticketmaster", this.props.state)
-    this.searchTickets(this.props.state.sports, this.props.state.concert, this.props.state.theatre, this.state.distance, this.props.state.dateStart, this.props.state.city);
+  };
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    
+    if (event.target.type === "checkbox") {
+      if (!this.state[name]) {
+        console.log("check")
+        this.setState({
+          [name]: value
+        });
+      } else {
+        console.log("check")
+        this.setState({
+          [name]: ''
+        });
+      }
+    } else {
+      this.setState({
+        [name]: value
+      });
+      console.log(this.state.foodType)
+    }
   };
 
-  searchTickets = (sports, concert, theatre, distance, state, dateStart, city) => {
+  handleFormSubmit = event => {
+    event.preventDefault(); 
+    console.log("family: ", this.state.family + "\n film: ", this.state.film, "\n theatre: " , this.state.theatre, "\n concert: ", this.state.concert,  "\n sports: ", this.state.sports);
+    this.searchTickets(this.state.sports, this.state.concert, this.state.theatre, this.state.distance, this.props.state.dateStart, this.props.state.city, this.state.film, this.state.family);
+  }
+
+  searchTickets = (sports, concert, theatre, distance, state, dateStart, city, film, family) => {
     this.setState({loading: true})
-    API.callTicketmasterD(sports, concert, theatre, distance, state, dateStart, city)
+    API.callTicketmasterD(sports, concert, theatre, distance, state, dateStart, city, film, family)
     .then(res => {
       this.setState({ events : res.data, loading: false})
     })
@@ -40,6 +73,11 @@ class Ticketmaster extends Component {
     return (
       <Wrapper>
         <Nav />
+        <FormEvents 
+        value={this.state.value}
+        handleInputChange={this.handleInputChange}
+        handleFormSubmit={this.handleFormSubmit}/>
+        
         {this.state.loading && <Image className="loading" src={process.env.PUBLIC_URL + './img/loading.gif'} alt="loading" />}
         {this.state.hasError && <h1>There was an error searching for your Request. Please try again later.</h1>}
         {this.state.events.length > 0 ? (

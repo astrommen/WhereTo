@@ -14,11 +14,11 @@ export default {
         })
     },
     //Ticketmaster
-    callTicketmasterV: function (activity, distance, dateStart, dateEnd, city) {
+    callTicketmasterV: function (concert, sports, theatre, film, family, distance, dateStart, dateEnd, city) {
         return axios.get("/api/ticketmaster", {
             params:
             {
-                activity: activity,
+                activity: concert + sports + theatre + film + family,
                 distance: distance,
                 dateStart: dateStart,
                 dateEnd: dateEnd,
