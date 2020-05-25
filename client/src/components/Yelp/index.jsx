@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import API from "../../utils/API";
 import Nav from "../Nav";
 import FoodForm from "../FoodForm";
+import FormDrinks from "../FormDrinks"
 import YelpCard from "../YelpCard";
 import {Image, Title, Wrapper} from "../Styled";
 
@@ -14,7 +15,7 @@ class Yelp extends Component {
       breakfast: "",
       dinner: "",
       dessert: "",
-      // drinks: "",
+      drinks: "",
       foodType: "",
       loading: false,
       hasError: false
@@ -26,9 +27,9 @@ class Yelp extends Component {
     // this.searchFood(this.props.state.state, this.props.state.city, this.props.state.breakfast, this.props.state.foodType, this.props.state.dinner, this.props.state.drinks, this.props.state.dessert)
   }
 
-  searchFood = (state, city, breakfast, dinner, dessert, foodType) => {
+  searchFood = (state, city, breakfast, dinner, dessert, drinks, foodType) => {
     this.setState({loading: true})
-    API.callYelp(state, city, breakfast, dinner, dessert, foodType)
+    API.callYelp(state, city, breakfast, dinner, dessert, drinks, foodType)
     .then(res => {
       this.setState({ eateries : res.data, loading: false})
     })
@@ -62,8 +63,8 @@ class Yelp extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault(); 
-    console.log("breakfast: ", this.state.breakfast + "\n dinner: ", this.state.dinner, "\n dessert: " , this.state.dessert, "/n foodType: ", this.state.foodType );
-    this.searchFood(this.props.state.state, this.props.state.city, this.state.breakfast, this.state.dessert, this.state.dinner, this.state.foodType)
+    console.log("breakfast: ", this.state.breakfast + "\n dinner: ", this.state.dinner, "\n dessert: " , this.state.dessert, "\n foodType: ", this.state.foodType,  "\n drinks: ", this.state.drinks);
+    this.searchFood(this.props.state.state, this.props.state.city, this.state.breakfast, this.state.dessert, this.state.dinner, this.state.foodType, this.state.drinks)
   }
 
   saveEatery = (eatery) => {
@@ -77,6 +78,10 @@ class Yelp extends Component {
       <Wrapper>
         <Nav />
         <FoodForm 
+        value={this.state.value}
+        handleInputChange={this.handleInputChange}
+        handleFormSubmit={this.handleFormSubmit}/>
+        <FormDrinks 
         value={this.state.value}
         handleInputChange={this.handleInputChange}
         handleFormSubmit={this.handleFormSubmit}/>
