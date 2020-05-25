@@ -69,42 +69,6 @@ function FoodForm(props) {
             </select>
           </Col>
           </Row>
-      {/* <Row>
-          <Col size="md-2">
-            <Center><img  className="img-fluid" alt="" src="./img/activities/bar.png" /><p>Drinks</p></Center>
-          </Col>
-          <Col size="md-4" className="form-group">
-            <Label htmlFor="inputState">Drinkery Type:</Label>
-            <select id="inputState"
-              name="foodType"
-              value={this.state.value}
-              onClick={this.props.handleInputChange} className="form-control">
-              <option defaultValue>Choose...</option>
-              <option value="tradamerican">American</option>
-              <option value="asianfusion">Asian Fusion</option>
-              <option value="bbq">Barbeque</option>
-              <option value="buffets">Buffets</option>
-              <option value="cajun">Cajun/Creole</option>
-              <option value="chinese">Chinese</option>
-              <option value="comfortfood">Comfort Food</option>
-              <option value="delis">Delis</option>
-              <option value="diners">Diners</option>
-              <option value="Greek">Greek</option>
-              <option value="indpak">Indian</option>
-              <option value="Italitalianian">Italian</option>
-              <option value="japanese">Japanese</option>
-              <option value="jewish">Jewish</option>
-              <option value="">Mediterranean</option>
-              <option value="mediterranean">Mexican</option>
-              <option value="pizza">Pizza</option>
-              <option value="sandwiches">Sandwiches</option>
-              <option value="sushi">Sushi</option>
-              <option value="thai">Thai</option>
-              <option value="vegan">Vegan</option>
-              <option value="vegetarian">Vegetarian</option>
-            </select>
-          </Col>
-        </Row> */}
         <Row>
           <Col size="md-4">
             <button type="Submit" onClick={props.handleFormSubmit}>Submit</button>
