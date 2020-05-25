@@ -11,9 +11,28 @@ var vacationSchema = new Schema({
   endDate: Date,
   city: String,
   state: String,
+  boating: String,
+  fishing: String,
+  hiking: String,
+  beach: String,
+  concert: String,
+  sports: String,
+  theatre: String,
+  // sightseeing: String,
+  breakfast: String,
+  dinner: String,
+  dessert: String,
+  drinks: String,
+  foodType: String,
   sightseeing: [Object],
-  food: [Object],
-  events: [Object],
+  food: [{
+    type: Schema.Types.ObjectId,
+    ref: "Food"
+  }],
+  events: [{
+    type: Schema.Types.ObjectId,
+    ref: "Event"
+  }],
   outdoors: [{
     type: Schema.Types.ObjectId,
     ref: "Outdoor"

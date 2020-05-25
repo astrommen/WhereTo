@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { Link, withRouter } from 'react-router-dom'
-import { Label, Wrapper, Jumbo, Title, Submit } from "../Styled";
-import {Container, Row, Col} from "../Grid";
+import { withRouter } from 'react-router-dom'
+import { Label, Wrapper } from "../Styled";
 import jwt_decode from "jwt-decode";
 import "./style.css";
 import API from "../../utils/API";
@@ -60,6 +59,8 @@ class FormDay extends Component {
       state: "",
     };
   }
+
+
 
   saveTrip = (vacation) => {
     console.log("FormDay")
@@ -226,8 +227,18 @@ class FormDay extends Component {
                 <option value="WV">West Virginia</option>
                 <option value="WY">Wyoming</option>
               </select>
-            </Col>
-          </Row>
+            </div>
+          </div>
+
+          <div className="form-row text-center">
+            <div className="col-sm-6 col-lg-2">
+              <input type="checkbox" id="cb1"
+                name="breakfast"
+                value="breakfast_brunch"
+                defaultChecked={this.state.breakfast}
+                onClick={this.handleInputChange}
+              />
+              <Label htmlFor="cb1"><img alt="" src="./img/activities/breakfast.png" /><p>Breakfast</p></Label></div>
 
           <Row className="form-row text-right">
               <Submit type="submit"

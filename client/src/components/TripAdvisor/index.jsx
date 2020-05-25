@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import API from "../../utils/API";
 import Nav from "../Nav";
 import TripCard from "../TripCard";
-import { Image, White, Wrapper, Jumbo } from "../Styled";
+import { Image, Title, Wrapper } from "../Styled";
 const axios = require("axios");
 
 class TripAdvisor extends Component {
@@ -37,10 +37,30 @@ class TripAdvisor extends Component {
         console.log(res.data)
         console.log(res.data.tripName)
         this.setState({
+          // userId: user,
+          // vacaId: '5ec9ec9a10dd4e2decf1955f',
+          // date: dateFill,
+          // tomorrow: tomorrowFill,
+          // redirect: false,
+          // local: true,
+          // whichPage: "",
           tripName: res.data.tripName,
           dateStart: res.data.dateStart,
           city: res.data.city,
           state: res.data.state,
+          // boating: res.data.boating,
+          // fishing: res.data.fishing,
+          // hiking: res.data.hiking,
+          // beach: res.data.beach,
+          // concert: res.data.concert,
+          // sports: res.data.sports,
+          // theatre: res.data.theatre,
+          // sightseeing: res.data.sightseeing,
+          // breakfast: res.data.breakfast,
+          // dinner: res.data.dinner,
+          // dessert: res.data.dessert,
+          // drinks: res.data.drinks,
+          // foodType: res.data.foodType
         })
         this.searchTripId(res.data.city, res.data.state)
       }).catch(err => console.log(err))
@@ -123,6 +143,13 @@ class TripAdvisor extends Component {
       .catch(err => this.setState({ hasError: true, loading: false }));
   }
 
+  saveTrip = (trip) => {
+    console.log(trip)
+    // API.saveTrip(trip)
+    // .then(res => console.log(res))
+    // .catch(err => console.log(err))
+  }
+
   // saveTrip = (trip) => {
   //   console.log(trip)
   //   // API.saveTrip(trip)
@@ -135,13 +162,8 @@ class TripAdvisor extends Component {
       <Wrapper>
         <Nav />
         {this.state.loading && <Image className="loading" src={process.env.PUBLIC_URL + './img/loading.gif'} alt="loading" />}
-        {this.state.hasError && 
-            <Jumbo>
-            <h5>There was an error searching for your Request.</h5>
-            <White>Please try again later.</White>
-          </Jumbo>}
-
-      {this.state.trips.length > 0 ? (
+        {this.state.hasError && <Title>There was an error searching for your Request. Please try again later.</Title>}
+        {this.state.trips.length > 0 ? (
           this.state.trips.map((trip) =>
             <TripCard
               key={trip.id}
@@ -155,12 +177,11 @@ class TripAdvisor extends Component {
               rank={trip.rank}
               website={trip.website}
               image={trip.image}
-              // saveTrip={this.saveTrip()}
+              saveTrip={this.saveTrip()}
             />
           )
         ) : (
-            <Jumbo>
-            </Jumbo>
+            <h3>No Results to Display</h3>
           )}
       </Wrapper>
     );

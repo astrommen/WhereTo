@@ -23,7 +23,7 @@ export default {
         return axios.get("/api/ticketmaster", {
             params:
             {
-                activity: array,
+                activity: sports + concert + theatre,
                 distance: distance,
                 dateStart: dateStart,
                 city: city,
@@ -49,7 +49,7 @@ export default {
         return axios.get("/api/ribd", {
             params: {
                 location: city + "," + state,
-                activities: boating + fishing + hiking + beach + camping + swimming,
+                activities: boating + fishing + hiking + beach
             }
         })
     },
@@ -70,7 +70,8 @@ export default {
         return axios.get("/api/yelp", {
             params: {
                 location: city + "," + state,
-                term: breakfast + dinner + dessert + foodType + drinks,
+                term: breakfast + "," + dinner + "," + dessert + "," + drinks,
+                categories: foodType
             }
         })
     },
@@ -128,11 +129,8 @@ export default {
     deleteCountry: function (id) {
         return axios.delete("/api/country" + id);
     },
-    // saveFood: function (foodData) {
-    //     return axios.post("/api/food", foodData)
-    // },
-    saveFood: function (id, data) {
-        return axios.put("/api/yelp/food/" + id, data)
+    saveFood: function (foodData) {
+        return axios.post("/api/food", foodData)
     },
     returnFood: function () {
         return axios.get("/api/food")
@@ -140,11 +138,8 @@ export default {
     deleteFood: function (id) {
         return axios.delete("/api/food" + id);
     },
-    // saveEvent: function (eventData) {
-    //     return axios.post("/api/event", eventData)
-    // },
-    saveTicketmaster: function (id, data) {
-        return axios.put("/api/ticketmaster/event/" + id, data)
+    saveEvent: function (eventData) {
+        return axios.post("/api/event", eventData)
     },
     returnEvent: function () {
         return axios.get("/api/event")

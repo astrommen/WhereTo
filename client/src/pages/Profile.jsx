@@ -146,7 +146,6 @@ class Profile extends Component {
               {this.state.pastVaca.map(items => (
                 < VacationBtn
                   key={items.key}
-                  id={items.key}
                   name={items.name}
                   local={items.local}
                 />
@@ -157,7 +156,6 @@ class Profile extends Component {
               {this.state.upcomingVaca.map(items => (
                 <VacationBtn
                   key={items.key}
-                  id={items.key}
                   name={items.name}
                   local={items.local}
                 />
