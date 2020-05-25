@@ -14,9 +14,8 @@ module.exports = {
           }
           ,
           params: {
-            term: params.breakfast,
+            term: params.term,
             location: params.location,
-            categories: params.foodType
           }
         };
         axios

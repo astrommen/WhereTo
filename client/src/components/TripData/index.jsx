@@ -28,6 +28,7 @@ class template extends Component {
           // redirect: false,
           // local: true,
           // whichPage: "",
+          tripId: res.data._id,
           tripName: res.data.tripName,
           dateStart: res.data.dateStart,
           city: res.data.city,
@@ -55,7 +56,7 @@ class template extends Component {
     // console.log(this.state)
     return (
       <div>
-        <div className="jumbotron text-center mt-5">
+        <div className="jumbotron text-center mt-5" id={this.state.tripId}>
           <h1 className="display-4">{this.state.tripName}</h1>
           <h4>{this.state.city}, {this.state.state}</h4>
           <h5>{this.state.dateStart}</h5>

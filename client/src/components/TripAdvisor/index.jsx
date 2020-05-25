@@ -37,13 +37,6 @@ class TripAdvisor extends Component {
         console.log(res.data)
         console.log(res.data.tripName)
         this.setState({
-          // userId: user,
-          // vacaId: '5ec9ec9a10dd4e2decf1955f',
-          // date: dateFill,
-          // tomorrow: tomorrowFill,
-          // redirect: false,
-          // local: true,
-          // whichPage: "",
           tripName: res.data.tripName,
           dateStart: res.data.dateStart,
           city: res.data.city,
@@ -143,12 +136,12 @@ class TripAdvisor extends Component {
       .catch(err => this.setState({ hasError: true, loading: false }));
   }
 
-  saveTrip = (trip) => {
-    console.log(trip)
-    // API.saveTrip(trip)
-    // .then(res => console.log(res))
-    // .catch(err => console.log(err))
-  }
+  // saveTrip = (trip) => {
+  //   console.log(trip)
+  //   // API.saveTrip(trip)
+  //   // .then(res => console.log(res))
+  //   // .catch(err => console.log(err))
+  // }
 
   render() {
     return (
@@ -170,7 +163,7 @@ class TripAdvisor extends Component {
               rank={trip.rank}
               website={trip.website}
               image={trip.image}
-              saveTrip={this.saveTrip()}
+              // saveTrip={this.saveTrip()}
             />
           )
         ) : (

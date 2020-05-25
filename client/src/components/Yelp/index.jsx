@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
 import Nav from "../Nav";
+import FoodForm from "../FoodForm";
 import YelpCard from "../YelpCard";
 import {Image, Title, Wrapper} from "../Styled";
 
@@ -10,6 +11,11 @@ class Yelp extends Component {
     
     this.state={
       eateries: [],
+      breakfast: "",
+      dinner: "",
+      dessert: "",
+      // drinks: "",
+      foodType: "",
       loading: false,
       hasError: false
     }
@@ -17,16 +23,47 @@ class Yelp extends Component {
 
   componentDidMount(){
     console.log("yelp date " , this.props.state.breakfast)
-    this.searchFood(this.props.state.state, this.props.state.city, this.props.state.breakfast, this.props.state.foodType, this.props.state.dinner, this.props.state.drinks, this.props.state.dessert)
+    // this.searchFood(this.props.state.state, this.props.state.city, this.props.state.breakfast, this.props.state.foodType, this.props.state.dinner, this.props.state.drinks, this.props.state.dessert)
   }
 
-  searchFood = (state, city, breakfast, dinner, drinks, dessert, foodType) => {
+  searchFood = (state, city, breakfast, dinner, dessert, foodType) => {
     this.setState({loading: true})
-    API.callYelp(state, city, breakfast, dinner, drinks, dessert, foodType)
+    API.callYelp(state, city, breakfast, dinner, dessert, foodType)
     .then(res => {
       this.setState({ eateries : res.data, loading: false})
     })
     .catch(err => this.setState({hasError: true, loading: false}));
+  }
+
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    
+    if (event.target.type === "checkbox") {
+      if (!this.state[name]) {
+        console.log("check")
+        this.setState({
+          [name]: value
+        });
+      } else {
+        console.log("check")
+        this.setState({
+          [name]: ''
+        });
+      }
+    } else {
+      this.setState({
+        [name]: value
+      });
+      console.log(this.state.foodType)
+    }
+  };
+
+
+
+  handleFormSubmit = event => {
+    event.preventDefault(); 
+    console.log("breakfast: ", this.state.breakfast + "\n dinner: ", this.state.dinner, "\n dessert: " , this.state.dessert, "/n foodType: ", this.state.foodType );
+    this.searchFood(this.props.state.state, this.props.state.city, this.state.breakfast, this.state.dessert, this.state.dinner, this.state.foodType)
   }
 
   saveEatery = (eatery) => {
@@ -39,8 +76,14 @@ class Yelp extends Component {
     return (
       <Wrapper>
         <Nav />
+        <FoodForm 
+        value={this.state.value}
+        handleInputChange={this.handleInputChange}
+        handleFormSubmit={this.handleFormSubmit}/>
+
         {this.state.loading && <Image className="loading" src={process.env.PUBLIC_URL + './img/loading.gif'} alt="loading" />}
         {this.state.hasError && <Title>There was an error searching for your Request. Please try again later.</Title>}
+        
         {this.state.eateries.length > 0 ? (
           this.state.eateries.map((eatery) => 
           <YelpCard 

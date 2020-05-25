@@ -47,13 +47,12 @@ export default {
         })
     },
     //Search Yelp for food and drink
-    callYelp: function (city, state, breakfast, dinner, dessert, drinks, foodType) {
+    callYelp: function (city, state, breakfast, dinner, dessert, foodType) {
         console.log("fetching yelp")
         return axios.get("/api/yelp", {
             params: {
                 location: city + "," + state,
-                term: breakfast + "," + dinner + "," + dessert + "," + drinks,
-                categories: foodType
+                term: breakfast + "," + dinner + "," + dessert + "," + foodType,
             }
         })
     },
