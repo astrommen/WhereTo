@@ -9,7 +9,7 @@ export default {
                 activity: sports + concert + theatre,
                 distance: distance,
                 dateStart: dateStart,
-                city: city
+                city: city,
             }
         })
     },
@@ -22,16 +22,16 @@ export default {
                 distance: distance,
                 dateStart: dateStart,
                 dateEnd: dateEnd,
-                city: city
+                city: city,
             }
         })
     },
     //RIBD
-    callRibd: function (state, city, boating, fishing, hiking, beach) {
+    callRibd: function (state, city, boating, fishing, hiking, beach, camping, swimming) {
         return axios.get("/api/ribd", {
             params: {
                 location: city + "," + state,
-                activities: boating + fishing + hiking + beach
+                activities: boating + fishing + hiking + beach + camping + swimming,
             }
         })
     },
@@ -42,7 +42,7 @@ export default {
             params: {
                 city: city,
                 startDate: startDate,
-                endDate: endDate
+                endDate: endDate,
             }
         })
     },

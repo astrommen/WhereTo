@@ -57,19 +57,19 @@ class FormDay extends Component {
       dateStart: dateFill,
       city: "",
       state: "",
-      boating: "",
-      fishing: "",
-      hiking: "",
-      beach: "",
-      concert: "",
-      sports: "",
-      theatre: "",
-      sightseeing: "",
-      breakfast: "",
-      dinner: "",
-      dessert: "",
-      drinks: "",
-      foodType: ""
+      // boating: "",
+      // fishing: "",
+      // hiking: "",
+      // beach: "",
+      // concert: "",
+      // sports: "",
+      // theatre: "",
+      // sightseeing: "",
+      // breakfast: "",
+      // dinner: "",
+      // dessert: "",
+      // drinks: "",
+      // foodType: ""
     };
   }
 
@@ -118,19 +118,19 @@ class FormDay extends Component {
       city: this.state.city,
       state: this.state.state,
       local: this.state.local,
-      boating: this.state.boating,
-      fishing: this.state.fishing,
-      hiking: this.state.hiking,
-      beach: this.state.beach,
-      concert: this.state.concert,
-      sports: this.state.sports,
-      theatre: this.state.theatre,
-      sightseeing: this.state.sightseeing,
-      breakfast: this.state.breakfast,
-      dinner: this.state.dinner,
-      dessert: this.state.dessert,
-      drinks: this.state.drinks,
-      foodType: this.state.foodType,
+      // boating: this.state.boating,
+      // fishing: this.state.fishing,
+      // hiking: this.state.hiking,
+      // beach: this.state.beach,
+      // concert: this.state.concert,
+      // sports: this.state.sports,
+      // theatre: this.state.theatre,
+      // sightseeing: this.state.sightseeing,
+      // breakfast: this.state.breakfast,
+      // dinner: this.state.dinner,
+      // dessert: this.state.dessert,
+      // drinks: this.state.drinks,
+      // foodType: this.state.foodType,
       sightseeing: [String],
       food: [String],
       events: [String],
@@ -247,7 +247,7 @@ class FormDay extends Component {
             </div>
           </div>
 
-          <div className="form-row text-center">
+          {/* <div className="form-row text-center">
             <div className="col-sm-6 col-lg-2">
               <input type="checkbox" id="cb1"
                 name="breakfast"
@@ -338,7 +338,7 @@ class FormDay extends Component {
               defaultChecked={this.state.beach}
               onClick={this.handleInputChange} />
               <Label htmlFor="cb8"><img alt="" src="./img/activities/beach.png" /><p>Beach</p></Label></div>
-          </div>
+          </div> */}
 
           <div className="form-row text-center">
             <div className="col-sm-6 col-lg-2"><input type="checkbox" id="cb9"

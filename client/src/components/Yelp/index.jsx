@@ -24,7 +24,6 @@ class Yelp extends Component {
 
   componentDidMount(){
     console.log("yelp date " , this.props.state.breakfast)
-    // this.searchFood(this.props.state.state, this.props.state.city, this.props.state.breakfast, this.props.state.foodType, this.props.state.dinner, this.props.state.drinks, this.props.state.dessert)
   }
 
   searchFood = (state, city, breakfast, dinner, dessert, drinks, foodType) => {

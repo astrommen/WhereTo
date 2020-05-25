@@ -2,6 +2,7 @@ import React, { Component }  from 'react';
 import API from "../../utils/API";
 import Nav from "../Nav";
 import OutdoorCard from "../OutdoorCard";
+import FormOutdoors from "../FormOutdoors";
 import {Image, Title, Wrapper} from "../Styled";
 
 class Outdoor extends Component {
@@ -11,18 +12,23 @@ class Outdoor extends Component {
     this.state={
       sites: [],
       loading: false,
-      hasError: false
+      hasError: false,
+      hiking: "",
+      boating: "",
+      fishing: "",
+      beach: "",
+      swimming: "",
+      camping: "",
     }
   }
 
   componentDidMount() {
-    this.searchOutdoors(this.props.state.state, this.props.state.city, this.props.state.boating, this.props.state.fishing, this.props.state.hiking, this.props.state.beach);
     console.log("outdoors", this.props.state)
   };
     
-  searchOutdoors = (state, city, boating, fishing, hiking, beach) => {
+  searchOutdoors = (state, city, boating, fishing, hiking, beach, camping, swimming) => {
     this.setState({loading: true})
-    API.callRibd(state, city, boating, fishing, hiking, beach)
+    API.callRibd(state, city, boating, fishing, hiking, beach, camping, swimming)
     .then(res => {
       console.log(res);
       this.setState({ sites: res.data, loading: false})
@@ -30,6 +36,37 @@ class Outdoor extends Component {
     })
     .catch(err => this.setState({hasError: true, loading: false}));
   };
+
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    
+    if (event.target.type === "checkbox") {
+      if (!this.state[name]) {
+        console.log("check")
+        this.setState({
+          [name]: value
+        });
+      } else {
+        console.log("check")
+        this.setState({
+          [name]: ''
+        });
+      }
+    } else {
+      this.setState({
+        [name]: value
+      });
+      console.log(this.state.foodType)
+    }
+  };
+
+  handleFormSubmit = event => {
+    event.preventDefault(); 
+
+    this.searchOutdoors(this.props.state.state, this.props.state.city, this.state.boating, this.state.fishing, this.state.hiking, this.state.beach, this.state.camping, this.state.swimming);
+    console.log("results: " , this.state.boating, this.state.fishing, this.state.hiking, this.state.beach, this.state.camping, this.state.swimming)
+  }
+
 
   saveOutdoorArea = (area) => {
     API.saveOutdoorArea(area)
@@ -41,6 +78,11 @@ class Outdoor extends Component {
     return (
       <Wrapper>
         <Nav />
+        <FormOutdoors 
+        value={this.state.value}
+        handleInputChange={this.handleInputChange}
+        handleFormSubmit={this.handleFormSubmit}/>
+
         {this.state.loading && <Image className="loading" src={process.env.PUBLIC_URL + './img/loading.gif'} alt="loading" />}
         {this.state.hasError && <Title>There was an error searching for your Request. Please try again later.</Title>}
         {this.state.sites.length > 0 ? (
