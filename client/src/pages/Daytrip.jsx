@@ -55,32 +55,12 @@ class DayTrip extends Component {
     }
   }
 
-
-
-  }
-
-  state = this.props.state
-
-  componentDidMount() {
-    // this.redirect()
-  }
-
-  redirect = () => {
-    if (!this.props.state.tripName) {
-      this.props.history.push("/dayform")
-    }
-  }
-
   render() {
-
-    // console.log(this.props.state)
-    // console.log(this.state)
     return (
       <Wrapper>
         <Nav
           vacaId={localStorage.getItem('vacaId')}
         />
-        <Title>Start Compiling your Day Trip</Title>
         <TripData
           vacaId={localStorage.getItem('vacaId')}
         // tripName={this.state.tripName}

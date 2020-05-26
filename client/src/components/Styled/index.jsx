@@ -11,12 +11,14 @@ padding: 1%;
 background-color: white;
 color: black;`
 
-export const Event = styled.img `
-display: block;
-margin-left: auto;
-margin-right: auto;
-box-shadow: 0 0 2 2 white;
-`
+export const ImageButton = styled.button `
+width: 50px;
+height: 35px;
+margin: 2% 0 0 0;
+border-radius: 3px;
+background-color: black;
+padding: 1%;
+border: none;`
 
 export const Icon = styled.img `
 display: block;
@@ -76,6 +78,15 @@ opacity: 1;
 export const LocDes = styled.p `
 color: white;
 font-weight: bold;
+`
+export const Jumbo = styled.section `
+background-color: rgba(82, 82, 122,.9);
+color: #ccc;
+padding: 2rem 2rem;
+text-align: center;
+border-radius: 5px;
+text-shadow 1px 1px 1px black;
+opacity: 1;
 `
 
 export const Submit = styled.button `

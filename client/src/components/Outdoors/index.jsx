@@ -3,7 +3,7 @@ import API from "../../utils/API";
 import Nav from "../Nav";
 import OutdoorCard from "../OutdoorCard";
 import FormOutdoors from "../FormOutdoors";
-import {Image, Title, Wrapper} from "../Styled";
+import { Image, Title, Wrapper, Jumbo } from "../Styled";
 
 class Outdoor extends Component {
   constructor(props) {
@@ -79,10 +79,13 @@ class Outdoor extends Component {
     return (
       <Wrapper>
         <Nav />
+        <Jumbo>
         <FormOutdoors 
         value={this.state.value}
         handleInputChange={this.handleInputChange}
         handleFormSubmit={this.handleFormSubmit}/>
+        </Jumbo>
+        
         {this.state.loading && <Image className="loading" src={process.env.PUBLIC_URL + './img/loading.gif'} alt="loading" />}
         {this.state.hasError &&             
             <Jumbo>
