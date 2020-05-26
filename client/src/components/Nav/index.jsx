@@ -15,7 +15,7 @@ function Nav() {
         </Col>
         <Col size="md-2">
           <Link className="navbar-brand" to="/vacationform">
-          <img className="logo" src='./img/location/form.png' alt="form" />
+          <img className="logo" src='./img/WT.png' alt="form" />
           </Link>
         </Col>
         <Col size="md-2">

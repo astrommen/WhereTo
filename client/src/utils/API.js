@@ -9,29 +9,29 @@ export default {
                 activity: sports + concert + theatre,
                 distance: distance,
                 dateStart: dateStart,
-                city: city
+                city: city,
             }
         })
     },
     //Ticketmaster
-    callTicketmasterV: function (activity, distance, dateStart, dateEnd, city) {
+    callTicketmasterV: function (concert, sports, theatre, film, family, distance, dateStart, dateEnd, city) {
         return axios.get("/api/ticketmaster", {
             params:
             {
-                activity: activity,
+                activity: concert + sports + theatre + film + family,
                 distance: distance,
                 dateStart: dateStart,
                 dateEnd: dateEnd,
-                city: city
+                city: city,
             }
         })
     },
     //RIBD
-    callRibd: function (state, city, boating, fishing, hiking, beach) {
+    callRibd: function (state, city, boating, fishing, hiking, beach, camping, swimming) {
         return axios.get("/api/ribd", {
             params: {
                 location: city + "," + state,
-                activities: boating + fishing + hiking + beach
+                activities: boating + fishing + hiking + beach + camping + swimming,
             }
         })
     },
@@ -42,18 +42,17 @@ export default {
             params: {
                 city: city,
                 startDate: startDate,
-                endDate: endDate
+                endDate: endDate,
             }
         })
     },
     //Search Yelp for food and drink
-    callYelp: function (city, state, breakfast, dinner, dessert, drinks, foodType) {
+    callYelp: function (city, state, breakfast, dinner, dessert, foodType, drinks) {
         console.log("fetching yelp")
         return axios.get("/api/yelp", {
             params: {
                 location: city + "," + state,
-                term: breakfast + "," + dinner + "," + dessert + "," + drinks,
-                categories: foodType
+                term: breakfast + "," + dinner + "," + dessert + "," + foodType + ", " + drinks,
             }
         })
     },

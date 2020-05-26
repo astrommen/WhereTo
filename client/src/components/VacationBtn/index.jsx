@@ -10,11 +10,11 @@ class VacationBtn extends Component {
     return (
       this.props.local ? (
         <div>
-          <button type="button" className="btn btn-primary btn-block">{this.props.name}</button>
+          <button id={this.props.id} type="button" className="btn btn-primary btn-block">{this.props.name}</button>
         </div>
       ) : (
           <div>
-            <button type="button" className="btn btn-success btn-block">{this.props.name}</button>
+            <button id={this.props.id} type="button" className="btn btn-success btn-block">{this.props.name}</button>
           </div>
         )
 
