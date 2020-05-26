@@ -1,5 +1,5 @@
 import React from "react";
-import {Label, Wrapper} from "../Styled";
+import {Label, Wrapper, Submit} from "../Styled";
 import {Container, Row, Col} from "../Grid";
 import "./style.css";
 
@@ -17,7 +17,7 @@ function FormOutdoors(props) {
               value="hiking,"
               defaultChecked={props.value}
               onChange={props.handleInputChange} />
-            <Label htmlFor="cb1"><img  className="img-fluid" alt="" src="./img/activities/hiking.png" /><p>Hiking</p></Label>
+            <Label htmlFor="cb1"><img  className="img-fluid" alt="" src={process.env.PUBLIC_URL + "./img/activities/hiking.png"} /><p>Hiking</p></Label>
           </Col>
 
           <Col size="sm-3">
@@ -26,7 +26,7 @@ function FormOutdoors(props) {
               value="boating,"
               defaultChecked={props.value}
               onChange={props.handleInputChange} />
-            <Label htmlFor="cb2"><img  className="img-fluid" alt="" src="./img/activities/boating.png" /><p>Boating</p></Label>
+            <Label htmlFor="cb2"><img  className="img-fluid" alt="" src={process.env.PUBLIC_URL + "./img/activities/boating.png"} /><p>Boating</p></Label>
           </Col>
 
           <Col size="sm-3">
@@ -35,7 +35,7 @@ function FormOutdoors(props) {
               value="fishing,"
               defaultChecked={props.value}
               onChange={props.handleInputChange} />
-            <Label htmlFor="cb3"><img  className="img-fluid" alt="" src="./img/activities/fishing.png" /><p>Fishing</p></Label>
+            <Label htmlFor="cb3"><img  className="img-fluid" alt="" src={process.env.PUBLIC_URL + "./img/activities/fishing.png"} /><p>Fishing</p></Label>
           </Col>
         </Row>
 
@@ -46,7 +46,7 @@ function FormOutdoors(props) {
               value="beach,"
               defaultChecked={props.value}
               onChange={props.handleInputChange} />
-            <Label htmlFor="cb4"><img  className="img-fluid" alt="" src="./img/activities/beach.png" /><p>Beach</p></Label>
+            <Label htmlFor="cb4"><img  className="img-fluid" alt="" src={process.env.PUBLIC_URL + "./img/activities/beach.png"} /><p>Beach</p></Label>
           </Col>
 
           <Col size="sm-3">
@@ -55,7 +55,7 @@ function FormOutdoors(props) {
               value="swimming,"
               defaultChecked={props.value}
               onChange={props.handleInputChange} />
-            <Label htmlFor="cb5"><img  className="img-fluid" alt="" src="./img/activities/swim.png" /><p>Swimming</p></Label>
+            <Label htmlFor="cb5"><img  className="img-fluid" alt="" src={process.env.PUBLIC_URL + "./img/activities/swim.png"} /><p>Swimming</p></Label>
           </Col>
 
           <Col size="sm-3">
@@ -64,13 +64,13 @@ function FormOutdoors(props) {
               value="camping,"
               defaultChecked={props.value}
               onChange={props.handleInputChange} />
-            <Label htmlFor="cb6"><img  className="img-fluid" alt="" src="./img/activities/camping.png" /><p>Camping</p></Label>
+            <Label htmlFor="cb6"><img  className="img-fluid" alt="" src={process.env.PUBLIC_URL + "./img/activities/camping.png"} /><p>Camping</p></Label>
           </Col>
         </Row>
 
         <Row className="text-center">
           <Col size="md-4">
-            <button type="Submit" onClick={props.handleFormSubmit}>Submit</button>
+            <Submit type="Submit" onClick={props.handleFormSubmit}><i class="fas fa-hiking"></i> Submit</Submit>
           </Col>
         </Row>
 

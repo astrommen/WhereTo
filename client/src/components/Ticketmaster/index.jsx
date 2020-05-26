@@ -3,7 +3,7 @@ import API from "../../utils/API";
 import Nav from "../Nav";
 import TicketmasterCard from "../TicketmasterCard"
 import FormEvents from "../FormEvents"
-import { Image, Wrapper, Jumbo } from "../Styled";
+import { Image, Wrapper, Jumbo, White } from "../Styled";
 
 class Ticketmaster extends Component {
   constructor(props) {
@@ -81,11 +81,11 @@ class Ticketmaster extends Component {
         handleFormSubmit={this.handleFormSubmit}/>
         </Jumbo>
         {this.state.loading && <Image className="loading" src={process.env.PUBLIC_URL + './img/loading.gif'} alt="loading" />}
-        {this.state.hasError &&
-          <Jumbo>
-            <h5>There was an error searching for your Request.</h5>
-            <White>Please try a different selection or attempt again later.</White>
-          </Jumbo>}
+        {this.state.hasError &&             
+            <Jumbo>
+              <h5>There was an error searching for your Request.</h5>
+              <White>Please try a different selection or attempt again later.</White>
+            </Jumbo>}
         {this.state.events.length > 0 ? (
           this.state.events.map((activity) =>
             <TicketmasterCard
@@ -108,11 +108,11 @@ class Ticketmaster extends Component {
               venuePostal={activity.venuePostal}
             />)
         ) : (
-            <Jumbo>
-              <h3>No Results to Display</h3>
-              <White>Use the food and drink forms to populate your options.</White>
-            </Jumbo>
-          )}
+          <Jumbo>
+          <h3>No Results to Display</h3>
+          <White>Use the food and drink forms to populate your options.</White>
+        </Jumbo>
+    )}
       </Wrapper>
     );
   }

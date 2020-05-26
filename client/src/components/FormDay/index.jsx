@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from 'react-router-dom'
-import { Label, Wrapper, Jumbo, Title } from "../Styled";
+import { Label, Wrapper, Jumbo, Title, Submit } from "../Styled";
 import {Container, Row, Col} from "../Grid";
 import jwt_decode from "jwt-decode";
 import "./style.css";
@@ -224,15 +224,15 @@ class FormDay extends Component {
                 <option value="WV">West Virginia</option>
                 <option value="WY">Wyoming</option>
               </select>
-            </div>
-          </div>
+            </Col>
+          </Row>
 
-          <div className="form-row">
-              <button type="submit"
+          <Row className="form-row text-right">
+              <Submit type="submit"
               // disabled={!(this.state.tripName && this.state.date && this.state.state || this.state.city)}
               // onClick={this.handleFormSubmit}
-              ><i class="far fa-compass"></i> Submit <i class="far fa-compass"></i></button>
-          </div>
+              ><i class="far fa-compass"></i> Submit <i class="far fa-compass"></i></Submit>
+          </Row>
         </form>
       </Wrapper>
             </Col>
