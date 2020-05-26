@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { Label, Wrapper, Jumbo, Title, Submit } from "../Styled";
 import {Container, Row, Col} from "../Grid";
 import jwt_decode from "jwt-decode";
@@ -116,8 +116,10 @@ class FormDay extends Component {
       <Jumbo>
         <Container>
           <Row>
-            <Col size="md-2"><img className="logo" className="img-fluid" src={process.env.PUBLIC_URL + '/WhereToLogo.png'} alt="logo" /></Col>
-            <Col size="md-10"><Title>Ready to Explore?  </Title>Get started by filling out the basics of your trip:</Col>
+            <Col size="md-2">
+              <Link to="/profile"><img className="logo" className="img-fluid" src={process.env.PUBLIC_URL + '/WhereToLogo.png'} alt="logo" /></Link>
+              </Col>
+            <Col size="md-10"><Title>Ready to Explore?</Title>Get started by filling out the basics of your trip:</Col>
           </Row>
           <Row>
             <Col size="md-12">
