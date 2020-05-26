@@ -33,7 +33,7 @@ module.exports = {
     db.Vacation
       .findOneAndUpdate({ _id: req.params.id }, { $push: { sightseeing: req.body } }, { new: true })
       .then(dbUser => {
-        console.log("AWDAWD")
+        console.log("SIGHTSEEING ADDED")
         res.json(dbUser)
       })
       .catch(err => res.status(422).json(err));
