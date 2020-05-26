@@ -110,8 +110,11 @@ export default {
     deleteCountry: function (id) {
         return axios.delete("/api/country" + id);
     },
-    saveFood: function (foodData) {
-        return axios.post("/api/food", foodData)
+    // saveFood: function (foodData) {
+    //     return axios.post("/api/food", foodData)
+    // },
+    saveFood: function (id, data) {
+        return axios.put("/api/yelp/food/" + id, data)
     },
     returnFood: function () {
         return axios.get("/api/food")

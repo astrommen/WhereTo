@@ -15,43 +15,11 @@ class DayTrip extends Component {
 
   componentDidMount() {
     // this.redirect()
-    this.dummyData()
   }
 
   redirect = () => {
     if (!this.props.state.tripName) {
       this.props.history.push("/dayform")
-    }
-  }
-
-  dummyData = () => {
-    if (!this.props.state.tripName) {
-      this.setState({
-        // userId: user,
-        vacaId: '5ec9ec9a10dd4e2decf1955f',
-        // date: dateFill,
-        // tomorrow: tomorrowFill,
-        redirect: false,
-        local: true,
-        // whichPage: "",
-        tripName: "Dummy Data",
-        dateStart: "2020-05-24",
-        city: "allentown",
-        state: "PA",
-        boating: "",
-        fishing: "",
-        hiking: "",
-        beach: "",
-        concert: "",
-        sports: "",
-        theatre: "",
-        sightseeing: "",
-        breakfast: "",
-        dinner: "",
-        dessert: "",
-        drinks: "",
-        foodType: ""
-      })
     }
   }
 
