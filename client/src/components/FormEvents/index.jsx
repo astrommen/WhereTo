@@ -1,5 +1,5 @@
 import React from "react";
-import {Label, Wrapper} from "../Styled";
+import {Label, Wrapper, Submit} from "../Styled";
 import {Container, Row, Col} from "../Grid";
 import "./style.css";
 
@@ -17,7 +17,7 @@ function FormEvents(props) {
               value="concert,"
               defaultChecked={props.value}
               onChange={props.handleInputChange} />
-            <Label htmlFor="cb1"><img  className="img-fluid" alt="" src="./img/activities/concert.png" /><p>Concert</p></Label>
+            <Label htmlFor="cb1"><img  className="img-fluid" alt="" src={process.env.PUBLIC_URL + "./img/activities/concert.png"} /><p>Concert</p></Label>
           </Col>
 
           <Col size="sm-3">
@@ -26,7 +26,7 @@ function FormEvents(props) {
               value="sports,"
               defaultChecked={props.value}
               onChange={props.handleInputChange} />
-            <Label htmlFor="cb2"><img  className="img-fluid" alt="" src="./img/activities/sports.png" /><p>Sports</p></Label>
+            <Label htmlFor="cb2"><img  className="img-fluid" alt="" src={process.env.PUBLIC_URL + "./img/activities/sports.png"} /><p>Sports</p></Label>
           </Col>
 
           <Col size="sm-3">
@@ -35,7 +35,7 @@ function FormEvents(props) {
               value="theatre,"
               defaultChecked={props.value}
               onChange={props.handleInputChange} />
-            <Label htmlFor="cb3"><img  className="img-fluid" alt="" src="./img/activities/theatre.png" /><p>Theatre</p></Label>
+            <Label htmlFor="cb3"><img  className="img-fluid" alt="" src={process.env.PUBLIC_URL + "./img/activities/theatre.png"} /><p>Theatre</p></Label>
           </Col>
         </Row>
 
@@ -46,7 +46,7 @@ function FormEvents(props) {
               value="film,"
               defaultChecked={props.value}
               onChange={props.handleInputChange} />
-            <Label htmlFor="cb4"><img  className="img-fluid" alt="" src="./img/activities/movies.png" /><p>Film</p></Label>
+            <Label htmlFor="cb4"><img  className="img-fluid" alt="" src={process.env.PUBLIC_URL + "./img/activities/movies.png"} /><p>Film</p></Label>
           </Col>
 
           <Col size="sm-3">
@@ -55,11 +55,11 @@ function FormEvents(props) {
               value="family,"
               defaultChecked={props.value}
               onChange={props.handleInputChange} />
-            <Label htmlFor="cb5"><img  className="img-fluid" alt="" src="./img/activities/family.png" /><p>Family</p></Label>
+            <Label htmlFor="cb5"><img  className="img-fluid" alt="" src={process.env.PUBLIC_URL + "./img/activities/family.png"} /><p>Family</p></Label>
           </Col>
 
           <Col size="sm-3">
-          <button type="Submit" onClick={props.handleFormSubmit}>Submit</button>
+          <Submit type="Submit" onClick={props.handleFormSubmit}><i class="fas fa-ticket-alt"></i> Submit</Submit>
           </Col>
         </Row>
 

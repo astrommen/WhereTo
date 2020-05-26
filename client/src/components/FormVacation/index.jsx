@@ -90,8 +90,6 @@ class FormVacation extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    this.props.updateAppState(this.state);
-    this.props.history.push("/vacation")
     this.saveTrip({
       userId: this.state.userId,
       tripName: this.state.tripName,
@@ -101,6 +99,8 @@ class FormVacation extends Component {
       state: this.state.state,
       local: this.state.local,
     });
+    this.props.updateAppState(this.state);
+    this.props.history.push("/vacation")
   }
 
   render() {

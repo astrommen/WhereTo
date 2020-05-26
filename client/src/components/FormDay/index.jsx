@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { withRouter } from 'react-router-dom'
-import { Label, Wrapper } from "../Styled";
+import { Link, withRouter } from 'react-router-dom'
+import { Label, Wrapper, Jumbo, Title, Submit } from "../Styled";
+import {Container, Row, Col} from "../Grid";
 import jwt_decode from "jwt-decode";
 import "./style.css";
 import API from "../../utils/API";
@@ -103,19 +104,29 @@ class FormDay extends Component {
       city: this.state.city,
       state: this.state.state,
       local: this.state.local,
-      sightseeing: [String],
-      food: [String],
-      events: [String],
-      outdoors: [String],
+      // sightseeing: [String],
+      // food: [String],
+      // events: [String],
+      // outdoors: [String],
     });
   }
 
   render() {
     return (
+      <Jumbo>
+        <Container>
+          <Row>
+            <Col size="md-2">
+              <Link to="/profile"><img className="logo" className="img-fluid" src={process.env.PUBLIC_URL + '/WhereToLogo.png'} alt="logo" /></Link>
+              </Col>
+            <Col size="md-10"><Title>Ready to Explore?</Title>Get started by filling out the basics of your trip:</Col>
+          </Row>
+          <Row>
+            <Col size="md-12">
       <Wrapper>
         <form className="mt-4" onSubmit={this.handleFormSubmit}>
-          <div className="form-row">
-            <div className="form-group col">
+          <Row>
+            <Col  size="md-6" className="form-group">
               <Label htmlFor="name">Trip Name</Label>
               <input
                 name="tripName"
@@ -125,9 +136,9 @@ class FormDay extends Component {
                 id="name" className="form-control" placeholder="Trip Name"
                 required
               />
-            </div>
+            </Col>
 
-            <div className="form-group col">
+            <Col size="md-6" className="form-group col">
               <Label htmlFor="start">Date:</Label>
               <input
                 className="form-control"
@@ -139,10 +150,10 @@ class FormDay extends Component {
                 onChange={this.handleInputChange}
                 required
               />
-            </div>
-          </div>
-          <div className="form-row">
-            <div className="form-group col">
+            </Col>
+          </Row>
+          <Row>
+            <Col size="md-6" className="form-group">
               <Label htmlFor="city">City</Label>
               <input id="city" type="text"
                 name="city"
@@ -151,8 +162,8 @@ class FormDay extends Component {
                 className="form-control" placeholder="City"
                 required
               />
-            </div>
-            <div className="form-group col">
+            </Col>
+            <Col size="md-6" className="form-group">
               <Label htmlFor="inputState">State</Label>
               <select
                 name="state"
@@ -215,17 +226,21 @@ class FormDay extends Component {
                 <option value="WV">West Virginia</option>
                 <option value="WY">Wyoming</option>
               </select>
-            </div>
-          </div>
+            </Col>
+          </Row>
 
-          <div className="form-row">
-              <button type="submit"
+          <Row className="form-row text-right">
+              <Submit type="submit"
               // disabled={!(this.state.tripName && this.state.date && this.state.state || this.state.city)}
               // onClick={this.handleFormSubmit}
-              >Submit</button>
-          </div>
+              ><i class="far fa-compass"></i> Submit <i class="far fa-compass"></i></Submit>
+          </Row>
         </form>
       </Wrapper>
+            </Col>
+          </Row>
+        </Container>
+        </Jumbo>
     );
   }
 }
