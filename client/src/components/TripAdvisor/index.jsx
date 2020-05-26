@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import API from "../../utils/API";
 import Nav from "../Nav";
 import TripCard from "../TripCard";
-import { Image, Title, Wrapper, Jumbo } from "../Styled";
+import { Image, White, Wrapper, Jumbo } from "../Styled";
 const axios = require("axios");
 
 class TripAdvisor extends Component {
@@ -135,8 +135,13 @@ class TripAdvisor extends Component {
       <Wrapper>
         <Nav />
         {this.state.loading && <Image className="loading" src={process.env.PUBLIC_URL + './img/loading.gif'} alt="loading" />}
-        {this.state.hasError && <Title>There was an error searching for your Request. Please try again later.</Title>}
-        {this.state.trips.length > 0 ? (
+        {this.state.hasError && 
+            <Jumbo>
+            <h5>There was an error searching for your Request.</h5>
+            <White>Please try again later.</White>
+          </Jumbo>}
+
+      {this.state.trips.length > 0 ? (
           this.state.trips.map((trip) =>
             <TripCard
               key={trip.id}
@@ -154,7 +159,8 @@ class TripAdvisor extends Component {
             />
           )
         ) : (
-            <h3>No Results to Display</h3>
+            <Jumbo>
+            </Jumbo>
           )}
       </Wrapper>
     );

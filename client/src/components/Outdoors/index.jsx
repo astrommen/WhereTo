@@ -3,7 +3,7 @@ import API from "../../utils/API";
 import Nav from "../Nav";
 import OutdoorCard from "../OutdoorCard";
 import FormOutdoors from "../FormOutdoors";
-import { Image, Title, Wrapper, Jumbo } from "../Styled";
+import { Image, Title, Wrapper, Jumbo, White } from "../Styled";
 
 class Outdoor extends Component {
   constructor(props) {
@@ -84,9 +84,14 @@ class Outdoor extends Component {
         handleInputChange={this.handleInputChange}
         handleFormSubmit={this.handleFormSubmit}/>
         </Jumbo>
-        
+      
         {this.state.loading && <Image className="loading" src={process.env.PUBLIC_URL + './img/loading.gif'} alt="loading" />}
-        {this.state.hasError && <Title>There was an error searching for your Request. Please try again later.</Title>}
+        {this.state.hasError &&             
+            <Jumbo>
+              <h5>There was an error searching for your Request.</h5>
+              <White>Please try a different selection or attempt again later.</White>
+            </Jumbo>}
+
         {this.state.sites.length > 0 ? (
           this.state.sites.map((site) => 
           <OutdoorCard 
@@ -107,8 +112,11 @@ class Outdoor extends Component {
           />
           )
         ) : (
-          <h3>No Restuls to Display</h3>
-        )}
+          <Jumbo>
+          <h3>No Results to Display</h3>
+          <White>Use the food and drink forms to populate your options.</White>
+        </Jumbo>
+    )}
       </Wrapper>
     );
   }

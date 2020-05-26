@@ -1,5 +1,5 @@
 import React from "react";
-import {Label, Wrapper, Center} from "../Styled";
+import {Label, Wrapper, Submit} from "../Styled";
 import {Container, Row, Col} from "../Grid";
 import "./style.css";
 
@@ -17,7 +17,7 @@ function FoodForm(props) {
               value="breakfast_brunch"
               defaultChecked={props.value}
               onChange={props.handleInputChange} />
-            <Label htmlFor="cb1"><img  className="img-fluid" alt="" src="./img/activities/breakfast.png" /><p>Breakfast</p></Label>
+            <Label htmlFor="cb1"><img className="img-fluid" alt="" src={process.env.PUBLIC_URL + "./img/activities/breakfast.png"} /><p>Breakfast</p></Label>
           </Col>
 
           <Col size="md-3">
@@ -26,7 +26,7 @@ function FoodForm(props) {
               value="restaurants"
               defaultChecked={props.value}
               onChange={props.handleInputChange} />
-            <Label htmlFor="cb2"><img  className="img-fluid" alt="" src="./img/activities/dinner.png" /><p>Dinner</p></Label>
+            <Label htmlFor="cb2"><img className="img-fluid" alt="" src={process.env.PUBLIC_URL + "./img/activities/dinner.png"} /><p>Dinner</p></Label>
           </Col>
 
           <Col size="md-3">
@@ -35,7 +35,7 @@ function FoodForm(props) {
               value="dessert"
               defaultChecked={props.value}
               onChange={props.handleInputChange} />
-            <Label htmlFor="cb3"><img  className="img-fluid" alt="" src="./img/activities/dessert.png" /><p>Dessert</p></Label>
+            <Label htmlFor="cb3"><img className="img-fluid" alt="" src={process.env.PUBLIC_URL + "./img/activities/dessert.png"} /><p>Dessert</p></Label>
           </Col>
           <Col size="md-3" className="form-group">
             <Label htmlFor="inputState">Type of Food:</Label>
@@ -71,7 +71,7 @@ function FoodForm(props) {
           </Row>
         <Row>
           <Col size="md-4">
-            <button type="Submit" onClick={props.handleFormSubmit}>Submit</button>
+            <Submit type="Submit" onClick={props.handleFormSubmit}><i class="fas fa-utensils"></i> Submit</Submit>
           </Col>
         </Row>
 

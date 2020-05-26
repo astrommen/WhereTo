@@ -11,14 +11,41 @@ padding: 1%;
 background-color: white;
 color: black;`
 
+
+export const Submit = styled.button `
+width: 125px;
+height: 35px;
+margin: 2% 0 0 0;
+border-radius: 3px;
+border: none;
+letter-spacing: 1.5px;
+padding: 1%;
+background-color: rgba(82, 82, 122,.9);
+color: white;
+font-weight: bold;
+&:link, :hover, :active, :visited {
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0px 0px 5px white;
+    transform: scale(1.1);
+`
+
+
 export const ImageButton = styled.button `
 width: 50px;
 height: 35px;
 margin: 2% 0 0 0;
-border-radius: 3px;
+border-radius: 50%;
 background-color: black;
 padding: 1%;
-border: none;`
+border: none;
+&:link, :hover, :active, :visited {
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0px 0px 5px white;
+    transform: scale(0.9);
+
+`
 
 export const Icon = styled.img `
 display: block;

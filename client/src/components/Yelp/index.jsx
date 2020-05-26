@@ -5,7 +5,7 @@ import FoodForm from "../FoodForm";
 import FormDrinks from "../FormDrinks"
 import YelpCard from "../YelpCard";
 import { Container, Row, Col } from "../Grid";
-import { Image, Title, Wrapper, Jumbo, ImageButton } from "../Styled";
+import { Image, Title, Wrapper, Jumbo, ImageButton, White } from "../Styled";
 
 class Yelp extends Component {
   constructor(props) {
@@ -119,12 +119,14 @@ class Yelp extends Component {
             </Col>
           </Row>
         </Container>
+
         {this.state.foodChoice && <Jumbo className="mb-2">
           <FoodForm
             value={this.state.value}
             handleInputChange={this.handleInputChange}
             handleFormSubmit={this.handleFormSubmit} />
         </Jumbo>}
+        
         {this.state.drinkChoice &&
           <Jumbo className="mb-2">
             <FormDrinks
@@ -134,7 +136,11 @@ class Yelp extends Component {
           </Jumbo>}
 
         {this.state.loading && <Image className="loading" src={process.env.PUBLIC_URL + './img/loading.gif'} alt="loading" />}
-        {this.state.hasError && <Title>There was an error searching for your Request. Please try again later.</Title>}
+        {this.state.hasError &&             
+            <Jumbo>
+              <h5>There was an error searching for your Request.</h5>
+              <White>Please try a different selection or attempt again later.</White>
+            </Jumbo>}
 
         {this.state.eateries.length > 0 ? (
           this.state.eateries.map((eatery) =>
@@ -155,7 +161,10 @@ class Yelp extends Component {
               transactions={eatery.transactions}
             />)
         ) : (
-            <h3>No Results to Display</h3>
+            <Jumbo>
+              <h3>No Results to Display</h3>
+              <White>Use the food and drink forms to populate your options.</White>
+            </Jumbo>
           )}
       </Wrapper>
     );
