@@ -13,7 +13,7 @@ function FoodForm(props) {
         <Row className="text-center">
           <Col size="md-3">
             <input type="checkbox" id="cb1"
-              name="breakfast"
+              name="breakfast,"
               value="breakfast_brunch"
               defaultChecked={props.value}
               onChange={props.handleInputChange} />
@@ -22,7 +22,7 @@ function FoodForm(props) {
 
           <Col size="md-3">
             <input type="checkbox" id="cb2"
-              name="dinner"
+              name="dinner,"
               value="restaurants"
               defaultChecked={props.value}
               onChange={props.handleInputChange} />
@@ -31,7 +31,7 @@ function FoodForm(props) {
 
           <Col size="md-3">
             <input type="checkbox" id="cb3"
-              name="dessert"
+              name="dessert,"
               value="dessert"
               defaultChecked={props.value}
               onChange={props.handleInputChange} />
@@ -44,28 +44,28 @@ function FoodForm(props) {
               value={props.value}
               onChange={props.handleInputChange} className="form-control">
               <option defaultValue>Choose...</option>
-              <option value="tradamerican">American</option>
-              <option value="asianfusion">Asian Fusion</option>
-              <option value="bbq">Barbeque</option>
-              <option value="buffets">Buffets</option>
-              <option value="cajun">Cajun/Creole</option>
-              <option value="chinese">Chinese</option>
-              <option value="comfortfood">Comfort Food</option>
-              <option value="delis">Delis</option>
-              <option value="diners">Diners</option>
-              <option value="Greek">Greek</option>
-              <option value="indpak">Indian</option>
-              <option value="italian">Italian</option>
-              <option value="japanese">Japanese</option>
-              <option value="jewish">Jewish</option>
-              <option value="">Mediterranean</option>
-              <option value="mediterranean">Mexican</option>
-              <option value="pizza">Pizza</option>
-              <option value="sandwiches">Sandwiches</option>
-              <option value="sushi">Sushi</option>
-              <option value="thai">Thai</option>
-              <option value="vegan">Vegan</option>
-              <option value="vegetarian">Vegetarian</option>
+              <option value="tradamerican,">American</option>
+              <option value="asianfusion,">Asian Fusion</option>
+              <option value="bbq,">Barbeque</option>
+              <option value="buffets,">Buffets</option>
+              <option value="cajun,">Cajun/Creole</option>
+              <option value="chinese,">Chinese</option>
+              <option value="comfortfood,">Comfort Food</option>
+              <option value="delis,">Delis</option>
+              <option value="diners,">Diners</option>
+              <option value="Greek,">Greek</option>
+              <option value="indpak,">Indian</option>
+              <option value="italian,">Italian</option>
+              <option value="japanese,">Japanese</option>
+              <option value="jewish,">Jewish</option>
+              <option value="mediterranean,">Mediterranean</option>
+              <option value="mexican,">Mexican</option>
+              <option value="pizza,">Pizza</option>
+              <option value="sandwiches,">Sandwiches</option>
+              <option value="sushi,">Sushi</option>
+              <option value="thai,">Thai</option>
+              <option value="vegan,">Vegan</option>
+              <option value="vegetarian,">Vegetarian</option>
             </select>
           </Col>
           </Row>
