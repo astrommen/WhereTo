@@ -11,6 +11,65 @@ padding: 1%;
 background-color: white;
 color: black;`
 
+export const Event = styled.img `
+display: block;
+margin-left: auto;
+margin-right: auto;
+box-shadow: 0 0 2 2 white;
+`
+
+export const Icon = styled.img `
+display: block;
+margin-left: auto;
+margin-right: auto;
+heigth: 15%;
+width: 15%;
+`
+
+export const Identify = styled.span `
+font-weight: bold;`
+
+export const Image = styled.img `
+display: block;
+margin-left: auto;
+margin-right: auto;
+`
+
+export const ImgDes = styled.p `
+font-style: italic;
+text-align: center;
+color: white;
+`
+
+export const ImageButton = styled.button `
+width: 50px;
+height: 35px;
+margin: 2% 0 0 0;
+border-radius: 50%;
+background-color: black;
+padding: 1%;
+border: none;
+&:link, :hover, :active, :visited {
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0px 0px 5px white;
+    transform: scale(0.9);
+`
+
+export const Jumbo = styled.section `
+background-color: rgba(82, 82, 122,.9);
+color: #ccc;
+padding: 2rem 2rem;
+text-align: center;
+border-radius: 5px;
+text-shadow 1px 1px 1px black;
+opacity: 1;
+`
+
+export const LocDes = styled.p `
+color: white;
+font-weight: bold;
+`
 
 export const Submit = styled.button `
 width: 125px;
@@ -30,68 +89,9 @@ font-weight: bold;
     transform: scale(1.1);
 `
 
-
-export const ImageButton = styled.button `
-width: 50px;
-height: 35px;
-margin: 2% 0 0 0;
-border-radius: 50%;
-background-color: black;
-padding: 1%;
-border: none;
-&:link, :hover, :active, :visited {
-    text-decoration: none;
-    font-weight: bold;
-    box-shadow: 0px 0px 5px white;
-    transform: scale(0.9);
-
-`
-
-export const Icon = styled.img `
-display: block;
-margin-left: auto;
-margin-right: auto;
-heigth: 15%;
-width: 15%;
-`
-
-export const Event = styled.img `
-display: block;
-margin-left: auto;
-margin-right: auto;
-box-shadow: 0 0 2 2 white;
-`
-
-export const Identify = styled.span `
-font-weight: bold;`
-
-export const Image = styled.img `
-display: block;
-margin-left: auto;
-margin-right: auto;
-`
-export const ImgDes = styled.p `
-font-style: italic;
-text-align: center;
-color: white;
-`
-
-export const LocDes = styled.p `
-color: white;
-font-weight: bold;
-`
-export const Jumbo = styled.section `
-background-color: rgba(82, 82, 122,.9);
-color: #ccc;
-padding: 2rem 2rem;
-text-align: center;
-border-radius: 5px;
-text-shadow 1px 1px 1px black;
-opacity: 1;
-`
-
 export const Title = styled.h3 `
 color: white;
+text-align: left;
 font-family: 'Cabin Condensed', sans-serif;
 `
 
@@ -124,11 +124,12 @@ font-size: 20px;`
 
 export const White = styled.p `
 color: white;
-// font-family: 'Roboto Condensed', sans-serif;
+text-align: ${props => props.inputAlign || "center"}
 `
 
 export const Label = styled.label `
 color: white;
+text-align: left;
 `
 export const Wrapper = styled.section `
 width:100%;

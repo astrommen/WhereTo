@@ -20,6 +20,7 @@ class Outdoor extends Component {
       swimming: "",
       camping: "",
     }
+
   }
 
   componentDidMount() {
@@ -36,6 +37,7 @@ class Outdoor extends Component {
     })
     .catch(err => this.setState({hasError: true, loading: false}));
   };
+
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -64,7 +66,7 @@ class Outdoor extends Component {
     event.preventDefault(); 
 
     this.searchOutdoors(this.props.state.state, this.props.state.city, this.state.boating, this.state.fishing, this.state.hiking, this.state.beach, this.state.camping, this.state.swimming);
-    console.log("results: " , this.state.boating, this.state.fishing, this.state.hiking, this.state.beach, this.state.camping, this.state.swimming)
+    // console.log("results: " , this.state.boating, this.state.fishing, this.state.hiking, this.state.beach, this.state.camping, this.state.swimming)
   }
 
 
@@ -91,7 +93,6 @@ class Outdoor extends Component {
               <h5>There was an error searching for your Request.</h5>
               <White>Please try a different selection or attempt again later.</White>
             </Jumbo>}
-
         {this.state.sites.length > 0 ? (
           this.state.sites.map((site) => 
           <OutdoorCard 
