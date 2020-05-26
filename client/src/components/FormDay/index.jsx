@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from 'react-router-dom'
-import { Label, Wrapper } from "../Styled";
+import { Label, Wrapper, Jumbo, Title } from "../Styled";
+import {Container, Row, Col} from "../Grid";
 import jwt_decode from "jwt-decode";
 import "./style.css";
 import API from "../../utils/API";
@@ -112,6 +113,14 @@ class FormDay extends Component {
 
   render() {
     return (
+      <Jumbo>
+        <Container>
+          <Row>
+            <Col size="md-2"><img className="logo" className="img-fluid" src={process.env.PUBLIC_URL + '/WhereToLogo.png'} alt="logo" /></Col>
+            <Col size="md-10"><Title>Ready to Explore?  </Title>Get started by filling out the basics of your trip:</Col>
+          </Row>
+          <Row>
+            <Col size="md-12">
       <Wrapper>
         <form className="mt-4" onSubmit={this.handleFormSubmit}>
           <div className="form-row">
@@ -222,10 +231,14 @@ class FormDay extends Component {
               <button type="submit"
               // disabled={!(this.state.tripName && this.state.date && this.state.state || this.state.city)}
               // onClick={this.handleFormSubmit}
-              >Submit</button>
+              ><i class="far fa-compass"></i> Submit <i class="far fa-compass"></i></button>
           </div>
         </form>
       </Wrapper>
+            </Col>
+          </Row>
+        </Container>
+        </Jumbo>
     );
   }
 }

@@ -105,7 +105,7 @@ color: white;
 `
 export const Wrapper = styled.section `
 width:100%;
-padding: 1%;
+padding: 3%;
 background-color: black;
 opacity: 0.95;
 border-radius: 5px;

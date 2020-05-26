@@ -52,7 +52,7 @@ export default {
         return axios.get("/api/yelp", {
             params: {
                 location: city + "," + state,
-                term: breakfast + "," + dinner + "," + dessert + "," + foodType + ", " + drinks,
+                term: breakfast + dinner + dessert + foodType + drinks,
             }
         })
     },
