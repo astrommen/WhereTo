@@ -8,13 +8,32 @@ const flash = require("connect-flash");
 const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
+const Strategy = require('passport-facebook').Strategy;
 const mongo = require("mongodb");
 const mongoose = require("mongoose");
 const users = require("./routes/api/users");
 const routes = require("./routes");
 const app = express();
+const keys = require("./config/keys");
 const PORT = process.env.PORT || 3001;
 
+// passport facebook
+passport.use(new Strategy({
+  clientID: keys.facebook.clientID,
+  clientSecret: keys.facebook.clientSecret,
+  callbackURL: '/return'
+},
+function(accessToken, refreshToken, profile, cb) {
+  return cb(null, profile);
+}));
+
+passport.serializeUser(function(user, cb) {
+  cb(null, user);
+});
+
+passport.deserializeUser(function(obj, cb) {
+  cb(null, obj);
+});
 
 // Define middleware here
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -23,6 +42,10 @@ app.use(bodyParser.json());
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// passport facebook stuff
+app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
+
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
@@ -30,6 +53,16 @@ if (process.env.NODE_ENV === "production") {
 
 // Passport middleware
 app.use(passport.initialize());
+app.use(passport.session());
+
+app.get('/login/facebook',
+  passport.authenticate('facebook'));
+
+app.get('/return', 
+  passport.authenticate('facebook', { failureRedirect: '/login' }),
+  function(req, res) {
+    res.redirect('/');
+});
 
 // Passport config
 require("./config/passport")(passport);
@@ -37,47 +70,6 @@ require("./config/passport")(passport);
 // Routes
 app.use("/api/users", users);
 app.use(routes);
-
-// Express session
-// app.use(session({
-//   secret: "secret",
-//   saveUninitialized: true,
-//   resave: true
-// }));
-
-// // Passport Init
-// app.use(passport.initialize());
-// app.use(passport.session());
-
-// // Express Validator
-// app.use(expressValidator({
-//   errorFormatter: function(param, msg, value) {
-//     const namespace = param.split(".")
-//     , root = namespace.shift()
-//     , formParam = root;
-
-//     while(namespace.length) {
-//       formParam += "[" + namespace.shift() + "]";
-//     }
-//     return {
-//       param : formParam,
-//       msg: msg,
-//       value: value
-//     }
-//   }
-// }));
-
-// Connect Flash
-// app.use(flash());
-
-// Global Vars
-// app.use(function (req, res, next) {
-//   res.locals.success_msg = req.flash("success_msg");
-//   res.locals.error_msg = req.flash("error_msg");
-//   res.locals.error = req.flash("error");
-//   next();
-// });
-
 
 // Add routes, both API and view
 app.use(routes);
