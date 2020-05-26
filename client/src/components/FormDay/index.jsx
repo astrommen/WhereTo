@@ -103,10 +103,10 @@ class FormDay extends Component {
       city: this.state.city,
       state: this.state.state,
       local: this.state.local,
-      sightseeing: [String],
-      food: [String],
-      events: [String],
-      outdoors: [String],
+      // sightseeing: [String],
+      // food: [String],
+      // events: [String],
+      // outdoors: [String],
     });
   }
 
