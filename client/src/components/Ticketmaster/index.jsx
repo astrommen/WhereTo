@@ -3,7 +3,7 @@ import API from "../../utils/API";
 import Nav from "../Nav";
 import TicketmasterCard from "../TicketmasterCard"
 import FormEvents from "../FormEvents"
-import {Image, Wrapper} from "../Styled";
+import { Image, Wrapper, Jumbo } from "../Styled";
 
 class Ticketmaster extends Component {
   constructor(props) {
@@ -73,11 +73,12 @@ class Ticketmaster extends Component {
     return (
       <Wrapper>
         <Nav />
+        <Jumbo>
         <FormEvents 
         value={this.state.value}
         handleInputChange={this.handleInputChange}
         handleFormSubmit={this.handleFormSubmit}/>
-        
+        </Jumbo>
         {this.state.loading && <Image className="loading" src={process.env.PUBLIC_URL + './img/loading.gif'} alt="loading" />}
         {this.state.hasError && <h1>There was an error searching for your Request. Please try again later.</h1>}
         {this.state.events.length > 0 ? (

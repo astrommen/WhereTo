@@ -4,7 +4,8 @@ import Nav from "../Nav";
 import FoodForm from "../FoodForm";
 import FormDrinks from "../FormDrinks"
 import YelpCard from "../YelpCard";
-import {Image, Title, Wrapper} from "../Styled";
+import { Container, Row, Col } from "../Grid";
+import {Image, Title, Wrapper, Jumbo, ImageButton} from "../Styled";
 
 class Yelp extends Component {
   constructor(props) {
@@ -17,6 +18,8 @@ class Yelp extends Component {
       dessert: "",
       drinks: "",
       foodType: "",
+      foodChoice: true,
+      drinkChoice: false,
       loading: false,
       hasError: false
     }
@@ -34,6 +37,19 @@ class Yelp extends Component {
     })
     .catch(err => this.setState({hasError: true, loading: false}));
   }
+
+  handleFood = () => {
+    if (this.state.foodChoice === false) {
+      this.setState({ foodChoice: true })
+    } else (this.setState({ foodChoice: false}))
+  }
+
+  handleDrink = () => {
+    if (this.state.drinkChoice === false) {
+      this.setState({ drinkChoice: true })
+    } else (this.setState({ drinkChoice: false}))
+  }
+
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -58,8 +74,6 @@ class Yelp extends Component {
     }
   };
 
-
-
   handleFormSubmit = event => {
     event.preventDefault(); 
     console.log("breakfast: ", this.state.breakfast + "\n dinner: ", this.state.dinner, "\n dessert: " , this.state.dessert, "\n foodType: ", this.state.foodType,  "\n drinks: ", this.state.drinks);
@@ -77,14 +91,29 @@ class Yelp extends Component {
     return (
       <Wrapper>
         <Nav />
+<Container>
+  <Row className="text-center">
+    <Col size="md-6">
+    <ImageButton onClick={this.handleFood}> <img className="img-fluid mb-3" src={process.env.PUBLIC_URL + './img/activities/food.png'} alt="food options"/></ImageButton>
+    </Col>
+    <Col size="md-6">
+    <ImageButton onClick={this.handleDrink}> <img className="img-fluid mb-3" src={process.env.PUBLIC_URL + './img/activities/coffee.png'} alt="drink options"/></ImageButton>
+    </Col>
+  </Row>
+</Container>
+        {this.state.foodChoice && <Jumbo className="mb-2">
         <FoodForm 
         value={this.state.value}
         handleInputChange={this.handleInputChange}
         handleFormSubmit={this.handleFormSubmit}/>
+        </Jumbo>}
+        {this.state.drinkChoice && 
+        <Jumbo className="mb-2">
         <FormDrinks 
         value={this.state.value}
         handleInputChange={this.handleInputChange}
         handleFormSubmit={this.handleFormSubmit}/>
+        </Jumbo>}
 
         {this.state.loading && <Image className="loading" src={process.env.PUBLIC_URL + './img/loading.gif'} alt="loading" />}
         {this.state.hasError && <Title>There was an error searching for your Request. Please try again later.</Title>}

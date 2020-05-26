@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import API from "../../utils/API";
 import Nav from "../Nav";
 import TripCard from "../TripCard";
-import { Image, Title, Wrapper } from "../Styled";
+import { Image, Title, Wrapper, Jumbo } from "../Styled";
 const axios = require("axios");
 
 class TripAdvisor extends Component {
@@ -41,19 +41,6 @@ class TripAdvisor extends Component {
           dateStart: res.data.dateStart,
           city: res.data.city,
           state: res.data.state,
-          // boating: res.data.boating,
-          // fishing: res.data.fishing,
-          // hiking: res.data.hiking,
-          // beach: res.data.beach,
-          // concert: res.data.concert,
-          // sports: res.data.sports,
-          // theatre: res.data.theatre,
-          // sightseeing: res.data.sightseeing,
-          // breakfast: res.data.breakfast,
-          // dinner: res.data.dinner,
-          // dessert: res.data.dessert,
-          // drinks: res.data.drinks,
-          // foodType: res.data.foodType
         })
         this.searchTripId(res.data.city, res.data.state)
       }).catch(err => console.log(err))
