@@ -22,7 +22,9 @@ const PORT = process.env.PORT || 3001;
 passport.use(new FacebookStrategy({
   clientID: keys.facebook.clientID,
   clientSecret: keys.facebook.clientSecret,
-  callbackURL: 'http://localhost:3001/auth/facebook/callback'
+  callbackURL: 'http://localhost:3001/auth/facebook/callback',
+  profileFields: ['id', 'email', 'name', 'photos'] 
+
 },
 function(accessToken, refreshToken, profile, cb) {
   console.log("unique", accessToken, refreshToken, profile)
@@ -56,7 +58,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // passport facebook stuff
-app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
+// app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
@@ -65,14 +67,16 @@ if (process.env.NODE_ENV === "production") {
 
 // Passport middleware
 app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.session());
 
 app.all('/*', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   next();
 });
 
-app.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email' }));
+app.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email' }), function(req,res){
+  console.log(profile);
+});
 
 // { 
 //     failureRedirect: "/NoMatch"
