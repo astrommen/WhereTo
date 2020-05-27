@@ -11,8 +11,7 @@ module.exports = {
         "X-Requested-With": "XMLHttpRequest",
         "dataType": 'jsonp',
         "Access-Control-Allow-Origin": "*",
-      }
-      ,
+      },
       params: {
         term: params.term,
         location: params.location,

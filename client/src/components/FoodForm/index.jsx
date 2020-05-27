@@ -13,8 +13,8 @@ function FoodForm(props) {
           <Row className="text-center">
             <Col size="md-3">
               <input type="checkbox" id="cb1"
-                name="breakfast,"
-                value="breakfast_brunch"
+                name="breakfast"
+                value="breakfast_brunch,"
                 defaultChecked={props.value}
                 onChange={props.handleInputChange} />
               <Label htmlFor="cb1"><img className="img-fluid" alt="" src={process.env.PUBLIC_URL + "./img/activities/breakfast.png"} /><p>Breakfast</p></Label>
@@ -22,8 +22,8 @@ function FoodForm(props) {
 
             <Col size="md-3">
               <input type="checkbox" id="cb2"
-                name="dinner,"
-                value="restaurants"
+                name="dinner"
+                value="restaurants,"
                 defaultChecked={props.value}
                 onChange={props.handleInputChange} />
               <Label htmlFor="cb2"><img className="img-fluid" alt="" src={process.env.PUBLIC_URL + "./img/activities/dinner.png"} /><p>Dinner</p></Label>
@@ -31,8 +31,8 @@ function FoodForm(props) {
 
             <Col size="md-3">
               <input type="checkbox" id="cb3"
-                name="dessert,"
-                value="dessert"
+                name="dessert"
+                value="dessert,"
                 defaultChecked={props.value}
                 onChange={props.handleInputChange} />
               <Label htmlFor="cb3"><img className="img-fluid" alt="" src={process.env.PUBLIC_URL + "./img/activities/dessert.png"} /><p>Dessert</p></Label>

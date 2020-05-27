@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { withRouter } from 'react-router-dom'
-import {Label, Wrapper} from "../Styled";
+import { Link, withRouter } from 'react-router-dom'
+import {Label, Wrapper, Jumbo, Title, Submit} from "../Styled";
+import {Container, Row, Col} from "../Grid";
 import jwt_decode from "jwt-decode";
 import "./style.css";
 import API from "../../utils/API";
@@ -105,10 +106,19 @@ class FormVacation extends Component {
 
   render() {
     return (
-      <Wrapper>
-        <form className="mt-4" onSubmit={this.handleFormSubmit}>
-          <div className="form-row">
-            <div className="form-group col">
+      <Jumbo>
+        <Container>
+          <Row>
+            <Col size="md-2">
+                <Link to="/profile"><img className="logo" className="img-fluid" src={process.env.PUBLIC_URL + '/WhereToLogo.png'} alt="logo" /></Link>
+            </Col>
+            <Col size="md-10"><Title>Ready to Set Up Your Next Where To Vacation?</Title>Get started by filling out the basics of your trip:</Col>
+          </Row>
+          <Wrapper>
+          <form className="mt-4" onSubmit={this.handleFormSubmit}>
+
+          <Row>
+            <Col size="md-12" className="form-group">
               <Label htmlFor="name">Vacation Name</Label>
               <input 
               name="tripName" 
@@ -116,11 +126,11 @@ class FormVacation extends Component {
               value={this.state.tripName}
               onChange={this.handleInputChange}
               id="name" className="form-control" placeholder="Vacation Name" required />
-            </div>
-          </div>
+            </Col>
+          </Row>
         
-          <div className="form-row">
-            <div className="form-group col">
+          <Row className="form-row">
+            <Col size="md-6" className="form-group col">
               <Label htmlFor="start">Start Date:</Label>
               <input
                 className="form-control"
@@ -132,8 +142,8 @@ class FormVacation extends Component {
                 onChange={this.handleInputChange}
                 required
               />
-              </div>
-            <div className="form-group col">
+              </Col>
+            <Col size="md-6" className="form-group col">
               <Label for="end">End Date:</Label>
               <input
                 className="form-control"
@@ -146,18 +156,18 @@ class FormVacation extends Component {
                 onChange={this.handleInputChange}
               />
 
-            </div>
-          </div>
-          <div className="form-row">
-            <div className="form-group col">
+            </Col>
+          </Row>
+          <Row>
+            <Col size="md-6" className="form-group">
               <Label htmlFor="city">City</Label>
               <input id="city" type="text" 
               name="city"
               value={this.state.city}
               onChange={this.handleInputChange}
               className="form-control" placeholder="City" required/>
-            </div>
-            <div className="form-group col">
+            </Col>
+            <Col size="md-6" className="form-group">
               <Label htmlFor="inputState">State</Label>
               <select 
               name="state"
@@ -218,19 +228,23 @@ class FormVacation extends Component {
                 <option value="WV">West Virginia</option>
                 <option value="WY">Wyoming</option>
               </select>
-            </div>
-          </div>
+            </Col>
+          </Row>
 
-          <div className="form-row">
-            <button type="submit"
+          <Row >
+            <Col size="md-12" className="center">
+            <Submit type="submit"
             // disabled={!(this.state.tripName && this.state.date && this.state.state || this.state.city)}
             // onClick={this.handleFormSubmit}
-            >Submit</button>
-          </div>
+            ><i class="far fa-compass"></i>Submit<i class="far fa-compass"></i></Submit>
+          </Col>
+          </Row>
 
           
         </form>
-      </Wrapper>
+        </Wrapper>
+      </Container>
+      </Jumbo>
     );
   }
 }

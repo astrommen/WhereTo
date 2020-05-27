@@ -3,52 +3,86 @@ const db = require("../models");
 
 module.exports = {
     findAll: function(req,res) {
-        const { params } = req.query;        
+
+        const { query: params } = req;
+        console.log(typeof params.location)
         const config = {
-            "headers": {
+            headers: {
                 "content-type": "application/octet-stream",
                 "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
                 "x-rapidapi-key": `${process.env.REACT_APP_TA_APIKEY}`,
                 "useQueryString": true
-            }, "params": {
-                "location_id": "1",
-                "limit": "10",
-                "sort": "relevance",
-                "offset": "0",
-                "lang": "en_US",
-                "currency": "USD",
-                "units": "mi",
-                "query": params.location
-            }
-        }
+              }, params: {
+                location_id: "1",
+                limit: 30,
+                sort: "relevance",
+                offset: 0,
+                lang: "en_US",
+                currency: "USD",
+                units: "km",
+                query: params.location
+              }
+
+        };
+        console.log(params)
         axios
-            .get("https://tripadvisor1.p.rapidapi.com/locations/search", config)        
-            .then((res) => console.log(res))
-                // axios({
-                //     "method":"GET",
-                //     "url":"https://tripadvisor1.p.rapidapi.com/attractions/list",
-                //     "headers":{
-                //     "content-type":"application/octet-stream",
-                //     "x-rapidapi-host":"tripadvisor1.p.rapidapi.com",
-                //     "x-rapidapi-key":`${process.env.REACT_APP_TA_APIKEY}`,
-                //     "useQueryString":true
-                //     },
-                //     "params":{
-                //     "lang":"en_US",
-                //     "currency":"USD",
-                //     "sort":"recommended",
-                //     "limit": "10",
-                //     "lunit":"mi",
-                //     "min_rating":"4",
-                //     "bookable_first":"false",
-                //     "subcategory": params.activity,
-                //     "location_id": res.data.data[0].result_object.location_id
+        .get("https://tripadvisor1.p.rapidapi.com/locations/search", config)
+            .then((result) => {
+              console.log("location id: ", result.data.data[0].result_object.location_id)
+            //   const infoArray = []
+            //   infoArray.push({
+            //     location_id: res.data.data[0].result_object.location_id,
+            //     name: res.data.data[0].result_object.location_string,
+            //     latitude: res.data.data[0].result_object.latitude,
+            //     longitude: res.data.data[0].result_object.longitude
+            //   })
+            //   this.setState({ locationInfo: infoArray })
+              axios({
+                "method": "GET",
+                "url": "https://tripadvisor1.p.rapidapi.com/attractions/list",
+                "headers": {
+                  "content-type": "application/octet-stream",
+                  "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
+                  "x-rapidapi-key": `${process.env.REACT_APP_TA_APIKEY}`,
+                  "useQueryString": true
+                }, "params": {
+                  "lang": "en_US",
+                  "currency": "USD",
+                  "sort": "recommended",
+                  "limit": "10",
+                  "lunit": "mi",
+                  "min_rating": "4",
+                  "bookable_first": "false",
+                  "location_id": result.data.data[0].result_object.location_id
+                }
+              })
+                .then((items) => {
+                    console.log(items)
+                //   const tripsArray = []
+                //   for (var i = 0; i < items.data.data.length; i++) {
+                //     if (items.data.data[i].name) {
+                //       tripsArray.push({
+                //         id: items.data.data[i].location_id,
+                //         address: items.data.data[i].address,
+                //         description: items.data.data[i].description,
+                //         latitude: items.data.data[i].latitude,
+                //         longitude: items.data.data[i].longitude,
+                //         name: items.data.data[i].name,
+                //         phone: items.data.data[i].phone,
+                //         openNow: items.data.data[i].open_now_text,
+                //         image: items.data.data[i].photo ? items.data.data[i].photo.images.medium.url : "./img/location/noImage.png",
+                //         rank: items.data.data[i].ranking,
+                //         website: items.data.data[i].website
+                //       })
                 //     }
-                //     })
-                //     .then((results) => console.log(results.data.data))
-                    .then(trips => res.json(trips))
-                    .catch(err => console.error(err))
-    },
+                //   }
+                //   this.setState({ trips: tripsArray, loading: false });
+                  // console.log(this.state.trips)
+                })
+                .catch(err => console.log("inner catch"));
+            })
+            .catch(err => console.log(err.response.status));
+        },
     findById: function(req,res) {
         db.Vacation
         .find(req.params.id)

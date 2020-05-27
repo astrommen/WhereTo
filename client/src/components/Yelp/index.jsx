@@ -38,6 +38,7 @@ class Yelp extends Component {
         // console.log(res.data)
         // console.log(res.data.tripName)
         this.setState({
+          local: res.data.local,
           tripName: res.data.tripName,
           dateStart: res.data.dateStart,
           city: res.data.city,
@@ -108,7 +109,8 @@ class Yelp extends Component {
     // console.log(this.state)
     return (
       <Wrapper>
-        <Nav />
+        <Nav 
+        local={this.state.local}/>
         <Container>
           <Row className="text-center">
             <Col size="md-6">
