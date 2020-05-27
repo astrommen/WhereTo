@@ -35,8 +35,8 @@ class Yelp extends Component {
     // console.log(this.props.vacaId)
     API.getVacations(localStorage.getItem('vacaId'))
       .then((res) => {
-        console.log(res.data)
-        console.log(res.data.tripName)
+        // console.log(res.data)
+        // console.log(res.data.tripName)
         this.setState({
           tripName: res.data.tripName,
           dateStart: res.data.dateStart,
@@ -126,7 +126,7 @@ class Yelp extends Component {
             handleInputChange={this.handleInputChange}
             handleFormSubmit={this.handleFormSubmit} />
         </Jumbo>}
-        
+
         {this.state.drinkChoice &&
           <Jumbo className="mb-2">
             <FormDrinks
@@ -136,11 +136,11 @@ class Yelp extends Component {
           </Jumbo>}
 
         {this.state.loading && <Image className="loading" src={process.env.PUBLIC_URL + './img/loading.gif'} alt="loading" />}
-        {this.state.hasError &&             
-            <Jumbo>
-              <h5>There was an error searching for your Request.</h5>
-              <White>Please try a different selection or attempt again later.</White>
-            </Jumbo>}
+        {this.state.hasError &&
+          <Jumbo>
+            <h5>There was an error searching for your Request.</h5>
+            <White>Please try a different selection or attempt again later.</White>
+          </Jumbo>}
 
         {this.state.eateries.length > 0 ? (
           this.state.eateries.map((eatery) =>

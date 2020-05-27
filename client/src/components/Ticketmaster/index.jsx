@@ -22,11 +22,30 @@ class Ticketmaster extends Component {
   }
 
   componentDidMount() {
-    console.log("ticketmaster", this.props.state)
-  };
+    // console.log("ticketmaster", this.props.state)
+    this.getVacationData()
+  }
+
+  getVacationData = () => {
+    // console.log(this.props)
+    // console.log(this.props.vacaId)
+    API.getVacations(localStorage.getItem('vacaId'))
+      .then((res) => {
+        // console.log(res.data)
+        // console.log(res.data.tripName)
+        this.setState({
+          tripId: res.data._id,
+          tripName: res.data.tripName,
+          dateStart: res.data.dateStart.slice(0, 19) + "Z",
+          city: res.data.city,
+          state: res.data.state
+        })
+      }).catch(err => console.log(err))
+  }
+
   handleInputChange = event => {
     const { name, value } = event.target;
-    
+
     if (event.target.type === "checkbox") {
       if (!this.state[name]) {
         console.log("check")
@@ -34,7 +53,7 @@ class Ticketmaster extends Component {
           [name]: value
         });
       } else {
-        console.log("check")
+        console.log("uncheck")
         this.setState({
           [name]: ''
         });
@@ -48,18 +67,39 @@ class Ticketmaster extends Component {
   };
 
   handleFormSubmit = event => {
-    event.preventDefault(); 
-    console.log("family: ", this.state.family + "\n film: ", this.state.film, "\n theatre: " , this.state.theatre, "\n concert: ", this.state.concert,  "\n sports: ", this.state.sports);
-    this.searchTickets(this.state.sports, this.state.concert, this.state.theatre, this.state.distance, this.props.state.dateStart, this.props.state.city, this.state.film, this.state.family);
+    event.preventDefault();
+    // console.log(
+    //   "family: ", this.state.family,
+    //   "\n film: ", this.state.film,
+    //   "\n theatre: ", this.state.theatre,
+    //   "\n concert: ", this.state.concert,
+    //   "\n sports: ", this.state.sports,
+    //   "\n distance: ", this.state.distance,
+    //   "\n sports: ", this.props.state.dateStart,
+    //   "\n city:", this.props.state.city,
+    //   "\n film: ", this.state.film,
+    //   "\n family: ", this.state.family,
+    // )
+
+    this.searchTickets(
+      this.state.sports,
+      this.state.concert,
+      this.state.theatre,
+      this.state.distance,
+      this.state.state,
+      this.state.dateStart,
+      this.state.city,
+      this.state.film,
+      this.state.family);
   }
 
   searchTickets = (sports, concert, theatre, distance, state, dateStart, city, film, family) => {
-    this.setState({loading: true})
+    // this.setState({ loading: true })
     API.callTicketmasterD(sports, concert, theatre, distance, state, dateStart, city, film, family)
-    .then(res => {
-      this.setState({ events : res.data, loading: false})
-    })
-    .catch(err => this.setState({hasError: true, loading: false}));
+      .then(res => {
+        this.setState({ events: res.data, loading: false })
+      })
+      .catch(err => this.setState({ hasError: true, loading: false }));
   }
 
   saveEvent = (activity) => {
@@ -75,17 +115,17 @@ class Ticketmaster extends Component {
       <Wrapper>
         <Nav />
         <Jumbo>
-        <FormEvents 
-        value={this.state.value}
-        handleInputChange={this.handleInputChange}
-        handleFormSubmit={this.handleFormSubmit}/>
+          <FormEvents
+            value={this.state.value}
+            handleInputChange={this.handleInputChange}
+            handleFormSubmit={this.handleFormSubmit} />
         </Jumbo>
         {this.state.loading && <Image className="loading" src={process.env.PUBLIC_URL + './img/loading.gif'} alt="loading" />}
-        {this.state.hasError &&             
-            <Jumbo>
-              <h5>There was an error searching for your Request.</h5>
-              <White>Please try a different selection or attempt again later.</White>
-            </Jumbo>}
+        {this.state.hasError &&
+          <Jumbo>
+            <h5>There was an error searching for your Request.</h5>
+            <White>Please try a different selection or attempt again later.</White>
+          </Jumbo>}
         {this.state.events.length > 0 ? (
           this.state.events.map((activity) =>
             <TicketmasterCard
@@ -108,11 +148,11 @@ class Ticketmaster extends Component {
               venuePostal={activity.venuePostal}
             />)
         ) : (
-          <Jumbo>
-          <h3>No Results to Display</h3>
-          <White>Use the food and drink forms to populate your options.</White>
-        </Jumbo>
-    )}
+            <Jumbo>
+              <h3>No Results to Display</h3>
+              <White>Use the food and drink forms to populate your options.</White>
+            </Jumbo>
+          )}
       </Wrapper>
     );
   }

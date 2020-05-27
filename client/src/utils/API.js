@@ -23,10 +23,11 @@ export default {
         return axios.get("/api/ticketmaster", {
             params:
             {
-                activity: sports + concert + theatre,
+                activity: array,
                 distance: distance,
                 dateStart: dateStart,
                 city: city,
+                state: state
             }
         })
     },
@@ -139,8 +140,11 @@ export default {
     deleteFood: function (id) {
         return axios.delete("/api/food" + id);
     },
-    saveEvent: function (eventData) {
-        return axios.post("/api/event", eventData)
+    // saveEvent: function (eventData) {
+    //     return axios.post("/api/event", eventData)
+    // },
+    saveTicketmaster: function (id, data) {
+        return axios.put("/api/ticketmaster/event/" + id, data)
     },
     returnEvent: function () {
         return axios.get("/api/event")
