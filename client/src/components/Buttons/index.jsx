@@ -1,6 +1,25 @@
 import React from "react";
 import styled from "styled-components";
 
+
+const Disabled = styled.button `
+float: right;
+background-color: #8A93B0;
+opacity: 0.7;
+padding: 5px;
+margin: 2px;
+font-style; italic;
+border-radius: 8px;
+color: #142660;
+text-decoration: none;
+width: 125px;
+
+&:hover {
+    color: black;
+    background-color: black;
+    cursor: pointer;
+    border: none;
+`
 const Save = styled.button `
 float: right;
 background-color: #146028;
@@ -61,6 +80,14 @@ export function SiteBtn(props) {
     )
 }
 
+export function DisabledBtn(props) {
+    return(
+        <Disabled>
+             {props.children} 
+        </Disabled>
+    )
+}
+
 export function SeatmapBtn(props) {
     return(
         <Site>
@@ -76,4 +103,6 @@ export function SaveBtn(props) {
         </Save>
     )
 }
+
+
 

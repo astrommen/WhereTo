@@ -1,15 +1,15 @@
 import React, { Component }  from 'react';
 import Nav from "../components/Nav"
-import {Title} from "../components/Styled";
+import {Title, Wrapper} from "../components/Styled";
 
 class Vacation extends Component {
 
   render() {
     return (
-      <div>
+      <Wrapper>
         <Nav/>
         <Title>Start Compiling your Vaction</Title>
-      </div>
+      </Wrapper>
     );
   }
 }

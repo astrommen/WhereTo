@@ -6,7 +6,7 @@ router.route("/")
 .post(ribdController.create);
 
 router.route("/:id")
-.delete(ribdController.remove)
+.get(ribdController.findById)
 .put(ribdController.update)
 .delete(ribdController.remove);
 

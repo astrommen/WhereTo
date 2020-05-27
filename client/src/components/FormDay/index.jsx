@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { withRouter } from 'react-router-dom'
-import {Label, Wrapper} from "../Styled";
+import { Link, withRouter } from 'react-router-dom'
+import { Label, Wrapper, Jumbo, Title, Submit } from "../Styled";
+import {Container, Row, Col} from "../Grid";
 import jwt_decode from "jwt-decode";
 import "./style.css";
 import API from "../../utils/API";
@@ -47,6 +48,7 @@ class FormDay extends Component {
 
     this.state = {
       userId: user,
+      vacaId: '',
       date: dateFill,
       tomorrow: tomorrowFill,
       redirect: false,
@@ -56,32 +58,25 @@ class FormDay extends Component {
       dateStart: dateFill,
       city: "",
       state: "",
-      boating: "",
-      fishing: "",
-      hiking: "",
-      beach: "",
-      concert: "",
-      sports: "",
-      theatre: "",
-      sightseeing: "",
-      breakfast: "",
-      dinner: "",
-      dessert: "",
-      drinks: "",
-      foodType: ""
     };
   }
 
   saveTrip = (vacation) => {
     console.log("FormDay")
     API.saveTrip(vacation)
-      .then(res => console.log(res))
-      .catch(err => console.log(err))
+      .then(res => {
+        localStorage.setItem('vacaId', res.data._id);
+        console.log(res.data._id)
+        this.setState({
+          vacaId: res.data._id
+        })
+        this.props.updateAppState(this.state);
+        this.props.history.push("/daytrip")
+      }).catch(err => console.log(err))
   }
 
   handleInputChange = event => {
     const { name, value } = event.target;
-
     if (event.target.type === "checkbox") {
       if (!this.state[name]) {
 
@@ -102,8 +97,6 @@ class FormDay extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    this.props.updateAppState(this.state);
-    this.props.history.push("/daytrip")
     this.saveTrip({
       userId: this.state.userId,
       tripName: this.state.tripName,
@@ -111,32 +104,29 @@ class FormDay extends Component {
       city: this.state.city,
       state: this.state.state,
       local: this.state.local,
-      boating: this.state.boating,
-      fishing: this.state.fishing,
-      hiking: this.state.hiking,
-      beach: this.state.beach,
-      concert: this.state.concert,
-      sports: this.state.sports,
-      theatre: this.state.theatre,
-      sightseeing: this.state.sightseeing,
-      breakfast: this.state.breakfast,
-      dinner: this.state.dinner,
-      dessert: this.state.dessert,
-      drinks: this.state.drinks,
-      foodType: this.state.foodType,
-      sightseeing: [String],
-      food: [String],
-      events: [String],
-      outdoors: [String],
+      // sightseeing: [String],
+      // food: [String],
+      // events: [String],
+      // outdoors: [String],
     });
   }
 
   render() {
     return (
+      <Jumbo>
+        <Container>
+          <Row>
+            <Col size="md-2">
+              <Link to="/profile"><img className="logo" className="img-fluid" src={process.env.PUBLIC_URL + '/WhereToLogo.png'} alt="logo" /></Link>
+              </Col>
+            <Col size="md-10"><Title>Ready to Explore?</Title>Get started by filling out the basics of your trip:</Col>
+          </Row>
+          <Row>
+            <Col size="md-12">
       <Wrapper>
         <form className="mt-4" onSubmit={this.handleFormSubmit}>
-          <div className="form-row">
-            <div className="form-group col">
+          <Row>
+            <Col  size="md-6" className="form-group">
               <Label htmlFor="name">Trip Name</Label>
               <input
                 name="tripName"
@@ -146,9 +136,9 @@ class FormDay extends Component {
                 id="name" className="form-control" placeholder="Trip Name"
                 required
               />
-            </div>
+            </Col>
 
-            <div className="form-group col">
+            <Col size="md-6" className="form-group col">
               <Label htmlFor="start">Date:</Label>
               <input
                 className="form-control"
@@ -157,14 +147,13 @@ class FormDay extends Component {
                 name="dateStart"
                 defaultValue={this.state.date}
                 min={this.state.date}
-                // value={this.state.dateStart}
                 onChange={this.handleInputChange}
                 required
               />
-            </div>
-          </div>
-          <div className="form-row">
-            <div className="form-group col">
+            </Col>
+          </Row>
+          <Row>
+            <Col size="md-6" className="form-group">
               <Label htmlFor="city">City</Label>
               <input id="city" type="text"
                 name="city"
@@ -173,15 +162,17 @@ class FormDay extends Component {
                 className="form-control" placeholder="City"
                 required
               />
-            </div>
-            <div className="form-group col">
+            </Col>
+            <Col size="md-6" className="form-group">
               <Label htmlFor="inputState">State</Label>
               <select
                 name="state"
                 value={this.state.value}
                 onChange={this.handleInputChange}
-                id="inputState" className="form-control">
-                <option defaultValue>Choose...</option>
+                id="inputState" className="form-control"
+                required
+              >
+                <option value=''>Choose...</option>
                 <option value="AK">Alaska</option>
                 <option value="AL">Alabama</option>
                 <option value="AR">Arkansas</option>
@@ -235,140 +226,21 @@ class FormDay extends Component {
                 <option value="WV">West Virginia</option>
                 <option value="WY">Wyoming</option>
               </select>
-            </div>
-          </div>
+            </Col>
+          </Row>
 
-          <div className="form-row text-center">
-            <div className="col-sm-6 col-lg-2">
-              <input type="checkbox" id="cb1"
-                name="breakfast"
-                value="breakfast_brunch"
-                defaultChecked={this.state.breakfast}
-                onClick={this.handleInputChange} />
-              <Label htmlFor="cb1"><img alt="" src="./img/activities/breakfast.png" /><p>Breakfast</p></Label></div>
-
-            <div className="col-sm-6 col-lg-2"><input type="checkbox" id="cb2"
-              name="dinner"
-              value="restaurants"
-              defaultChecked={this.state.dinner}
-              onClick={this.handleInputChange} />
-              <Label htmlFor="cb2"><img alt="" src="./img/activities/dinner.png" /><p>Dinner</p></Label></div>
-
-            <div className="col-sm-6 col-lg-2"><input type="checkbox" id="cb3"
-              name="dessert"
-              value="dessert"
-              defaultChecked={this.state.dessert}
-              onClick={this.handleInputChange} />
-              <Label htmlFor="cb3"><img alt="" src="./img/activities/dessert.png" /><p>Dessert</p></Label></div>
-
-            <div className="col-sm-6 col-lg-2"><input type="checkbox" id="cb4"
-              name="drinks"
-              value="beer_and_wine"
-              defaultChecked={this.state.drinks}
-              onClick={this.handleInputChange} />
-              <Label htmlFor="cb4"><img alt="" src="./img/activities/bar.png" /><p>Drinks</p></Label></div>
-
-            <div className="form-group col">
-              <Label htmlFor="inputState">Type of Food:</Label>
-              <select id="inputState"
-                name="foodType"
-                value={this.state.value}
-                onClick={this.handleInputChange} className="form-control">
-                <option defaultValue>Choose...</option>
-                <option value="tradamerican">American</option>
-                <option value="asianfusion">Asian Fusion</option>
-                <option value="bbq">Barbeque</option>
-                <option value="buffets">Buffets</option>
-                <option value="cajun">Cajun/Creole</option>
-                <option value="chinese">Chinese</option>
-                <option value="comfortfood">Comfort Food</option>
-                <option value="delis">Delis</option>
-                <option value="diners">Diners</option>
-                <option value="Greek">Greek</option>
-                <option value="indpak">Indian</option>
-                <option value="Italitalianian">Italian</option>
-                <option value="japanese">Japanese</option>
-                <option value="jewish">Jewish</option>
-                <option value="">Mediterranean</option>
-                <option value="mediterranean">Mexican</option>
-                <option value="pizza">Pizza</option>
-                <option value="sandwiches">Sandwiches</option>
-                <option value="sushi">Sushi</option>
-                <option value="thai">Thai</option>
-                <option value="vegan">Vegan</option>
-                <option value="vegetarian">Vegetarian</option>
-              </select>
-            </div>
-          </div>
-
-
-          <div className="form-row text-center">
-            <div className="col-sm-6 col-lg-2"><input type="checkbox"
-              name="boating"
-              value="boating,"
-              defaultChecked={this.state.boating}
-              onClick={this.handleInputChange}
-              id="cb5" />
-              <Label htmlFor="cb5"><img alt="" src="./img/activities/boating.png" /><p>Boating</p></Label></div>
-            <div className="col-sm-6 col-lg-2"><input type="checkbox" id="cb6"
-              name="fishing"
-              value="fishing,"
-              defaultChecked={this.state.fishing}
-              onClick={this.handleInputChange} />
-              <Label htmlFor="cb6"><img alt="" src="./img/activities/fishing.png" /><p>Fishing</p></Label></div>
-            <div className="col-sm-6 col-lg-2"><input type="checkbox" id="cb7"
-              name="hiking"
-              value="hiking,"
-              defaultChecked={this.state.hiking}
-              onClick={this.handleInputChange} />
-              <Label htmlFor="cb7"><img alt="" src="./img/activities/hiking.png" /><p>Hiking</p></Label></div>
-            <div className="col-sm-6 col-lg-2"><input type="checkbox" id="cb8"
-              name="beach"
-              value="beach,"
-              defaultChecked={this.state.beach}
-              onClick={this.handleInputChange} />
-              <Label htmlFor="cb8"><img alt="" src="./img/activities/beach.png" /><p>Beach</p></Label></div>
-          </div>
-
-          <div className="form-row text-center">
-            <div className="col-sm-6 col-lg-2"><input type="checkbox" id="cb9"
-              name="concert"
-              value="concert,"
-              defaultChecked={this.state.concert}
-              onClick={this.handleInputChange} />
-              <Label htmlFor="cb9"><img alt="" src="./img/activities/concert.png" /><p>Concert</p></Label></div>
-            <div className="col-sm-6 col-lg-2"><input type="checkbox" id="cb10"
-              name="sightseeing"
-              value="park,museum"
-              defaultChecked={this.state.sightseeing}
-              onClick={this.handleInputChange} />
-              <Label htmlFor="cb10"><img alt="" src="./img/activities/sightseeing.png" /><p>Sightseeing</p></Label></div>
-            <div className="col-sm-6 col-lg-2"><input type="checkbox" id="cb11"
-              name="sports"
-              value="sports,"
-              defaultChecked={this.state.sports}
-              onClick={this.handleInputChange} />
-              <Label htmlFor="cb11"><img alt="" src="./img/activities/sports.png" /><p>Sports</p></Label></div>
-            <div className="col-sm-6 col-lg-2"><input type="checkbox" id="cb12"
-              name="theatre"
-              value="theatre"
-              defaultChecked={this.state.theatre}
-              onClick={this.handleInputChange} />
-              <Label htmlFor="cb12"><img alt="" src="./img/activities/theatre.png" /><p>Theatre</p></Label></div>
-          </div>
-          <div className="form-row">
-            <div className="col-lg-9"></div>
-            <div className="col-lg-3">
-
-              <button type="submit"
+          <Row className="form-row text-right">
+              <Submit type="submit"
               // disabled={!(this.state.tripName && this.state.date && this.state.state || this.state.city)}
               // onClick={this.handleFormSubmit}
-              >Submit</button></div>
-          </div>
-
-
+              ><i class="far fa-compass"></i> Submit <i class="far fa-compass"></i></Submit>
+          </Row>
         </form>
       </Wrapper>
+            </Col>
+          </Row>
+        </Container>
+        </Jumbo>
     );
   }
 }

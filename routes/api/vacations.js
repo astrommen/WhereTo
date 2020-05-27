@@ -13,4 +13,11 @@ router
   .put(vacationController.update)
   .delete(vacationController.remove);
 
+// Matches with "/api/vacations/sightseeing/:id"
+router
+  .route("/sightseeing/:id")
+  .get(vacationController.findById)
+  .put(vacationController.updateSightseeing)
+  .delete(vacationController.remove);
+
 module.exports = router;

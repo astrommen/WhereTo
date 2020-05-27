@@ -2,13 +2,13 @@ import React, { Component } from "react";
 import API from "../../utils/API";
 import Nav from "../Nav";
 import TripCard from "../TripCard";
-import {Image, Title, Wrapper} from "../Styled";
+import { Image, White, Wrapper, Jumbo } from "../Styled";
 const axios = require("axios");
 
 class TripAdvisor extends Component {
   constructor(props) {
     super(props)
-    this.state={
+    this.state = {
       trips: [],
       locationInfo: [],
       loading: false,
@@ -16,9 +16,9 @@ class TripAdvisor extends Component {
     }
   }
 
-  componentDidMount(){
-    this.searchTripId(this.props.state.state, this.props.state.city, this.props.state.sightseeing)
-    console.log('tripAdvisor', this.props.state)
+  componentDidMount() {
+    this.getVacationData()
+    // console.log('tripAdvisor', this.props.state)
   }
 
   // searchTripId = (location, activity) => {
@@ -29,9 +29,25 @@ class TripAdvisor extends Component {
   //     console.log(this.state.trips)
   //   })
   // }
+  getVacationData = () => {
+    // console.log(this.props)
+    console.log(this.props.vacaId)
+    API.getVacations(localStorage.getItem('vacaId'))
+      .then((res) => {
+        console.log(res.data)
+        console.log(res.data.tripName)
+        this.setState({
+          tripName: res.data.tripName,
+          dateStart: res.data.dateStart,
+          city: res.data.city,
+          state: res.data.state,
+        })
+        this.searchTripId(res.data.city, res.data.state)
+      }).catch(err => console.log(err))
+  }
 
-  searchTripId = (state, city, sightseeing) => {
-    this.setState({loading: true})
+  searchTripId = (city, state, sightseeing) => {
+    this.setState({ loading: true })
     axios({
       "method": "GET",
       "url": "https://tripadvisor1.p.rapidapi.com/locations/search",
@@ -42,47 +58,48 @@ class TripAdvisor extends Component {
         "useQueryString": true
       }, "params": {
         "location_id": "1",
-        "limit": "10",
+        "limit": "30",
         "sort": "relevance",
         "offset": "0",
         "lang": "en_US",
         "currency": "USD",
-        "units": "mi",
-        "query": city+","+state
+        "units": "km",
+        "query": `${city} ${state}`
       }
     })
       .then((res) => {
-        const infoArray =[]
+        console.log(res)
+        const infoArray = []
         infoArray.push({
           location_id: res.data.data[0].result_object.location_id,
           name: res.data.data[0].result_object.location_string,
           latitude: res.data.data[0].result_object.latitude,
           longitude: res.data.data[0].result_object.longitude
         })
-        this.setState({ locationInfo : infoArray})
+        this.setState({ locationInfo: infoArray })
         axios({
-            "method":"GET",
-            "url":"https://tripadvisor1.p.rapidapi.com/attractions/list",
-            "headers":{
-            "content-type":"application/octet-stream",
-            "x-rapidapi-host":"tripadvisor1.p.rapidapi.com",
-            "x-rapidapi-key":"f0f3546714msh866e3df1e2e1ce6p1f73f0jsnec17c00739e3",
-            "useQueryString":true
-            },"params":{
-            "lang":"en_US",
-            "currency":"USD",
-            "sort":"recommended",
+          "method": "GET",
+          "url": "https://tripadvisor1.p.rapidapi.com/attractions/list",
+          "headers": {
+            "content-type": "application/octet-stream",
+            "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
+            "x-rapidapi-key": "f0f3546714msh866e3df1e2e1ce6p1f73f0jsnec17c00739e3",
+            "useQueryString": true
+          }, "params": {
+            "lang": "en_US",
+            "currency": "USD",
+            "sort": "recommended",
             "limit": "10",
-            "lunit":"mi",
-            "min_rating":"4",
-            "bookable_first":"false",
-            "subcategory": sightseeing,
+            "lunit": "mi",
+            "min_rating": "4",
+            "bookable_first": "false",
             "location_id": res.data.data[0].result_object.location_id
-            }
-            })
-            .then((results)=> {
-              const tripsArray = []
-              for (var i=0; i<results.data.data.length; i++) {
+          }
+        })
+          .then((results) => {
+            const tripsArray = []
+            for (var i = 0; i < results.data.data.length; i++) {
+              if (results.data.data[i].name) {
                 tripsArray.push({
                   id: results.data.data[i].location_id,
                   address: results.data.data[i].address,
@@ -97,49 +114,57 @@ class TripAdvisor extends Component {
                   website: results.data.data[i].website
                 })
               }
-              this.setState({ trips : tripsArray, loading: false});
-              console.log(this.state.trips)
-            })
-            .catch(err => this.setState({hasError: true, loading: false}));
+            }
+            this.setState({ trips: tripsArray, loading: false });
+            // console.log(this.state.trips)
           })
-      .catch(err => this.setState({hasError: true, loading: false}));
-    }
-
-  saveTrip = (trip) => {
-    console.log(trip)
-    API.saveTrip(trip)
-    .then(res => console.log(res))
-    .catch(err => console.log(err))
+          .catch(err => this.setState({ hasError: true, loading: false }));
+      })
+      .catch(err => this.setState({ hasError: true, loading: false }));
   }
+
+  // saveTrip = (trip) => {
+  //   console.log(trip)
+  //   // API.saveTrip(trip)
+  //   // .then(res => console.log(res))
+  //   // .catch(err => console.log(err))
+  // }
 
   render() {
     return (
       <Wrapper>
-      <Nav />
-      {this.state.loading && <Image className="loading" src={process.env.PUBLIC_URL + './img/loading.gif'} alt="loading" />}
-        {this.state.hasError && <Title>There was an error searching for your Request. Please try again later.</Title>}
+        <Nav />
+        {this.state.loading && <Image className="loading" src={process.env.PUBLIC_URL + './img/loading.gif'} alt="loading" />}
+        {this.state.hasError && 
+            <Jumbo>
+            <h5>There was an error searching for your Request.</h5>
+            <White>Please try again later.</White>
+          </Jumbo>}
+
       {this.state.trips.length > 0 ? (
-        this.state.trips.map((trip) =>
-        <TripCard 
-        key={trip.id}
-        address={trip.address}
-        description={trip.description}
-        latitude={trip.latitude}
-        longitude={trip.longitude}
-        name={trip.name}
-        phone={trip.phone}
-        openNow={trip.openNow}
-        rank={trip.rank}
-        website={trip.website}
-        image={trip.image}
-        />
-        ) 
-      ) : (
-      <h3>No Results to Display</h3>
-      )}  
-    </Wrapper>
-        );
-      }
-    }
+          this.state.trips.map((trip) =>
+            <TripCard
+              key={trip.id}
+              address={trip.address}
+              description={trip.description}
+              latitude={trip.latitude}
+              longitude={trip.longitude}
+              name={trip.name}
+              phone={trip.phone}
+              openNow={trip.openNow}
+              rank={trip.rank}
+              website={trip.website}
+              image={trip.image}
+              // saveTrip={this.saveTrip()}
+            />
+          )
+        ) : (
+            <Jumbo>
+            </Jumbo>
+          )}
+      </Wrapper>
+    );
+  }
+}
 
 export default TripAdvisor;

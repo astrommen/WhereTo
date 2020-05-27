@@ -2,36 +2,54 @@ import axios from "axios"
 
 export default {
     //Ticketmaster
-    callTicketmasterD: function (sports, concert, theatre, distance, dateStart, city) {
+    callTicketmasterD: function (sports, concert, theatre, distance, state, dateStart, city, film, family) {
+        let array = []
+        if (sports) {
+            array.push(sports)
+        }
+        if (concert) {
+            array.push(concert)
+        }
+        if (theatre) {
+            array.push(theatre)
+        }
+        if (film) {
+            array.push(film)
+        }
+        if (family) {
+            array.push(family)
+        }
+        console.log("ARRAY", array)
         return axios.get("/api/ticketmaster", {
             params:
             {
-                activity: sports+concert+theatre,
+                activity: array,
                 distance: distance,
                 dateStart: dateStart,
-                city: city
+                city: city,
+                state: state
             }
         })
     },
     //Ticketmaster
-    callTicketmasterV: function (activity, distance, dateStart, dateEnd, city) {
+    callTicketmasterV: function (concert, sports, theatre, film, family, distance, dateStart, dateEnd, city) {
         return axios.get("/api/ticketmaster", {
             params:
             {
-                activity: activity,
+                activity: concert + sports + theatre + film + family,
                 distance: distance,
                 dateStart: dateStart,
                 dateEnd: dateEnd,
-                city: city
+                city: city,
             }
         })
     },
     //RIBD
-    callRibd: function (state, city, boating, fishing, hiking, beach) {
+    callRibd: function (state, city, boating, fishing, hiking, beach, camping, swimming) {
         return axios.get("/api/ribd", {
             params: {
-                location: city+","+state,
-                activities: boating+fishing+hiking+beach
+                location: city + "," + state,
+                activities: boating + fishing + hiking + beach + camping + swimming,
             }
         })
     },
@@ -42,18 +60,17 @@ export default {
             params: {
                 city: city,
                 startDate: startDate,
-                endDate: endDate
+                endDate: endDate,
             }
         })
     },
     //Search Yelp for food and drink
-    callYelp: function (city, state, breakfast, dinner, dessert, drinks, foodType) {
+    callYelp: function (city, state, breakfast, dinner, dessert, foodType, drinks) {
         console.log("fetching yelp")
         return axios.get("/api/yelp", {
             params: {
-                location: city+","+state,
-                term: breakfast+","+dinner+","+dessert+","+drinks,
-                categories: foodType
+                location: city + "," + state,
+                term: breakfast + dinner + dessert + foodType + drinks,
             }
         })
     },
@@ -62,7 +79,7 @@ export default {
         return axios.get("/api/country", { params: { country: country } })
     },
     //Search Triposo for city walk information
-    callTour: function(city) {
+    callTour: function (city) {
         console.log("fetching tour")
         return axios.get("/api/walk", {
             params: {
@@ -70,7 +87,7 @@ export default {
             }
         })
     },
-    callTrip: function(location, activity) {
+    callTrip: function (location, activity) {
         return axios.get("/api/trip", {
             params: {
                 location: location,
@@ -90,70 +107,79 @@ export default {
     getVacations: function (id) {
         return axios.get("/api/vacations/" + id)
     },
-    saveTrip: function(tripData) {
+    saveTrip: function (tripData) {
         return axios.post("/api/vacations", tripData)
     },
-    saveOutdoorArea: function(outdoorData) {
+    saveOutdoorArea: function (outdoorData) {
         return axios.post("/api/outdoor", outdoorData)
     },
-    returnOutdoorAreas: function() {
+    returnOutdoorAreas: function () {
         return axios.get("/api/outdoor")
     },
-    deleteOutdoorArea: function(id) {
+    deleteOutdoorArea: function (id) {
         return axios.delete("/api/outdoor" + id);
     },
-    saveCountry: function(countryData) {
+    saveCountry: function (countryData) {
         return axios.post("/api/country", countryData)
     },
-    returnCountry: function() {
+    returnCountry: function () {
         return axios.get("/api/country")
     },
-    deleteCountry: function(id) {
+    deleteCountry: function (id) {
         return axios.delete("/api/country" + id);
     },
-    saveFood: function(foodData) {
-        return axios.post("/api/food", foodData)
+    // saveFood: function (foodData) {
+    //     return axios.post("/api/food", foodData)
+    // },
+    saveFood: function (id, data) {
+        return axios.put("/api/yelp/food/" + id, data)
     },
-    returnFood: function() {
+    returnFood: function () {
         return axios.get("/api/food")
     },
-    deleteFood: function(id) {
+    deleteFood: function (id) {
         return axios.delete("/api/food" + id);
     },
-    saveEvent: function(eventData) {
-        return axios.post("/api/event", eventData)
+    // saveEvent: function (eventData) {
+    //     return axios.post("/api/event", eventData)
+    // },
+    saveTicketmaster: function (id, data) {
+        return axios.put("/api/ticketmaster/event/" + id, data)
     },
-    returnEvent: function() {
+    returnEvent: function () {
         return axios.get("/api/event")
     },
-    deleteEvent: function(id) {
+    deleteEvent: function (id) {
         return axios.delete("/api/event" + id);
     },
-    saveSightseeing: function(sightseeingData) {
-        return axios.post("/api/sightseeing", sightseeingData)
+    // saveSightseeing: function (sightseeingData) {
+    //     return axios.post("/api/sightseeing", sightseeingData)
+    // },
+    saveSightseeing: function (id, data) {
+        return axios.put("/api/vacations/sightseeing/" + id, data)
     },
-    returnSightseeing: function() {
+    returnSightseeing: function () {
         return axios.get("/api/sightseeing")
     },
-    deleteSightseeing: function(id) {
+    deleteSightseeing: function (id) {
         return axios.delete("/api/sightseeing" + id);
     },
-    saveWalk: function(sightseeingData) {
+    saveWalk: function (sightseeingData) {
         return axios.post("/api/walk", sightseeingData)
     },
-    returnWalk: function() {
+    returnWalk: function () {
         return axios.get("/api/walk")
     },
-    deleteWalk: function(id) {
+    deleteWalk: function (id) {
         return axios.delete("/api/walk" + id);
     },
-    saveDayplan: function(dayplanData) {
+    saveDayplan: function (dayplanData) {
         return axios.post("/api/triposo", dayplanData)
     },
-    returnDayplan: function() {
+    returnDayplan: function () {
         return axios.get("/api/triposo")
     },
-    deleteDayplan: function(id) {
+    deleteDayplan: function (id) {
         return axios.delete("/api/triposo" + id);
     },
 }
