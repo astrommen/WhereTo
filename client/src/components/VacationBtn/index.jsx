@@ -21,7 +21,7 @@ class VacationBtn extends Component {
         </div>
       ) : (
           <div>
-            <Link to="/daytrip">
+            <Link to="/vacation">
             <button id={this.props.id} type="button" className="btn btn-success btn-block" onClick={this.redirectVacation} >{this.props.name}</button></Link>
           </div>
         )

@@ -1,6 +1,7 @@
 import React, { Component }  from 'react';
 import {Link} from "react-router-dom";
-import {Container, Row, Col} from "../Grid";
+import {Container, Row, Col } from "../Grid";
+import { Pin } from "../Styled";
 import "./style.css";
 
 
@@ -15,7 +16,7 @@ function Nav(props) {
         </Col>
         <Col size="md-2">
           <Link className="navbar-brand"  to={props.local ? "/daytrip" : "/vacation"}>
-          <img className="pinpoint img-fluid" src='./img/WT.png' alt="daytrip" />
+          <Pin className="pinpoint img-fluid" src={process.env.PUBLIC_URL + './img/WT.png'} alt="daytrip" />
           </Link>
         </Col>
         <Col size="md-2">

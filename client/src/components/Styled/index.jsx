@@ -70,6 +70,10 @@ export const LocDes = styled.p `
 color: white;
 font-weight: bold;
 `
+export const Pin = styled.img `
+heigth: 30%;
+width: 30%;
+`
 
 export const Submit = styled.button `
 width: 125px;

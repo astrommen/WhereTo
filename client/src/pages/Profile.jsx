@@ -63,8 +63,6 @@ class Profile extends Component {
     this.getUser();
   }
 
-
-
   getUser = () => {
     let IDsArr = []
     API.getUser(this.state.userID)

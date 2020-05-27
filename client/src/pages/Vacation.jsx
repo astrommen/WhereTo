@@ -48,6 +48,10 @@ class Vacation extends Component {
       <Wrapper>
         <Nav 
         local={this.state.local}
+        vacaId={localStorage.getItem('vacaId')}
+        />
+        <TripData
+        vacaId={localStorage.getItem('vacaId')}
         />
         
       </Wrapper>

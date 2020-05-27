@@ -27,9 +27,9 @@ class Outdoor extends Component {
     this.getVacationData();
   };
     
-  searchOutdoors = (state, city, boating, fishing, hiking, beach, camping, swimming) => {
+  searchOutdoors = (city, state, boating, fishing, hiking, beach, camping, swimming) => {
     this.setState({loading: true})
-    API.callRibd(state, city, boating, fishing, hiking, beach, camping, swimming)
+    API.callRibd(city, state, boating, fishing, hiking, beach, camping, swimming)
     .then(res => {
       console.log(res);
       this.setState({ sites: res.data, loading: false})
@@ -58,15 +58,21 @@ class Outdoor extends Component {
       this.setState({
         [name]: value
       });
-      console.log(this.state.foodType)
     }
   };
 
   handleFormSubmit = event => {
     event.preventDefault(); 
 
-    this.searchOutdoors(this.props.state.state, this.props.state.city, this.state.boating, this.state.fishing, this.state.hiking, this.state.beach, this.state.camping, this.state.swimming);
-    // console.log("results: " , this.state.boating, this.state.fishing, this.state.hiking, this.state.beach, this.state.camping, this.state.swimming)
+    this.searchOutdoors(
+      this.state.city,
+       this.state.state, 
+       this.state.boating, 
+       this.state.fishing, 
+       this.state.hiking, 
+       this.state.beach, 
+       this.state.camping, 
+       this.state.swimming);
   }
 
 
