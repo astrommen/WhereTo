@@ -26,7 +26,7 @@ class template extends Component {
           // date: dateFill,
           // tomorrow: tomorrowFill,
           // redirect: false,
-          // local: true,
+          // local: res.data.local,
           // whichPage: "",
           tripId: res.data._id,
           tripName: res.data.tripName,

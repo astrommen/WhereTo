@@ -87,16 +87,13 @@ export default {
             }
         })
     },
-    callTrip: function (location, activity) {
+    callTrip: function (city, state) {
+        console.log("made to API")
         return axios.get("/api/trip", {
             params: {
-                location: location,
-                activity: activity
+                location: city +","+ state
             }
         })
-    },
-    callCountries: function (country) {
-        return axios.get("/api/country", { params: { country: country } })
     },
     getUser: function (id) {
         return axios.get("/api/users/" + id);

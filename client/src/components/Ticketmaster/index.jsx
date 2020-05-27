@@ -34,6 +34,7 @@ class Ticketmaster extends Component {
         // console.log(res.data)
         // console.log(res.data.tripName)
         this.setState({
+          local: res.data.local,
           tripId: res.data._id,
           tripName: res.data.tripName,
           dateStart: res.data.dateStart.slice(0, 19) + "Z",
@@ -113,7 +114,8 @@ class Ticketmaster extends Component {
     // console.log(this.state)
     return (
       <Wrapper>
-        <Nav />
+        <Nav
+        local={this.state.local}/>
         <Jumbo>
           <FormEvents
             value={this.state.value}

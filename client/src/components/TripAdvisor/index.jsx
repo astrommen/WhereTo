@@ -21,14 +21,7 @@ class TripAdvisor extends Component {
     // console.log('tripAdvisor', this.props.state)
   }
 
-  // searchTripId = (location, activity) => {
-  //   API.callTrip(location, activity)
-  //   .then(res => {
-  //     console.log(res);
-  //     this.setState({trips: res.data})
-  //     console.log(this.state.trips)
-  //   })
-  // }
+  
   getVacationData = () => {
     // console.log(this.props)
     console.log(this.props.vacaId)
@@ -37,6 +30,7 @@ class TripAdvisor extends Component {
         console.log(res.data)
         console.log(res.data.tripName)
         this.setState({
+          local: res.data.local,
           tripName: res.data.tripName,
           dateStart: res.data.dateStart,
           city: res.data.city,
@@ -46,7 +40,17 @@ class TripAdvisor extends Component {
       }).catch(err => console.log(err))
   }
 
-  searchTripId = (city, state, sightseeing) => {
+
+  //   searchTripId = (city, state) => {
+  //   API.callTrip(city, state)
+  //   .then(res => {
+  //     console.log(res);
+  //     this.setState({trips: res.data})
+  //     console.log(this.state.trips)
+  //   })
+  // }
+
+  searchTripId = (city, state) => {
     this.setState({ loading: true })
     axios({
       "method": "GET",
@@ -63,7 +67,7 @@ class TripAdvisor extends Component {
         "offset": "0",
         "lang": "en_US",
         "currency": "USD",
-        "units": "km",
+        "units": "mi",
         "query": `${city} ${state}`
       }
     })
@@ -133,7 +137,8 @@ class TripAdvisor extends Component {
   render() {
     return (
       <Wrapper>
-        <Nav />
+        <Nav 
+        local={this.state.local}/>
         {this.state.loading && <Image className="loading" src={process.env.PUBLIC_URL + './img/loading.gif'} alt="loading" />}
         {this.state.hasError && 
             <Jumbo>

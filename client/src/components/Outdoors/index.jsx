@@ -24,12 +24,12 @@ class Outdoor extends Component {
   }
 
   componentDidMount() {
-    console.log("outdoors", this.props.state)
+    this.getVacationData();
   };
     
-  searchOutdoors = (state, city, boating, fishing, hiking, beach, camping, swimming) => {
+  searchOutdoors = (city, state, boating, fishing, hiking, beach, camping, swimming) => {
     this.setState({loading: true})
-    API.callRibd(state, city, boating, fishing, hiking, beach, camping, swimming)
+    API.callRibd(city, state, boating, fishing, hiking, beach, camping, swimming)
     .then(res => {
       console.log(res);
       this.setState({ sites: res.data, loading: false})
@@ -58,15 +58,21 @@ class Outdoor extends Component {
       this.setState({
         [name]: value
       });
-      console.log(this.state.foodType)
     }
   };
 
   handleFormSubmit = event => {
     event.preventDefault(); 
 
-    this.searchOutdoors(this.props.state.state, this.props.state.city, this.state.boating, this.state.fishing, this.state.hiking, this.state.beach, this.state.camping, this.state.swimming);
-    // console.log("results: " , this.state.boating, this.state.fishing, this.state.hiking, this.state.beach, this.state.camping, this.state.swimming)
+    this.searchOutdoors(
+      this.state.city,
+       this.state.state, 
+       this.state.boating, 
+       this.state.fishing, 
+       this.state.hiking, 
+       this.state.beach, 
+       this.state.camping, 
+       this.state.swimming);
   }
 
 
@@ -76,10 +82,30 @@ class Outdoor extends Component {
     .catch(err => console.log(err))
   }
 
+  getVacationData = () => {
+    // console.log(this.props)
+    // console.log(this.props.vacaId)
+    API.getVacations(localStorage.getItem('vacaId'))
+      .then((res) => {
+        console.log(res.data)
+        console.log(res.data.tripName)
+        this.setState({
+          local: res.data.local,
+          tripId: res.data._id,
+          tripName: res.data.tripName,
+          dateStart: res.data.dateStart,
+          city: res.data.city,
+          state: res.data.state,
+        })
+      }).catch(err => console.log(err))
+  }
+
+
   render() {
     return (
       <Wrapper>
-        <Nav />
+        <Nav 
+        local={this.state.local}/>
         <Jumbo>
         <FormOutdoors 
         value={this.state.value}
