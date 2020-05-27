@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {Link} from "react-router-dom";
-import "./style.css";
+import { TripBtn2 } from "../Styled";
 
 
 class VacationBtn extends Component {
@@ -17,12 +17,12 @@ class VacationBtn extends Component {
       this.props.local ? (
         <div>
             <Link to="/daytrip">
-          <button id={this.props.id} type="button" className="btn btn-primary btn-block" onClick={this.redirectVacation} >{this.props.name}</button></Link>
+          <TripBtn2 id={this.props.id} type="button" className="btn btn-primary btn-block" onClick={this.redirectVacation} >{this.props.name}</TripBtn2></Link>
         </div>
       ) : (
           <div>
             <Link to="/vacation">
-            <button id={this.props.id} type="button" className="btn btn-success btn-block" onClick={this.redirectVacation} >{this.props.name}</button></Link>
+            <TripBtn2 id={this.props.id} type="button" className="btn btn-success btn-block" onClick={this.redirectVacation} vacation>{this.props.name}</TripBtn2></Link>
           </div>
         )
 

@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Redirect } from 'react-router-dom'
-// import Wrapper from "../components/Wrapper";
+import { logoutUser } from "../actions/authActions";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import { Container, Row, Col } from "../components/Grid";
 import VacationBtn from "../components/VacationBtn";
 import ProfileBox from "../components/profileBox"
@@ -45,7 +47,6 @@ class Profile extends Component {
 
     const user = decoded.id;
 
-
     this.state = {
       today: today,
       date: dateFill,
@@ -61,6 +62,13 @@ class Profile extends Component {
 
   componentDidMount() {
     this.getUser();
+  }
+
+
+  onLogoutClick = event => {
+    event.preventDefault();
+    this.props.logoutUser();
+    this.props.history.push("/")
   }
 
   getUser = () => {
@@ -119,13 +127,18 @@ class Profile extends Component {
     // console.log(pastArr)
   }
 
-
-
-
   render() {
     return (
       <Wrapper>
         <Container>
+          <Row >
+            <Col size="md-12">
+              <div className="d-flex justify-content-end">
+              <button onClick={this.onLogoutClick}
+              className="btn btn-large btn-secondary justify-content-end logout">Logout</button>
+              </div>
+            </Col>
+          </Row>
           <Row className="justify-content-around">
             <Col size="md-6">
               <ProfileBox
@@ -185,5 +198,18 @@ class Profile extends Component {
   }
 }
 
+//LogOut code
+Profile.propTypes = {
+  logoutUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
+}
 
-export default Profile;
+const mapStateToProps = state => ({
+  auth: state.auth
+})
+
+
+export default connect(
+  mapStateToProps,
+  { logoutUser }
+)(Profile);

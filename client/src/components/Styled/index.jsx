@@ -83,7 +83,7 @@ border-radius: 3px;
 border: none;
 letter-spacing: 1.5px;
 padding: 1%;
-background-color: rgba(82, 82, 122,.9);
+background-color: rgba(122, 122, 82,.9);
 color: white;
 font-weight: bold;
 &:link, :hover, :active, :visited {
@@ -91,6 +91,43 @@ font-weight: bold;
     font-weight: bold;
     box-shadow: 0px 0px 5px white;
     transform: scale(1.1);
+`
+
+export const TripBtn = styled.button `
+width: 125px;
+height: 35px;
+margin: 0 2% 0 0;
+border-radius: 3px;
+border: none;
+letter-spacing: 1.5px;
+padding: 1%;
+background-color: ${props => props.vacation ? "rgba(96, 20, 76)" : "rgba(20, 38, 96)"};
+color: white;
+font-weight: bold;
+box-shadow: 0px 0px 1px white;
+&:link, :hover, :active, :visited {
+    text-decoration: none;
+    background-color: ${props => props.vacation ? "rgba(96, 20, 76, .8)" : "rgba(20, 38, 96, .8)"};
+    font-weight: bold;
+    box-shadow: 0px 0px 5px white;
+    transform: scale(1.1);
+`
+export const TripBtn2 = styled.button `
+margin: 2% 2% 2% 0;
+border-radius: 3px;
+border: none;
+letter-spacing: 1.5px;
+padding: 1%;
+background-color: ${props => props.vacation ? "rgba(96, 20, 76)" : "rgba(20, 38, 96)"};
+color: white;
+font-weight: bold;
+box-shadow: 0px 0px 1px white;
+&:link, :hover, :active, :visited {
+    text-decoration: none;
+    background-color: ${props => props.vacation ? "rgba(96, 20, 76, .8)" : "rgba(20, 38, 96, .8)"};
+    font-weight: bold;
+    box-shadow: 0px 0px 5px white;
+    transform: scale(0.98);
 `
 
 export const Title = styled.h3 `
