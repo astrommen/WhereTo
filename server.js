@@ -8,7 +8,8 @@ const flash = require("connect-flash");
 const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-const Strategy = require('passport-facebook').Strategy;
+const FacebookStrategy = require('passport-facebook').Strategy;
+// const GoogleStrategy = require('passport-google').Strategy;
 const mongo = require("mongodb");
 const mongoose = require("mongoose");
 const users = require("./routes/api/users");
@@ -18,14 +19,25 @@ const keys = require("./config/keys");
 const PORT = process.env.PORT || 3001;
 
 // passport facebook
-passport.use(new Strategy({
+passport.use(new FacebookStrategy({
   clientID: keys.facebook.clientID,
   clientSecret: keys.facebook.clientSecret,
-  callbackURL: '/return'
+  callbackURL: 'http://localhost:3001/auth/facebook/callback'
 },
 function(accessToken, refreshToken, profile, cb) {
+  console.log("unique", accessToken, refreshToken, profile)
   return cb(null, profile);
 }));
+
+// passport.use(new GoogleStrategy({
+//   clientID: keys.google.clientID,
+//   clientSecret: keys.google.clientSecret,
+//   callbackURL: 'http://localhost:3000/profile'
+// },
+// function(accessToken, refreshToken, profile, cb) {
+//   console.log("unique", accessToken, refreshToken, profile)
+//   return cb(null, profile);
+// }));
 
 passport.serializeUser(function(user, cb) {
   cb(null, user);
@@ -55,13 +67,46 @@ if (process.env.NODE_ENV === "production") {
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get('/login/facebook',
-  passport.authenticate('facebook'));
+app.all('/*', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
+});
+
+app.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email' }));
+
+// { 
+//     failureRedirect: "/NoMatch"
+//   }), function(req, res){
+//     console.log("here we are");
+//     res.redirect("/");
+//   }
+// );
+
+//step 1. save user info to db
+//step 2. set and check for jwt: base64 hash the combined userid+email to create jwt
+
+app.get('/auth/facebook/callback', 
+  passport.authenticate('facebook', 
+  { successRedirect: 'http://localhost:3000/profile',failureRedirect: '/login' },
+
+  ),
+    function(req, res) {
+      window.location.href="http://localhost:3000/profile";
+    }
+  );
+
+// app.get('/auth/facebook/callback', 
+//   function(req,res){
+//     console.log("redirected");
+//   }
+// );
+
+app.get('/auth/google', passport.authenticate('google'));
 
 app.get('/return', 
-  passport.authenticate('facebook', { failureRedirect: '/login' }),
+  passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
-    res.redirect('/');
+    res.redirect('/profile');
 });
 
 // Passport config

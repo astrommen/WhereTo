@@ -84,7 +84,22 @@ class SignOn extends Component {
         {this.renderRedirect()}
 
         <Row>
-        <a href="/login/facebook">Log In with Facebook</a>
+          <a href="http://localhost:3001/auth/facebook">
+          <button style={{
+              width: "200px",
+              height: "50px",
+              margin: "2% 0 0 0",
+              borderRadius: "3px",
+              letterSpacing: "1.5px",
+              padding: "1%",
+              background: "white",
+              color: "black"
+            }}>
+
+          Log In with Facebook
+          </button>
+          </a>
+        {/* <a href="http://localhost:3001/auth/auth/google">Log In with Google</a> */}
           {/* <div id={GOOGLE_BUTTON_ID} />
           <button onClick={() => this.signOut()}>Sign out</button> */}
         </Row>
