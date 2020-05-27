@@ -129,7 +129,7 @@ text-align: ${props => props.inputAlign || "center"}
 
 export const Label = styled.label `
 color: white;
-text-align: left;
+text-align: center;
 `
 export const Wrapper = styled.section `
 width:100%;

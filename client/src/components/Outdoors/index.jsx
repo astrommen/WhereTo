@@ -24,7 +24,7 @@ class Outdoor extends Component {
   }
 
   componentDidMount() {
-    console.log("outdoors", this.props.state)
+    this.getVacationData();
   };
     
   searchOutdoors = (state, city, boating, fishing, hiking, beach, camping, swimming) => {
@@ -76,10 +76,30 @@ class Outdoor extends Component {
     .catch(err => console.log(err))
   }
 
+  getVacationData = () => {
+    // console.log(this.props)
+    // console.log(this.props.vacaId)
+    API.getVacations(localStorage.getItem('vacaId'))
+      .then((res) => {
+        console.log(res.data)
+        console.log(res.data.tripName)
+        this.setState({
+          local: res.data.local,
+          tripId: res.data._id,
+          tripName: res.data.tripName,
+          dateStart: res.data.dateStart,
+          city: res.data.city,
+          state: res.data.state,
+        })
+      }).catch(err => console.log(err))
+  }
+
+
   render() {
     return (
       <Wrapper>
-        <Nav />
+        <Nav 
+        local={this.state.local}/>
         <Jumbo>
         <FormOutdoors 
         value={this.state.value}

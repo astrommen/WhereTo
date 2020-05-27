@@ -4,7 +4,7 @@ import {Container, Row, Col} from "../Grid";
 import "./style.css";
 
 
-function Nav() {
+function Nav(props) {
   return(
     <Container>
       <Row>
@@ -14,8 +14,8 @@ function Nav() {
           </Link>
         </Col>
         <Col size="md-2">
-          <Link className="navbar-brand" to="/vacationform">
-          <img className="logo" src='./img/WT.png' alt="form" />
+          <Link className="navbar-brand"  to={props.local ? "/daytrip" : "/vacation"}>
+          <img className="pinpoint img-fluid" src='./img/WT.png' alt="daytrip" />
           </Link>
         </Col>
         <Col size="md-2">
