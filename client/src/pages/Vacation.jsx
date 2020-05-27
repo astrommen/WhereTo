@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Nav from "../components/Nav"
+import Nav from "../components/Nav";
 import { Wrapper } from "../components/Styled";
-import { withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom';
 import TripData from "../components/TripData";
 import API from "../utils/API";
 
@@ -16,7 +16,6 @@ class Vacation extends Component {
   }
 
   componentDidMount() {
-    // this.redirect()
     this.getVacationData();
   }
 
@@ -27,44 +26,33 @@ class Vacation extends Component {
   }
 
   getVacationData = () => {
-    // console.log(this.props)
-    // console.log(this.props.vacaId)
     API.getVacations(localStorage.getItem('vacaId'))
-      .then((res) => {
-        console.log(res.data)
-        console.log(res.data.tripName)
-        this.setState({
-          local: res.data.local,
-          tripId: res.data._id,
-          tripName: res.data.tripName,
-          dateStart: res.data.dateStart,
-          city: res.data.city,
-          state: res.data.state,
-        })
-      }).catch(err => console.log(err))
-
+    .then((res) => {
+      console.log("API getVacations function Vacations Page", res.data)
+      console.log("Trip Name: ", res.data.tripName)
+      this.setState({
+        local: res.data.local,
+        tripId: res.data._id,
+        tripName: res.data.tripName,
+        dateStart: res.data.dateStart,
+        dateEnd: res.data.dateEnd,
+        city: res.data.city,
+        state: res.data.state,
+      })
+    }).catch(err => console.log(err))
   }
 
-
-
   render() {
-    console.log(this.state)
+    console.log("Vacation render: ", this.state)
     return (
       <Wrapper>
-        <Nav
+        <Nav 
         local={this.state.local}
-        vacaId={localStorage.getItem('vacaId')}
         />
-        <TripData
-          vacaId={localStorage.getItem('vacaId')}
-        // tripName={this.state.tripName}
-        // dateStart={this.state.dateStart}
-        // city={this.state.city}
-        // state={this.state.state}
-        />
+        
       </Wrapper>
     );
   }
 }
 
-export default withRouter(Vacation);
+export default withRouter(Vacation)

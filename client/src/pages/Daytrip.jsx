@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Nav from "../components/Nav"
+import Nav from "../components/Nav";
 import { Wrapper } from "../components/Styled";
-import { withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom';
 import TripData from "../components/TripData";
 import API from "../utils/API";
 
@@ -43,8 +43,6 @@ class DayTrip extends Component {
         })
       }).catch(err => console.log(err))
   }
-
-
 
   render() {
     console.log(this.state)
