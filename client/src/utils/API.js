@@ -2,14 +2,32 @@ import axios from "axios"
 
 export default {
     //Ticketmaster
-    callTicketmasterD: function (sports, concert, theatre, distance, dateStart, city) {
+    callTicketmasterD: function (sports, concert, theatre, distance, state, dateStart, city, film, family) {
+        let array = []
+        if (sports) {
+            array.push(sports)
+        }
+        if (concert) {
+            array.push(concert)
+        }
+        if (theatre) {
+            array.push(theatre)
+        }
+        if (film) {
+            array.push(film)
+        }
+        if (family) {
+            array.push(family)
+        }
+        console.log("ARRAY", array)
         return axios.get("/api/ticketmaster", {
             params:
             {
-                activity: sports + concert + theatre,
+                activity: array,
                 distance: distance,
                 dateStart: dateStart,
                 city: city,
+                state: state
             }
         })
     },
@@ -119,8 +137,11 @@ export default {
     deleteFood: function (id) {
         return axios.delete("/api/food" + id);
     },
-    saveEvent: function (eventData) {
-        return axios.post("/api/event", eventData)
+    // saveEvent: function (eventData) {
+    //     return axios.post("/api/event", eventData)
+    // },
+    saveTicketmaster: function (id, data) {
+        return axios.put("/api/ticketmaster/event/" + id, data)
     },
     returnEvent: function () {
         return axios.get("/api/event")
