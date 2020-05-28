@@ -17,6 +17,7 @@ const routes = require("./routes");
 const app = express();
 const keys = require("./config/keys");
 const PORT = process.env.PORT || 3001;
+const jwt = require("jsonwebtoken");
 
 const User = require("./models/user");
 // passport facebook
@@ -24,27 +25,39 @@ passport.use(new FacebookStrategy({
   clientID: keys.facebook.clientID,
   clientSecret: keys.facebook.clientSecret,
   callbackURL: 'http://localhost:3001/auth/facebook/callback',
-  profileFields: ['id', 'email', 'name', 'photos'] 
+  profileFields: ['id', 'email', 'name', 'picture.type(large)'] 
 
   },
   function(accessToken, refreshToken, profile, cb) {
     const userProfile = profile._json;
-    console.log("unique", accessToken, userProfile);
+    console.log("unique", accessToken, profile);
     console.log(userProfile.picture.data.url);
     // app.post("/register", (req, res) => {
       User.findOne({ email: userProfile.email }).then(user => {
-        console.log("user");
+        console.log("this is user", user);
         if (user) {
           console.log({email: "Email already exists "});
+          const token = jwt.sign(profile._json, keys.secretOrKey);
+          console.log("JWT", token);
           return cb(null, user);
         } else {
+          const pic = `https://graph.facebook.com/${profile.id}/picture?width=200&height=200&access_token=${accessToken}`;
+          console.log(pic);
           const newUser = new User({
             name: userProfile.first_name + " " + userProfile.last_name,
             email: userProfile.email,
             password: Date.now()+userProfile.id,
-            profle_pic: userProfile.picture.data.url
+            profle_pic: pic
           });
-          newUser.save()
+          newUser.save(function(err){
+            if(err) {
+              throw err;
+            }
+            const token = jwt.sign(profile._json, keys.secretOrKey);
+            return document(null, {success: true, token: "JWT" + token});
+            // newUser.jwtoken = newUser.generateJWT();
+            // console.log("jwt", jwtoken);
+          })
           // .then(user => res.json(user)).catch(err => console.log(err));
           console.log("user added");
         }
@@ -54,15 +67,6 @@ passport.use(new FacebookStrategy({
   return cb(null, profile);
 }));
 
-// passport.use(new GoogleStrategy({
-//   clientID: keys.google.clientID,
-//   clientSecret: keys.google.clientSecret,
-//   callbackURL: 'http://localhost:3000/profile'
-// },
-// function(accessToken, refreshToken, profile, cb) {
-//   console.log("unique", accessToken, refreshToken, profile)
-//   return cb(null, profile);
-// }));
 
 passport.serializeUser(function(user, cb) {
   cb(null, user);
@@ -98,7 +102,7 @@ app.all('/*', function(req, res, next) {
 });
 
 app.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email' }), function(req,res){
-  console.log("this is profile json", profile._json);
+  
 });
 
 // { 
@@ -108,19 +112,20 @@ app.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email' }),
 //     res.redirect("/");
 //   }
 // );
-
+// import { loginUser } from "../../actions/authActions";
 //step 1. save user info to db
 //step 2. set and check for jwt: base64hash the combined userid+email to create jw
 app.get('/auth/facebook/callback', 
-  passport.authenticate('facebook', 
-  { successRedirect: 'http://localhost:3000/profile',failureRedirect: '/login' },
+  passport.authenticate('facebook', {session:false,
+   successRedirect: 'http://localhost:3000/profile',failureRedirect: '/login' },
 
   ),
-    function(req, res) {
+    app.get('/profile', function(req, res){
+      this.history.push("/profile");
+    }));
       
-      window.location.href="http://localhost:3000/profile";
-    }
-  );
+    
+  // );
 
 // app.get('/auth/facebook/callback', 
 //   function(req,res){
