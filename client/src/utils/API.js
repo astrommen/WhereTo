@@ -91,7 +91,7 @@ export default {
         console.log("made to API")
         return axios.get("/api/trip", {
             params: {
-                location: city +","+ state
+                location: city + "," + state
             }
         })
     },
@@ -107,9 +107,12 @@ export default {
     saveTrip: function (tripData) {
         return axios.post("/api/vacations", tripData)
     },
-    saveOutdoorArea: function (outdoorData) {
-        return axios.post("/api/outdoor", outdoorData)
+    saveOutdoorArea: function (id, data) {
+        return axios.put("/api/ribd/ribd/" + id, data)
     },
+    // saveOutdoorArea: function (outdoorData) {
+    //     return axios.post("/api/outdoor", outdoorData)
+    // },
     returnOutdoorAreas: function () {
         return axios.get("/api/outdoor")
     },
