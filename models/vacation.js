@@ -14,10 +14,7 @@ var vacationSchema = new Schema({
   sightseeing: [Object],
   food: [Object],
   events: [Object],
-  outdoors: [{
-    type: Schema.Types.ObjectId,
-    ref: "Outdoor"
-  }],
+  outdoors: [Object],
   local: Boolean
 });
 

@@ -1,61 +1,75 @@
-import React  from 'react';
+import React, { Component } from "react";
 import { Container, Row, Col } from "../Grid";
-import { SiteBtn, SaveBtn, DisabledBtn} from "../Buttons";
-import {Image, ImgDes, Title, White, Event, Identify} from "../Styled";
+import { SiteBtn, SaveBtn, DisabledBtn } from "../Buttons";
+import { Image, ImgDes, Title, White, Event, Identify } from "../Styled";
+import API from "../../utils/API";
 
-function OutdoorCard(props) {
-  return(
-    <div>
-    <Container>
-      <Row>
-      <Col size="md-1"><Event src={process.env.PUBLIC_URL + './img/activities/hiking.png'} className="img-fluid" alt="sightseeing icon" /></Col>
-        <Col size="md-7">
-          <Title>{props.name}</Title>
-        </Col>
-        <Col size="md-4">
-          {props.link === "missing" ? <DisabledBtn>No Park Website</DisabledBtn> : <SiteBtn href={props.link}> Park Website </SiteBtn> }
-          <SaveBtn onClick={() => this.saveSite(props.site)} />        
-        </Col>
-      </Row>
+class OutdoorCard extends Component {
 
-      <Row>
-        <Col size="md-5">
-          <Image className="img-fluid" src={props.images[0] ? props.images[0].URL : "./img/location/noImage.png"} alt={props.site} />
-          <ImgDes>{props.images[0] ? props.images[0].Description : ""}</ImgDes>
-        </Col>
-        <Col size="md-7">
-          <Container>
-            <Row>
-              <Col size="md-12">
-                <White><Identify>Address: </Identify>{props.street}, {props.city}, {props.state} {props.postalCode}</White>
-              </Col>
-            </Row>
-            <Row>
-              <Col size="md-12">
-                <White><Identify>Directions: </Identify>{props.directions}</White>
-              </Col>
-            </Row>
+  saveEvent = (trip) => {
+    console.log(trip)
+    console.log(localStorage.getItem('vacaId'))
+    API.saveOutdoorArea(localStorage.getItem('vacaId'), trip)
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => console.log(err))
+  }
 
-            <Row>
-              <Col size="md-12">
-                <White><Identify>Activities Available at Park: </Identify>{props.activities.map(activity => 
-                  activity.ActivityName ).join(", ")}</White>
-              </Col>
-            </Row>
+  render() {
+    return (
+      <div>
+        <Container>
+          <Row>
+            <Col size="md-1"><Event src={process.env.PUBLIC_URL + './img/activities/hiking.png'} className="img-fluid" alt="sightseeing icon" /></Col>
+            <Col size="md-7">
+              <Title>{this.props.name}</Title>
+            </Col>
+            <Col size="md-4">
+              {this.props.link === "missing" ? <DisabledBtn>No Park Website</DisabledBtn> : <SiteBtn href={this.props.link}> Park Website </SiteBtn>}
+              <SaveBtn onClick={() => this.saveEvent(this.props)} />
+            </Col>
+          </Row>
 
-          </Container>
-        </Col>
-      </Row>
-      <Row>
-        <Col size="md-12">
-          <White><Identify>Description: </Identify>{props.description}</White>
-        </Col>     
-      </Row>
+          <Row>
+            <Col size="md-5">
+              <Image className="img-fluid" src={this.props.images[0] ? this.props.images[0].URL : "./img/location/noImage.png"} alt={this.props.site} />
+              <ImgDes>{this.props.images[0] ? this.props.images[0].Description : ""}</ImgDes>
+            </Col>
+            <Col size="md-7">
+              <Container>
+                <Row>
+                  <Col size="md-12">
+                    <White><Identify>Address: </Identify>{this.props.street}, {this.props.city}, {this.props.state} {this.props.postalCode}</White>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col size="md-12">
+                    <White><Identify>Directions: </Identify>{this.props.directions}</White>
+                  </Col>
+                </Row>
 
-    </Container>
-    </div>
+                <Row>
+                  <Col size="md-12">
+                    <White><Identify>Activities Available at Park: </Identify>{this.props.activities.map(activity =>
+                      activity.ActivityName).join(", ")}</White>
+                  </Col>
+                </Row>
 
-  );
+              </Container>
+            </Col>
+          </Row>
+          <Row>
+            <Col size="md-12">
+              <White><Identify>Description: </Identify>{this.props.description}</White>
+            </Col>
+          </Row>
+
+        </Container>
+      </div>
+
+    );
+  }
 }
 
 export default OutdoorCard;
