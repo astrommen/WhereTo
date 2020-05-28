@@ -14,12 +14,14 @@ class DayTrip extends Component {
   }
 
   state={
-
+    events: []
   }
 
   componentDidMount() {
     // this.redirect()
     this.getVacationData();
+    this.savedEvents();
+    console.log(this.state.events)
   }
 
   redirect = () => {
@@ -46,8 +48,29 @@ class DayTrip extends Component {
       }).catch(err => console.log(err))
   }
 
+  savedEvents = () => {
+    console.log('savedEvents')
+    API.savedEvents()
+    .then(res => this.setState({
+      events: res.data,
+      id: "",
+      name: "",
+      url: "",
+      image: "",
+      localdate: "",
+      localStartTime: "",
+      seatmapLink: "",
+      venueName: "",
+      venueCity: "",
+      venueState: "",
+      venueStreet: "",
+      venuePostal: ""
+    }))
+    .catch(err => console.log(err))
+  }
+
   render() {
-    console.log(this.state)
+    // console.log(this.state)
     return (
       <Wrapper>
         <Nav
@@ -61,8 +84,21 @@ class DayTrip extends Component {
         // city={this.state.city}
         // state={this.state.state}
         />
-        <SaveOutdoor  
-        />
+        {/* {this.state.events.map(event => 
+          <SaveOutdoor 
+          key={event._id}
+          name={event.name}
+          url={event.url}
+          image={event.image}
+          localdate={event.localdate}
+          localStartTime={event.localStartTime}
+          seatmapLink={event.seatmapLink}
+          venueName={event.venueName}
+          venueCity={event.venueCity}
+          venueState={event.venueState}
+          venueStreet={event.venueStreet}
+          venuePostal={event.venuePostal}
+              />)} */}
       </Wrapper>
     );
   }
