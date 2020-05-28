@@ -3,7 +3,9 @@ import Nav from "../components/Nav";
 import { Wrapper } from "../components/Styled";
 import { withRouter } from 'react-router-dom';
 import TripData from "../components/TripData";
+import { SaveOutdoor } from "../components/Save";
 import API from "../utils/API";
+// import Outdoor from '../components/Outdoors';
 
 
 class DayTrip extends Component {
@@ -58,6 +60,8 @@ class DayTrip extends Component {
         // dateStart={this.state.dateStart}
         // city={this.state.city}
         // state={this.state.state}
+        />
+        <SaveOutdoor  
         />
       </Wrapper>
     );

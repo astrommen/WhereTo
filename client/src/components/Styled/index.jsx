@@ -82,8 +82,9 @@ margin: 2% 0 0 0;
 border-radius: 3px;
 border: none;
 letter-spacing: 1.5px;
+box-shadow: 0px 0px 5px 1px white;
 padding: 1%;
-background-color: rgba(122, 122, 82,.9);
+background-color: rgba(96, 20, 76,.8);
 color: white;
 font-weight: bold;
 &:link, :hover, :active, :visited {
