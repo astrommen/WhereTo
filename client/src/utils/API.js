@@ -140,9 +140,9 @@ export default {
     deleteFood: function (id) {
         return axios.delete("/api/food" + id);
     },
-    // saveEvent: function (eventData) {
-    //     return axios.post("/api/event", eventData)
-    // },
+    savedEvents: function () {
+        return axios.get("/api/event")
+    },
     saveTicketmaster: function (id, data) {
         return axios.put("/api/ticketmaster/event/" + id, data)
     },

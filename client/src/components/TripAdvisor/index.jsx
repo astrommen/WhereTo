@@ -58,7 +58,7 @@ class TripAdvisor extends Component {
       "headers": {
         "content-type": "application/octet-stream",
         "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
-        "x-rapidapi-key": "6b697f762dmshbcdbf3f766fb40ep17a99bjsnd9fed17f88a1",
+        "x-rapidapi-key": "f0f3546714msh866e3df1e2e1ce6p1f73f0jsnec17c00739e3",
         "useQueryString": true
       }, "params": {
         "location_id": "1",

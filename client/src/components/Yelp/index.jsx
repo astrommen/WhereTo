@@ -122,15 +122,17 @@ class Yelp extends Component {
           </Row>
         </Container>
 
-        {this.state.foodChoice && <Jumbo className="mb-2">
-          <FoodForm
-            value={this.state.value}
-            handleInputChange={this.handleInputChange}
-            handleFormSubmit={this.handleFormSubmit} />
-        </Jumbo>}
+      {this.state.foodChoice &&
+      <Jumbo local={this.state.local}>
+          <FoodForm 
+          value={this.state.value}
+          handleInputChange={this.handleInputChange}
+          handleFormSubmit={this.handleFormSubmit}/>
+        </Jumbo> 
+      }
 
         {this.state.drinkChoice &&
-          <Jumbo className="mb-2">
+          <Jumbo className="mb-2" local={this.state.local}>
             <FormDrinks
               value={this.state.value}
               handleInputChange={this.handleInputChange}
@@ -139,7 +141,7 @@ class Yelp extends Component {
 
         {this.state.loading && <Image className="loading" src={process.env.PUBLIC_URL + './img/loading.gif'} alt="loading" />}
         {this.state.hasError &&
-          <Jumbo>
+          <Jumbo local={this.state.local}>
             <h5>There was an error searching for your Request.</h5>
             <White>Please try a different selection or attempt again later.</White>
           </Jumbo>}
@@ -163,7 +165,7 @@ class Yelp extends Component {
               transactions={eatery.transactions}
             />)
         ) : (
-            <Jumbo>
+            <Jumbo local={this.state.local}>
               <h3>No Results to Display</h3>
               <White>Use the food and drink forms to populate your options.</White>
             </Jumbo>
