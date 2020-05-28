@@ -56,22 +56,13 @@ class template extends Component {
     // console.log(this.state)
     return (
       <div>
-        {this.state.local ? (
-          <Jumbo className="mt-5" id={this.state.tripId}>
-          <h1 className="display-4">{this.state.tripName}</h1>
-          <h4>{this.state.city}, {this.state.state}</h4>
-          <h5>{this.state.dateStart}</h5>
-          <hr className="my-4" />
-          <p>Use the Tabs above to add activities to your trip!</p>
-        </Jumbo> ) : (
-          <Jumbo className="mt-5" id={this.state.tripId} vacation>
-          <h1 className="display-4">{this.state.tripName}</h1>
-          <h4>{this.state.city}, {this.state.state}</h4>
-          <h5>{this.state.dateStart}</h5>
-          <hr className="my-4" />
-          <p>Use the Tabs above to add activities to your trip!</p>
-        </Jumbo>
-        )}
+        <Jumbo className="mt-5" id={this.state.tripId} local={this.state.local}>
+        <h1 className="display-4">{this.state.tripName}</h1>
+        <h4>{this.state.city}, {this.state.state}</h4>
+        <h5>{this.state.dateStart}</h5>
+        <hr className="my-4" />
+        <p>Use the Tabs above to add activities to your trip!</p>
+      </Jumbo> 
       </div>
     );
   }

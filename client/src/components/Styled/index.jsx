@@ -57,7 +57,7 @@ border: none;
 `
 
 export const Jumbo = styled.section `
-background-color: ${props => props.vacation ? "rgba(82,82,122,.95)" : "rgba(33,49, 100,.95)"};
+background-color: ${props => props.local ? "rgba(82,82,122,.95)" : "rgba(33,49, 100,.95)"};
 color: #ccc;
 padding: 2rem 2rem;
 text-align: center;
@@ -102,13 +102,13 @@ border-radius: 3px;
 border: none;
 letter-spacing: 1.5px;
 padding: 1%;
-background-color: ${props => props.vacation ? "rgba(96, 20, 76)" : "rgba(20, 38, 96)"};
+background-color: ${props => props.vacation ? "rgba(20, 38, 96)" : "rgba(96, 20, 76)" };
 color: white;
 font-weight: bold;
 box-shadow: 0px 0px 1px white;
 &:link, :hover, :active, :visited {
     text-decoration: none;
-    background-color: ${props => props.vacation ? "rgba(96, 20, 76, .8)" : "rgba(20, 38, 96, .8)"};
+    background-color: ${props => props.local ? "rgba(96, 20, 76, .8)" : "rgba(20, 38, 96, .8)"};
     font-weight: bold;
     box-shadow: 0px 0px 5px white;
     transform: scale(1.1);
@@ -119,13 +119,13 @@ border-radius: 3px;
 border: none;
 letter-spacing: 1.5px;
 padding: 1%;
-background-color: ${props => props.vacation ? "rgba(96, 20, 76)" : "rgba(20, 38, 96)"};
+background-color: ${props => props.local ? "rgba(96, 20, 76)" : "rgba(20, 38, 96)"};
 color: white;
 font-weight: bold;
 box-shadow: 0px 0px 1px white;
 &:link, :hover, :active, :visited {
     text-decoration: none;
-    background-color: ${props => props.vacation ? "rgba(96, 20, 76, .8)" : "rgba(20, 38, 96, .8)"};
+    background-color: ${props => props.local ? "rgba(96, 20, 76, .8)" : "rgba(20, 38, 96, .8)"};
     font-weight: bold;
     box-shadow: 0px 0px 5px white;
     transform: scale(0.98);
