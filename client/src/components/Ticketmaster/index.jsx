@@ -103,19 +103,14 @@ class Ticketmaster extends Component {
       .catch(err => this.setState({ hasError: true, loading: false }));
   }
 
-  saveEvent = (activity) => {
-    console.log(activity)
-    API.saveEvent(activity)
-      .then(res => console.log(res))
-      .catch(err => console.log(err))
-  }
+
 
   render() {
     // console.log(this.state)
     return (
       <Wrapper>
         <Nav
-        local={this.state.local}/>
+          local={this.state.local} />
         <Jumbo>
           <FormEvents
             value={this.state.value}
