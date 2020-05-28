@@ -106,12 +106,22 @@ class Outdoor extends Component {
       <Wrapper>
         <Nav 
         local={this.state.local}/>
-        <Jumbo>
+        
+        {this.state.local ? 
+        ( <Jumbo>
         <FormOutdoors 
         value={this.state.value}
         handleInputChange={this.handleInputChange}
         handleFormSubmit={this.handleFormSubmit}/>
-        </Jumbo>
+        </Jumbo> ) : (
+          <Jumbo vacation>
+          <FormOutdoors 
+          value={this.state.value}
+          handleInputChange={this.handleInputChange}
+          handleFormSubmit={this.handleFormSubmit}/>
+          </Jumbo>
+        )  
+      }
       
         {this.state.loading && <Image className="loading" src={process.env.PUBLIC_URL + './img/loading.gif'} alt="loading" />}
         {this.state.hasError &&             
@@ -141,7 +151,7 @@ class Outdoor extends Component {
         ) : (
           <Jumbo>
           <h3>No Results to Display</h3>
-          <White>Use the food and drink forms to populate your options.</White>
+          <White>Select which activities you are interested in to populate your results.</White>
         </Jumbo>
     )}
       </Wrapper>

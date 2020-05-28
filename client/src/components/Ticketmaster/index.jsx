@@ -111,12 +111,21 @@ class Ticketmaster extends Component {
       <Wrapper>
         <Nav
           local={this.state.local} />
+        {this.state.local ? (
         <Jumbo>
           <FormEvents
             value={this.state.value}
             handleInputChange={this.handleInputChange}
             handleFormSubmit={this.handleFormSubmit} />
-        </Jumbo>
+        </Jumbo> ) : (
+          <Jumbo vacation>
+          <FormEvents
+            value={this.state.value}
+            handleInputChange={this.handleInputChange}
+            handleFormSubmit={this.handleFormSubmit} />
+        </Jumbo> 
+
+        )}
         {this.state.loading && <Image className="loading" src={process.env.PUBLIC_URL + './img/loading.gif'} alt="loading" />}
         {this.state.hasError &&
           <Jumbo>

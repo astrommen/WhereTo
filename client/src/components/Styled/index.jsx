@@ -57,7 +57,7 @@ border: none;
 `
 
 export const Jumbo = styled.section `
-background-color: rgba(82, 82, 122,.9);
+background-color: ${props => props.vacation ? "rgba(82,82,122,.95)" : "rgba(33,49, 100,.95)"};
 color: #ccc;
 padding: 2rem 2rem;
 text-align: center;
@@ -145,11 +145,10 @@ color: white;
 display: block;
 margin-left: auto;
 margin-right: auto;
-
 &:link, :hover, :active, :visited {
     text-decoration: none;
     font-weight: bold;
-    text-shadow: 0px 0px 2px #FFC300;
+    transform: scale(0.9);
 }
 `
 
@@ -159,14 +158,14 @@ font-family: 'Lato', sans-serif;
 font-size: 20px;
 `
 
-export const Center = styled.p `
-color: white;
-text-align: center;
-font-size: 20px;`
+// export const Center = styled.p `
+// color: white;
+// text-align: center;
+// font-size: 20px;`
 
 export const White = styled.p `
 color: white;
-text-align: ${props => props.inputAlign || "center"}
+text-align: ${props => props.center ? "center" : "left" }
 `
 
 export const Label = styled.label `

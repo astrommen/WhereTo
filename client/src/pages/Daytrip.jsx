@@ -99,6 +99,7 @@ class DayTrip extends Component {
           venueStreet={event.venueStreet}
           venuePostal={event.venuePostal}
               />)} */}
+              <SaveOutdoor />
       </Wrapper>
     );
   }

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Container, Row, Col } from "../Grid";
 import { SiteBtn, SaveBtn } from "../Buttons";
-import { Icon, Image, Title, Website, White, Event, Identify, Center } from "../Styled";
+import { Icon, Image, Title, Website, White, Event, Identify } from "../Styled";
 import API from "../../utils/API";
 
 
@@ -50,7 +50,7 @@ class TicketmasterCard extends Component {
                   </Website>
                 </Col>
                 <Col size="md-6">
-                  {this.props.seatmapLink === "" ? <Center>Seatmap not Available or Required</Center> : <Website href={this.props.seatmapLink} target="_blank" rel="noopener noreferrer">
+                  {this.props.seatmapLink === "" ? <White center>Seatmap not Available or Required</White> : <Website href={this.props.seatmapLink} target="_blank" rel="noopener noreferrer">
                     <Icon src="./img/location/seat.png" alt="seatMap" /> SeatMap
               </Website>}
                 </Col>

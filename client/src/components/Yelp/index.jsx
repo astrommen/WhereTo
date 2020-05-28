@@ -122,12 +122,20 @@ class Yelp extends Component {
           </Row>
         </Container>
 
-        {this.state.foodChoice && <Jumbo className="mb-2">
+        {this.state.foodChoice && this.state.local ? 
+        (<Jumbo className="mb-2">
           <FoodForm
             value={this.state.value}
             handleInputChange={this.handleInputChange}
             handleFormSubmit={this.handleFormSubmit} />
-        </Jumbo>}
+        </Jumbo>) :
+        (<Jumbo className="mb-2" vacation>
+        <FoodForm
+          value={this.state.value}
+          handleInputChange={this.handleInputChange}
+          handleFormSubmit={this.handleFormSubmit} />
+      </Jumbo>)
+        }
 
         {this.state.drinkChoice &&
           <Jumbo className="mb-2">
