@@ -149,11 +149,11 @@ export default {
     saveSightseeing: function (id, data) {
         return axios.put("/api/vacations/sightseeing/" + id, data)
     },
-    returnSightseeing: function () {
-        return axios.get("/api/sightseeing")
-    },
-    deleteSightseeing: function (id) {
-        return axios.delete("/api/sightseeing" + id);
+    // returnSightseeing: function () {
+    //     return axios.get("/api/sightseeing")
+    // },
+    deleteSightseeing: function (vacaId, sightseeId) {
+        return axios.delete("/api/trip/sightseeing/" + vacaId + "/" + sightseeId);
     },
     saveWalk: function (sightseeingData) {
         return axios.post("/api/walk", sightseeingData)

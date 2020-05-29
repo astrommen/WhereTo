@@ -6,7 +6,7 @@ import { FlipBtn, LinkBtn, Title } from "../Styled";
 import { DeleteBtn } from "../Buttons";
 import ReactCardFlip from 'react-card-flip';
 
-class SaveEvents extends Component{
+class SaveSightseeing extends Component{
   constructor(props) {
     super(props);
 
@@ -45,7 +45,7 @@ class SaveEvents extends Component{
           <div className="d-flex justify-content-end align-items-end">
               <FlipBtn onClick={this.handleClick} ><i className="fas fa-chevron-right"></i></FlipBtn>
               <LinkBtn><a target="_blank" href="https://fontawesome.com/icons"><i className="fas fa-link"></i></a></LinkBtn>
-              <DeleteBtn onClick={() => this.props.deleteEvent(this.props.id)}></DeleteBtn>
+              <DeleteBtn onClick={() => this.props.deleteSightseeing(this.props.id)}></DeleteBtn>
           </div>
         </div>   
 
@@ -67,4 +67,4 @@ class SaveEvents extends Component{
 }
 }
   
-export default SaveEvents;
+export default SaveSightseeing;

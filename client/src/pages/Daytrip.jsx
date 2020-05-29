@@ -8,6 +8,7 @@ import SaveEvents from "../components/SaveEvents";
 import SaveFood from "../components/SaveFood";
 import { CardDeck } from 'react-bootstrap';
 import API from "../utils/API";
+import SaveSightseeing from "../components/SaveSightseeing";
 import { concatSeries } from 'async';
 // import Outdoor from '../components/Outdoors';
 
@@ -49,7 +50,8 @@ class DayTrip extends Component {
           state: res.data.state,
           events: res.data.events,
           food: res.data.food,
-          outdoors: res.data.outdoors
+          outdoors: res.data.outdoors,
+          sightseeing: res.data.sightseeing
 
         })
       }).catch(err => console.log(err))
@@ -75,6 +77,13 @@ class DayTrip extends Component {
     API.deleteOutdoor(localStorage.getItem('vacaId'), id)
     // .then(res => console.log(res))
     .then(res => this.setState({ outdoors: res.data.outdoors }))
+    .catch(err => console.log(err))
+  }
+
+  deleteSightseeing = id => {
+    API.deleteSightseeing(localStorage.getItem('vacaId'), id)
+    .then(res => console.log(res))
+    // .then(res => setState({ sightseeing: res.data.sightseeing }))
     .catch(err => console.log(err))
   }
 
@@ -134,7 +143,7 @@ class DayTrip extends Component {
             id={outdoor.id}
             name={outdoor.name}
             description={outdoor.description}
-            directions={outdoor.directions || "Directions not available"}
+            directions={outdoor.directions}
             longitude={outdoor.longitude}
             latitude={outdoor.latitude}
             street={outdoor.street}
@@ -147,6 +156,23 @@ class DayTrip extends Component {
             deleteOutdoor={this.deleteOutdoor}
               />
             )}
+
+          {this.state.sightseeing && this.state.sightseeing.map(sightsee =>
+            <SaveSightseeing
+            key={sightsee.id}
+            id={sightsee.id}
+            address={sightsee.address}
+            description={sightsee.description}
+            latitude={sightsee.latitude}
+            longitude={sightsee.longitude}
+            name={sightsee.name}
+            phone={sightsee.phone}
+            openNow={sightsee.openNow}
+            rank={sightsee.rank}
+            website={sightsee.website}
+            image={sightsee.image}
+            deleteSightseeing={this.deleteSightseeing}
+          />)}
 
         </CardDeck>
 
