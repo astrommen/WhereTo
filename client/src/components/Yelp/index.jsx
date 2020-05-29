@@ -109,8 +109,8 @@ class Yelp extends Component {
     // console.log(this.state)
     return (
       <Wrapper>
-        <Nav 
-        local={this.state.local}/>
+        <Nav
+          local={this.state.local} />
         <Container>
           <Row className="text-center">
             <Col size="md-6">
@@ -122,14 +122,14 @@ class Yelp extends Component {
           </Row>
         </Container>
 
-      {this.state.foodChoice &&
-      <Jumbo local={this.state.local}>
-          <FoodForm 
-          value={this.state.value}
-          handleInputChange={this.handleInputChange}
-          handleFormSubmit={this.handleFormSubmit}/>
-        </Jumbo> 
-      }
+        {this.state.foodChoice &&
+          <Jumbo local={this.state.local}>
+            <FoodForm
+              value={this.state.value}
+              handleInputChange={this.handleInputChange}
+              handleFormSubmit={this.handleFormSubmit} />
+          </Jumbo>
+        }
 
         {this.state.drinkChoice &&
           <Jumbo className="mb-2" local={this.state.local}>

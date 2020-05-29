@@ -75,22 +75,16 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   remove: function (req, res) {
-    // console.log("controller"+req.params.vacId+"here")
-    let foods
-    db.Vacation
-      .findById({ _id: req.params.vacId })
+    db.Vacation.findByIdAndUpdate(
+      { _id: req.params.vacaId },
+      { $pull: { food: { id: req.params.id } } },
+      { multi: true })
       .then(dbModel => {
-        // console.log("our model",dbModel.food);
-        foods=dbModel.food.filter(fd => {
-          console.log(fd.id)
-          // console.log(req.params.id)
-          return fd.id!==req.params.id
-        });
-        console.log("foods",foods)
-        db.Vacation.findById({ _id: req.params.vacId})
-        .then(vacation => vacation.updateOne ({ foods: foods }));
-      })
-      .then(dbModel => res.json(foods))
-      .catch(err => console.log(err));
+        db.Vacation.findById(req.params.vacaId)
+          .then(data => {
+            res.json(data)
+          })
+      }).catch(err => res.status(422).json(err))
+
   }
 }
