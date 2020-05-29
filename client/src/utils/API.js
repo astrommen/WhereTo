@@ -110,68 +110,32 @@ export default {
     saveOutdoorArea: function (id, data) {
         return axios.put("/api/ribd/ribd/" + id, data)
     },
-    // returnOutdoorAreas: function () {
-    //     return axios.get("/api/ribd")
-    // },
     deleteOutdoor: function (vacaId, outdoorId) {
         return axios.delete("/api/ribd/outdoor/" + vacaId + "/" + outdoorId);
     },
     saveCountry: function (countryData) {
         return axios.post("/api/country", countryData)
     },
-    // returnCountry: function () {
-    //     return axios.get("/api/country")
-    // },
     deleteCountry: function (id) {
         return axios.delete("/api/country/" + id);
     },
     saveFood: function (id, data) {
         return axios.put("/api/yelp/food/" + id, data)
     },
-    // returnFood: function () {
-    //     return axios.get("/api/food")
-    // },
     deleteFood: function (vacaId, foodId) {
         return axios.delete("/api/yelp/food/" + vacaId + "/" + foodId);
     },
     saveTicketmaster: function (id, data) {
         return axios.put("/api/ticketmaster/event/" + id, data)
     },
-    // returnEvent: function (id) {
-    //     return axios.get("/api/ticketmaster/events/" + id)
-    // },
     deleteEvent: function (vacaId, eventId) {
         return axios.delete("/api/ticketmaster/event/" + vacaId + "/" + eventId);
     },
-    // saveSightseeing: function (sightseeingData) {
-    //     return axios.post("/api/sightseeing", sightseeingData)
-    // },
     saveSightseeing: function (id, data) {
         return axios.put("/api/vacations/sightseeing/" + id, data)
     },
-    // returnSightseeing: function () {
-    //     return axios.get("/api/sightseeing")
-    // },
     deleteSightseeing: function (vacaId, sightseeId) {
         return axios.delete("/api/trip/sightseeing/" + vacaId + "/" + sightseeId);
-    },
-    saveWalk: function (sightseeingData) {
-        return axios.post("/api/walk", sightseeingData)
-    },
-    returnWalk: function () {
-        return axios.get("/api/walk")
-    },
-    deleteWalk: function (id) {
-        return axios.delete("/api/walk" + id);
-    },
-    saveDayplan: function (dayplanData) {
-        return axios.post("/api/triposo", dayplanData)
-    },
-    returnDayplan: function () {
-        return axios.get("/api/triposo")
-    },
-    deleteDayplan: function (id) {
-        return axios.delete("/api/triposo" + id);
     },
     deleteVacation: function (id) {
         return axios.delete("/api/vacations/" + id);
@@ -181,3 +145,40 @@ export default {
     },
 }
 
+
+    // returnCountry: function () {
+    //     return axios.get("/api/country")
+    // },
+    // returnFood: function () {
+    //     return axios.get("/api/food")
+    // },
+    // returnEvent: function (id) {
+    //     return axios.get("/api/ticketmaster/events/" + id)
+    // },
+    // saveSightseeing: function (sightseeingData) {
+    //     return axios.post("/api/sightseeing", sightseeingData)
+    // },
+    // returnSightseeing: function () {
+    //     return axios.get("/api/sightseeing")
+    // },
+    // returnOutdoorAreas: function () {
+    //     return axios.get("/api/ribd")
+    // },
+    // saveWalk: function (sightseeingData) {
+    //     return axios.post("/api/walk", sightseeingData)
+    // },
+    // returnWalk: function () {
+    //     return axios.get("/api/walk")
+    // },
+    // deleteWalk: function (id) {
+    //     return axios.delete("/api/walk" + id);
+    // },
+    // saveDayplan: function (dayplanData) {
+    //     return axios.post("/api/triposo", dayplanData)
+    // },
+    // returnDayplan: function () {
+    //     return axios.get("/api/triposo")
+    // },
+    // deleteDayplan: function (id) {
+    //     return axios.delete("/api/triposo" + id);
+    // },

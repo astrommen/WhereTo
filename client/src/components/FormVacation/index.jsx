@@ -248,15 +248,6 @@ class FormVacation extends Component {
                 </Col>
               </Row>
 
-              <Row >
-                <Col size="md-12" className="center">
-                  <Submit type="submit"
-                  // disabled={!(this.state.tripName && this.state.date && this.state.state || this.state.city)}
-                  // onClick={this.handleFormSubmit}
-                  ><i className="far fa-compass"></i>Submit<i className="far fa-compass"></i></Submit>
-                </Col>
-              </Row>
-
             </form>
           </Wrapper>
         </Container>

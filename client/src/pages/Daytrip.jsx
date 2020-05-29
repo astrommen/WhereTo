@@ -23,9 +23,7 @@ class DayTrip extends Component {
   }
 
   componentDidMount() {
-    // this.redirect()
     this.getVacationData();
-    // this.returnEvent();
   }
 
   redirect = () => {
@@ -35,8 +33,6 @@ class DayTrip extends Component {
   }
 
   getVacationData = () => {
-    // console.log(this.props)
-    // console.log(this.props.vacaId)
     API.getVacations(localStorage.getItem('vacaId'))
       .then((res) => {
         // console.log(res.data)
@@ -52,20 +48,16 @@ class DayTrip extends Component {
           food: res.data.food,
           outdoors: res.data.outdoors,
           sightseeing: res.data.sightseeing
-
         })
       }).catch(err => console.log(err))
   }
 
 
   deleteFood = id => {
-    // console.log("id: ", id)
     API.deleteFood(localStorage.getItem('vacaId'), id)
-      // .then(res => console.log(res))
       .then(res => this.setState({ food: res.data.food }))
       .catch(err => console.log(err))
   }
-
 
   deleteEvent = id => {
     API.deleteEvent(localStorage.getItem('vacaId'), id)
@@ -75,14 +67,12 @@ class DayTrip extends Component {
 
   deleteOutdoor = id => {
     API.deleteOutdoor(localStorage.getItem('vacaId'), id)
-    // .then(res => console.log(res))
     .then(res => this.setState({ outdoors: res.data.outdoors }))
     .catch(err => console.log(err))
   }
 
   deleteSightseeing = id => {
     API.deleteSightseeing(localStorage.getItem('vacaId'), id)
-    // .then(res => console.log(res))
     .then(res => this.setState({ sightseeing: res.data.sightseeing }))
     .catch(err => console.log(err))
   }
@@ -175,7 +165,6 @@ class DayTrip extends Component {
           />)}
 
         </CardDeck>
-
 
       </Wrapper>
     );
