@@ -82,8 +82,8 @@ class DayTrip extends Component {
 
   deleteSightseeing = id => {
     API.deleteSightseeing(localStorage.getItem('vacaId'), id)
-    .then(res => console.log(res))
-    // .then(res => setState({ sightseeing: res.data.sightseeing }))
+    // .then(res => console.log(res))
+    .then(res => this.setState({ sightseeing: res.data.sightseeing }))
     .catch(err => console.log(err))
   }
 
