@@ -71,6 +71,13 @@ class DayTrip extends Component {
       .catch(err => console.log(err))
   }
 
+  deleteOutdoor = id => {
+    API.deleteOutdoor(localStorage.getItem('vacaId'), id)
+    // .then(res => console.log(res))
+    .then(res => this.setState({ outdoors: res.data.outdoors }))
+    .catch(err => console.log(err))
+  }
+
   render() {
     return (
       <Wrapper>
