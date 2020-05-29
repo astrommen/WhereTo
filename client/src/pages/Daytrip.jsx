@@ -37,8 +37,8 @@ class DayTrip extends Component {
     // console.log(this.props.vacaId)
     API.getVacations(localStorage.getItem('vacaId'))
       .then((res) => {
-        console.log(res.data)
-        console.log("info", res.data.events)
+        // console.log(res.data)
+        // console.log("info", res.data.events)
         this.setState({
           local: res.data.local,
           tripId: res.data._id,
@@ -55,14 +55,14 @@ class DayTrip extends Component {
 
 
 deleteEvent = id => {
-  console.log("id: " , id)
+  // console.log("id: " , id)
   API.deleteEvent(localStorage.getItem('vacaId'), id)
-  .then(res => console.log(res))
+  .then(res => this.setState({events : res.data}))
   .catch(err => console.log(err))
 }
 
   render() {
-    console.log(this.state.events)
+    // console.log(this.state.events)
     return (
       <Wrapper>
         <Nav

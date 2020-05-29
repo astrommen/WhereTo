@@ -73,19 +73,22 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
     remove: function (req, res) {
-        console.log("controller"+req.params.vacId+"here")
+        // console.log("controller"+req.params.vacId+"here")
+        let events
         db.Vacation
         .findById({ _id: req.params.vacId })
         .then(dbModel => { 
-            console.log("our model" , dbModel.events[0])
-            const events=dbModel.events.filter(event => {
-                console.log(event.id)
-                console.log(req.params.id)    
+            // console.log("our model" , dbModel.events[0])
+            events=dbModel.events.filter(event => {
+                // console.log(event.id)
+                // console.log(req.params.id)    
                 return event.id!==req.params.id});
-            console.log("our events ",events)
-            db.Vacation.findOneAndUpdate({ _id: req.params.vacId } , { events: events});
+            // console.log("our events ",events)
+            db.Vacation.findById({ _id: req.params.vacId })
+            .then(vacation => vacation.updateOne({events: events})
+            );
         })
-            .then(dbModel => res.json(dbModel))
+            .then(dbModel => res.json(events))
             .catch(err => console.log(err));
     }
 

@@ -17,9 +17,9 @@ class SaveEvents extends Component{
     this.handleClick = this.handleClick.bind(this);
   }
 
-  componentDidMount() {
-    console.log('card ' ,this.props)
-  }
+  // componentDidMount() {
+  //   console.log('card ' ,this.props)
+  // }
   
 
   handleClick(event) {
