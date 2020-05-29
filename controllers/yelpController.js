@@ -19,9 +19,7 @@ module.exports = {
     };
     axios
       .get(url, config)
-      .then(results => results.data.businesses.map(
-        result =>
-          ({
+      .then(results => results.data.businesses.map(result => ({
             id: result.id,
             name: result.name,
             image: result.image_url,
@@ -87,5 +85,6 @@ module.exports = {
             res.json(data)
           })
       }).catch(err => res.status(422).json(err))
+
   }
 }

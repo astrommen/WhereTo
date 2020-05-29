@@ -53,6 +53,7 @@ class DayTrip extends Component {
       }).catch(err => console.log(err))
   }
 
+
   deleteFood = id => {
     // console.log("id: ", id)
     API.deleteFood(localStorage.getItem('vacaId'), id)
@@ -60,6 +61,7 @@ class DayTrip extends Component {
       .then(res => this.setState({ food: res.data.food }))
       .catch(err => console.log(err))
   }
+
 
   deleteEvent = id => {
     // console.log("id: ", id)
@@ -81,41 +83,41 @@ class DayTrip extends Component {
         />
 
         <CardDeck>
-          {this.state.events && this.state.events.map(event =>
-            <SaveEvents
-              key={event.id}
-              id={event.id}
-              name={event.name} will
-              url={event.url}
-              image={event.image}
-              localdate={event.localdate}
-              localStartTime={event.localStartTime}
-              seatmapLink={event.seatmapLink}
-              venueName={event.venueName}
-              venueCity={event.venueCity}
-              venueState={event.venueState}
-              venueStreet={event.venueStreet}
-              venuePostal={event.venuePostal}
-              deleteEvent={this.deleteEvent}
-            />)}
+        {this.state.events && this.state.events.map(event => 
+          <SaveEvents 
+          key={event.id}
+          id={event.id}
+          name={event.name}will 
+          url={event.url}
+          image={event.image}
+          localdate={event.localdate}
+          localStartTime={event.localStartTime}
+          seatmapLink={event.seatmapLink}
+          venueName={event.venueName}
+          venueCity={event.venueCity}
+          venueState={event.venueState}
+          venueStreet={event.venueStreet}
+          venuePostal={event.venuePostal}
+          deleteEvent={this.deleteEvent}
+          />)}
           {this.state.food && this.state.food.map(fd =>
-            <SaveFood
-              key={fd.id}
-              id={fd.id}
-              name={fd.name}
-              image={fd.image}
-              phone={fd.phone}
-              street={fd.street}
-              city={fd.city}
-              state={fd.state}
-              zip={fd.zip}
-              link={fd.link}
-              rating={fd.rating}
-              reviews={fd.reviews}
-              latitude={fd.latitude}
-              longitude={fd.longitude}
-              transactions={fd.transactions}
-              deleteFood={this.deleteFood}
+            <SaveFood 
+            key={fd.id}
+            id={fd.id}
+            name={fd.name}
+            image={fd.image}
+            phone={fd.phone}
+            street={fd.street}
+            city={fd.city}
+            state={fd.state}
+            zip={fd.zip}
+            link={fd.link}
+            rating={fd.rating}
+            reviews={fd.reviews}
+            latitude={fd.latitude}
+            longitude={fd.longitude}
+            transactions={fd.transactions}
+            deleteFood={this.deleteFood}
             />)}
 
         </CardDeck>
