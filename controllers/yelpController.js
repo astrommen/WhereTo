@@ -77,10 +77,15 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   remove: function (req, res) {
-    db.Vacation
-      .findById({ _id: req.params.id })
-      .then(dbModel => dbModel.remove())
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
+    db.Vacation.findByIdAndUpdate(
+      { _id: req.params.vacaId },
+      { $pull: { food: { id: req.params.id } } },
+      { multi: true })
+      .then(dbModel => {
+        db.Vacation.findById(req.params.vacaId)
+          .then(data => {
+            res.json(data)
+          })
+      }).catch(err => res.status(422).json(err))
   }
 }

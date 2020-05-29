@@ -17,7 +17,7 @@ class DayTrip extends Component {
     super(props)
   }
 
-  state={
+  state = {
 
   }
 
@@ -53,26 +53,27 @@ class DayTrip extends Component {
       }).catch(err => console.log(err))
   }
 
-deleteFood = id => {
-  API.deleteFood(localStorage.getItem('vacaId'), id)
-  .then(res => this.setState({food:res.data}))
-  .catch(err => console.log(err))
-}
+  deleteFood = id => {
+    // console.log("id: ", id)
+    API.deleteFood(localStorage.getItem('vacaId'), id)
+      // .then(res => console.log(res))
+      .then(res => this.setState({ food: res.data.food }))
+      .catch(err => console.log(err))
+  }
 
-deleteEvent = id => {
-  // console.log("id: " , id)
-  API.deleteEvent(localStorage.getItem('vacaId'), id)
-  .then(res => this.setState({events : res.data}))
-  .catch(err => console.log(err))
-}
+  deleteEvent = id => {
+    // console.log("id: ", id)
+    API.deleteEvent(localStorage.getItem('vacaId'), id)
+      .then(res => this.setState({ events: res.data }))
+      .catch(err => console.log(err))
+  }
 
   render() {
-    // console.log(this.state.events)
     return (
       <Wrapper>
         <Nav
-        local={this.state.local}
-        vacaId={localStorage.getItem('vacaId')}
+          local={this.state.local}
+          vacaId={localStorage.getItem('vacaId')}
         />
 
         <TripData
@@ -80,46 +81,47 @@ deleteEvent = id => {
         />
 
         <CardDeck>
-        {this.state.events && this.state.events.map(event => 
-          <SaveEvents 
-          key={event._id}
-          id={event.id}
-          name={event.name}will 
-          url={event.url}
-          image={event.image}
-          localdate={event.localdate}
-          localStartTime={event.localStartTime}
-          seatmapLink={event.seatmapLink}
-          venueName={event.venueName}
-          venueCity={event.venueCity}
-          venueState={event.venueState}
-          venueStreet={event.venueStreet}
-          venuePostal={event.venuePostal}
-          deleteEvent={this.deleteEvent}
-          />)}
+          {this.state.events && this.state.events.map(event =>
+            <SaveEvents
+              key={event.id}
+              id={event.id}
+              name={event.name} will
+              url={event.url}
+              image={event.image}
+              localdate={event.localdate}
+              localStartTime={event.localStartTime}
+              seatmapLink={event.seatmapLink}
+              venueName={event.venueName}
+              venueCity={event.venueCity}
+              venueState={event.venueState}
+              venueStreet={event.venueStreet}
+              venuePostal={event.venuePostal}
+              deleteEvent={this.deleteEvent}
+            />)}
           {this.state.food && this.state.food.map(fd =>
-            <SaveFood 
-            key={fd.id}
-            id={fd.id}
-            name={fd.name}
-            image={fd.image}
-            phone={fd.phone}
-            street={fd.street}
-            city={fd.city}
-            state={fd.state}
-            zip={fd.zip}
-            link={fd.link}
-            rating={fd.rating}
-            reviews={fd.reviews}
-            latitude={fd.latitude}
-            longitude={fd.longitude}
-            transactions={fd.transactions}
+            <SaveFood
+              key={fd.id}
+              id={fd.id}
+              name={fd.name}
+              image={fd.image}
+              phone={fd.phone}
+              street={fd.street}
+              city={fd.city}
+              state={fd.state}
+              zip={fd.zip}
+              link={fd.link}
+              rating={fd.rating}
+              reviews={fd.reviews}
+              latitude={fd.latitude}
+              longitude={fd.longitude}
+              transactions={fd.transactions}
+              deleteFood={this.deleteFood}
             />)}
 
-          </CardDeck>
+        </CardDeck>
 
 
-              <SaveOutdoor />
+        <SaveOutdoor />
       </Wrapper>
     );
   }

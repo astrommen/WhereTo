@@ -84,7 +84,6 @@ class template extends Component {
 
 
   render() {
-    console.log(this.state)
     return (
       <div>
         <Jumbo className="mt-5" id={this.state.tripId} local={this.state.local}>
