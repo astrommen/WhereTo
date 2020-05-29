@@ -1,5 +1,6 @@
 const db = require("../models");
 
+
 // Defining methods for the UsersController
 module.exports = {
   findAll: function (req, res) {
@@ -34,6 +35,7 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+
   remove: function (req, res) {
     db.User
       .findById({ _id: req.params.id })
@@ -41,5 +43,12 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-
+  removeVacaId: function (req, res) {
+    db.User.findOneAndUpdate(
+      { _id: req.params.id },
+      { $pull: { vacations: req.params.vacaId } },
+      { multi: true })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err))
+  }
 };

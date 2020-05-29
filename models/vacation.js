@@ -8,7 +8,7 @@ var Schema = mongoose.Schema;
 var vacationSchema = new Schema({
   tripName: String,
   dateStart: Date,
-  endDate: Date,
+  dateEnd: Date,
   city: String,
   state: String,
   sightseeing: [Object],

@@ -102,7 +102,7 @@ class Profile extends Component {
       let obj = {}
       API.getVacations(data.id).then((res) => {
         // console.log(res.data)
-        obj.name = res.data.tripName;
+        obj.name = this.capitalize_Words(res.data.tripName);
         obj.key = res.data._id;
         obj.startDate = res.data.startDate;
         obj.endDate = res.data.endDate;
@@ -127,6 +127,11 @@ class Profile extends Component {
     // console.log(pastArr)
   }
 
+  capitalize_Words = (str) => {
+    return str.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
+  }
+
+
   render() {
     return (
       <Wrapper>
@@ -134,8 +139,8 @@ class Profile extends Component {
           <Row >
             <Col size="md-12">
               <div className="d-flex justify-content-end">
-              <button onClick={this.onLogoutClick}
-              className="btn btn-large btn-secondary justify-content-end logout">Logout</button>
+                <button onClick={this.onLogoutClick}
+                  className="btn btn-large btn-secondary justify-content-end logout">Logout</button>
               </div>
             </Col>
           </Row>
