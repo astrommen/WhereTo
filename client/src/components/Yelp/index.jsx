@@ -150,6 +150,7 @@ class Yelp extends Component {
           this.state.eateries.map((eatery) =>
             <YelpCard
               key={eatery.id}
+              id={eatery.id}
               name={eatery.name}
               image={eatery.image}
               phone={eatery.phone}

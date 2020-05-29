@@ -19,9 +19,7 @@ module.exports = {
     };
     axios
       .get(url, config)
-      .then(results => results.data.businesses.map(
-        result =>
-          ({
+      .then(results => results.data.businesses.map(result => ({
             id: result.id,
             name: result.name,
             image: result.image_url,
@@ -77,10 +75,22 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   remove: function (req, res) {
+    // console.log("controller"+req.params.vacId+"here")
+    let foods
     db.Vacation
-      .findById({ _id: req.params.id })
-      .then(dbModel => dbModel.remove())
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
+      .findById({ _id: req.params.vacId })
+      .then(dbModel => {
+        // console.log("our model",dbModel.food);
+        foods=dbModel.food.filter(fd => {
+          console.log(fd.id)
+          // console.log(req.params.id)
+          return fd.id!==req.params.id
+        });
+        console.log("foods",foods)
+        db.Vacation.findById({ _id: req.params.vacId})
+        .then(vacation => vacation.updateOne ({ foods: foods }));
+      })
+      .then(dbModel => res.json(foods))
+      .catch(err => console.log(err));
   }
 }
