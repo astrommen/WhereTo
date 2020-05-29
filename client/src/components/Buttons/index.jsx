@@ -62,13 +62,30 @@ text-decoration: none;
 }
 `
 
+export const Delete = styled.span `
+width: 2rem;
+height: 2rem;
+background-color: #A90333; 
+padding-top: 3px;
+padding-bottom: 3px;
+color: white;
+border-radius: 50%;
+border: none;
+text-align: center;
+&:hover {
+    transform: scale(0.9);
+    box-shadow: 0px 0px 10px 2px rgba(16,16,16);
+
+}`
+
+
 
 //The ...props prints all of the passed props onto this element
 export function DeleteBtn(props) {
     return(
-        <span className="delete-btn" {...props} role="button" tabIndex="0">
-        Delete Book 
-        </span>
+        <Delete className="delete-btn" {...props} role="button" tabIndex="0">
+        <i className="fas fa-trash-alt"></i> 
+        </Delete>
     )
 }
 

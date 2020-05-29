@@ -236,7 +236,7 @@ class FormVacation extends Component {
             <Submit type="submit"
             // disabled={!(this.state.tripName && this.state.date && this.state.state || this.state.city)}
             // onClick={this.handleFormSubmit}
-            ><i class="far fa-compass"></i>Submit<i class="far fa-compass"></i></Submit>
+            ><i className="far fa-compass"></i>Submit<i className="far fa-compass"></i></Submit>
           </Col>
           </Row>
 

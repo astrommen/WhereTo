@@ -110,14 +110,11 @@ export default {
     saveOutdoorArea: function (id, data) {
         return axios.put("/api/ribd/ribd/" + id, data)
     },
-    // saveOutdoorArea: function (outdoorData) {
-    //     return axios.post("/api/outdoor", outdoorData)
-    // },
     returnOutdoorAreas: function () {
-        return axios.get("/api/outdoor")
+        return axios.get("/api/ribd")
     },
     deleteOutdoorArea: function (id) {
-        return axios.delete("/api/outdoor" + id);
+        return axios.delete("/api/ribd/" + id);
     },
     saveCountry: function (countryData) {
         return axios.post("/api/country", countryData)
@@ -126,31 +123,25 @@ export default {
         return axios.get("/api/country")
     },
     deleteCountry: function (id) {
-        return axios.delete("/api/country" + id);
+        return axios.delete("/api/country/" + id);
     },
-    // saveFood: function (foodData) {
-    //     return axios.post("/api/food", foodData)
-    // },
     saveFood: function (id, data) {
         return axios.put("/api/yelp/food/" + id, data)
     },
-    returnFood: function () {
-        return axios.get("/api/food")
-    },
-    deleteFood: function (id) {
-        return axios.delete("/api/food" + id);
-    },
-    savedEvents: function () {
-        return axios.get("/api/event")
+    // returnFood: function () {
+    //     return axios.get("/api/food")
+    // },
+    deleteFood: function (vacaId, foodId) {
+        return axios.delete("/api/yelp/food/" + vacaId + "/" + foodId);
     },
     saveTicketmaster: function (id, data) {
         return axios.put("/api/ticketmaster/event/" + id, data)
     },
-    returnEvent: function () {
-        return axios.get("/api/event")
-    },
-    deleteEvent: function (id) {
-        return axios.delete("/api/event" + id);
+    // returnEvent: function (id) {
+    //     return axios.get("/api/ticketmaster/events/" + id)
+    // },
+    deleteEvent: function (vacaId, eventId) {
+        return axios.delete("/api/ticketmaster/event/" + vacaId + "/" + eventId);
     },
     // saveSightseeing: function (sightseeingData) {
     //     return axios.post("/api/sightseeing", sightseeingData)

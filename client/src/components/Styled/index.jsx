@@ -75,6 +75,37 @@ heigth: 30%;
 width: 30%;
 `
 
+export const FlipBtn = styled.button `
+width: 2rem;
+height: 2rem;
+background-color: "black" 
+color: "white";
+border-radius: 50%;
+border: none;
+text-align: center;
+margin-right: 3px;
+&:hover {
+    transform: scale(0.9);
+    box-shadow: 0px 0px 10px 2px rgba(16,16,16);
+
+}`
+
+export const LinkBtn = styled.button `
+width: 2rem;
+height: 2rem;
+border-radius: 50%;
+border: none;
+margin-right: 3px;
+background-color: rgba(0, 0, 0,.8);
+color: white;
+font-weight: bold;
+&:link, :hover, :active, :visited {
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0px 0px 5px white;
+    transform: scale(1.1);
+`
+
 export const Submit = styled.button `
 width: 125px;
 height: 35px;
