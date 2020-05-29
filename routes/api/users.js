@@ -28,8 +28,14 @@ router
   .delete(userController.remove);
 
 // Matches with "/api/users/user"
-router.route("/user")
+router
+  .route("/user")
   .get(userController.findOne);
+
+// Matches with "/api/users/vaca/"
+router
+  .route("/vaca/:id/:vacaId")
+  .delete(userController.removeVacaId);
 
 
 // @route POST api/users/register
