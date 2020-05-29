@@ -6,8 +6,8 @@ router.route("/")
   .get(ribdController.findAll)
   .post(ribdController.create);
 
-// Matches with "/api/ribd/:id"
-router.route("/:id")
+// Matches with "/api/ribd/:vacaId/:id"
+router.route("/outdoor/:vacaId/:id")
   .get(ribdController.findById)
   .put(ribdController.update)
   .delete(ribdController.remove);

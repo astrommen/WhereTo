@@ -6,7 +6,7 @@ import { FlipBtn, LinkBtn, Title } from "../Styled";
 import { DeleteBtn } from "../Buttons";
 import ReactCardFlip from 'react-card-flip';
 
-class SaveOutdoor extends Component{
+class SaveSightseeing extends Component{
   constructor(props) {
     super(props);
 
@@ -17,6 +17,11 @@ class SaveOutdoor extends Component{
     this.handleClick = this.handleClick.bind(this);
   }
 
+  // componentDidMount() {
+  //   console.log('card ' ,this.props)
+  // }
+  
+
   handleClick(event) {
     event.preventDefault();
     this.setState(prevState => ({ isFlipped :!prevState.isFlipped}));
@@ -24,23 +29,23 @@ class SaveOutdoor extends Component{
 
   render () {
     return (
-      <ReactCardFlip isFlipped={this.state.isFlipped} flipDirection="horizontal" >
-        <div className='card mt-2'>
+      <ReactCardFlip isFlipped={this.state.isFlipped} flipDirection="horizontal" flipSpeedBackToFront="1" flipSpeedFrontToBack="1">
+        <div className='card text-center mt-2'>
           <Card.Img variant="top"  src={process.env.PUBLIC_URL + './img/location/noImage.png'} alt="event logo" />
           <Row>
-            <Title><i className="fas fa-hiking"></i> {this.props.name}</Title>
+            <Title><i className="fas fa-ticket-alt"></i> {this.props.name}</Title>
           </Row>
           <div className="overflow">
           </div>
-          <Row>
+          <Row className="card-body text-dark">
             <p className="card-text text-secondary">
-            Front of Card
+              {this.props.localdate}
             </p>
           </Row>
           <div className="d-flex justify-content-end align-items-end">
-              <FlipBtn onClick={this.handleClick}><i className="fas fa-chevron-right"></i></FlipBtn>
+              <FlipBtn onClick={this.handleClick} ><i className="fas fa-chevron-right"></i></FlipBtn>
               <LinkBtn><a target="_blank" href="https://fontawesome.com/icons"><i className="fas fa-link"></i></a></LinkBtn>
-              <DeleteBtn onClick={() => this.props.deleteOutdoor (this.props.id)}></DeleteBtn>
+              <DeleteBtn onClick={() => this.props.deleteSightseeing(this.props.id)}></DeleteBtn>
           </div>
         </div>   
 
@@ -62,4 +67,4 @@ class SaveOutdoor extends Component{
 }
 }
   
-export default SaveOutdoor;
+export default SaveSightseeing;

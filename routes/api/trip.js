@@ -5,7 +5,8 @@ router.route("/")
 .get(tripController.findAll)
 .post(tripController.create);
 
-router.route("/:id")
+//Matches with "/api/trip/sightseeing/:vacaId/:id"
+router.route("/sightseeing/:vacaId/:id")
 .get(tripController.findById)
 .put(tripController.update)
 .delete(tripController.remove);

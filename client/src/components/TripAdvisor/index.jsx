@@ -150,6 +150,7 @@ class TripAdvisor extends Component {
           this.state.trips.map((trip) =>
             <TripCard
               key={trip.id}
+              id={trip.id}
               address={trip.address}
               description={trip.description}
               latitude={trip.latitude}
