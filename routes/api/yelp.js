@@ -6,8 +6,8 @@ router.route("/")
   .get(yelpController.findAll)
   .post(yelpController.create);
 
-// Matches with "/api/yelp/:id"
-router.route("/:id")
+// Matches with "/api/yelp/food/:vac/:id"
+router.route("/food/:vacId/:id")
   .get(yelpController.findById)
   .put(yelpController.update)
   .delete(yelpController.remove);

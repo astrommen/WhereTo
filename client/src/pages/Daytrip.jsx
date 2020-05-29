@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom';
 import TripData from "../components/TripData";
 import SaveOutdoor from "../components/SaveOutdoor";
 import SaveEvents from "../components/SaveEvents";
+import SaveFood from "../components/SaveFood";
 import { CardDeck } from 'react-bootstrap';
 import API from "../utils/API";
 import { concatSeries } from 'async';
@@ -52,7 +53,11 @@ class DayTrip extends Component {
       }).catch(err => console.log(err))
   }
 
-
+deleteFood = id => {
+  API.deleteFood(localStorage.getItem('vacaId'), id)
+  .then(res => this.setState({food:res.data}))
+  .catch(err => console.log(err))
+}
 
 deleteEvent = id => {
   // console.log("id: " , id)
@@ -92,8 +97,29 @@ deleteEvent = id => {
           venuePostal={event.venuePostal}
           deleteEvent={this.deleteEvent}
           />)}
+          {this.state.food && this.state.food.map(fd =>
+            <SaveFood 
+            key={fd.id}
+            id={fd.id}
+            name={fd.name}
+            image={fd.image}
+            phone={fd.phone}
+            street={fd.street}
+            city={fd.city}
+            state={fd.state}
+            zip={fd.zip}
+            link={fd.link}
+            rating={fd.rating}
+            reviews={fd.reviews}
+            latitude={fd.latitude}
+            longitude={fd.longitude}
+            transactions={fd.transactions}
+            />)}
+
           </CardDeck>
-              <SaveOutdoor /><SaveEvents />
+
+
+              <SaveOutdoor />
       </Wrapper>
     );
   }

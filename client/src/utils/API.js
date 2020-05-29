@@ -128,11 +128,11 @@ export default {
     saveFood: function (id, data) {
         return axios.put("/api/yelp/food/" + id, data)
     },
-    returnFood: function () {
-        return axios.get("/api/food")
-    },
-    deleteFood: function (id) {
-        return axios.delete("/api/food/" + id);
+    // returnFood: function () {
+    //     return axios.get("/api/food")
+    // },
+    deleteFood: function (vacaId, foodId) {
+        return axios.delete("/api/yelp/food/" + vacaId + "/" + foodId);
     },
     saveTicketmaster: function (id, data) {
         return axios.put("/api/ticketmaster/event/" + id, data)
