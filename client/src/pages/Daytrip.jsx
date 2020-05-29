@@ -3,8 +3,11 @@ import Nav from "../components/Nav";
 import { Wrapper } from "../components/Styled";
 import { withRouter } from 'react-router-dom';
 import TripData from "../components/TripData";
-import { SaveOutdoor } from "../components/Save";
+import SaveOutdoor from "../components/SaveOutdoor";
+import SaveEvents from "../components/SaveEvents";
+import { CardDeck } from 'react-bootstrap';
 import API from "../utils/API";
+import { concatSeries } from 'async';
 // import Outdoor from '../components/Outdoors';
 
 
@@ -14,14 +17,13 @@ class DayTrip extends Component {
   }
 
   state={
-    events: []
+
   }
 
   componentDidMount() {
     // this.redirect()
     this.getVacationData();
-    this.savedEvents();
-    console.log(this.state.events)
+    // this.returnEvent();
   }
 
   redirect = () => {
@@ -36,7 +38,7 @@ class DayTrip extends Component {
     API.getVacations(localStorage.getItem('vacaId'))
       .then((res) => {
         console.log(res.data)
-        console.log(res.data.tripName)
+        console.log("info", res.data.events)
         this.setState({
           local: res.data.local,
           tripId: res.data._id,
@@ -44,50 +46,40 @@ class DayTrip extends Component {
           dateStart: res.data.dateStart,
           city: res.data.city,
           state: res.data.state,
+          events: res.data.events,
+          food: res.data.food
         })
       }).catch(err => console.log(err))
   }
 
-  savedEvents = () => {
-    console.log('savedEvents')
-    API.savedEvents()
-    .then(res => this.setState({
-      events: res.data,
-      id: "",
-      name: "",
-      url: "",
-      image: "",
-      localdate: "",
-      localStartTime: "",
-      seatmapLink: "",
-      venueName: "",
-      venueCity: "",
-      venueState: "",
-      venueStreet: "",
-      venuePostal: ""
-    }))
-    .catch(err => console.log(err))
-  }
+
+
+deleteEvent = id => {
+  console.log("id: " , id)
+  API.deleteEvent(localStorage.getItem('vacaId'), id)
+  .then(res => console.log(res))
+  .catch(err => console.log(err))
+}
 
   render() {
-    // console.log(this.state)
+    console.log(this.state.events)
     return (
       <Wrapper>
         <Nav
         local={this.state.local}
         vacaId={localStorage.getItem('vacaId')}
         />
+
         <TripData
           vacaId={localStorage.getItem('vacaId')}
-        // tripName={this.state.tripName}
-        // dateStart={this.state.dateStart}
-        // city={this.state.city}
-        // state={this.state.state}
         />
-        {/* {this.state.events.map(event => 
-          <SaveOutdoor 
+
+        <CardDeck>
+        {this.state.events && this.state.events.map(event => 
+          <SaveEvents 
           key={event._id}
-          name={event.name}
+          id={event.id}
+          name={event.name}will 
           url={event.url}
           image={event.image}
           localdate={event.localdate}
@@ -98,8 +90,10 @@ class DayTrip extends Component {
           venueState={event.venueState}
           venueStreet={event.venueStreet}
           venuePostal={event.venuePostal}
-              />)} */}
-              <SaveOutdoor />
+          deleteEvent={this.deleteEvent}
+          />)}
+          </CardDeck>
+              <SaveOutdoor /><SaveEvents />
       </Wrapper>
     );
   }

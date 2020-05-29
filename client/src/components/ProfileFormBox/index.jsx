@@ -10,7 +10,7 @@ class ProfileFormBox extends Component {
 
   render() {
     return (
-      <div id="cardBox" className="card mb-3">
+      <div className="mb-3">
         <Title className="card-header">
           Trip Builder
 				</Title>

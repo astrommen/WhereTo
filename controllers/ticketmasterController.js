@@ -1,6 +1,7 @@
 const axios = require("axios");
 const db = require("../models");
 
+
 module.exports = {
     findAll: function (req, res) {
         const { query: params } = req;
@@ -57,7 +58,7 @@ module.exports = {
     },
     update: function (req, res) {
         db.Vacation
-            .findByID({ _id: req.params.id })
+            .findById({ _id: req.params.id })
             .then(dbModel => dbModel.remove())
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
@@ -72,11 +73,20 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
     remove: function (req, res) {
+        console.log("controller"+req.params.vacId+"here")
         db.Vacation
-            .findById({ _id: req.params.id })
-            .then(dbModel => dbModel.remove())
+        .findById({ _id: req.params.vacId })
+        .then(dbModel => { 
+            console.log("our model" , dbModel.events[0])
+            const events=dbModel.events.filter(event => {
+                console.log(event.id)
+                console.log(req.params.id)    
+                return event.id!==req.params.id});
+            console.log("our events ",events)
+            db.Vacation.findOneAndUpdate({ _id: req.params.vacId } , { events: events});
+        })
             .then(dbModel => res.json(dbModel))
-            .catch(err => res.status(422).json(err));
+            .catch(err => console.log(err));
     }
 
 }
