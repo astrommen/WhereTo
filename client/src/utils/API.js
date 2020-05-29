@@ -110,18 +110,18 @@ export default {
     saveOutdoorArea: function (id, data) {
         return axios.put("/api/ribd/ribd/" + id, data)
     },
-    returnOutdoorAreas: function () {
-        return axios.get("/api/ribd")
-    },
-    deleteOutdoorArea: function (id) {
-        return axios.delete("/api/ribd/" + id);
+    // returnOutdoorAreas: function () {
+    //     return axios.get("/api/ribd")
+    // },
+    deleteOutdoor: function (vacaId, outdoorId) {
+        return axios.delete("/api/ribd/outdoor/" + vacaId + "/" + outdoorId);
     },
     saveCountry: function (countryData) {
         return axios.post("/api/country", countryData)
     },
-    returnCountry: function () {
-        return axios.get("/api/country")
-    },
+    // returnCountry: function () {
+    //     return axios.get("/api/country")
+    // },
     deleteCountry: function (id) {
         return axios.delete("/api/country/" + id);
     },

@@ -28,7 +28,7 @@ class SaveOutdoor extends Component{
         <div className='card mt-2'>
           <Card.Img variant="top"  src={process.env.PUBLIC_URL + './img/location/noImage.png'} alt="event logo" />
           <Row>
-            <Title><i className="fas fa-hiking"></i> Outdoors</Title>
+            <Title><i className="fas fa-hiking"></i> {this.props.name}</Title>
           </Row>
           <div className="overflow">
           </div>

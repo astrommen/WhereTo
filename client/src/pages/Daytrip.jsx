@@ -48,7 +48,9 @@ class DayTrip extends Component {
           city: res.data.city,
           state: res.data.state,
           events: res.data.events,
-          food: res.data.food
+          food: res.data.food,
+          outdoors: res.data.outdoors
+
         })
       }).catch(err => console.log(err))
   }
@@ -64,7 +66,6 @@ class DayTrip extends Component {
 
 
   deleteEvent = id => {
-    // console.log("id: ", id)
     API.deleteEvent(localStorage.getItem('vacaId'), id)
       .then(res => this.setState({ events: res.data }))
       .catch(err => console.log(err))
@@ -119,11 +120,30 @@ class DayTrip extends Component {
             transactions={fd.transactions}
             deleteFood={this.deleteFood}
             />)}
+          
+          {this.state.outdoors && this.state.outdoors.map(outdoor =>
+            <SaveOutdoor 
+            key={outdoor.id}
+            id={outdoor.id}
+            name={outdoor.name}
+            description={outdoor.description}
+            directions={outdoor.directions || "Directions not available"}
+            longitude={outdoor.longitude}
+            latitude={outdoor.latitude}
+            street={outdoor.street}
+            city={outdoor.city}
+            postalCode={outdoor.postalCode}
+            state={outdoor.state}
+            link={outdoor.link}
+            images={outdoor.images}
+            activities={outdoor.activities}
+            deleteOutdoor={this.deleteOutdoor}
+              />
+            )}
 
         </CardDeck>
 
 
-        <SaveOutdoor />
       </Wrapper>
     );
   }
