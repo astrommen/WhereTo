@@ -91,7 +91,7 @@ export default {
         console.log("made to API")
         return axios.get("/api/trip", {
             params: {
-                location: city +","+ state
+                location: city + "," + state
             }
         })
     },
@@ -107,47 +107,41 @@ export default {
     saveTrip: function (tripData) {
         return axios.post("/api/vacations", tripData)
     },
-    saveOutdoorArea: function (outdoorData) {
-        return axios.post("/api/outdoor", outdoorData)
+    saveOutdoorArea: function (id, data) {
+        return axios.put("/api/ribd/ribd/" + id, data)
     },
-    returnOutdoorAreas: function () {
-        return axios.get("/api/outdoor")
-    },
-    deleteOutdoorArea: function (id) {
-        return axios.delete("/api/outdoor" + id);
+    // returnOutdoorAreas: function () {
+    //     return axios.get("/api/ribd")
+    // },
+    deleteOutdoor: function (vacaId, outdoorId) {
+        return axios.delete("/api/ribd/outdoor/" + vacaId + "/" + outdoorId);
     },
     saveCountry: function (countryData) {
         return axios.post("/api/country", countryData)
     },
-    returnCountry: function () {
-        return axios.get("/api/country")
-    },
-    deleteCountry: function (id) {
-        return axios.delete("/api/country" + id);
-    },
-    // saveFood: function (foodData) {
-    //     return axios.post("/api/food", foodData)
+    // returnCountry: function () {
+    //     return axios.get("/api/country")
     // },
+    deleteCountry: function (id) {
+        return axios.delete("/api/country/" + id);
+    },
     saveFood: function (id, data) {
         return axios.put("/api/yelp/food/" + id, data)
     },
-    returnFood: function () {
-        return axios.get("/api/food")
-    },
-    deleteFood: function (id) {
-        return axios.delete("/api/food" + id);
-    },
-    // saveEvent: function (eventData) {
-    //     return axios.post("/api/event", eventData)
+    // returnFood: function () {
+    //     return axios.get("/api/food")
     // },
+    deleteFood: function (vacaId, foodId) {
+        return axios.delete("/api/yelp/food/" + vacaId + "/" + foodId);
+    },
     saveTicketmaster: function (id, data) {
         return axios.put("/api/ticketmaster/event/" + id, data)
     },
-    returnEvent: function () {
-        return axios.get("/api/event")
-    },
-    deleteEvent: function (id) {
-        return axios.delete("/api/event" + id);
+    // returnEvent: function (id) {
+    //     return axios.get("/api/ticketmaster/events/" + id)
+    // },
+    deleteEvent: function (vacaId, eventId) {
+        return axios.delete("/api/ticketmaster/event/" + vacaId + "/" + eventId);
     },
     // saveSightseeing: function (sightseeingData) {
     //     return axios.post("/api/sightseeing", sightseeingData)
@@ -155,11 +149,11 @@ export default {
     saveSightseeing: function (id, data) {
         return axios.put("/api/vacations/sightseeing/" + id, data)
     },
-    returnSightseeing: function () {
-        return axios.get("/api/sightseeing")
-    },
-    deleteSightseeing: function (id) {
-        return axios.delete("/api/sightseeing" + id);
+    // returnSightseeing: function () {
+    //     return axios.get("/api/sightseeing")
+    // },
+    deleteSightseeing: function (vacaId, sightseeId) {
+        return axios.delete("/api/trip/sightseeing/" + vacaId + "/" + sightseeId);
     },
     saveWalk: function (sightseeingData) {
         return axios.post("/api/walk", sightseeingData)
@@ -178,6 +172,12 @@ export default {
     },
     deleteDayplan: function (id) {
         return axios.delete("/api/triposo" + id);
+    },
+    deleteVacation: function (id) {
+        return axios.delete("/api/vacations/" + id);
+    },
+    deleteUserVacaId: function (id, vacaId) {
+        return axios.delete("/api/users/vaca/" + id + "/" + vacaId);
     },
 }
 

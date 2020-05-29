@@ -103,28 +103,25 @@ class Ticketmaster extends Component {
       .catch(err => this.setState({ hasError: true, loading: false }));
   }
 
-  saveEvent = (activity) => {
-    console.log(activity)
-    API.saveEvent(activity)
-      .then(res => console.log(res))
-      .catch(err => console.log(err))
-  }
+
 
   render() {
     // console.log(this.state)
     return (
       <Wrapper>
         <Nav
-        local={this.state.local}/>
-        <Jumbo>
-          <FormEvents
-            value={this.state.value}
-            handleInputChange={this.handleInputChange}
-            handleFormSubmit={this.handleFormSubmit} />
-        </Jumbo>
+          local={this.state.local} />
+
+      <Jumbo local={this.state.local}>
+        <FormEvents
+        value={this.state.value}
+        handleInputChange={this.handleInputChange}
+        handleFormSubmit={this.handleFormSubmit}/>
+      </Jumbo> 
+        
         {this.state.loading && <Image className="loading" src={process.env.PUBLIC_URL + './img/loading.gif'} alt="loading" />}
         {this.state.hasError &&
-          <Jumbo>
+          <Jumbo local={this.state.local}>
             <h5>There was an error searching for your Request.</h5>
             <White>Please try a different selection or attempt again later.</White>
           </Jumbo>}
@@ -150,7 +147,7 @@ class Ticketmaster extends Component {
               venuePostal={activity.venuePostal}
             />)
         ) : (
-            <Jumbo>
+            <Jumbo local={this.state.local}>
               <h3>No Results to Display</h3>
               <White>Use the food and drink forms to populate your options.</White>
             </Jumbo>

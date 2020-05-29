@@ -70,7 +70,7 @@ function FormOutdoors(props) {
 
         <Row className="text-center">
           <Col size="md-4">
-            <Submit type="Submit" onClick={props.handleFormSubmit}><i class="fas fa-hiking"></i> Submit</Submit>
+            <Submit type="Submit" onClick={props.handleFormSubmit}><i className="fas fa-hiking"></i> Submit</Submit>
           </Col>
         </Row>
 

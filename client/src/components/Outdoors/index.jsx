@@ -106,16 +106,18 @@ class Outdoor extends Component {
       <Wrapper>
         <Nav 
         local={this.state.local}/>
-        <Jumbo>
+
+      <Jumbo local={this.state.local}>
         <FormOutdoors 
         value={this.state.value}
         handleInputChange={this.handleInputChange}
         handleFormSubmit={this.handleFormSubmit}/>
-        </Jumbo>
+      </Jumbo> 
+
       
         {this.state.loading && <Image className="loading" src={process.env.PUBLIC_URL + './img/loading.gif'} alt="loading" />}
         {this.state.hasError &&             
-            <Jumbo>
+            <Jumbo local={this.state.local}>
               <h5>There was an error searching for your Request.</h5>
               <White>Please try a different selection or attempt again later.</White>
             </Jumbo>}
@@ -139,9 +141,9 @@ class Outdoor extends Component {
           />
           )
         ) : (
-          <Jumbo>
+          <Jumbo local={this.state.local}>
           <h3>No Results to Display</h3>
-          <White>Use the food and drink forms to populate your options.</White>
+          <White>Select which activities you are interested in to populate your results.</White>
         </Jumbo>
     )}
       </Wrapper>

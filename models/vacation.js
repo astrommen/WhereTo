@@ -8,16 +8,13 @@ var Schema = mongoose.Schema;
 var vacationSchema = new Schema({
   tripName: String,
   dateStart: Date,
-  endDate: Date,
+  dateEnd: Date,
   city: String,
   state: String,
   sightseeing: [Object],
   food: [Object],
   events: [Object],
-  outdoors: [{
-    type: Schema.Types.ObjectId,
-    ref: "Outdoor"
-  }],
+  outdoors: [Object],
   local: Boolean
 });
 

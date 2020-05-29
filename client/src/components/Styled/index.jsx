@@ -57,7 +57,7 @@ border: none;
 `
 
 export const Jumbo = styled.section `
-background-color: rgba(82, 82, 122,.9);
+background-color: ${props => props.local ? "rgba(82,82,122,.95)" : "rgba(33,49, 100,.95)"};
 color: #ccc;
 padding: 2rem 2rem;
 text-align: center;
@@ -75,6 +75,37 @@ heigth: 30%;
 width: 30%;
 `
 
+export const FlipBtn = styled.button `
+width: 2rem;
+height: 2rem;
+background-color: "black" 
+color: "white";
+border-radius: 50%;
+border: none;
+text-align: center;
+margin-right: 3px;
+&:hover {
+    transform: scale(0.9);
+    box-shadow: 0px 0px 10px 2px rgba(16,16,16);
+
+}`
+
+export const LinkBtn = styled.button `
+width: 2rem;
+height: 2rem;
+border-radius: 50%;
+border: none;
+margin-right: 3px;
+background-color: rgba(0, 0, 0,.8);
+color: white;
+font-weight: bold;
+&:link, :hover, :active, :visited {
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0px 0px 5px white;
+    transform: scale(1.1);
+`
+
 export const Submit = styled.button `
 width: 125px;
 height: 35px;
@@ -82,8 +113,9 @@ margin: 2% 0 0 0;
 border-radius: 3px;
 border: none;
 letter-spacing: 1.5px;
+box-shadow: 0px 0px 5px 1px white;
 padding: 1%;
-background-color: rgba(122, 122, 82,.9);
+background-color: rgba(96, 20, 76,.8);
 color: white;
 font-weight: bold;
 &:link, :hover, :active, :visited {
@@ -101,13 +133,13 @@ border-radius: 3px;
 border: none;
 letter-spacing: 1.5px;
 padding: 1%;
-background-color: ${props => props.vacation ? "rgba(96, 20, 76)" : "rgba(20, 38, 96)"};
+background-color: ${props => props.vacation ? "rgba(20, 38, 96)" : "rgba(96, 20, 76)" };
 color: white;
 font-weight: bold;
 box-shadow: 0px 0px 1px white;
 &:link, :hover, :active, :visited {
     text-decoration: none;
-    background-color: ${props => props.vacation ? "rgba(96, 20, 76, .8)" : "rgba(20, 38, 96, .8)"};
+    background-color: ${props => props.local ? "rgba(96, 20, 76, .8)" : "rgba(20, 38, 96, .8)"};
     font-weight: bold;
     box-shadow: 0px 0px 5px white;
     transform: scale(1.1);
@@ -118,13 +150,13 @@ border-radius: 3px;
 border: none;
 letter-spacing: 1.5px;
 padding: 1%;
-background-color: ${props => props.vacation ? "rgba(96, 20, 76)" : "rgba(20, 38, 96)"};
+background-color: ${props => props.local ? "rgba(96, 20, 76)" : "rgba(20, 38, 96)"};
 color: white;
 font-weight: bold;
 box-shadow: 0px 0px 1px white;
 &:link, :hover, :active, :visited {
     text-decoration: none;
-    background-color: ${props => props.vacation ? "rgba(96, 20, 76, .8)" : "rgba(20, 38, 96, .8)"};
+    background-color: ${props => props.local ? "rgba(96, 20, 76, .8)" : "rgba(20, 38, 96, .8)"};
     font-weight: bold;
     box-shadow: 0px 0px 5px white;
     transform: scale(0.98);
@@ -162,11 +194,10 @@ color: white;
 display: block;
 margin-left: auto;
 margin-right: auto;
-
 &:link, :hover, :active, :visited {
     text-decoration: none;
     font-weight: bold;
-    text-shadow: 0px 0px 2px #FFC300;
+    transform: scale(0.9);
 }
 `
 
@@ -176,14 +207,14 @@ font-family: 'Lato', sans-serif;
 font-size: 20px;
 `
 
-export const Center = styled.p `
-color: white;
-text-align: center;
-font-size: 20px;`
+// export const Center = styled.p `
+// color: white;
+// text-align: center;
+// font-size: 20px;`
 
 export const White = styled.p `
 color: white;
-text-align: ${props => props.inputAlign || "center"}
+text-align: ${props => props.center ? "center" : "left" }
 `
 
 export const Label = styled.label `

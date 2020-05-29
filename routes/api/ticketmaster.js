@@ -5,7 +5,7 @@ router.route("/")
   .get(ticketmasterController.findAll)
   .post(ticketmasterController.create);
 
-router.route("/:id")
+router.route("/event/:vacId/:id")
   .get(ticketmasterController.findById)
   .put(ticketmasterController.update)
   .delete(ticketmasterController.remove);
