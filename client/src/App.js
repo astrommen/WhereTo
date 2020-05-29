@@ -92,7 +92,8 @@ class App extends PureComponent {
                   <FormDay updateAppState={this.updateAppState} />} />
                 <Route exact path="/vacationform" component={() =>
                   <FormVacation updateAppState={this.updateAppState} />} />
-                <Route path="/vacation" component={Vacation} />
+                <Route path="/vacation" component={() =>
+                  <Vacation state={this.state} />} />
                 <Route exact path="/register" component={Register} />
                 <Route path="/outdoors" component={() =>
                   <Outdoors state={this.state} />} />

@@ -173,5 +173,11 @@ export default {
     deleteDayplan: function (id) {
         return axios.delete("/api/triposo" + id);
     },
+    deleteVacation: function (id) {
+        return axios.delete("/api/vacations/" + id);
+    },
+    deleteUserVacaId: function (id, vacaId) {
+        return axios.delete("/api/users/vaca/" + id + "/" + vacaId);
+    },
 }
 
