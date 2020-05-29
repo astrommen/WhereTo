@@ -55,7 +55,7 @@ class DayTrip extends Component {
 
 deleteFood = id => {
   API.deleteFood(localStorage.getItem('vacaId'), id)
-  .then(res => this.setState({food:res.data}))
+  .then(res => console.log("foods",res))
   .catch(err => console.log(err))
 }
 
@@ -82,7 +82,7 @@ deleteEvent = id => {
         <CardDeck>
         {this.state.events && this.state.events.map(event => 
           <SaveEvents 
-          key={event._id}
+          key={event.id}
           id={event.id}
           name={event.name}will 
           url={event.url}
@@ -114,6 +114,7 @@ deleteEvent = id => {
             latitude={fd.latitude}
             longitude={fd.longitude}
             transactions={fd.transactions}
+            deleteFood={this.deleteFood}
             />)}
 
           </CardDeck>
