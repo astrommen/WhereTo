@@ -194,6 +194,7 @@ text-align: center;
 font-family: 'Cabin Condensed', sans-serif;
 margin-top: 10px;
 margin-bottom: auto;
+width:240px
 `
 
 export const Website = styled.a`
