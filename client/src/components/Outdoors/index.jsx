@@ -110,8 +110,10 @@ class Outdoor extends Component {
       <Jumbo local={this.state.local}>
         <FormOutdoors 
         value={this.state.value}
+        local={this.state.local} 
         handleInputChange={this.handleInputChange}
-        handleFormSubmit={this.handleFormSubmit}/>
+        handleFormSubmit={this.handleFormSubmit}
+        />
       </Jumbo> 
 
       
@@ -119,7 +121,7 @@ class Outdoor extends Component {
         {this.state.hasError &&             
             <Jumbo local={this.state.local}>
               <h5>There was an error searching for your Request.</h5>
-              <White>Please try a different selection or attempt again later.</White>
+              <White center>Please try a different selection or attempt again later.</White>
             </Jumbo>}
         {this.state.sites.length > 0 ? (
           this.state.sites.map((site) => 
@@ -143,7 +145,7 @@ class Outdoor extends Component {
         ) : (
           <Jumbo local={this.state.local}>
           <h3>No Results to Display</h3>
-          <White>Select which activities you are interested in to populate your results.</White>
+          <White center>Select which activities you are interested in to populate your results.</White>
         </Jumbo>
     )}
       </Wrapper>

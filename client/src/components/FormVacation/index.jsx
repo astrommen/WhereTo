@@ -113,7 +113,7 @@ class FormVacation extends Component {
 
   render() {
     return (
-      <Jumbo>
+      <Jumbo local={this.state.local}>
         <Container>
           <Row>
             <Col size="md-2">
@@ -244,7 +244,7 @@ class FormVacation extends Component {
                   <Submit type="submit"
                   // disabled={!(this.state.tripName && this.state.date && this.state.state || this.state.city)}
                   // onClick={this.handleFormSubmit}
-                  ><i className="far fa-compass"></i>Submit<i className="far fa-compass"></i></Submit>
+                  local={this.state.local}><i className="far fa-compass"></i>Submit</Submit>
                 </Col>
               </Row>
 

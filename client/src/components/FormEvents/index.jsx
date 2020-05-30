@@ -59,7 +59,7 @@ function FormEvents(props) {
             </Col>
 
             <Col size="sm-3">
-              <Submit type="Submit" onClick={props.handleFormSubmit}><i className="fas fa-ticket-alt"></i> Submit</Submit>
+              <Submit type="Submit" onClick={props.handleFormSubmit} local={props.local}><i className="fas fa-ticket-alt"></i> Submit</Submit>
             </Col>
           </Row>
 

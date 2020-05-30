@@ -143,7 +143,7 @@ class TripAdvisor extends Component {
         {this.state.hasError && 
             <Jumbo>
             <h5>There was an error searching for your Request.</h5>
-            <White>Please try again later.</White>
+            <White center>Please try again later.</White>
           </Jumbo>}
 
       {this.state.trips.length > 0 ? (

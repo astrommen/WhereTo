@@ -71,7 +71,7 @@ function FoodForm(props) {
           </Row>
           <Row>
             <Col size="md-4">
-              <Submit type="Submit" onClick={props.handleFormSubmit}><i className="fas fa-utensils"></i> Submit</Submit>
+              <Submit type="Submit" onClick={props.handleFormSubmit} local={props.local}><i className="fas fa-utensils"></i> Submit</Submit>
             </Col>
           </Row>
 
