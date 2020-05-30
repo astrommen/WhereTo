@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Col, Row } from "../Grid";
+import { Container, Col, Row, Row2 } from "../Grid";
 import { Card } from 'react-bootstrap';
 import "./style.css";
 import { FlipBtn, LinkBtn, Title } from "../Styled";
@@ -28,41 +28,45 @@ class SaveFood extends Component {
   }
 
   render() {
+    // console.log(this.props)
     return (
-      <ReactCardFlip isFlipped={this.state.isFlipped} flipDirection="horizontal" flipSpeedBackToFront="1" flipSpeedFrontToBack="1">
-        <div className='card text-center mt-2'>
-          <Card.Img variant="top" src={this.props.image} alt="location image" />
-          <Row>
-            <Title><i className="fas fa-ticket-alt"></i> {this.props.name}</Title>
-          </Row>
-          <div className="overflow">
-          </div>
-          <Row className="card-body text-dark">
-            <p className="card-text text-secondary">
-              {this.props.rating}/5 of {this.props.reviews} reviews
-            </p>
-          </Row>
-          <div className="d-flex justify-content-end align-items-end">
+      <div className='mx-3 mb-4'>
+        <ReactCardFlip isFlipped={this.state.isFlipped} flipDirection="horizontal" flipSpeedBackToFront="1" flipSpeedFrontToBack="1">
+          <div className='d-flex card text-center mt-2'>
+            <Card.Img variant="top" src={this.props.image} height="158px" alt="event logo" />
+            <Row>
+              <Title><i className="fas fa-utensils"></i> {this.props.name}</Title>
+            </Row>
+            <div className="overflow">
+            </div>
+            <div className="row mt-auto">
+              <p className="card-text text-secondary">
+                {this.props.street}<br />
+                {this.props.city}, {this.props.state} {this.props.zip}
+              </p>
+            </div>
+            <div className="d-flex justify-content-around align-items-end my-2">
+              <LinkBtn><a target="_blank" href={this.props.link}><i className="fas fa-link"></i></a></LinkBtn>
+              <DeleteBtn onClick={() => this.props.deleteFood(this.props.id)}></DeleteBtn>
               <FlipBtn onClick={this.handleClick} ><i className="fas fa-chevron-right"></i></FlipBtn>
-              <LinkBtn><a target="_blank" href="https://fontawesome.com/icons"><i className="fas fa-link"></i></a></LinkBtn>
-              <DeleteBtn onClick={() => this.props.deleteFood (this.props.id)}></DeleteBtn>
+            </div>
           </div>
-        </div>
 
-        <div className='card text-center mt-2'>
-          <div className="overflow">
-          </div>
-          <Row className="card-body text-dark">
-            <p className="card-text text-secondary">
-              Back of Card
+          <div className='card text-center mt-2'>
+            <div className="overflow">
+            </div>
+            <Row className="card-body text-dark">
+              <p className="card-text text-secondary">
+                Back of Card
             </p>
-          </Row>
-          <div className="d-flex justify-content-end">
-            <FlipBtn onClick={this.handleClick}><i className="fas fa-chevron-right"></i></FlipBtn>
+            </Row>
+            <div className="d-flex justify-content-end">
+              <FlipBtn onClick={this.handleClick}><i className="fas fa-chevron-right"></i></FlipBtn>
+            </div>
           </div>
-        </div>
 
-      </ReactCardFlip>
+        </ReactCardFlip>
+      </div>
     );
   }
 }

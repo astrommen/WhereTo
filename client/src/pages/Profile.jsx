@@ -10,6 +10,8 @@ import ProfileFormBox from "../components/ProfileFormBox";
 import { White, Title, Wrapper } from "../components/Styled";
 import API from "../utils/API";
 import jwt_decode from "jwt-decode";
+import { Jumbo } from "../components/Styled";
+
 
 
 
@@ -180,23 +182,10 @@ class Profile extends Component {
               ))}
             </Col>
           </Row>
-          <Row className="justify-content-around mt-5">
-            <Col size="md-10">
-              <div className="card">
-                <h5 className="card-header">
-                  Card title
-				</h5>
-                <div className="card-body">
-                  <White className="card-text">
-                    Card content
-					</White>
-                </div>
-                <div className="card-footer">
-                  Card footer
-				</div>
-              </div>
-            </Col>
-          </Row>
+
+          <Jumbo className="mt-4">
+            <h4>Suggested Vacations Coming Soon...</h4>
+          </Jumbo>
         </Container>
       </Wrapper>
     );
