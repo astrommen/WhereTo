@@ -7,15 +7,15 @@ import API from "../../utils/API";
 
 class TicketmasterCard extends Component {
 
+
+
   saveEvent = (trip) => {
     console.log(trip)
     console.log(localStorage.getItem('vacaId'))
     API.saveTicketmaster(localStorage.getItem('vacaId'), trip)
-      .then(res => {
-        console.log(res)
-      })
+      .then(res => console.log(res))
       .catch(err => console.log(err))
-  }
+      }
 
 
   render() {
@@ -28,7 +28,7 @@ class TicketmasterCard extends Component {
           </Col>
           <Col size="md-4">
             <SiteBtn href={this.props.url}> Offical Site </SiteBtn>
-            <SaveBtn onClick={() => this.saveEvent(this.props)} />
+            <SaveBtn onClick={() => this.saveEvent(this.props)}></SaveBtn>
           </Col>
         </Row>
         <Row>

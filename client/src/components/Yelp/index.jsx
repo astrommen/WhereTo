@@ -126,6 +126,7 @@ class Yelp extends Component {
           <Jumbo local={this.state.local}>
             <FoodForm
               value={this.state.value}
+              local={this.state.local} 
               handleInputChange={this.handleInputChange}
               handleFormSubmit={this.handleFormSubmit} />
           </Jumbo>
@@ -135,6 +136,7 @@ class Yelp extends Component {
           <Jumbo className="mb-2" local={this.state.local}>
             <FormDrinks
               value={this.state.value}
+              local={this.state.local} 
               handleInputChange={this.handleInputChange}
               handleFormSubmit={this.handleFormSubmit} />
           </Jumbo>}
@@ -168,7 +170,7 @@ class Yelp extends Component {
         ) : (
             <Jumbo local={this.state.local}>
               <h3>No Results to Display</h3>
-              <White>Use the food and drink forms to populate your options.</White>
+              <White center>Use the food and drink forms to populate your options.</White>
             </Jumbo>
           )}
       </Wrapper>

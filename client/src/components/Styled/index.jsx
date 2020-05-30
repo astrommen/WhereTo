@@ -115,7 +115,7 @@ border: none;
 letter-spacing: 1.5px;
 box-shadow: 0px 0px 5px 1px white;
 padding: 1%;
-background-color: rgba(96, 20, 76,.8);
+background-color: ${props => props.local ? "rgba(96, 20, 76,.8)" : "rgba(20, 38, 96,.8)" };
 color: white;
 font-weight: bold;
 &:link, :hover, :active, :visited {

@@ -31,7 +31,7 @@ function FormDrinks(props) {
             </select>
           </Col>
           <Col size="md-2">
-            <Submit type="Submit" onClick={props.handleFormSubmit}><i className="fas fa-glass-whiskey"></i> Submit</Submit>
+            <Submit type="Submit" onClick={props.handleFormSubmit} local={props.local}><i className="fas fa-glass-whiskey"></i> Submit</Submit>
           </Col>
           </Row>
 

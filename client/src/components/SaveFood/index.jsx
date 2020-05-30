@@ -31,7 +31,7 @@ class SaveFood extends Component {
     return (
       <ReactCardFlip isFlipped={this.state.isFlipped} flipDirection="horizontal" flipSpeedBackToFront="1" flipSpeedFrontToBack="1">
         <div className='card text-center mt-2'>
-          <Card.Img variant="top" src={process.env.PUBLIC_URL + './img/location/noImage.png'} alt="event logo" />
+          <Card.Img variant="top" src={this.props.image} alt="location image" />
           <Row>
             <Title><i className="fas fa-ticket-alt"></i> {this.props.name}</Title>
           </Row>
@@ -39,7 +39,7 @@ class SaveFood extends Component {
           </div>
           <Row className="card-body text-dark">
             <p className="card-text text-secondary">
-              {this.props.localdate}
+              {this.props.rating}/5 of {this.props.reviews} reviews
             </p>
           </Row>
           <div className="d-flex justify-content-end align-items-end">

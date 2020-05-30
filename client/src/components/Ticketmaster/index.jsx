@@ -115,6 +115,7 @@ class Ticketmaster extends Component {
       <Jumbo local={this.state.local}>
         <FormEvents
         value={this.state.value}
+        local={this.state.local} 
         handleInputChange={this.handleInputChange}
         handleFormSubmit={this.handleFormSubmit}/>
       </Jumbo> 
@@ -149,7 +150,7 @@ class Ticketmaster extends Component {
         ) : (
             <Jumbo local={this.state.local}>
               <h3>No Results to Display</h3>
-              <White>Use the food and drink forms to populate your options.</White>
+              <White center>Select which events you are interested in to populate your options.</White>
             </Jumbo>
           )}
       </Wrapper>
