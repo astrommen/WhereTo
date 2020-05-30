@@ -35,9 +35,9 @@ class SaveEvents extends Component {
         <ReactCardFlip isFlipped={this.state.isFlipped} flipDirection="horizontal" flipSpeedBackToFront="1" flipSpeedFrontToBack="1">
           <div className='card text-center mt-2'>
             <Card.Img variant="top" src={this.props.image} height="158px" alt="event logo" />
-            <Row>
+            <div className="row">
               <TitleLanding><i className="fas fa-ticket-alt"></i> {this.props.name}</TitleLanding>
-            </Row>
+            </div>
             <div className="overflow">
             </div>
             <div className="row mt-auto">
