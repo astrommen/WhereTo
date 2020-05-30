@@ -2,12 +2,10 @@ import React, { Component } from "react";
 import { Jumbo } from "../Styled";
 import API from "../../utils/API";
 import jwt_decode from "jwt-decode";
-import { TripBtn2 } from "../Styled";
+import { TripBtn3 } from "../Styled";
 import { Link } from "react-router-dom";
 var moment = require('moment');
 
-//Add function for date display
-//Add function to capitalize first letters of city, state
 
 class template extends Component {
   constructor() {
@@ -86,7 +84,7 @@ class template extends Component {
   render() {
     return (
       <div>
-        <Jumbo className="mt-5" id={this.state.tripId} local={this.state.local}>
+        <Jumbo className="mt-1" id={this.state.tripId} local={this.state.local}>
           <h1 className="display-4">{this.state.tripName}</h1>
           <h4>{this.state.city}, {this.state.state}</h4>
           {!this.state.dateEnd ?
@@ -96,10 +94,9 @@ class template extends Component {
           }
 
           <Link to="/profile">
-            <TripBtn2 type="button" className="btn btn-primary" onClick={this.deleteStuff} >Delete Vacation</TripBtn2></Link>
+            <TripBtn3 type="button" className="btn btn-primary mb-2" onClick={this.deleteStuff} >Delete Vacation</TripBtn3></Link>
 
 
-          <hr className="my-2" />
           <p>Use the Tabs above to add activities to your trip!</p>
         </Jumbo>
       </div>

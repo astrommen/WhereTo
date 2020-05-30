@@ -2,9 +2,10 @@ img {
   border-radius: 10px;
 }
 
-.media{
+.media{  
   padding: 10px 5px;
   border-radius: 10px;
+  border: 2px #555 solid;
   background-color:rgba(0,0,0);
 }
 

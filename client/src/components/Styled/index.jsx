@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 
-export const Button = styled.button `
+export const Button = styled.button`
 width: 200px;
 height: 50px;
 margin: 2% 0 0 0;
@@ -11,14 +11,14 @@ padding: 1%;
 background-color: white;
 color: black;`
 
-export const Event = styled.img `
+export const Event = styled.img`
 display: block;
 margin-left: auto;
 margin-right: auto;
 box-shadow: 0 0 2 2 white;
 `
 
-export const Icon = styled.img `
+export const Icon = styled.img`
 display: block;
 margin-left: auto;
 margin-right: auto;
@@ -26,37 +26,41 @@ heigth: 15%;
 width: 15%;
 `
 
-export const Identify = styled.span `
+export const Identify = styled.span`
 font-weight: bold;`
 
-export const Image = styled.img `
+export const Image = styled.img`
 display: block;
 margin-left: auto;
 margin-right: auto;
+width: 315px;
+height: 210px;
+
 `
 
-export const ImgDes = styled.p `
+export const ImgDes = styled.p`
 font-style: italic;
 text-align: center;
 color: white;
 `
 
-export const ImageButton = styled.button `
+export const ImageButton = styled.button`
 width: 50px;
-height: 35px;
+height: 50px;
 margin: 2% 0 0 0;
-border-radius: 50%;
+border-radius: 5px;
 background-color: black;
+color: white;
 padding: 1%;
 border: none;
 &:link, :hover, :active, :visited {
     text-decoration: none;
     font-weight: bold;
-    box-shadow: 0px 0px 5px white;
+    box-shadow: 0px 0px 10px white;
     transform: scale(0.9);
 `
 
-export const Jumbo = styled.section `
+export const Jumbo = styled.section`
 background-color: ${props => props.local ? "rgba(82,82,122,.95)" : "rgba(33,49, 100,.95)"};
 color: #ccc;
 padding: 2rem 2rem;
@@ -66,16 +70,16 @@ text-shadow 1px 1px 1px black;
 opacity: 1;
 `
 
-export const LocDes = styled.p `
+export const LocDes = styled.p`
 color: white;
 font-weight: bold;
 `
-export const Pin = styled.img `
-heigth: 30%;
-width: 30%;
+export const Pin = styled.img`
+heigth: 20%;
+width: 20%;
 `
 
-export const FlipBtn = styled.button `
+export const FlipBtn = styled.button`
 width: 2rem;
 height: 2rem;
 background-color: "black" 
@@ -90,7 +94,7 @@ margin-right: 3px;
 
 }`
 
-export const LinkBtn = styled.button `
+export const LinkBtn = styled.button`
 width: 2rem;
 height: 2rem;
 border-radius: 50%;
@@ -106,16 +110,16 @@ font-weight: bold;
     transform: scale(1.1);
 `
 
-export const Submit = styled.button `
-width: 125px;
-height: 35px;
+export const Submit = styled.button`
+width: 145px;
+height: 55px;
 margin: 2% 0 0 0;
 border-radius: 3px;
 border: none;
 letter-spacing: 1.5px;
 box-shadow: 0px 0px 5px 1px white;
 padding: 1%;
-background-color: ${props => props.local ? "rgba(96, 20, 76,.8)" : "rgba(20, 38, 96,.8)" };
+background-color: ${props => props.local ? "rgba(96, 20, 76,.8)" : "rgba(20, 38, 96,.8)"};
 color: white;
 font-weight: bold;
 &:link, :hover, :active, :visited {
@@ -125,7 +129,7 @@ font-weight: bold;
     transform: scale(1.1);
 `
 
-export const TripBtn = styled.button `
+export const TripBtn = styled.button`
 width: 125px;
 height: 35px;
 margin: 0 2% 0 0;
@@ -133,7 +137,7 @@ border-radius: 3px;
 border: none;
 letter-spacing: 1.5px;
 padding: 1%;
-background-color: ${props => props.vacation ? "rgba(20, 38, 96)" : "rgba(96, 20, 76)" };
+background-color: ${props => props.vacation ? "rgba(20, 38, 96)" : "rgba(96, 20, 76)"};
 color: white;
 font-weight: bold;
 box-shadow: 0px 0px 1px white;
@@ -144,7 +148,7 @@ box-shadow: 0px 0px 1px white;
     box-shadow: 0px 0px 5px white;
     transform: scale(1.1);
 `
-export const TripBtn2 = styled.button `
+export const TripBtn2 = styled.button`
 margin: 2% 2% 2% 0;
 border-radius: 3px;
 border: none;
@@ -161,14 +165,38 @@ box-shadow: 0px 0px 1px white;
     box-shadow: 0px 0px 5px white;
     transform: scale(0.98);
 `
-
-export const Title = styled.h3 `
+export const TripBtn3 = styled.button`
+border-radius: 3px;
+border: none;
+letter-spacing: 1.5px;
+padding: 1%;
+background-color: ${props => props.local ? "rgba(96, 20, 76)" : "rgba(20, 38, 96)"};
 color: white;
-text-align: left;
-font-family: 'Cabin Condensed', sans-serif;
+font-weight: bold;
+box-shadow: 0px 0px 1px white;
+&:link, :hover, :active, :visited {
+    text-decoration: none;
+    background-color: ${props => props.local ? "rgba(96, 20, 76, .8)" : "rgba(20, 38, 96, .8)"};
+    font-weight: bold;
+    box-shadow: 0px 0px 5px white;
+    transform: scale(0.98);
 `
 
-export const Website = styled.a `
+export const Title = styled.h3`
+color: white;
+font-family: 'Cabin Condensed', sans-serif;
+margin-top: 10px;
+margin-bottom: auto;
+`
+export const TitleLanding = styled.h5`
+color: white;
+text-align: center;
+font-family: 'Cabin Condensed', sans-serif;
+margin-top: 10px;
+margin-bottom: auto;
+`
+
+export const Website = styled.a`
 text-decoration: none;
 text-align: center;
 font-size: 17px;
@@ -183,7 +211,7 @@ margin-right: auto;
 }
 `
 
-export const ActivitiesN = styled.p `
+export const ActivitiesN = styled.p`
 color: white;
 font-family: 'Lato', sans-serif;
 font-size: 20px;
@@ -194,16 +222,16 @@ font-size: 20px;
 // text-align: center;
 // font-size: 20px;`
 
-export const White = styled.p `
+export const White = styled.p`
 color: white;
-text-align: ${props => props.center ? "center" : "left" }
+text-align: ${props => props.center ? "center" : "left"}
 `
 
-export const Label = styled.label `
+export const Label = styled.label`
 color: white;
 text-align: center;
 `
-export const Wrapper = styled.section `
+export const Wrapper = styled.section`
 width:100%;
 padding: 3%;
 background-color: black;
