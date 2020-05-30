@@ -48,7 +48,7 @@ class SaveFood extends Component {
             <div className="d-flex justify-content-around align-items-end my-2">
               <LinkBtn><a target="_blank" href={this.props.link}><i className="fas fa-link"></i></a></LinkBtn>
               <DeleteBtn onClick={() => this.props.deleteFood(this.props.id)}></DeleteBtn>
-              <FlipBtn onClick={this.handleClick} ><i className="fas fa-chevron-right"></i></FlipBtn>
+              {/* <FlipBtn onClick={this.handleClick} ><i className="fas fa-chevron-right"></i></FlipBtn> */}
             </div>
           </div>
 

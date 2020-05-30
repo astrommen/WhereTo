@@ -58,11 +58,11 @@ class SaveSightseeing extends Component {
           <div className='card text-center mt-2'>
             <div className="overflow">
             </div>
-            <Row className="card-body text-dark">
+            <div className="row text-dark overflow-auto w-auto mx-1">
               <p className="card-text text-secondary">
-                Back of Card
+                {this.props.description}
             </p>
-            </Row>
+            </div>
             <div className="d-flex justify-content-end">
               <FlipBtn onClick={this.handleClick}><i className="fas fa-chevron-right"></i></FlipBtn>
             </div>
