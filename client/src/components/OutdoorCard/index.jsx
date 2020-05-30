@@ -39,18 +39,21 @@ class OutdoorCard extends Component {
             <Col size="md-8">
               <Container>
                 <Row>
-                  <Col size="md-12">
+                  <Col size="md-1"></Col>
+                  <Col size="md-11">
                     <White><Identify>Address: </Identify>{this.props.street}, {this.props.city}, {this.props.state} {this.props.postalCode}</White>
                   </Col>
                 </Row>
                 <Row>
-                  <Col size="md-12">
+                <Col size="md-1"></Col>
+                  <Col size="md-11">
                     <White><Identify>Directions: </Identify>{this.props.directions}</White>
                   </Col>
                 </Row>
 
                 <Row>
-                  <Col size="md-12">
+                <Col size="md-1"></Col>
+                  <Col size="md-11">
                     <White><Identify>Activities Available at Park: </Identify>{this.props.activities.map(activity =>
                       activity.ActivityName).join(", ")}</White>
                   </Col>

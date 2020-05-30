@@ -146,6 +146,8 @@ class Ticketmaster extends Component {
               venueState={activity.venueState}
               venueStreet={activity.venueStreet}
               venuePostal={activity.venuePostal}
+              longitude={activity.longitude}
+              latitude={activity.latitude}
             />)
         ) : (
             <Jumbo local={this.state.local}>

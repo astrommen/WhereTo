@@ -83,10 +83,10 @@ class SignOn extends Component {
       <Container className="btnContainer">
         {this.renderRedirect()}
 
-        <Row>
+        {/* <Row>
           <div id={GOOGLE_BUTTON_ID} />
-          {/* <button onClick={() => this.signOut()}>Sign out</button> */}
-        </Row>
+          <button onClick={() => this.signOut()}>Sign out</button>
+        </Row> */}
 
         <Row>
           <Link
