@@ -13,9 +13,9 @@ class TicketmasterCard extends Component {
     console.log(trip)
     console.log(localStorage.getItem('vacaId'))
     API.saveTicketmaster(localStorage.getItem('vacaId'), trip)
-      .then(res => console.log(res)
+      .then(res => console.log(res))
       .catch(err => console.log(err))
-      )}
+      }
 
 
   render() {
