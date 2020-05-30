@@ -112,21 +112,21 @@ class Yelp extends Component {
         <Nav
           local={this.state.local} />
         <Container>
-          <Row className="text-center">
+          <div className=" row text-center text-white">
             <Col size="md-6">
-              <ImageButton onClick={this.handleFood}> <img className="img-fluid mb-3" src={process.env.PUBLIC_URL + './img/activities/food.png'} alt="food options" /></ImageButton>
+              <ImageButton onClick={this.handleFood}> <img className="img-fluid mb-3" src={process.env.PUBLIC_URL + './img/activities/food.png'} alt="food options" />Food</ImageButton>
             </Col>
             <Col size="md-6">
-              <ImageButton onClick={this.handleDrink}> <img className="img-fluid mb-3" src={process.env.PUBLIC_URL + './img/activities/coffee.png'} alt="drink options" /></ImageButton>
+              <ImageButton onClick={this.handleDrink}> <img className="img-fluid mb-3" src={process.env.PUBLIC_URL + './img/activities/coffee.png'} alt="drink options" />Drinks</ImageButton>
             </Col>
-          </Row>
+          </div>
         </Container>
 
         {this.state.foodChoice &&
           <Jumbo local={this.state.local}>
             <FoodForm
               value={this.state.value}
-              local={this.state.local} 
+              local={this.state.local}
               handleInputChange={this.handleInputChange}
               handleFormSubmit={this.handleFormSubmit} />
           </Jumbo>
@@ -136,7 +136,7 @@ class Yelp extends Component {
           <Jumbo className="mb-2" local={this.state.local}>
             <FormDrinks
               value={this.state.value}
-              local={this.state.local} 
+              local={this.state.local}
               handleInputChange={this.handleInputChange}
               handleFormSubmit={this.handleFormSubmit} />
           </Jumbo>}

@@ -142,23 +142,23 @@ class Profile extends Component {
             <Col size="md-12">
               <div className="d-flex justify-content-end">
                 <button onClick={this.onLogoutClick}
-                  className="btn btn-large btn-secondary justify-content-end logout">Logout</button>
+                  className="btn btn-sm btn-secondary justify-content-end logout">Logout</button>
               </div>
             </Col>
           </Row>
-          <Row className="justify-content-around">
-            <Col size="md-6">
+          <Row>
+            <div className="col-md-6 align-self-center">
               <ProfileBox
                 name={this.state.name}
                 history={this.props.history}
                 logoutUser={this.props.logoutUser}
               />
-            </Col>
+            </div>
             <Col size="md-6">
               <ProfileFormBox />
             </Col>
           </Row>
-          <Row className="mt-5  justisfy-content-around">
+          <div className="row mt-4">
             <Col size="md-6">
               <Title>Past Vacations</Title>
               {this.state.pastVaca.map(items => (
@@ -181,7 +181,7 @@ class Profile extends Component {
                 />
               ))}
             </Col>
-          </Row>
+          </div>
 
           <Jumbo className="mt-4">
             <h4>Suggested Vacations Coming Soon...</h4>

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Container, Col, Row } from "../Grid";
 import { Card } from 'react-bootstrap';
 import "./style.css";
-import { FlipBtn, LinkBtn, Title } from "../Styled";
+import { FlipBtn, LinkBtn, Title, TitleLanding } from "../Styled";
 import { DeleteBtn } from "../Buttons";
 import ReactCardFlip from 'react-card-flip';
 
@@ -30,7 +30,7 @@ class SaveOutdoor extends Component {
           <div className='card mt-2'>
             <Card.Img variant="top" src={this.props.images[0] ? this.props.images[0].URL : "./img/location/noImage.png"} height="158px" alt="event logo" />
             <Row>
-              <Title><i className="fas fa-hiking"></i> {this.props.name}</Title>
+              <TitleLanding><i className="fas fa-hiking"></i> {this.props.name}</TitleLanding>
             </Row>
             <div className="overflow">
             </div>

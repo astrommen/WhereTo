@@ -46,16 +46,17 @@ color: white;
 
 export const ImageButton = styled.button`
 width: 50px;
-height: 35px;
+height: 50px;
 margin: 2% 0 0 0;
-border-radius: 50%;
+border-radius: 5px;
 background-color: black;
+color: white;
 padding: 1%;
 border: none;
 &:link, :hover, :active, :visited {
     text-decoration: none;
     font-weight: bold;
-    box-shadow: 0px 0px 5px white;
+    box-shadow: 0px 0px 10px white;
     transform: scale(0.9);
 `
 
