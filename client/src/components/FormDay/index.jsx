@@ -36,6 +36,8 @@ class FormDay extends Component {
         return m;
       }
     }
+
+  
     const token = (window.localStorage.getItem("jwtToken"));
     const decoded = jwt_decode(token);
     const user = decoded.id;
@@ -44,7 +46,7 @@ class FormDay extends Component {
       dateFill = today.getFullYear() + '-' + (month()) + '-' + day();
 
     var tomorrow = new Date(),
-      tomorrowFill = tomorrow.getFullYear() + '-' + (month()) + '-' + dayPlusOne();
+      tomorrowFill = tomorrow.getFullYear() + '-' + (month()) + '-' + dayPlusOne();   
 
     this.state = {
       userId: user,

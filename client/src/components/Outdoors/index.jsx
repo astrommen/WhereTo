@@ -94,6 +94,7 @@ class Outdoor extends Component {
           tripId: res.data._id,
           tripName: res.data.tripName,
           dateStart: res.data.dateStart,
+          // dateEnd: res.data.dateEnd,
           city: res.data.city,
           state: res.data.state,
         })
@@ -105,7 +106,8 @@ class Outdoor extends Component {
     return (
       <Wrapper>
         <Nav 
-        local={this.state.local}/>
+        local={this.state.local}/
+        >
 
       <Jumbo local={this.state.local}>
         <FormOutdoors 

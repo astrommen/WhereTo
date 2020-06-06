@@ -6,7 +6,7 @@ import { TripBtn2 } from "../Styled";
 class VacationBtn extends Component {
 
   redirectVacation = () => {
-    console.log("made it to redirect")
+    // console.log("made it to redirect")
     localStorage.setItem('vacaId', this.props.id);
   }
 

@@ -1,13 +1,53 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-import { Container, Row, Col } from "../Grid";
+import { Container } from "../Grid";
 import { Pin } from "../Styled";
 import "./style.css";
 
 
-function Nav(props) {
-  return (
-    <Container>
+class Nav extends Component {
+  constructor(props) {
+    super(props);
+
+    let month = () => {
+      let m = today.getMonth() + 1
+      if (m < 10) {
+        return "0" + m;
+      } else {
+        return m;
+      }
+    }
+
+    let day = () => {
+      let m = today.getDate()
+      if (m < 10) {
+        return "0" + m;
+      } else {
+        return m;
+      }
+    }
+
+    // let dayPlusOne = () => {
+    //   let m = today.getDate() + 1
+    //   if (m < 10) {
+    //     return "0" + m;
+    //   } else {
+    //     return m;
+    //   }
+    // }
+
+    var today = new Date(), 
+    dateFill = today.getFullYear() + '-' + (month()) + '-' + day()
+
+
+    this.state= {
+      date: dateFill
+    }
+  }
+  render() {
+
+    return (
+      <Container>
       <div className="row align-items-center">
         <div className="col-md-2 text-center">
           <Link className="navbar-brand" to="/profile">
@@ -15,7 +55,7 @@ function Nav(props) {
           </Link>
         </div>
         <div className="col-md-2 text-center">
-          <Link to={props.local ? "/daytrip" : "/vacation"}>
+          <Link to={this.props.local ? "/daytrip" : "/vacation"}>
             <Pin className="pinpoint img-fluid" src={process.env.PUBLIC_URL + './img/WT.png'} alt="daytrip" />Trip Info
           </Link>
         </div>
@@ -39,10 +79,10 @@ function Nav(props) {
         </div>
         {/* <div className="col-md-1">
         <Link to="/walk"
-            className={
-              window.location.pathname === "/walk" ? "tab-active" : "tab"
-            }>Walk</Link>
-        </div> */}
+        className={
+          window.location.pathname === "/walk" ? "tab-active" : "tab"
+        }>Walk</Link>
+      </div> */}
         <div className="col-md-2 text-center">
           <Link to="/outdoors"
             className={
@@ -52,6 +92,7 @@ function Nav(props) {
       </div>
     </Container>
   )
+}
 }
 
 export default Nav;
