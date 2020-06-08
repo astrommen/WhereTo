@@ -17,12 +17,16 @@ class VacationBtn extends Component {
       this.props.local ? (
         <div>
             <Link to="/daytrip">
-          <TripBtn2 id={this.props.id} type="button" className="btn btn-primary btn-block" onClick={this.redirectVacation} local={this.props.local}>{this.props.name}</TripBtn2></Link>
+          <TripBtn2 id={this.props.id} type="button" className="btn btn-primary btn-block" onClick={this.redirectVacation} local={this.props.local}>
+            {this.props.name}
+          </TripBtn2></Link>
         </div>
       ) : (
           <div>
             <Link to="/vacation">
-            <TripBtn2 id={this.props.id} type="button" className="btn btn-success btn-block" onClick={this.redirectVacation} local={this.props.local}>{this.props.name}</TripBtn2></Link>
+            <TripBtn2 id={this.props.id} type="button" className="btn btn-success btn-block" onClick={this.redirectVacation} local={this.props.local}>
+              {this.props.name}
+            </TripBtn2></Link>
           </div>
         )
 

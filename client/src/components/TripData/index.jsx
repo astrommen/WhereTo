@@ -90,7 +90,7 @@ class template extends Component {
           {!this.state.dateEnd ?
             <h5>{this.state.dateStart}</h5>
             :
-            <h5>{this.state.dateStart} -> {this.state.dateEnd}</h5>
+            <h5>{this.state.dateStart} <i className="fas fa-arrow-right"></i> {this.state.dateEnd}</h5>
           }
 
           <Link to="/profile">

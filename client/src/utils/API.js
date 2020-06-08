@@ -19,7 +19,6 @@ export default {
         if (family) {
             array.push(family)
         }
-        console.log("ARRAY", array)
         return axios.get("/api/ticketmaster", {
             params:
             {
@@ -66,7 +65,6 @@ export default {
     },
     //Search Yelp for food and drink
     callYelp: function (city, state, breakfast, dinner, dessert, foodType, drinks) {
-        console.log("fetching yelp")
         return axios.get("/api/yelp", {
             params: {
                 location: city + "," + state,
@@ -80,7 +78,6 @@ export default {
     },
     //Search Triposo for city walk information
     callTour: function (city) {
-        console.log("fetching tour")
         return axios.get("/api/walk", {
             params: {
                 city: city
@@ -88,7 +85,6 @@ export default {
         })
     },
     callTrip: function (city, state) {
-        console.log("made to API")
         return axios.get("/api/trip", {
             params: {
                 location: city + "," + state
