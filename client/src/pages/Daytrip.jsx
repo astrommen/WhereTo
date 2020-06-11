@@ -8,6 +8,7 @@ import SaveEvents from "../components/SaveEvents";
 import SaveFood from "../components/SaveFood";
 import { CardDeck } from 'react-bootstrap';
 import API from "../utils/API";
+import { Title } from "../components/Styled";
 import SaveSightseeing from "../components/SaveSightseeing";
 import { concatSeries } from 'async';
 var moment = require('moment');
@@ -17,9 +18,30 @@ var moment = require('moment');
 class DayTrip extends Component {
   constructor(props) {
     super(props)
-  }
+    let month = () => {
+      let m = today.getMonth() + 1
+      if (m < 10) {
+        return "0" + m;
+      } else {
+        return m;
+      }
+    }
 
-  state = {
+    let day = () => {
+      let m = today.getDate()
+      if (m < 10) {
+        return "0" + m;
+      } else {
+        return m;
+      }
+    }
+
+    var today = new Date(), 
+    dateFill = today.getFullYear() + '-' + (month()) + '-' + day()
+    
+    this.state = {
+      date: dateFill
+    }
 
   }
 
@@ -82,9 +104,13 @@ class DayTrip extends Component {
     return (
       <Wrapper>
         <Nav
-        local={this.state.local}
+        // local={this.state.local}
+        dateStart={this.state.dateStart}
         vacaId={localStorage.getItem('vacaId')}
         /> 
+        {this.state.date <= this.state.dateStart ? 
+        <Title center>Use the tabs above to add activities to your trip!</Title> 
+        : "" }
 
         <TripData
           vacaId={localStorage.getItem('vacaId')}

@@ -5,7 +5,7 @@ import { Pin } from "../Styled";
 import "./style.css";
 
 
-class Nav extends Component {
+class NavVac extends Component {
   constructor(props) {
     super(props);
 
@@ -27,15 +27,6 @@ class Nav extends Component {
       }
     }
 
-    // let dayPlusOne = () => {
-    //   let m = today.getDate() + 1
-    //   if (m < 10) {
-    //     return "0" + m;
-    //   } else {
-    //     return m;
-    //   }
-    // }
-
     var today = new Date(), 
     dateFill = today.getFullYear() + '-' + (month()) + '-' + day()
 
@@ -55,12 +46,12 @@ class Nav extends Component {
           </Link>
         </div>
         <div className="col-md-2 text-center">
-          <Link to="/daytrip">
+          <Link to="/vacation">
             <Pin className="pinpoint img-fluid" src={process.env.PUBLIC_URL + './img/WT.png'} alt="daytrip" />Trip Info
           </Link>
         </div>
         <div className="col-md-2 text-center">
-          {this.state.date > this.props.dateStart ? "" :
+          {this.state.date >= this.props.dateEnd ? "" : 
           <Link to="/trip"
           className={
             window.location.pathname === "/trip" ? "tab-active" : "tab"
@@ -68,7 +59,7 @@ class Nav extends Component {
         }
         </div>
         <div className="col-md-2 text-center">
-        {this.state.date > this.props.dateStart ? "" :
+        {this.state.date >= this.props.dateEnd ? "" : 
           <Link to="/food"
             className={
               window.location.pathname === "/food" ? "tab-active" : "tab"
@@ -76,7 +67,7 @@ class Nav extends Component {
         }
         </div>
         <div className="col-md-2 text-center">
-        {this.state.date > this.props.dateStart ? "" :
+        {this.state.date >= this.props.dateEnd ? "" : 
           <Link to="/events"
             className={
               window.location.pathname === "/events" ? "tab-active" : "tab"
@@ -90,7 +81,7 @@ class Nav extends Component {
         }>Walk</Link>
       </div> */}
         <div className="col-md-2 text-center">
-        {this.state.date > this.props.dateStart ? "" :
+        {this.state.date >= this.props.dateEnd ? "" : 
           <Link to="/outdoors"
             className={
               window.location.pathname === "/outdoors" ? "tab-active" : "tab"
@@ -103,4 +94,4 @@ class Nav extends Component {
 }
 }
 
-export default Nav;
+export default NavVac;

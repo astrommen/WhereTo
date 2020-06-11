@@ -97,7 +97,7 @@ class template extends Component {
             <TripBtn3 type="button" className="btn btn-primary mb-2" onClick={this.deleteStuff} >Delete Vacation</TripBtn3></Link>
 
 
-          <p>Use the Tabs above to add activities to your trip!</p>
+          {/* <p>Use the Tabs above to add activities to your trip!</p> */}
         </Jumbo>
       </div>
     );

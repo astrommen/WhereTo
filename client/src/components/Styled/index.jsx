@@ -187,6 +187,7 @@ color: white;
 font-family: 'Cabin Condensed', sans-serif;
 margin-top: 10px;
 margin-bottom: auto;
+text-align: ${props => props.center ? "center" : "left"}
 `
 export const TitleLanding = styled.h5`
 color: white;
@@ -216,11 +217,6 @@ color: white;
 font-family: 'Lato', sans-serif;
 font-size: 20px;
 `
-
-// export const Center = styled.p `
-// color: white;
-// text-align: center;
-// font-size: 20px;`
 
 export const White = styled.p`
 color: white;

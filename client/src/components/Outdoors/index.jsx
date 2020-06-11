@@ -1,6 +1,7 @@
 import React, { Component }  from 'react';
 import API from "../../utils/API";
 import Nav from "../Nav";
+import NavVac from "../NavVac";
 import OutdoorCard from "../OutdoorCard";
 import FormOutdoors from "../FormOutdoors";
 import { Image, Title, Wrapper, Jumbo, White } from "../Styled";
@@ -9,10 +10,32 @@ class Outdoor extends Component {
   constructor(props) {
     super(props)
 
+    let month = () => {
+      let m = today.getMonth() + 1
+      if (m < 10) {
+        return "0" + m;
+      } else {
+        return m;
+      }
+    }
+
+    let day = () => {
+      let m = today.getDate()
+      if (m < 10) {
+        return "0" + m;
+      } else {
+        return m;
+      }
+    }
+
+    var today = new Date(), 
+    dateFill = today.getFullYear() + '-' + (month()) + '-' + day()
+
     this.state={
       sites: [],
       loading: false,
       hasError: false,
+      date: dateFill,
       hiking: "",
       boating: "",
       fishing: "",
@@ -105,9 +128,15 @@ class Outdoor extends Component {
   render() {
     return (
       <Wrapper>
+      {this.state.local ? 
         <Nav 
-        local={this.state.local}/
-        >
+        dateStart={this.state.dateStart}
+        vacaId={localStorage.getItem('vacaId')}
+        /> :
+        <NavVac
+        dateEnd={this.state.dateEnd}
+        vacaId={localStorage.getItem('vacaId')} />
+      }
 
       <Jumbo local={this.state.local}>
         <FormOutdoors 

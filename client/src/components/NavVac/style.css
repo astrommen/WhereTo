@@ -1,0 +1,16 @@
+.tab-active {
+    opacity: 1.0;
+    color: white;
+    font-weight: bold;
+    font-family: 'Lato', sans-serif;
+}
+.tab {
+    opacity: 0.8;
+    color: white;
+    font-family: 'Lato', sans-serif;
+}
+
+a:hover, a:link, a:active, a:visited {
+    color: white;
+    text-decoration: none;
+}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import API from "../../utils/API";
 import Nav from "../Nav";
+import NavVac from "../NavVac";
 import TicketmasterCard from "../TicketmasterCard"
 import FormEvents from "../FormEvents"
 import { Image, Wrapper, Jumbo, White } from "../Styled";
@@ -8,9 +9,32 @@ import { Image, Wrapper, Jumbo, White } from "../Styled";
 class Ticketmaster extends Component {
   constructor(props) {
     super(props)
+
+    let month = () => {
+      let m = today.getMonth() + 1
+      if (m < 10) {
+        return "0" + m;
+      } else {
+        return m;
+      }
+    }
+
+    let day = () => {
+      let m = today.getDate()
+      if (m < 10) {
+        return "0" + m;
+      } else {
+        return m;
+      }
+    }
+
+    var today = new Date(), 
+    dateFill = today.getFullYear() + '-' + (month()) + '-' + day()
+
     this.state = {
       events: [],
       distance: "50",
+      date: dateFill,
       loading: false,
       hasError: false,
       concert: "",
@@ -109,8 +133,15 @@ class Ticketmaster extends Component {
     // console.log(this.state)
     return (
       <Wrapper>
-        <Nav
-          local={this.state.local} />
+      {this.state.local ? 
+        <Nav 
+        dateStart={this.state.dateStart}
+        vacaId={localStorage.getItem('vacaId')}
+        /> :
+        <NavVac
+        dateEnd={this.state.dateEnd}
+        vacaId={localStorage.getItem('vacaId')} />
+      }
 
       <Jumbo local={this.state.local}>
         <FormEvents
