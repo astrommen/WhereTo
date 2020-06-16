@@ -90,14 +90,14 @@ class template extends Component {
           {!this.state.dateEnd ?
             <h5>{this.state.dateStart}</h5>
             :
-            <h5>{this.state.dateStart} -> {this.state.dateEnd}</h5>
+            <h5>{this.state.dateStart} <i className="fas fa-arrow-right"></i> {this.state.dateEnd}</h5>
           }
 
           <Link to="/profile">
             <TripBtn3 type="button" className="btn btn-primary mb-2" onClick={this.deleteStuff} >Delete Vacation</TripBtn3></Link>
 
 
-          <p>Use the Tabs above to add activities to your trip!</p>
+          {/* <p>Use the Tabs above to add activities to your trip!</p> */}
         </Jumbo>
       </div>
     );

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
 import Nav from "../Nav";
+import NavVac from "../NavVac";
 import FoodForm from "../FoodForm";
 import FormDrinks from "../FormDrinks"
 import YelpCard from "../YelpCard";
@@ -11,7 +12,29 @@ class Yelp extends Component {
   constructor(props) {
     super(props)
 
+    let month = () => {
+      let m = today.getMonth() + 1
+      if (m < 10) {
+        return "0" + m;
+      } else {
+        return m;
+      }
+    }
+
+    let day = () => {
+      let m = today.getDate()
+      if (m < 10) {
+        return "0" + m;
+      } else {
+        return m;
+      }
+    }
+
+    var today = new Date(), 
+    dateFill = today.getFullYear() + '-' + (month()) + '-' + day()
+
     this.state = {
+      date: dateFill,
       eateries: [],
       breakfast: "",
       dinner: "",
@@ -109,8 +132,15 @@ class Yelp extends Component {
     // console.log(this.state)
     return (
       <Wrapper>
-        <Nav
-          local={this.state.local} />
+      {this.state.local ? 
+        <Nav 
+        dateStart={this.state.dateStart}
+        vacaId={localStorage.getItem('vacaId')}
+        /> :
+        <NavVac
+        dateEnd={this.state.dateEnd}
+        vacaId={localStorage.getItem('vacaId')} />
+      }
         <Container>
           <div className=" row text-center text-white">
             <Col size="md-6">

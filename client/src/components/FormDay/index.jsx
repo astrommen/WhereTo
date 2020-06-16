@@ -36,6 +36,8 @@ class FormDay extends Component {
         return m;
       }
     }
+
+  
     const token = (window.localStorage.getItem("jwtToken"));
     const decoded = jwt_decode(token);
     const user = decoded.id;
@@ -44,7 +46,9 @@ class FormDay extends Component {
       dateFill = today.getFullYear() + '-' + (month()) + '-' + day();
 
     var tomorrow = new Date(),
-      tomorrowFill = tomorrow.getFullYear() + '-' + (month()) + '-' + dayPlusOne();
+      tomorrowFill = tomorrow.getFullYear() + '-' + (month()) + '-' + dayPlusOne();   
+    
+      // var dateEnd = new Date(this.state.dateStart.getDate() + 1)
 
     this.state = {
       userId: user,
@@ -56,10 +60,28 @@ class FormDay extends Component {
       whichPage: "",
       tripName: "",
       dateStart: dateFill,
+      dateEnd: "",
       city: "",
       state: "",
     };
   }
+
+  // endDate = () => {
+  //   var dateParts = this.state.dateStart.split('-');
+  //   var y = parseInt(dateParts [0], 10);
+  //   var m = parseInt(dateParts [1], 10);
+  //   var d = parseInt(dateParts [2], 10);
+  //   // var endDate = new Date(Date.UTC(y, m-1, d+1));
+  //   var endDate = `${y}-${m}-${d+1}`
+  //   // console.log("new Date: ", new Date( y, m, d+1))
+  //   // console.log("new Date: ", y, '-',m, '-',d+1)
+  //   console.log("endDate: " ,endDate)
+  //   this.setState({
+  //     dateEnd: endDate
+  //   })  
+  //   // var endDate = new Date(this.state.dateStart + 1)
+  //     // console.log("end Date Function end: ", this.state.dateEnd)
+  // }
 
   saveTrip = (vacation) => {
     console.log("FormDay")
@@ -95,19 +117,27 @@ class FormDay extends Component {
     }
   };
 
+  // handleDateChange = event => {
+  //   event.preventDefault();
+  //   const { name, value } = event.target;
+  //   this.setState({
+  //     [name]: value
+  //   })
+  //   this.endDate();
+  // }
+
   handleFormSubmit = event => {
     event.preventDefault();
+    // this.endDate();
+    console.log("handle Form Submit: ", this.state.dateEnd)
     this.saveTrip({
       userId: this.state.userId,
       tripName: this.state.tripName,
       dateStart: this.state.dateStart,
+      dateEnd: this.state.dateEnd,
       city: this.state.city,
       state: this.state.state,
       local: this.state.local,
-      // sightseeing: [String],
-      // food: [String],
-      // events: [String],
-      // outdoors: [String],
     });
   }
 
@@ -246,4 +276,4 @@ class FormDay extends Component {
 }
 
 export default withRouter(FormDay);
-
+// export default FormDay;

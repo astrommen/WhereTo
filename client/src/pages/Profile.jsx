@@ -109,7 +109,7 @@ class Profile extends Component {
         obj.startDate = res.data.startDate;
         obj.endDate = res.data.endDate;
         obj.local = res.data.local;
-        if (this.state.date < res.data.dateStart.slice(0, 10)) {
+        if (this.state.date <= res.data.dateStart.slice(0, 10)) {
           upcomingArr.push(obj)
           this.setState({
             upcomingVaca: upcomingArr

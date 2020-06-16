@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
 import Nav from "../Nav";
+import NavVac from "../NavVac";
 import TripCard from "../TripCard";
 import { Image, White, Wrapper, Jumbo } from "../Styled";
 const axios = require("axios");
@@ -8,7 +9,30 @@ const axios = require("axios");
 class TripAdvisor extends Component {
   constructor(props) {
     super(props)
+
+    let month = () => {
+      let m = today.getMonth() + 1
+      if (m < 10) {
+        return "0" + m;
+      } else {
+        return m;
+      }
+    }
+
+    let day = () => {
+      let m = today.getDate()
+      if (m < 10) {
+        return "0" + m;
+      } else {
+        return m;
+      }
+    }
+
+    var today = new Date(), 
+    dateFill = today.getFullYear() + '-' + (month()) + '-' + day()
+
     this.state = {
+      date: dateFill,
       trips: [],
       locationInfo: [],
       loading: false,
@@ -137,8 +161,15 @@ class TripAdvisor extends Component {
   render() {
     return (
       <Wrapper>
+      {this.state.local ? 
         <Nav 
-        local={this.state.local}/>
+        dateStart={this.state.dateStart}
+        vacaId={localStorage.getItem('vacaId')}
+        /> :
+        <NavVac
+        dateEnd={this.state.dateEnd}
+        vacaId={localStorage.getItem('vacaId')} />
+      }
         {this.state.loading && <Image className="loading" src={process.env.PUBLIC_URL + './img/loading.gif'} alt="loading" />}
         {this.state.hasError && 
             <Jumbo>
