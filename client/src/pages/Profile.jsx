@@ -55,7 +55,8 @@ class Profile extends Component {
       pastVaca: [],
       upcomingVaca: [],
       userID: user,
-      name: ''
+      name: '',
+      profile_pic: ''
     };
 
   }
@@ -75,6 +76,12 @@ class Profile extends Component {
     let IDsArr = []
     API.getUser(this.state.userID)
       .then((res) => {
+        console.log(res.data.profile_pic);
+        if(res.data.profile_pic){
+          this.setState({profile_pic:res.data.profile_pic});
+        }else{
+          this.setState({profile_pic:"https://via.placeholder.com/100"});
+        }
         // console.log(res.data) //Logs user found
         res.data.vacations.forEach((VacaIDs) => {
           let obj = {}
@@ -150,6 +157,7 @@ class Profile extends Component {
                 name={this.state.name}
                 history={this.props.history}
                 logoutUser={this.props.logoutUser}
+                profile_pic={this.state.profile_pic}
               />
             </Col>
             <Col size="md-6">
