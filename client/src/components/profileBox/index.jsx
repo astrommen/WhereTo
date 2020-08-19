@@ -108,6 +108,7 @@ class profileBox extends Component {
           </button>
         </form>
       </div>
+
     );
   }
 }
