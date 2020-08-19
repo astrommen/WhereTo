@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
 import Nav from "../Nav";
+import NavVac from "../NavVac";
 import FoodForm from "../FoodForm";
 import FormDrinks from "../FormDrinks"
 import YelpCard from "../YelpCard";
@@ -11,7 +12,29 @@ class Yelp extends Component {
   constructor(props) {
     super(props)
 
+    let month = () => {
+      let m = today.getMonth() + 1
+      if (m < 10) {
+        return "0" + m;
+      } else {
+        return m;
+      }
+    }
+
+    let day = () => {
+      let m = today.getDate()
+      if (m < 10) {
+        return "0" + m;
+      } else {
+        return m;
+      }
+    }
+
+    var today = new Date(), 
+    dateFill = today.getFullYear() + '-' + (month()) + '-' + day()
+
     this.state = {
+      date: dateFill,
       eateries: [],
       breakfast: "",
       dinner: "",
@@ -109,23 +132,31 @@ class Yelp extends Component {
     // console.log(this.state)
     return (
       <Wrapper>
-        <Nav
-          local={this.state.local} />
+      {this.state.local ? 
+        <Nav 
+        dateStart={this.state.dateStart}
+        vacaId={localStorage.getItem('vacaId')}
+        /> :
+        <NavVac
+        dateEnd={this.state.dateEnd}
+        vacaId={localStorage.getItem('vacaId')} />
+      }
         <Container>
-          <Row className="text-center">
+          <div className=" row text-center text-white">
             <Col size="md-6">
-              <ImageButton onClick={this.handleFood}> <img className="img-fluid mb-3" src={process.env.PUBLIC_URL + './img/activities/food.png'} alt="food options" /></ImageButton>
+              <ImageButton onClick={this.handleFood}> <img className="img-fluid mb-3" src={process.env.PUBLIC_URL + './img/activities/food.png'} alt="food options" />Food</ImageButton>
             </Col>
             <Col size="md-6">
-              <ImageButton onClick={this.handleDrink}> <img className="img-fluid mb-3" src={process.env.PUBLIC_URL + './img/activities/coffee.png'} alt="drink options" /></ImageButton>
+              <ImageButton onClick={this.handleDrink}> <img className="img-fluid mb-3" src={process.env.PUBLIC_URL + './img/activities/coffee.png'} alt="drink options" />Drinks</ImageButton>
             </Col>
-          </Row>
+          </div>
         </Container>
 
         {this.state.foodChoice &&
           <Jumbo local={this.state.local}>
             <FoodForm
               value={this.state.value}
+              local={this.state.local}
               handleInputChange={this.handleInputChange}
               handleFormSubmit={this.handleFormSubmit} />
           </Jumbo>
@@ -135,6 +166,7 @@ class Yelp extends Component {
           <Jumbo className="mb-2" local={this.state.local}>
             <FormDrinks
               value={this.state.value}
+              local={this.state.local}
               handleInputChange={this.handleInputChange}
               handleFormSubmit={this.handleFormSubmit} />
           </Jumbo>}
@@ -168,7 +200,7 @@ class Yelp extends Component {
         ) : (
             <Jumbo local={this.state.local}>
               <h3>No Results to Display</h3>
-              <White>Use the food and drink forms to populate your options.</White>
+              <White center>Use the food and drink forms to populate your options.</White>
             </Jumbo>
           )}
       </Wrapper>

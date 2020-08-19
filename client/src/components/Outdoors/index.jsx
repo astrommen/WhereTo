@@ -1,6 +1,7 @@
 import React, { Component }  from 'react';
 import API from "../../utils/API";
 import Nav from "../Nav";
+import NavVac from "../NavVac";
 import OutdoorCard from "../OutdoorCard";
 import FormOutdoors from "../FormOutdoors";
 import { Image, Title, Wrapper, Jumbo, White } from "../Styled";
@@ -9,10 +10,32 @@ class Outdoor extends Component {
   constructor(props) {
     super(props)
 
+    let month = () => {
+      let m = today.getMonth() + 1
+      if (m < 10) {
+        return "0" + m;
+      } else {
+        return m;
+      }
+    }
+
+    let day = () => {
+      let m = today.getDate()
+      if (m < 10) {
+        return "0" + m;
+      } else {
+        return m;
+      }
+    }
+
+    var today = new Date(), 
+    dateFill = today.getFullYear() + '-' + (month()) + '-' + day()
+
     this.state={
       sites: [],
       loading: false,
       hasError: false,
+      date: dateFill,
       hiking: "",
       boating: "",
       fishing: "",
@@ -94,6 +117,7 @@ class Outdoor extends Component {
           tripId: res.data._id,
           tripName: res.data.tripName,
           dateStart: res.data.dateStart,
+          // dateEnd: res.data.dateEnd,
           city: res.data.city,
           state: res.data.state,
         })
@@ -104,14 +128,23 @@ class Outdoor extends Component {
   render() {
     return (
       <Wrapper>
+      {this.state.local ? 
         <Nav 
-        local={this.state.local}/>
+        dateStart={this.state.dateStart}
+        vacaId={localStorage.getItem('vacaId')}
+        /> :
+        <NavVac
+        dateEnd={this.state.dateEnd}
+        vacaId={localStorage.getItem('vacaId')} />
+      }
 
       <Jumbo local={this.state.local}>
         <FormOutdoors 
         value={this.state.value}
+        local={this.state.local} 
         handleInputChange={this.handleInputChange}
-        handleFormSubmit={this.handleFormSubmit}/>
+        handleFormSubmit={this.handleFormSubmit}
+        />
       </Jumbo> 
 
       
@@ -119,7 +152,7 @@ class Outdoor extends Component {
         {this.state.hasError &&             
             <Jumbo local={this.state.local}>
               <h5>There was an error searching for your Request.</h5>
-              <White>Please try a different selection or attempt again later.</White>
+              <White center>Please try a different selection or attempt again later.</White>
             </Jumbo>}
         {this.state.sites.length > 0 ? (
           this.state.sites.map((site) => 
@@ -143,7 +176,7 @@ class Outdoor extends Component {
         ) : (
           <Jumbo local={this.state.local}>
           <h3>No Results to Display</h3>
-          <White>Select which activities you are interested in to populate your results.</White>
+          <White center>Select which activities you are interested in to populate your results.</White>
         </Jumbo>
     )}
       </Wrapper>

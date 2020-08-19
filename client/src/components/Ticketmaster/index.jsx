@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import API from "../../utils/API";
 import Nav from "../Nav";
+import NavVac from "../NavVac";
 import TicketmasterCard from "../TicketmasterCard"
 import FormEvents from "../FormEvents"
 import { Image, Wrapper, Jumbo, White } from "../Styled";
@@ -8,9 +9,32 @@ import { Image, Wrapper, Jumbo, White } from "../Styled";
 class Ticketmaster extends Component {
   constructor(props) {
     super(props)
+
+    let month = () => {
+      let m = today.getMonth() + 1
+      if (m < 10) {
+        return "0" + m;
+      } else {
+        return m;
+      }
+    }
+
+    let day = () => {
+      let m = today.getDate()
+      if (m < 10) {
+        return "0" + m;
+      } else {
+        return m;
+      }
+    }
+
+    var today = new Date(), 
+    dateFill = today.getFullYear() + '-' + (month()) + '-' + day()
+
     this.state = {
       events: [],
       distance: "50",
+      date: dateFill,
       loading: false,
       hasError: false,
       concert: "",
@@ -109,12 +133,20 @@ class Ticketmaster extends Component {
     // console.log(this.state)
     return (
       <Wrapper>
-        <Nav
-          local={this.state.local} />
+      {this.state.local ? 
+        <Nav 
+        dateStart={this.state.dateStart}
+        vacaId={localStorage.getItem('vacaId')}
+        /> :
+        <NavVac
+        dateEnd={this.state.dateEnd}
+        vacaId={localStorage.getItem('vacaId')} />
+      }
 
       <Jumbo local={this.state.local}>
         <FormEvents
         value={this.state.value}
+        local={this.state.local} 
         handleInputChange={this.handleInputChange}
         handleFormSubmit={this.handleFormSubmit}/>
       </Jumbo> 
@@ -145,11 +177,13 @@ class Ticketmaster extends Component {
               venueState={activity.venueState}
               venueStreet={activity.venueStreet}
               venuePostal={activity.venuePostal}
+              longitude={activity.longitude}
+              latitude={activity.latitude}
             />)
         ) : (
             <Jumbo local={this.state.local}>
               <h3>No Results to Display</h3>
-              <White>Use the food and drink forms to populate your options.</White>
+              <White center>Select which events you are interested in to populate your options.</White>
             </Jumbo>
           )}
       </Wrapper>

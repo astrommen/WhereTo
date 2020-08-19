@@ -103,6 +103,10 @@ class SignOn extends Component {
           {/* <div id={GOOGLE_BUTTON_ID} />
           <button onClick={() => this.signOut()}>Sign out</button> */}
         </Row>
+        {/* <Row>
+          <div id={GOOGLE_BUTTON_ID} />
+          <button onClick={() => this.signOut()}>Sign out</button>
+        </Row> */}
 
         <Row>
           <Link
