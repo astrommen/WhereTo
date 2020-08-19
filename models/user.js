@@ -23,7 +23,10 @@ const UserSchema = new Schema({
   vacations: [{
     type: Schema.Types.ObjectId,
     ref: "Vacation"
-  }]
+  }],
+  profile_pic: {
+    type: String,
+  }
 });
 
 var User = mongoose.model("users", UserSchema)

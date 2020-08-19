@@ -91,6 +91,9 @@ export default {
             }
         })
     },
+    uploadImage: function(id, data) {
+        return axios.post("api/users/uploadImage/" + id, data);
+    },
     getUser: function (id) {
         return axios.get("/api/users/" + id);
     },

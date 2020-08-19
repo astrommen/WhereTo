@@ -15,3 +15,25 @@ img {
   height: auto;
   font-size: 10px;
 }
+
+.profile-pic{
+  width:100px;
+  height:100px;
+}
+
+#prof-pic{
+  background-color: #1f2325;
+  width:100%;
+  border-radius: 3px;
+  color: white;
+}
+
+.picSubmit{
+  background-color: #0066c0;
+  height: 35px;
+  font-weight: bold;
+}
+/* todo 
+
+2 button same siz:
+upload to show when there a file selected*/

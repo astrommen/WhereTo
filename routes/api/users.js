@@ -15,6 +15,18 @@ const User = require("../../models/user");
 //Load controller
 const userController = require("../../controllers/userController");
 
+//uploading profile pic
+// const multer = require("multer");
+// var AWS = require("aws-sdk");
+
+// // Multer ships with storage engines DiskStorage and MemoryStorage
+// // And Multer adds a body object and a file or files object to the request object. The body object contains the values of the text fields of the form, the file or files object contains the files uploaded via the form.
+// var storage = multer.memoryStorage();
+// var upload = multer({ storage: storage });
+
+router.route("/uploadImage/:id")
+  .post(userController.update);
+
 // Matches with "/api/users"
 router.route("/")
   .get(userController.findAll)
@@ -126,5 +138,10 @@ router.post("/login", (req, res) => {
     });
   });
 });
+
+router.post("/uploadImage", (req, res) => {
+  User.findOneAndUpdate({ name: req.body.name }, {$set: {profile_pic: req.body.url} });
+  console.log("success");
+})
 
 module.exports = router;

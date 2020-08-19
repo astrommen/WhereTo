@@ -63,6 +63,7 @@ class LogIn extends Component {
                   Don't have an account?  <Link to="/register"><b><i class="fas fa-user-plus"></i> Register</b></Link>
                 </White>
               </div>
+            </form>
 
               <form noValidate onSubmit={this.onSubmit}>
 

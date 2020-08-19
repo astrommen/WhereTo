@@ -19,6 +19,7 @@ import Daytrip from "./pages/Daytrip";
 import PrivateRoute from "./components/private-route/PrivateRoute";
 import Register from "./components/auth/Register"
 import LogIn from "./components/auth/LogIn";
+
 import Outdoors from "./components/Outdoors";
 import Ticketmaster from "./components/Ticketmaster";
 import Yelp from "./components/Yelp";

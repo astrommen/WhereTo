@@ -73,6 +73,22 @@ class TripAdvisor extends Component {
   //     console.log(this.state.trips)
   //   })
   // }
+  getVacationData = () => {
+    // console.log(this.props)
+    console.log(this.props.vacaId)
+    API.getVacations(localStorage.getItem('vacaId'))
+      .then((res) => {
+        console.log(res.data)
+        console.log(res.data.tripName)
+        this.setState({
+          tripName: res.data.tripName,
+          dateStart: res.data.dateStart,
+          city: res.data.city,
+          state: res.data.state,
+        })
+        this.searchTripId(res.data.city, res.data.state)
+      }).catch(err => console.log(err))
+  }
 
   searchTripId = (city, state) => {
     this.setState({ loading: true })
